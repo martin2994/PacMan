@@ -4,13 +4,14 @@ import java.util.StringTokenizer;
 public class IOTreatment {
 	
 	public static int[][] readMatrix(int [][]tab) throws IOException {
-			File f = new File("matrix2.txt");
+			File f = new File("matrix.txt");
 			FileInputStream ips = new FileInputStream(f);
 			InputStreamReader ipsr = new InputStreamReader(ips);
 			BufferedReader br = new BufferedReader(ipsr);
 			String currentLine;
 			int width = Integer.parseInt(br.readLine().toString());
 			int height = Integer.parseInt(br.readLine().toString());
+			int gum = Integer.parseInt(br.readLine().toString());
 			//int tab[][] = new int[height][width];
 			int count=0;
 			while ((currentLine=br.readLine())!=null){
@@ -47,5 +48,14 @@ public class IOTreatment {
 		return Integer.parseInt(br.readLine().toString()) ;
 	}
 
+	public static int getGum() throws IOException {
+		File f = new File("matrix.txt");
+		FileInputStream ips = new FileInputStream(f);
+		InputStreamReader ipsr = new InputStreamReader(ips);
+		BufferedReader br = new BufferedReader(ipsr);
+		int width=Integer.parseInt(br.readLine().toString());
+		int height=Integer.parseInt(br.readLine().toString());
+		return Integer.parseInt(br.readLine().toString());
+	}
 
 }

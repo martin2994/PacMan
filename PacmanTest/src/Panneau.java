@@ -74,14 +74,7 @@ public class Panneau extends JPanel {
 			for (int j=0;j<22;j++){
 					switch (mat[i][j]){
 					case 0:g.drawImage(img0, i*28, j*28, this);break;
-					case 1:
-						if (!eatGum(i,j)){
-							g.drawImage(img1, i*28, j*28, this);
-						}else{
-							g.drawImage(img0, i*28, j*28, this);
-							mat[i][j]=0;
-						}
-						break;
+					case 1:g.drawImage(img1, i*28, j*28, this);break;
 					case 2:g.drawImage(img2, i*28, j*28, this); break;
 					case 3:g.drawImage(img3, i*28, j*28, this); break;
 					case 4:g.drawImage(img4, i*28, j*28, this);break;
@@ -133,21 +126,6 @@ public class Panneau extends JPanel {
 			e.printStackTrace();
 			}
 		}
-	
-	public boolean eatGum(int i, int j){
-		int length=Modele.length_box;
-		boolean eat_left=(((posX+(length))/length)%19)==i && ((posY/length)%22)==j;
-		boolean eat_up=((posX/length)%19)==i && (((posY+length)/length)%22)==j;
-		boolean eat_down_right=((posX/length)%19)==i && ((posY/length)%22)==j;
-		switch(go_pacman){
-		case UP:return eat_up;
-		case LEFT:return eat_left;
-		case DOWN:return eat_down_right;
-		case RIGHT:return eat_down_right;
-		default:return false;
-		}
-		
-	}
 
 	public int getPosX() {
 		return posX;

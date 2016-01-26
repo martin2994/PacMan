@@ -18,44 +18,32 @@ public class Modele {
 	static int deplacement = 1;
 	// taille d'une case en pixels
 	static int length_box = 28;
+	// nombre de gommes dans le labyrinthe
+	static int gumGum;
 
 	public static void fillMyTab() {
-		try{
-			labyrinth=new int[IOTreatment.getWidth()][IOTreatment.getHeigth()];
+		try {
+			labyrinth = new int[IOTreatment.getWidth()][IOTreatment.getHeigth()];
+			gumGum = IOTreatment.getGum();
 			IOTreatment.readMatrix(labyrinth);
-		}catch (IOException e){
+		} catch (IOException e) {
 			System.out.println("Erreur IO");
 		}
-		
-		
-		
-		
-		/*for (int i = 0; i < 28; i++) {
-			for (int j = 0; j < 31; j++) {
-				labyrinth[i][j] = 0;
-			}
-		}
-		labyrinth[2][2] = 21;
-		labyrinth[3][2] = 23;
-		labyrinth[4][2] = 1;
-		labyrinth[1][1] = 18;
-		labyrinth[7][7] = 2;
-		labyrinth[8][7] = 18;
-		labyrinth[9][7] = 1;
-		labyrinth[8][5] = 1;
-		labyrinth[8][9] = 1;
-		labyrinth[8][3] = 1;
-		labyrinth[8][1] = 10;
-		labyrinth[8][2] = 11;
-		labyrinth[8][6] = 3;
-		labyrinth[8][0] = 1;
-		labyrinth[15][15]=8;
-		labyrinth[16][15]=9;*/
+
+		/*
+		 * for (int i = 0; i < 28; i++) { for (int j = 0; j < 31; j++) {
+		 * labyrinth[i][j] = 0; } } labyrinth[2][2] = 21; labyrinth[3][2] = 23;
+		 * labyrinth[4][2] = 1; labyrinth[1][1] = 18; labyrinth[7][7] = 2;
+		 * labyrinth[8][7] = 18; labyrinth[9][7] = 1; labyrinth[8][5] = 1;
+		 * labyrinth[8][9] = 1; labyrinth[8][3] = 1; labyrinth[8][1] = 10;
+		 * labyrinth[8][2] = 11; labyrinth[8][6] = 3; labyrinth[8][0] = 1;
+		 * labyrinth[15][15]=8; labyrinth[16][15]=9;
+		 */
 	}
 
 	public static boolean letMeDoTheSmartThings(int tempX, int tempY) {
-		tempX = (tempX / length_box)%19;
-		tempY = (tempY / length_box)%22;
+		tempX = (tempX / length_box) % 19;
+		tempY = (tempY / length_box) % 22;
 		if (labyrinth[tempX][tempY] > 1)
 			return false;
 		else
@@ -120,22 +108,23 @@ public class Modele {
 		fillMyTab();
 		Direction go = Direction.UP;
 		Direction toGo = Direction.UP;
-		
-		//Instanciation des fantomes
-		Ghost blinky=new Ghost(252,224,0, "Blinky", deplacement, length_box);
-		Ghost pinky=new Ghost(280,280,0, "Pinky", deplacement, length_box);
-		Ghost inky=new Ghost(252,280,0, "Inky", deplacement, length_box);
-		Ghost clyde=new Ghost(224,280,0, "Clyde", deplacement, length_box);
+
+		// Instanciation des fantomes
+		Ghost blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box);
+		Ghost pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box);
+		Ghost inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
+		Ghost clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
 
 		boolean taMereLaBoucle = true;
+		int x, y;
 
 		Controleur controle = new Controleur(0, 0, 0, 0);
-		Vue vue = new Vue(controle, coordX, coordY, maxX, maxY, blinky, pinky, inky, clyde,go);
+		Vue vue = new Vue(controle, coordX, coordY, maxX, maxY, blinky, pinky, inky, clyde, go);
 
-		while (taMereLaBoucle) {
+		while (taMereLaBoucle && gumGum > 0) {
 			toGo = controle.tellMeTheWayToGoPlease();
-			
-			//Deplacement de Pacman
+
+			// Deplacement de Pacman
 			if (toGo != go) {
 				if (canIGoHere(toGo) == true) {
 					go = toGo;
@@ -144,13 +133,36 @@ public class Modele {
 			if (canIGoHere(go)) {
 				actualize_XY(go);
 			}
-			//Deplacement des fantomes
+
+			// Test si on mange une gomme
+			x = (coordX / length_box) % 19;
+			y = (coordY / length_box) % 22;
+			switch (go) {
+			case DOWN:
+				y = ((coordY + (length_box / 2)) / length_box) % 22;
+				break;
+			case UP:
+				y = ((coordY + (length_box / 2)) / length_box) % 22;
+				break;
+			case LEFT:
+				x = ((coordX + (length_box / 2)) / length_box) % 19;
+				break;
+			case RIGHT:
+				x = ((coordX + (length_box / 2)) / length_box) % 19;
+				break;
+			}
+			if (labyrinth[x][y] == 1) {
+				labyrinth[x][y] = 0;
+				gumGum--;
+			}
+
+			// Deplacement des fantomes
 			blinky.deplaceTheFantom(coordX, coordY, go);
 			pinky.deplaceTheFantom(coordX, coordY, go);
 			inky.deplaceTheFantom(coordX, coordY, go);
 			clyde.deplaceTheFantom(coordX, coordY, go);
-			
-			vue.refresh(coordX, coordY,go);
+
+			vue.refresh(coordX, coordY, go);
 			try {
 				Thread.sleep(8);
 			} catch (InterruptedException e) {
@@ -160,4 +172,3 @@ public class Modele {
 	}
 
 }
-
