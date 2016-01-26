@@ -116,9 +116,13 @@ public class Ghost {
 		}
 	}
 
-	public boolean letMeDoTheSmartThings(int tempX, int tempY) {
+	public boolean letMeDoTheSmartThings(int tempX, int tempY, Modele.Direction goTest) {
 		tempX = (tempX / length_box) % 19;
 		tempY = (tempY / length_box) % 22;
+		//Cas de départ quand le fantome doit sortir
+		if((Modele.labyrinth[tempX][tempY]==24) && (goTest == Modele.Direction.UP)){
+			return true;
+		}
 		if (Modele.labyrinth[tempX][tempY] > 1)
 			return false;
 		else
@@ -128,17 +132,17 @@ public class Ghost {
 	private boolean canIGoHere(Modele.Direction goTest) {
 		switch (goTest) {
 		case UP:
-			return (letMeDoTheSmartThings(coordX + length_box - deplacement, coordY - deplacement)
-					&& letMeDoTheSmartThings(coordX, coordY - deplacement));
+			return (letMeDoTheSmartThings(coordX + length_box - deplacement, coordY - deplacement, goTest)
+					&& letMeDoTheSmartThings(coordX, coordY - deplacement, goTest));
 		case DOWN:
-			return (letMeDoTheSmartThings(coordX, coordY + length_box)
-					&& letMeDoTheSmartThings(coordX + length_box - deplacement, coordY + length_box));
+			return (letMeDoTheSmartThings(coordX, coordY + length_box, goTest)
+					&& letMeDoTheSmartThings(coordX + length_box - deplacement, coordY + length_box, goTest));
 		case LEFT:
-			return letMeDoTheSmartThings(coordX - deplacement, coordY)
-					&& letMeDoTheSmartThings(coordX - deplacement, coordY + length_box - deplacement);
+			return letMeDoTheSmartThings(coordX - deplacement, coordY, goTest)
+					&& letMeDoTheSmartThings(coordX - deplacement, coordY + length_box - deplacement, goTest);
 		case RIGHT:
-			return letMeDoTheSmartThings(coordX + length_box, coordY + length_box - deplacement)
-					&& letMeDoTheSmartThings(coordX + length_box, coordY);
+			return letMeDoTheSmartThings(coordX + length_box, coordY + length_box - deplacement, goTest)
+					&& letMeDoTheSmartThings(coordX + length_box, coordY, goTest);
 		default:
 		}
 		return false;

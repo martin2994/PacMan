@@ -10,8 +10,8 @@ public class Modele {
 	static int maxX = 532;
 	static int maxY = 644;
 	// placement de Pacman
-	static int coordX = 200;
-	static int coordY = 200;
+	static int coordX = 252;
+	static int coordY = 448;
 	// taille du labyrinthe
 	static int[][] labyrinth;
 	// vitesse de Pacman
@@ -125,7 +125,7 @@ public class Modele {
 		Ghost blinky=new Ghost(0,0,0, "Blinky", deplacement, length_box);
 		Ghost pinky=new Ghost(50,0,0, "Pinky", deplacement, length_box);
 		Ghost inky=new Ghost(100,0,0, "Inky", deplacement, length_box);
-		Ghost clyde=new Ghost(56,56,0, "Clyde", deplacement, length_box);
+		Ghost clyde=new Ghost(224,280,0, "Clyde", deplacement, length_box);
 
 		boolean taMereLaBoucle = true;
 
