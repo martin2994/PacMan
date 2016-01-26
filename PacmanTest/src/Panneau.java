@@ -31,7 +31,7 @@ public class Panneau extends JPanel {
 		int length=mat.length;
 		g.setColor(Color.black);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		try{
+		try{ //chargement des images
 			Image img1=ImageIO.read(new File("src/image/case1.png"));
 			Image img2=ImageIO.read(new File("src/image/case2.png"));
 			Image img3=ImageIO.read(new File("src/image/case3.png"));
@@ -55,6 +55,7 @@ public class Panneau extends JPanel {
 			Image img21=ImageIO.read(new File("src/image/case21.png"));
 			Image img22=ImageIO.read(new File("src/image/case22.png"));
 			Image img23=ImageIO.read(new File("src/image/case23.png"));
+			Image img24=ImageIO.read(new File("src/image/case24.png"));
 			Image pacman_left=ImageIO.read(new File("src/image/Pacman_left.png"));
 			Image pacman_right=ImageIO.read(new File("src/image/Pacman_right.png"));
 			Image pacman_up=ImageIO.read(new File("src/image/Pacman_up.png"));
@@ -94,6 +95,7 @@ public class Panneau extends JPanel {
 					case 21:g.drawImage(img21, i*28, j*28, this); break;
 					case 22:g.drawImage(img22, i*28, j*28, this);break;
 					case 23:g.drawImage(img23, i*28, j*28, this);break;
+					case 24:g.drawImage(img24, i*28, j*28, this);break;
 					}
 			}
 		}
