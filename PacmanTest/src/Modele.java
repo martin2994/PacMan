@@ -232,9 +232,10 @@ public class Modele {
 				clyde.deplaceTheFantom(coordX, coordY, go);
 
 				vue.refresh(coordX, coordY, go);
-				
-				if(meetTheFantom(blinky) || meetTheFantom(pinky) || meetTheFantom(inky) || meetTheFantom(clyde)){
-					System.exit(0);
+
+				if (meetTheFantom(blinky) || meetTheFantom(pinky) || meetTheFantom(inky) || meetTheFantom(clyde)) {
+					coordX = 252;
+					coordY = 448;
 				}
 				try {
 					Thread.sleep(8);
