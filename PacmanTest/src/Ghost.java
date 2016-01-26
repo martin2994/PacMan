@@ -71,17 +71,27 @@ public class Ghost {
 
 	// Clyde se déplace de manière aléatoire sur la carte
 	private void deplaceClyde() {
+		//départ
+		if(coordX==224 && coordY==280){
+			go=Modele.Direction.RIGHT;
+			goToTheOtherSide=theOtherSide(go);
+		} else {
+			if(coordX==252 && coordY==280){
+				go=Modele.Direction.UP;
+				goToTheOtherSide=theOtherSide(go);
+			} else {
+				// Il suffit de le faire aller de manière aléatoire sur n'importe quelle
+				// case
+				// qui n'est pas un mur ou une marche arrière
 
-		// Il suffit de le faire aller de manière aléatoire sur n'importe quelle
-		// case
-		// qui n'est pas un mur ou une marche arrière
-
-		Modele.Direction toGo;
-		do {
-			toGo = getRandomDirection();
-		} while (goToTheOtherSide.equals(toGo) || !canIGoHere(toGo));
-		go = toGo;
-		goToTheOtherSide = theOtherSide(toGo);
+				Modele.Direction toGo;
+				do {
+					toGo = getRandomDirection();
+				} while (goToTheOtherSide.equals(toGo) || !canIGoHere(toGo));
+				go = toGo;
+				goToTheOtherSide = theOtherSide(toGo);
+			}
+		}
 
 		switch (go) {
 		case UP:

@@ -123,8 +123,8 @@ public class Modele {
 		
 		//Instanciation des fantomes
 		Ghost blinky=new Ghost(0,0,0, "Blinky", deplacement, length_box);
-		Ghost pinky=new Ghost(50,0,0, "Pinky", deplacement, length_box);
-		Ghost inky=new Ghost(100,0,0, "Inky", deplacement, length_box);
+		Ghost pinky=new Ghost(280,280,0, "Pinky", deplacement, length_box);
+		Ghost inky=new Ghost(252,280,0, "Inky", deplacement, length_box);
 		Ghost clyde=new Ghost(224,280,0, "Clyde", deplacement, length_box);
 
 		boolean taMereLaBoucle = true;
