@@ -22,15 +22,15 @@ public class Ghost {
 		this.game_lap = 0;
 	}
 
-	public void deplaceTheFantom(int coordXPacman, int coordYPacman) {
+	public void deplaceTheFantom(int coordXPacman, int coordYPacman, Modele.Direction goPacman) {
 		game_lap++;
 		switch (name) {
 		case "Blinky":
-				deplaceBlinky(coordXPacman, coordYPacman, false);
+			deplaceBlinky(coordXPacman, coordYPacman, false);
 			break;
 		case "Pinky":
 			if (game_lap > 1000) {
-				deplacePinky(coordXPacman, coordYPacman);
+			deplacePinky(coordXPacman, coordYPacman, goPacman);
 			}
 			break;
 		case "Inky":
@@ -171,9 +171,51 @@ public class Ghost {
 		return false;
 	}
 
-	private void deplacePinky(int coordXPacman, int coordYPacman) {
+	private void deplacePinky(int coordXPacman, int coordYPacman, Modele.Direction goPacman) {
 		// Vise l'endroit où va se trouver Pacman
-
+		if (coordX <= 280 && coordX > 252 && coordY == 252) {
+			go = Modele.Direction.LEFT;
+			goToTheOtherSide = theOtherSide(go);
+			move();
+		} else {
+			if (coordX == 252 && coordY <= 280 && coordY >= 252) {
+				go = Modele.Direction.UP;
+				goToTheOtherSide = theOtherSide(go);
+				move();
+			} else {
+				coordXPacman = (coordXPacman / length_box) % 19;
+				coordYPacman = (coordYPacman / length_box) % 22;
+				boolean bordure=false;
+				while ((Modele.labyrinth[coordXPacman][coordYPacman] < 2) && !bordure) {
+					switch (goPacman) {
+					case UP:
+						coordYPacman = (coordYPacman - 1)%22;
+						if(Math.abs(coordYPacman) != (coordYPacman)){
+							coordYPacman=0;
+							bordure=true;
+						}
+						break;
+					case DOWN:
+						coordYPacman = (coordYPacman + 1)%22;
+						break;
+					case LEFT:
+						coordXPacman = (coordXPacman - 1)%19;
+						if(Math.abs(coordXPacman) != (coordXPacman)%19){
+							coordXPacman=0;
+							bordure = true;
+						}
+						break;
+					case RIGHT:
+						coordXPacman = (coordXPacman + 1)%19;
+						break;
+					default:
+					}
+				}
+				coordXPacman = coordXPacman * length_box;
+				coordYPacman = coordYPacman * length_box;
+				deplaceBlinky(coordXPacman, coordYPacman, false);
+			}
+		}
 	}
 
 	private void deplaceInky(int coordXPacman, int coordYPacman) {
@@ -300,5 +342,9 @@ public class Ghost {
 
 	public void setCoordY(int coordY) {
 		this.coordY = coordY;
+	}
+
+	public String toString() {
+		return this.name;
 	}
 }

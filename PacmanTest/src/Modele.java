@@ -145,10 +145,10 @@ public class Modele {
 				actualize_XY(go);
 			}
 			//Deplacement des fantomes
-			blinky.deplaceTheFantom(coordX, coordY);
-			pinky.deplaceTheFantom(coordX, coordY);
-			inky.deplaceTheFantom(coordX, coordY);
-			clyde.deplaceTheFantom(coordX, coordY);
+			blinky.deplaceTheFantom(coordX, coordY, go);
+			pinky.deplaceTheFantom(coordX, coordY, go);
+			inky.deplaceTheFantom(coordX, coordY, go);
+			clyde.deplaceTheFantom(coordX, coordY, go);
 			
 			vue.refresh(coordX, coordY,go);
 			try {
