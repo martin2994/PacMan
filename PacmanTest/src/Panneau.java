@@ -28,10 +28,11 @@ public class Panneau extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		int mat[][]=Modele.labyrinth;
-		int length=mat.length;
+		//int length=mat.length;
 		g.setColor(Color.black);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		try{ //chargement des images
+			Image img0=ImageIO.read(new File("src/image/case0.png"));
 			Image img1=ImageIO.read(new File("src/image/case1.png"));
 			Image img2=ImageIO.read(new File("src/image/case2.png"));
 			Image img3=ImageIO.read(new File("src/image/case3.png"));
@@ -72,7 +73,15 @@ public class Panneau extends JPanel {
 		for (int i=0;i<19;i++){
 			for (int j=0;j<22;j++){
 					switch (mat[i][j]){
-					case 1:g.drawImage(img1, i*28, j*28, this); break;
+					case 0:g.drawImage(img0, i*28, j*28, this);break;
+					case 1:
+						if (!eatGum(i,j)){
+							g.drawImage(img1, i*28, j*28, this);
+						}else{
+							g.drawImage(img0, i*28, j*28, this);
+							mat[i][j]=0;
+						}
+						break;
 					case 2:g.drawImage(img2, i*28, j*28, this); break;
 					case 3:g.drawImage(img3, i*28, j*28, this); break;
 					case 4:g.drawImage(img4, i*28, j*28, this);break;
@@ -124,7 +133,21 @@ public class Panneau extends JPanel {
 			e.printStackTrace();
 			}
 		}
+	
+	public boolean eatGum(int i, int j){
+		int length=Modele.length_box;
+		boolean eat_left=(((posX+(length))/length)%19)==i && ((posY/length)%22)==j;
+		boolean eat_up=((posX/length)%19)==i && (((posY+length)/length)%22)==j;
+		boolean eat_down_right=((posX/length)%19)==i && ((posY/length)%22)==j;
+		switch(go_pacman){
+		case UP:return eat_up;
+		case LEFT:return eat_left;
+		case DOWN:return eat_down_right;
+		case RIGHT:return eat_down_right;
+		default:return false;
+		}
 		
+	}
 
 	public int getPosX() {
 		return posX;
