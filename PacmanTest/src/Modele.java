@@ -10,8 +10,8 @@ public class Modele {
 	static int maxX = 532;
 	static int maxY = 644;
 	// placement de Pacman
-	static int coordX = 252;
-	static int coordY = 448;
+	static int coordX;
+	static int coordY;
 	// taille du labyrinthe
 	static int[][] labyrinth;
 	// vitesse de Pacman
@@ -143,25 +143,42 @@ public class Modele {
 	}
 
 	public static void main(String[] args) {
+		Controleur controle = new Controleur(0, 0, 0, 0);
+		Vue vue = new Vue(controle);
+		//Fantomes
+		Ghost blinky;
+		Ghost pinky;
+		Ghost inky;
+		Ghost clyde;
+		//Utilisés plus loin pour lire la matrice
+		int x, y;
 		while (true) {
+			//Init fichier
 			whatsTheName();
+			//Init labyrinth
 			fillMyTab();
+			//Init direction de pacman
 			Direction go = Direction.UP;
 			Direction toGo = Direction.UP;
+			//Init position de pacman
+			coordX = 252;
+			coordY = 448;
 
-			// Instanciation des fantomes
-			Ghost blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box);
-			Ghost pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box);
-			Ghost inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
-			Ghost clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
+			// Init fantomes
+			blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box);
+			pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box);
+			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
+			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
+			
+			vue.majVue(coordX, coordY, maxX, maxY, blinky, pinky, inky, clyde, go);
 
-			boolean taMereLaBoucle = true;
-			int x, y;
-
-			Controleur controle = new Controleur(0, 0, 0, 0);
-			Vue vue = new Vue(controle, coordX, coordY, maxX, maxY, blinky, pinky, inky, clyde, go);
-
-			while (taMereLaBoucle && gumGum > 0) {
+			//Attente de 5 secondes avant le début de chaque partie
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			while (gumGum > 0) {
 				toGo = controle.tellMeTheWayToGoPlease();
 
 				// Deplacement de Pacman
