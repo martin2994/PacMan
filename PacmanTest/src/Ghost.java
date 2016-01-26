@@ -30,7 +30,7 @@ public class Ghost {
 			break;
 		case "Pinky":
 			if (game_lap > 1000) {
-			deplacePinky(coordXPacman, coordYPacman, goPacman);
+				deplacePinky(coordXPacman, coordYPacman, goPacman);
 			}
 			break;
 		case "Inky":
@@ -185,28 +185,28 @@ public class Ghost {
 			} else {
 				coordXPacman = (coordXPacman / length_box) % 19;
 				coordYPacman = (coordYPacman / length_box) % 22;
-				boolean bordure=false;
+				boolean bordure = false;
 				while ((Modele.labyrinth[coordXPacman][coordYPacman] < 2) && !bordure) {
 					switch (goPacman) {
 					case UP:
-						coordYPacman = (coordYPacman - 1)%22;
-						if(Math.abs(coordYPacman) != (coordYPacman)){
-							coordYPacman=0;
-							bordure=true;
+						coordYPacman = (coordYPacman - 1) % 22;
+						if (Math.abs(coordYPacman) != (coordYPacman)) {
+							coordYPacman = 0;
+							bordure = true;
 						}
 						break;
 					case DOWN:
-						coordYPacman = (coordYPacman + 1)%22;
+						coordYPacman = (coordYPacman + 1) % 22;
 						break;
 					case LEFT:
-						coordXPacman = (coordXPacman - 1)%19;
-						if(Math.abs(coordXPacman) != (coordXPacman)%19){
-							coordXPacman=0;
+						coordXPacman = (coordXPacman - 1) % 19;
+						if (Math.abs(coordXPacman) != (coordXPacman) % 19) {
+							coordXPacman = 0;
 							bordure = true;
 						}
 						break;
 					case RIGHT:
-						coordXPacman = (coordXPacman + 1)%19;
+						coordXPacman = (coordXPacman + 1) % 19;
 						break;
 					default:
 					}
@@ -347,7 +347,12 @@ public class Ghost {
 	public String toString() {
 		return this.name;
 	}
+
 	public Modele.Direction getGo() {
 		return go;
+	}
+
+	public int getLength_box() {
+		return length_box;
 	}
 }

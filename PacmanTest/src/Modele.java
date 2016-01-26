@@ -142,25 +142,56 @@ public class Modele {
 		}
 	}
 
+	public static boolean meetTheFantom(Ghost actual) {
+		// tester si un des 4 coins de pacman se trouve dans la hitbox du
+		// fantome actual
+
+		// haut-gauche
+		if (coordX >= actual.getCoordX() && coordX <= (actual.getCoordX() + actual.getLength_box())
+				&& coordY >= actual.getCoordY() && coordY <= (actual.getCoordY() + actual.getLength_box()) ||
+				// Haut-droit
+				(coordX + length_box) >= actual.getCoordX()
+						&& (coordX + length_box) <= (actual.getCoordX() + actual.getLength_box())
+						&& coordY >= actual.getCoordY() && coordY <= (actual.getCoordY() + actual.getLength_box())
+				||
+				// bas-gauche
+				coordX >= actual.getCoordX() && coordX <= (actual.getCoordX() + actual.getLength_box())
+						&& (coordY + length_box) >= actual.getCoordY()
+						&& (coordY + length_box) <= (actual.getCoordY() + actual.getLength_box())
+				||
+				// bas-droite
+				(coordX + length_box) >= actual.getCoordX()
+						&& (coordX + length_box) <= (actual.getCoordX() + actual.getLength_box())
+						&& (coordY + length_box) >= actual.getCoordY()
+						&& (coordY + length_box) <= (actual.getCoordY() + actual.getLength_box())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public static void main(String[] args) {
 		Controleur controle = new Controleur(0, 0, 0, 0);
 		Vue vue = new Vue(controle);
-		//Fantomes
+
+		// Fantomes
 		Ghost blinky;
 		Ghost pinky;
 		Ghost inky;
 		Ghost clyde;
-		//Utilisés plus loin pour lire la matrice
+
+		// Utilisés plus loin pour lire la matrice
 		int x, y;
+
 		while (true) {
-			//Init fichier
+			// Init fichier
 			whatsTheName();
-			//Init labyrinth
+			// Init labyrinth
 			fillMyTab();
-			//Init direction de pacman
+			// Init direction de pacman
 			Direction go = Direction.UP;
 			Direction toGo = Direction.UP;
-			//Init position de pacman
+			// Init position de pacman
 			coordX = 252;
 			coordY = 448;
 
@@ -169,10 +200,10 @@ public class Modele {
 			pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box);
 			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
 			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
-			
+
 			vue.majVue(coordX, coordY, maxX, maxY, blinky, pinky, inky, clyde, go);
 
-			//Attente de 5 secondes avant le début de chaque partie
+			// Attente de 5 secondes avant le début de chaque partie
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -201,6 +232,10 @@ public class Modele {
 				clyde.deplaceTheFantom(coordX, coordY, go);
 
 				vue.refresh(coordX, coordY, go);
+				
+				if(meetTheFantom(blinky) || meetTheFantom(pinky) || meetTheFantom(inky) || meetTheFantom(clyde)){
+					System.exit(0);
+				}
 				try {
 					Thread.sleep(8);
 				} catch (InterruptedException e) {
