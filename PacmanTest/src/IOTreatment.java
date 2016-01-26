@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 public class IOTreatment {
 	
 	public static int[][] readMatrix(int [][]tab) throws IOException {
-			File f = new File("matrix.txt");
+			File f = new File("matrix2.txt");
 			FileInputStream ips = new FileInputStream(f);
 			InputStreamReader ipsr = new InputStreamReader(ips);
 			BufferedReader br = new BufferedReader(ipsr);
