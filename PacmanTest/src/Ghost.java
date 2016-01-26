@@ -92,7 +92,10 @@ public class Ghost {
 				goToTheOtherSide = theOtherSide(toGo);
 			}
 		}
-
+		move();
+	}
+	
+	public void move (){
 		switch (go) {
 		case UP:
 			if (coordY - deplacement < 0) {
@@ -168,9 +171,70 @@ public class Ghost {
 		// 50% : Fuit Pacman
 
 	}
+	
+	private int distance(int coordXG, int coordYG, int coordXP, int coordYP){
+		int result = coordXG-coordXP + coordYG-coordYP;
+		if(result>0){
+			return result;
+		} else {
+			return -result;
+		}
+	}
 
 	private void deplaceBlinky(int coordXPacman, int coordYPacman) {
 		// Suit Pacman
+		
+		int left = 0;
+		int right = 0;
+		int up = 0;
+		int down = 0;
+		
+		if(canIGoHere(Modele.Direction.LEFT) && goToTheOtherSide!=Modele.Direction.LEFT){
+			left=1;
+		}
+		if(canIGoHere(Modele.Direction.RIGHT) && goToTheOtherSide!=Modele.Direction.RIGHT){
+			right=1;
+		}
+		if(canIGoHere(Modele.Direction.UP) && goToTheOtherSide!=Modele.Direction.UP){
+			up=1;
+		}
+		if(canIGoHere(Modele.Direction.DOWN) && goToTheOtherSide!=Modele.Direction.DOWN){
+			down=1;
+		}
+		System.out.println(left+" "+ right+" "+ up+" "+ down);
+		int min_distance=1000;
+		Modele.Direction toGo=Modele.Direction.UNKNOW;
+		if(left==1){
+			if(min_distance>distance(coordX-deplacement, coordY, coordXPacman, coordYPacman)){
+				min_distance=distance(coordX-deplacement, coordY, coordXPacman, coordYPacman);
+				toGo=Modele.Direction.LEFT;
+				System.out.println("left");
+			}
+		}
+		if(right==1){
+			if(min_distance>distance(coordX+deplacement, coordY, coordXPacman, coordYPacman)){
+				min_distance=distance(coordX+deplacement, coordY, coordXPacman, coordYPacman);
+				toGo=Modele.Direction.RIGHT;
+				System.out.println("right");
+			}
+		}
+		if(up==1){
+			if(min_distance>distance(coordX, coordY-deplacement, coordXPacman, coordYPacman)){
+				min_distance=distance(coordX, coordY-deplacement, coordXPacman, coordYPacman);
+				toGo=Modele.Direction.UP;
+				System.out.println("up");
+			}
+		}
+		if(down==1){
+			if(min_distance>distance(coordX, coordY+deplacement, coordXPacman, coordYPacman)){
+				min_distance=distance(coordX, coordY+deplacement, coordXPacman, coordYPacman);
+				toGo=Modele.Direction.DOWN;
+				System.out.println("down");
+			}
+		}
+		go=toGo;
+		goToTheOtherSide=theOtherSide(go);
+		move();
 	}
 
 	public int getState() {
