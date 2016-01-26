@@ -23,9 +23,7 @@ public class Modele {
 
 	public static void fillMyTab() {
 		try {
-			labyrinth = new int[IOTreatment.getWidth()][IOTreatment.getHeigth()];
-			gumGum = IOTreatment.getGum();
-			IOTreatment.readMatrix(labyrinth);
+			IOTreatment.readMatrix();
 		} catch (IOException e) {
 			System.out.println("Erreur IO");
 		}
