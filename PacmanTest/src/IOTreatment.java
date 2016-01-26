@@ -3,8 +3,8 @@ import java.util.StringTokenizer;
 
 public class IOTreatment {
 	
-	public static void readMatrix() throws IOException {
-			File f = new File("matrix.txt");
+	public static void readMatrix(String file_name) throws IOException {
+			File f = new File(file_name);
 			FileInputStream ips = new FileInputStream(f);
 			InputStreamReader ipsr = new InputStreamReader(ips);
 			BufferedReader br = new BufferedReader(ipsr);

@@ -20,10 +20,12 @@ public class Modele {
 	static int length_box = 28;
 	// nombre de gommes dans le labyrinthe
 	static int gumGum;
+	// Nom du fichier dans lequel le niveau est enregistré
+	static String file_name = "new";
 
 	public static void fillMyTab() {
 		try {
-			IOTreatment.readMatrix();
+			IOTreatment.readMatrix(file_name);
 		} catch (IOException e) {
 			System.out.println("Erreur IO");
 		}
@@ -102,69 +104,91 @@ public class Modele {
 		}
 	}
 
+	public static void canIEatTheGum(Direction go) {
+
+		int x = (coordX / length_box) % 19;
+		int y = (coordY / length_box) % 22;
+		switch (go) {
+		case DOWN:
+			y = ((coordY + (length_box / 2)) / length_box) % 22;
+			break;
+		case UP:
+			y = ((coordY + (length_box / 2)) / length_box) % 22;
+			break;
+		case LEFT:
+			x = ((coordX + (length_box / 2)) / length_box) % 19;
+			break;
+		case RIGHT:
+			x = ((coordX + (length_box / 2)) / length_box) % 19;
+			break;
+		}
+		if (labyrinth[x][y] == 1) {
+			labyrinth[x][y] = 0;
+			gumGum--;
+		}
+	}
+
+	public static void whatsTheName() {
+
+		switch (file_name) {
+		case "new":
+			file_name = "matrix.txt";
+			break;
+		case "matrix.txt":
+			file_name = "matrix2.txt";
+			break;
+		default:
+			System.exit(0);
+		}
+	}
+
 	public static void main(String[] args) {
-		fillMyTab();
-		Direction go = Direction.UP;
-		Direction toGo = Direction.UP;
+		while (true) {
+			whatsTheName();
+			fillMyTab();
+			Direction go = Direction.UP;
+			Direction toGo = Direction.UP;
 
-		// Instanciation des fantomes
-		Ghost blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box);
-		Ghost pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box);
-		Ghost inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
-		Ghost clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
+			// Instanciation des fantomes
+			Ghost blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box);
+			Ghost pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box);
+			Ghost inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
+			Ghost clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
 
-		boolean taMereLaBoucle = true;
-		int x, y;
+			boolean taMereLaBoucle = true;
+			int x, y;
 
-		Controleur controle = new Controleur(0, 0, 0, 0);
-		Vue vue = new Vue(controle, coordX, coordY, maxX, maxY, blinky, pinky, inky, clyde, go);
+			Controleur controle = new Controleur(0, 0, 0, 0);
+			Vue vue = new Vue(controle, coordX, coordY, maxX, maxY, blinky, pinky, inky, clyde, go);
 
-		while (taMereLaBoucle && gumGum > 0) {
-			toGo = controle.tellMeTheWayToGoPlease();
+			while (taMereLaBoucle && gumGum > 0) {
+				toGo = controle.tellMeTheWayToGoPlease();
 
-			// Deplacement de Pacman
-			if (toGo != go) {
-				if (canIGoHere(toGo) == true) {
-					go = toGo;
+				// Deplacement de Pacman
+				if (toGo != go) {
+					if (canIGoHere(toGo) == true) {
+						go = toGo;
+					}
 				}
-			}
-			if (canIGoHere(go)) {
-				actualize_XY(go);
-			}
+				if (canIGoHere(go)) {
+					actualize_XY(go);
+				}
 
-			// Test si on mange une gomme
-			x = (coordX / length_box) % 19;
-			y = (coordY / length_box) % 22;
-			switch (go) {
-			case DOWN:
-				y = ((coordY + (length_box / 2)) / length_box) % 22;
-				break;
-			case UP:
-				y = ((coordY + (length_box / 2)) / length_box) % 22;
-				break;
-			case LEFT:
-				x = ((coordX + (length_box / 2)) / length_box) % 19;
-				break;
-			case RIGHT:
-				x = ((coordX + (length_box / 2)) / length_box) % 19;
-				break;
-			}
-			if (labyrinth[x][y] == 1) {
-				labyrinth[x][y] = 0;
-				gumGum--;
-			}
+				// Test si on mange une gomme
+				canIEatTheGum(go);
 
-			// Deplacement des fantomes
-			blinky.deplaceTheFantom(coordX, coordY, go);
-			pinky.deplaceTheFantom(coordX, coordY, go);
-			inky.deplaceTheFantom(coordX, coordY, go);
-			clyde.deplaceTheFantom(coordX, coordY, go);
+				// Deplacement des fantomes
+				blinky.deplaceTheFantom(coordX, coordY, go);
+				pinky.deplaceTheFantom(coordX, coordY, go);
+				inky.deplaceTheFantom(coordX, coordY, go);
+				clyde.deplaceTheFantom(coordX, coordY, go);
 
-			vue.refresh(coordX, coordY, go);
-			try {
-				Thread.sleep(8);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+				vue.refresh(coordX, coordY, go);
+				try {
+					Thread.sleep(8);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
