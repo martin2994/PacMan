@@ -173,12 +173,7 @@ public class Ghost {
 	}
 	
 	private int distance(int coordXG, int coordYG, int coordXP, int coordYP){
-		int result = coordXG-coordXP + coordYG-coordYP;
-		if(result>0){
-			return result;
-		} else {
-			return -result;
-		}
+		return Math.abs(coordXP-coordXG) + Math.abs(coordYP-coordYG);
 	}
 
 	private void deplaceBlinky(int coordXPacman, int coordYPacman) {
