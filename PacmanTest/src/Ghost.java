@@ -347,4 +347,7 @@ public class Ghost {
 	public String toString() {
 		return this.name;
 	}
+	public Modele.Direction getGo() {
+		return go;
+	}
 }

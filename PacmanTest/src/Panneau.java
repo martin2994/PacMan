@@ -117,10 +117,22 @@ public class Panneau extends JPanel {
 			timer_anim_pacman=0;
 			form_pacman=true;
 		}
-		g.drawImage(blinky_left,blinky.getCoordX(),blinky.getCoordY(),this);
-		g.drawImage(inky_right,inky.getCoordX(),inky.getCoordY(),this);
-		g.drawImage(pinky_left,pinky.getCoordX(),pinky.getCoordY(),this);
-		g.drawImage(clyde_left,clyde.getCoordX(),clyde.getCoordY(),this);
+		if (blinky.getGo()== Modele.Direction.UP || blinky.getGo()== Modele.Direction.LEFT)
+			g.drawImage(blinky_left,blinky.getCoordX(),blinky.getCoordY(),this);
+		else
+			g.drawImage(blinky_right,blinky.getCoordX(),blinky.getCoordY(),this);
+		if (inky.getGo()== Modele.Direction.UP || inky.getGo()== Modele.Direction.LEFT)
+			g.drawImage(inky_left,inky.getCoordX(),inky.getCoordY(),this);
+		else
+			g.drawImage(inky_right,inky.getCoordX(),inky.getCoordY(),this);
+		if (pinky.getGo()== Modele.Direction.UP || pinky.getGo()== Modele.Direction.LEFT)	
+			g.drawImage(pinky_left,pinky.getCoordX(),pinky.getCoordY(),this);
+		else
+			g.drawImage(pinky_right,pinky.getCoordX(),pinky.getCoordY(),this);
+		if (clyde.getGo()== Modele.Direction.UP || clyde.getGo()== Modele.Direction.LEFT)
+			g.drawImage(clyde_left,clyde.getCoordX(),clyde.getCoordY(),this);
+		else
+			g.drawImage(clyde_right,clyde.getCoordX(),clyde.getCoordY(),this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
