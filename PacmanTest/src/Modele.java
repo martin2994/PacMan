@@ -132,10 +132,10 @@ public class Modele {
 
 		switch (file_name) {
 		case "new":
-			file_name = "matrix.txt";
+			file_name = "stage1.txt";
 			break;
 		case "matrix.txt":
-			file_name = "matrix2.txt";
+			file_name = "stage2.txt";
 			break;
 		default:
 			System.exit(0);
