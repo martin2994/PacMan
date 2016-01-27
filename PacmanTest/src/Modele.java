@@ -31,14 +31,9 @@ public class Modele {
 		}
 
 		/*
-		 * for (int i = 0; i < 28; i++) { for (int j = 0; j < 31; j++) {
-		 * labyrinth[i][j] = 0; } } labyrinth[2][2] = 21; labyrinth[3][2] = 23;
-		 * labyrinth[4][2] = 1; labyrinth[1][1] = 18; labyrinth[7][7] = 2;
-		 * labyrinth[8][7] = 18; labyrinth[9][7] = 1; labyrinth[8][5] = 1;
-		 * labyrinth[8][9] = 1; labyrinth[8][3] = 1; labyrinth[8][1] = 10;
-		 * labyrinth[8][2] = 11; labyrinth[8][6] = 3; labyrinth[8][0] = 1;
-		 * labyrinth[15][15]=8; labyrinth[16][15]=9;
-		 */
+		 for (int i = 0; i < 19; i++) { for (int j = 0; j < 22; j++) {
+		 labyrinth[i][j] = ; }}*/
+		
 	}
 
 	public static boolean letMeDoTheSmartThings(int tempX, int tempY) {
@@ -230,7 +225,7 @@ public class Modele {
 				pinky.deplaceTheFantom(coordX, coordY, go);
 				inky.deplaceTheFantom(coordX, coordY, go);
 				clyde.deplaceTheFantom(coordX, coordY, go);
-
+				
 				vue.refresh(coordX, coordY, go);
 
 				if (meetTheFantom(blinky) || meetTheFantom(pinky) || meetTheFantom(inky) || meetTheFantom(clyde)) {
