@@ -77,26 +77,26 @@ public class Modele {
 		// fantome actual
 
 		// haut-gauche
-		if (hero.getCoordX() >= actual.getCoordX() && hero.getCoordX() <= (actual.getCoordX() + actual.getLength_box())
-				&& hero.getCoordY() >= actual.getCoordY()
-				&& hero.getCoordY() <= (actual.getCoordY() + actual.getLength_box()) ||
+		if ((hero.getCoordX()+hero.getLength_box()/2) >= actual.getCoordX() && (hero.getCoordX()+hero.getLength_box()/2) <= (actual.getCoordX() + actual.getLength_box())
+				&& (hero.getCoordY()+hero.getLength_box()/2) >= actual.getCoordY()
+				&& (hero.getCoordY()+hero.getLength_box()/2) <= (actual.getCoordY() + actual.getLength_box()) ||
 				// Haut-droit
-				(hero.getCoordX() + length_box) >= actual.getCoordX()
-						&& (hero.getCoordX() + length_box) <= (actual.getCoordX() + actual.getLength_box())
-						&& hero.getCoordY() >= actual.getCoordY()
-						&& hero.getCoordY() <= (actual.getCoordY() + actual.getLength_box())
+						(hero.getCoordX()+hero.getLength_box()/2) >= actual.getCoordX()
+						&& (hero.getCoordX()+hero.getLength_box()/2) <= (actual.getCoordX() + actual.getLength_box())
+						&& (hero.getCoordY()+hero.getLength_box()/2) >= actual.getCoordY()
+						&& (hero.getCoordY()+hero.getLength_box()/2) <= (actual.getCoordY() + actual.getLength_box())
 				||
 				// bas-gauche
-				hero.getCoordX() >= actual.getCoordX()
-						&& hero.getCoordX() <= (actual.getCoordX() + actual.getLength_box())
-						&& (hero.getCoordY() + length_box) >= actual.getCoordY()
-						&& (hero.getCoordY() + length_box) <= (actual.getCoordY() + actual.getLength_box())
+				(hero.getCoordX()+hero.getLength_box()/2) >= actual.getCoordX()
+						&& (hero.getCoordX()+hero.getLength_box()/2) <= (actual.getCoordX() + actual.getLength_box())
+						&& (hero.getCoordY()+hero.getLength_box()/2) >= actual.getCoordY()
+						&& (hero.getCoordY()+hero.getLength_box()/2) <= (actual.getCoordY() + actual.getLength_box())
 				||
 				// bas-droite
-				(hero.getCoordX() + length_box) >= actual.getCoordX()
-						&& (hero.getCoordX() + length_box) <= (actual.getCoordX() + actual.getLength_box())
-						&& (hero.getCoordY() + length_box) >= actual.getCoordY()
-						&& (hero.getCoordY() + length_box) <= (actual.getCoordY() + actual.getLength_box())) {
+				(hero.getCoordX()+hero.getLength_box()/2) >= actual.getCoordX()
+						&& (hero.getCoordX()+hero.getLength_box()/2) <= (actual.getCoordX() + actual.getLength_box())
+						&& (hero.getCoordY()+hero.getLength_box()/2) >= actual.getCoordY()
+						&& (hero.getCoordY()+hero.getLength_box()/2) <= (actual.getCoordY() + actual.getLength_box())) {
 			return true;
 		} else {
 			return false;
@@ -128,7 +128,8 @@ public class Modele {
 			// Init fichier
 			if (win) {
 				whatsTheName();
-				win=false;
+				win = false;
+				hero.setLife(3);
 			}
 			// Init labyrinth
 			fillMyTab();
@@ -187,8 +188,8 @@ public class Modele {
 					e.printStackTrace();
 				}
 			}
-			if(gumGum==0){
-				win=true;
+			if (gumGum == 0) {
+				win = true;
 			}
 			if (hero.getLife() <= 0) {
 				System.exit(0);

@@ -8,20 +8,21 @@ public class Pacman {
 	private int deplacement;
 	private int length_box;
 
-	public Pacman(){
-		this.life=3;
+	public Pacman() {
+		this.life = 3;
 	}
-	
-	public void reset(int _coordX, int _coordY, Modele.Direction _go, Modele.Direction _toGo, int _deplacement, int _length_box){
-		this.coordX=_coordX;
-		this.coordY=_coordY;
-		this.go=_go;
-		this.toGo=_toGo;
+
+	public void reset(int _coordX, int _coordY, Modele.Direction _go, Modele.Direction _toGo, int _deplacement,
+			int _length_box) {
+		this.coordX = _coordX;
+		this.coordY = _coordY;
+		this.go = _go;
+		this.toGo = _toGo;
 		this.life--;
-		this.deplacement=_deplacement;
-		this.length_box=_length_box;
+		this.deplacement = _deplacement;
+		this.length_box = _length_box;
 	}
-	
+
 	public void actualize_XY() {
 		switch (go) {
 		case UP:
@@ -89,29 +90,29 @@ public class Pacman {
 		return life;
 	}
 
+	public void setLife(int _life) {
+		this.life = _life;
+	}
+
+	public int getLength_box() {
+		return length_box;
+	}
+
 	public Modele.Direction getGo() {
 		return go;
 	}
-
-
 
 	public void setGo(Modele.Direction go) {
 		this.go = go;
 	}
 
-
-
 	public Modele.Direction getToGo() {
 		return toGo;
 	}
 
-
-
 	public void setToGo(Modele.Direction toGo) {
 		this.toGo = toGo;
 	}
-
-
 
 	public int getCoordX() {
 		return coordX;
@@ -128,5 +129,5 @@ public class Pacman {
 	public void setCoordY(int coordY) {
 		this.coordY = coordY;
 	}
-	
+
 }
