@@ -47,6 +47,16 @@ public class Ghost {
 		}
 	}
 
+	private void moveToARandomWay() {
+		Modele.Direction IWantToGoHere;
+		do {
+			IWantToGoHere = getRandomDirection();
+		} while (!canIGoHere(IWantToGoHere) || IWantToGoHere == goToTheOtherSide);
+		go = IWantToGoHere;
+		goToTheOtherSide = theOtherSide(IWantToGoHere);
+		move();
+	}
+
 	private Modele.Direction theOtherSide(Modele.Direction actualGo) {
 		switch (actualGo) {
 		case UP:
@@ -84,25 +94,20 @@ public class Ghost {
 		if (coordX == 224 && coordY == 280) {
 			go = Modele.Direction.RIGHT;
 			goToTheOtherSide = theOtherSide(go);
+			move();
 		} else {
 			if (coordX == 252 && coordY == 280) {
 				go = Modele.Direction.UP;
 				goToTheOtherSide = theOtherSide(go);
+				move();
 			} else {
 				// Il suffit de le faire aller de manière aléatoire sur
 				// n'importe quelle
 				// case
 				// qui n'est pas un mur ou une marche arrière
-
-				Modele.Direction toGo;
-				do {
-					toGo = getRandomDirection();
-				} while (goToTheOtherSide.equals(toGo) || !canIGoHere(toGo));
-				go = toGo;
-				goToTheOtherSide = theOtherSide(toGo);
+				moveToARandomWay();
 			}
 		}
-		move();
 	}
 
 	public void move() {
@@ -183,37 +188,42 @@ public class Ghost {
 				goToTheOtherSide = theOtherSide(go);
 				move();
 			} else {
-				coordXPacman = (coordXPacman / length_box) % 19;
-				coordYPacman = (coordYPacman / length_box) % 22;
-				boolean bordure = false;
-				while ((Modele.labyrinth[coordXPacman][coordYPacman] < 2) && !bordure) {
-					switch (goPacman) {
-					case UP:
-						coordYPacman = (coordYPacman - 1) % 22;
-						if (Math.abs(coordYPacman) != (coordYPacman)) {
-							coordYPacman = 0;
-							bordure = true;
+				int random = (int) (Math.random() * 2);
+				if (random == 0) {
+					moveToARandomWay();
+				} else {
+					coordXPacman = (coordXPacman / length_box) % 19;
+					coordYPacman = (coordYPacman / length_box) % 22;
+					boolean bordure = false;
+					while ((Modele.labyrinth[coordXPacman][coordYPacman] < 2) && !bordure) {
+						switch (goPacman) {
+						case UP:
+							coordYPacman = (coordYPacman - 1) % 22;
+							if (Math.abs(coordYPacman) != (coordYPacman)) {
+								coordYPacman = 0;
+								bordure = true;
+							}
+							break;
+						case DOWN:
+							coordYPacman = (coordYPacman + 1) % 22;
+							break;
+						case LEFT:
+							coordXPacman = (coordXPacman - 1) % 19;
+							if (Math.abs(coordXPacman) != (coordXPacman) % 19) {
+								coordXPacman = 0;
+								bordure = true;
+							}
+							break;
+						case RIGHT:
+							coordXPacman = (coordXPacman + 1) % 19;
+							break;
+						default:
 						}
-						break;
-					case DOWN:
-						coordYPacman = (coordYPacman + 1) % 22;
-						break;
-					case LEFT:
-						coordXPacman = (coordXPacman - 1) % 19;
-						if (Math.abs(coordXPacman) != (coordXPacman) % 19) {
-							coordXPacman = 0;
-							bordure = true;
-						}
-						break;
-					case RIGHT:
-						coordXPacman = (coordXPacman + 1) % 19;
-						break;
-					default:
 					}
+					coordXPacman = coordXPacman * length_box;
+					coordYPacman = coordYPacman * length_box;
+					deplaceBlinky(coordXPacman, coordYPacman, false);
 				}
-				coordXPacman = coordXPacman * length_box;
-				coordYPacman = coordYPacman * length_box;
-				deplaceBlinky(coordXPacman, coordYPacman, false);
 			}
 		}
 	}
@@ -238,86 +248,92 @@ public class Ghost {
 	private void deplaceBlinky(int coordXPacman, int coordYPacman, boolean helloIAmInky) {
 		// Suit Pacman
 
-		int left = 0;
-		int right = 0;
-		int up = 0;
-		int down = 0;
+		int r = (int) (Math.random() * 2);
+		if (r == 0) {
+			moveToARandomWay();
+		} else {
+			int left = 0;
+			int right = 0;
+			int up = 0;
+			int down = 0;
 
-		if (canIGoHere(Modele.Direction.LEFT) && goToTheOtherSide != Modele.Direction.LEFT) {
-			left = 1;
-		}
-		if (canIGoHere(Modele.Direction.RIGHT) && goToTheOtherSide != Modele.Direction.RIGHT) {
-			right = 1;
-		}
-		if (canIGoHere(Modele.Direction.UP) && goToTheOtherSide != Modele.Direction.UP) {
-			up = 1;
-		}
-		if (canIGoHere(Modele.Direction.DOWN) && goToTheOtherSide != Modele.Direction.DOWN) {
-			down = 1;
-		}
-		int min_distance = 1000;
+			if (canIGoHere(Modele.Direction.LEFT) && goToTheOtherSide != Modele.Direction.LEFT) {
+				left = 1;
+			}
+			if (canIGoHere(Modele.Direction.RIGHT) && goToTheOtherSide != Modele.Direction.RIGHT) {
+				right = 1;
+			}
+			if (canIGoHere(Modele.Direction.UP) && goToTheOtherSide != Modele.Direction.UP) {
+				up = 1;
+			}
+			if (canIGoHere(Modele.Direction.DOWN) && goToTheOtherSide != Modele.Direction.DOWN) {
+				down = 1;
+			}
+			int min_distance = 1000;
 
-		// si c'est Inky, il y a une chance sur 4 pour qu'il décide de partir
-		// dans la direction opposée de pacman
-		if (helloIAmInky) {
-			int random = (int) (Math.random() * 4);
-			if (random == 0) {
-				helloIAmInky = true;
-				min_distance = 0;
-			} else {
-				helloIAmInky = false;
+			// si c'est Inky, il y a une chance sur 4 pour qu'il décide de
+			// partir
+			// dans la direction opposée de pacman
+			if (helloIAmInky) {
+				int random = (int) (Math.random() * 4);
+				if (random == 0) {
+					helloIAmInky = true;
+					min_distance = 0;
+				} else {
+					helloIAmInky = false;
+				}
 			}
-		}
 
-		Modele.Direction toGo = Modele.Direction.UNKNOW;
-		boolean whereWillIGo;
-		if (left == 1) {
-			if (!helloIAmInky) {
-				whereWillIGo = min_distance > distance(coordX - deplacement, coordY, coordXPacman, coordYPacman);
-			} else {
-				whereWillIGo = min_distance < distance(coordX - deplacement, coordY, coordXPacman, coordYPacman);
+			Modele.Direction toGo = Modele.Direction.UNKNOW;
+			boolean whereWillIGo;
+			if (left == 1) {
+				if (!helloIAmInky) {
+					whereWillIGo = min_distance > distance(coordX - deplacement, coordY, coordXPacman, coordYPacman);
+				} else {
+					whereWillIGo = min_distance < distance(coordX - deplacement, coordY, coordXPacman, coordYPacman);
+				}
+				if (whereWillIGo) {
+					min_distance = distance(coordX - deplacement, coordY, coordXPacman, coordYPacman);
+					toGo = Modele.Direction.LEFT;
+				}
 			}
-			if (whereWillIGo) {
-				min_distance = distance(coordX - deplacement, coordY, coordXPacman, coordYPacman);
-				toGo = Modele.Direction.LEFT;
+			if (right == 1) {
+				if (!helloIAmInky) {
+					whereWillIGo = min_distance > distance(coordX + deplacement, coordY, coordXPacman, coordYPacman);
+				} else {
+					whereWillIGo = min_distance < distance(coordX + deplacement, coordY, coordXPacman, coordYPacman);
+				}
+				if (whereWillIGo) {
+					min_distance = distance(coordX + deplacement, coordY, coordXPacman, coordYPacman);
+					toGo = Modele.Direction.RIGHT;
+				}
 			}
+			if (up == 1) {
+				if (!helloIAmInky) {
+					whereWillIGo = min_distance > distance(coordX, coordY - deplacement, coordXPacman, coordYPacman);
+				} else {
+					whereWillIGo = min_distance < distance(coordX, coordY - deplacement, coordXPacman, coordYPacman);
+				}
+				if (whereWillIGo) {
+					min_distance = distance(coordX, coordY - deplacement, coordXPacman, coordYPacman);
+					toGo = Modele.Direction.UP;
+				}
+			}
+			if (down == 1) {
+				if (!helloIAmInky) {
+					whereWillIGo = min_distance > distance(coordX, coordY + deplacement, coordXPacman, coordYPacman);
+				} else {
+					whereWillIGo = min_distance < distance(coordX, coordY + deplacement, coordXPacman, coordYPacman);
+				}
+				if (whereWillIGo) {
+					min_distance = distance(coordX, coordY + deplacement, coordXPacman, coordYPacman);
+					toGo = Modele.Direction.DOWN;
+				}
+			}
+			go = toGo;
+			goToTheOtherSide = theOtherSide(go);
+			move();
 		}
-		if (right == 1) {
-			if (!helloIAmInky) {
-				whereWillIGo = min_distance > distance(coordX + deplacement, coordY, coordXPacman, coordYPacman);
-			} else {
-				whereWillIGo = min_distance < distance(coordX + deplacement, coordY, coordXPacman, coordYPacman);
-			}
-			if (whereWillIGo) {
-				min_distance = distance(coordX + deplacement, coordY, coordXPacman, coordYPacman);
-				toGo = Modele.Direction.RIGHT;
-			}
-		}
-		if (up == 1) {
-			if (!helloIAmInky) {
-				whereWillIGo = min_distance > distance(coordX, coordY - deplacement, coordXPacman, coordYPacman);
-			} else {
-				whereWillIGo = min_distance < distance(coordX, coordY - deplacement, coordXPacman, coordYPacman);
-			}
-			if (whereWillIGo) {
-				min_distance = distance(coordX, coordY - deplacement, coordXPacman, coordYPacman);
-				toGo = Modele.Direction.UP;
-			}
-		}
-		if (down == 1) {
-			if (!helloIAmInky) {
-				whereWillIGo = min_distance > distance(coordX, coordY + deplacement, coordXPacman, coordYPacman);
-			} else {
-				whereWillIGo = min_distance < distance(coordX, coordY + deplacement, coordXPacman, coordYPacman);
-			}
-			if (whereWillIGo) {
-				min_distance = distance(coordX, coordY + deplacement, coordXPacman, coordYPacman);
-				toGo = Modele.Direction.DOWN;
-			}
-		}
-		go = toGo;
-		goToTheOtherSide = theOtherSide(go);
-		move();
 	}
 
 	public int getState() {

@@ -123,6 +123,7 @@ public class Modele {
 		// Vrai si la partie est gagnée
 		boolean win = false;
 		whatsTheName();
+		fillMyTab();
 
 		while (true) {
 			// Init fichier
@@ -130,9 +131,9 @@ public class Modele {
 				whatsTheName();
 				win = false;
 				hero.setLife(3);
+				// Init labyrinth
+				fillMyTab();
 			}
-			// Init labyrinth
-			fillMyTab();
 
 			catchMeIfYouCan = false;
 
