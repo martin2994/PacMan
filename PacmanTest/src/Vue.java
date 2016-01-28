@@ -19,26 +19,21 @@ public class Vue extends JFrame {
 		this.setVisible(true);
 	}
 
-	public void refresh(int x, int y, Modele.Direction go) {
-		pan.setPosX(x);
-		pan.setPosY(y);
-		pan.setGo_pacman(go);
+	public void refresh() {
 		pan.repaint();
 	}
 
-	public void majVue(int x, int y, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky,
-			Ghost clyde, Modele.Direction go) {
+	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky,
+			Ghost clyde) {
 		this.setTitle("Pac-Man");
 		this.setSize(maxX, maxY);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setContentPane(pan);
-		pan.setPosX(x);
-		pan.setPosY(y);
+		pan.setHero(hero);
 		pan.setBlinky(blinky);
 		pan.setPinky(pinky);
 		pan.setInky(inky);
 		pan.setClyde(clyde);
-		pan.setGo_pacman(go);
 	}
 }

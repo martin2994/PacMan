@@ -14,13 +14,12 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class Panneau extends JPanel {
-	private int posX = 0;
-	private int posY = 0;
 	private Ghost blinky;
 	private Ghost pinky;
 	private Ghost inky;
 	private Ghost clyde;
-	private Modele.Direction go_pacman;
+	private Pacman hero;
+
 	private boolean form_pacman = false;
 	private int timer_anim_pacman = 0;
 
@@ -151,24 +150,24 @@ public class Panneau extends JPanel {
 				}
 			}
 			if (form_pacman || timer_anim_pacman < 10) {
-				switch (go_pacman) {
+				switch (hero.getGo()) {
 				case UP:
-					g.drawImage(pacman_up, posX, posY, this);
+					g.drawImage(pacman_up, hero.getCoordX(), hero.getCoordY(), this);
 					break;
 				case DOWN:
-					g.drawImage(pacman_down, posX, posY, this);
+					g.drawImage(pacman_down, hero.getCoordX(), hero.getCoordY(), this);
 					break;
 				case LEFT:
-					g.drawImage(pacman_left, posX, posY, this);
+					g.drawImage(pacman_left, hero.getCoordX(), hero.getCoordY(), this);
 					break;
 				case RIGHT:
-					g.drawImage(pacman_right, posX, posY, this);
+					g.drawImage(pacman_right, hero.getCoordX(), hero.getCoordY(), this);
 					break;
 				}
 				if (timer_anim_pacman == 9)
 					form_pacman = false;
 			} else {
-				g.drawImage(pacman_close, posX, posY, this);
+				g.drawImage(pacman_close, hero.getCoordX(), hero.getCoordY(), this);
 			}
 			timer_anim_pacman++;
 			if (timer_anim_pacman == 20) {
@@ -213,22 +212,6 @@ public class Panneau extends JPanel {
 		}
 	}
 
-	public int getPosX() {
-		return posX;
-	}
-
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
-
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}
-
 	public Ghost getBlinky() {
 		return blinky;
 	}
@@ -261,10 +244,6 @@ public class Panneau extends JPanel {
 		this.clyde = clyde;
 	}
 
-	public void setGo_pacman(Modele.Direction new_go_pacman) {
-		this.go_pacman = new_go_pacman;
-	}
-
 	public boolean getForm_pacman() {
 		return this.form_pacman;
 	}
@@ -279,6 +258,10 @@ public class Panneau extends JPanel {
 
 	public void setTimer_anim_pacman(int timer_anim_pacman) {
 		this.timer_anim_pacman = timer_anim_pacman;
+	}
+	
+	public void setHero(Pacman hero) {
+		this.hero = hero;
 	}
 
 }

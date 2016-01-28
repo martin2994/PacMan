@@ -9,19 +9,16 @@ public class Modele {
 	// taille de la fenêtre
 	static int maxX = 532;
 	static int maxY = 644;
-	// placement de Pacman
-	static int coordX;
-	static int coordY;
 	// taille du labyrinthe
 	static int[][] labyrinth;
-	// vitesse de Pacman
-	static int deplacement = 1;
 	// taille d'une case en pixels
 	static int length_box = 28;
 	// nombre de gommes dans le labyrinthe
 	static int gumGum;
 	// Nom du fichier dans lequel le niveau est enregistré
 	static String file_name = "new";
+	// nombre de pixels parcourus par tour
+	static int deplacement = 1;
 
 	public static void fillMyTab() {
 		try {
@@ -31,90 +28,28 @@ public class Modele {
 		}
 
 		/*
-		 for (int i = 0; i < 19; i++) { for (int j = 0; j < 22; j++) {
-		 labyrinth[i][j] = ; }}*/
-		
+		 * for (int i = 0; i < 19; i++) { for (int j = 0; j < 22; j++) {
+		 * labyrinth[i][j] = ; }}
+		 */
+
 	}
 
-	public static boolean letMeDoTheSmartThings(int tempX, int tempY) {
-		tempX = (tempX / length_box) % 19;
-		tempY = (tempY / length_box) % 22;
-		if (labyrinth[tempX][tempY] > 1)
-			return false;
-		else
-			return true;
-	}
+	public static void canIEatTheGum(Pacman hero) {
 
-	public static boolean canIGoHere(Direction toTest) {
-
-		switch (toTest) {
-		case UP:
-			return (letMeDoTheSmartThings(coordX + length_box - deplacement, coordY - deplacement)
-					&& letMeDoTheSmartThings(coordX, coordY - deplacement));
+		int x = (hero.getCoordX() / length_box) % 19;
+		int y = (hero.getCoordY() / length_box) % 22;
+		switch (hero.getGo()) {
 		case DOWN:
-			return (letMeDoTheSmartThings(coordX, coordY + length_box)
-					&& letMeDoTheSmartThings(coordX + length_box - deplacement, coordY + length_box));
-		case LEFT:
-			return letMeDoTheSmartThings(coordX - deplacement, coordY)
-					&& letMeDoTheSmartThings(coordX - deplacement, coordY + length_box - deplacement);
-		case RIGHT:
-			return letMeDoTheSmartThings(coordX + length_box, coordY + length_box - deplacement)
-					&& letMeDoTheSmartThings(coordX + length_box, coordY);
-		default:
-		}
-		return false;
-	}
-
-	public static void actualize_XY(Direction go) {
-		switch (go) {
-		case UP:
-			if (coordY - deplacement < 0) {
-				coordY = maxY - length_box;
-			} else {
-				coordY -= deplacement;
-			}
-			break;
-		case DOWN:
-			if (coordY + deplacement + length_box > maxY) {
-				coordY = 0;
-			} else {
-				coordY += deplacement;
-			}
-			break;
-		case LEFT:
-			if (coordX - deplacement < 0) {
-				coordX = maxX - length_box;
-			} else {
-				coordX -= deplacement;
-			}
-			break;
-		case RIGHT:
-			if (coordX + deplacement + length_box > maxX) {
-				coordX = 0;
-			} else {
-				coordX += deplacement;
-			}
-			break;
-		default:
-		}
-	}
-
-	public static void canIEatTheGum(Direction go) {
-
-		int x = (coordX / length_box) % 19;
-		int y = (coordY / length_box) % 22;
-		switch (go) {
-		case DOWN:
-			y = ((coordY + (length_box / 2)) / length_box) % 22;
+			y = ((hero.getCoordY() + (length_box / 2)) / length_box) % 22;
 			break;
 		case UP:
-			y = ((coordY + (length_box / 2)) / length_box) % 22;
+			y = ((hero.getCoordY() + (length_box / 2)) / length_box) % 22;
 			break;
 		case LEFT:
-			x = ((coordX + (length_box / 2)) / length_box) % 19;
+			x = ((hero.getCoordX() + (length_box / 2)) / length_box) % 19;
 			break;
 		case RIGHT:
-			x = ((coordX + (length_box / 2)) / length_box) % 19;
+			x = ((hero.getCoordX() + (length_box / 2)) / length_box) % 19;
 			break;
 		}
 		if (labyrinth[x][y] == 1) {
@@ -129,7 +64,7 @@ public class Modele {
 		case "new":
 			file_name = "stage1.txt";
 			break;
-		case "matrix.txt":
+		case "stage1.txt":
 			file_name = "stage2.txt";
 			break;
 		default:
@@ -137,28 +72,31 @@ public class Modele {
 		}
 	}
 
-	public static boolean meetTheFantom(Ghost actual) {
+	public static boolean meetTheFantom(Ghost actual, Pacman hero) {
 		// tester si un des 4 coins de pacman se trouve dans la hitbox du
 		// fantome actual
 
 		// haut-gauche
-		if (coordX >= actual.getCoordX() && coordX <= (actual.getCoordX() + actual.getLength_box())
-				&& coordY >= actual.getCoordY() && coordY <= (actual.getCoordY() + actual.getLength_box()) ||
+		if (hero.getCoordX() >= actual.getCoordX() && hero.getCoordX() <= (actual.getCoordX() + actual.getLength_box())
+				&& hero.getCoordY() >= actual.getCoordY()
+				&& hero.getCoordY() <= (actual.getCoordY() + actual.getLength_box()) ||
 				// Haut-droit
-				(coordX + length_box) >= actual.getCoordX()
-						&& (coordX + length_box) <= (actual.getCoordX() + actual.getLength_box())
-						&& coordY >= actual.getCoordY() && coordY <= (actual.getCoordY() + actual.getLength_box())
+				(hero.getCoordX() + length_box) >= actual.getCoordX()
+						&& (hero.getCoordX() + length_box) <= (actual.getCoordX() + actual.getLength_box())
+						&& hero.getCoordY() >= actual.getCoordY()
+						&& hero.getCoordY() <= (actual.getCoordY() + actual.getLength_box())
 				||
 				// bas-gauche
-				coordX >= actual.getCoordX() && coordX <= (actual.getCoordX() + actual.getLength_box())
-						&& (coordY + length_box) >= actual.getCoordY()
-						&& (coordY + length_box) <= (actual.getCoordY() + actual.getLength_box())
+				hero.getCoordX() >= actual.getCoordX()
+						&& hero.getCoordX() <= (actual.getCoordX() + actual.getLength_box())
+						&& (hero.getCoordY() + length_box) >= actual.getCoordY()
+						&& (hero.getCoordY() + length_box) <= (actual.getCoordY() + actual.getLength_box())
 				||
 				// bas-droite
-				(coordX + length_box) >= actual.getCoordX()
-						&& (coordX + length_box) <= (actual.getCoordX() + actual.getLength_box())
-						&& (coordY + length_box) >= actual.getCoordY()
-						&& (coordY + length_box) <= (actual.getCoordY() + actual.getLength_box())) {
+				(hero.getCoordX() + length_box) >= actual.getCoordX()
+						&& (hero.getCoordX() + length_box) <= (actual.getCoordX() + actual.getLength_box())
+						&& (hero.getCoordY() + length_box) >= actual.getCoordY()
+						&& (hero.getCoordY() + length_box) <= (actual.getCoordY() + actual.getLength_box())) {
 			return true;
 		} else {
 			return false;
@@ -175,20 +113,30 @@ public class Modele {
 		Ghost inky;
 		Ghost clyde;
 
+		Pacman hero = new Pacman();
+
 		// Utilisés plus loin pour lire la matrice
 		int x, y;
 
+		// Vrai si pacman se fait attraper
+		boolean catchMeIfYouCan = false;
+		// Vrai si la partie est gagnée
+		boolean win = false;
+		whatsTheName();
+
 		while (true) {
 			// Init fichier
-			whatsTheName();
+			if (win) {
+				whatsTheName();
+				win=false;
+			}
 			// Init labyrinth
 			fillMyTab();
-			// Init direction de pacman
-			Direction go = Direction.UP;
-			Direction toGo = Direction.UP;
-			// Init position de pacman
-			coordX = 252;
-			coordY = 448;
+
+			catchMeIfYouCan = false;
+
+			// Init pacman
+			hero.reset(252, 448, Direction.UP, Direction.UP, deplacement, length_box);
 
 			// Init fantomes
 			blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box);
@@ -196,47 +144,54 @@ public class Modele {
 			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
 			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
 
-			vue.majVue(coordX, coordY, maxX, maxY, blinky, pinky, inky, clyde, go);
+			vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde);
 
 			// Attente de 5 secondes avant le début de chaque partie
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			while (gumGum > 0) {
-				toGo = controle.tellMeTheWayToGoPlease();
+			while (gumGum > 0 && !catchMeIfYouCan) {
+				hero.setToGo(controle.tellMeTheWayToGoPlease());
 
 				// Deplacement de Pacman
-				if (toGo != go) {
-					if (canIGoHere(toGo) == true) {
-						go = toGo;
+				if (hero.getToGo() != hero.getGo()) {
+					if (hero.canIGoHere(hero.getToGo()) == true) {
+						hero.setGo(hero.getToGo());
 					}
 				}
-				if (canIGoHere(go)) {
-					actualize_XY(go);
+				if (hero.canIGoHere(hero.getGo())) {
+					hero.actualize_XY();
 				}
 
 				// Test si on mange une gomme
-				canIEatTheGum(go);
+				canIEatTheGum(hero);
 
 				// Deplacement des fantomes
-				blinky.deplaceTheFantom(coordX, coordY, go);
-				pinky.deplaceTheFantom(coordX, coordY, go);
-				inky.deplaceTheFantom(coordX, coordY, go);
-				clyde.deplaceTheFantom(coordX, coordY, go);
-				
-				vue.refresh(coordX, coordY, go);
+				blinky.deplaceTheFantom(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+				pinky.deplaceTheFantom(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+				inky.deplaceTheFantom(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+				clyde.deplaceTheFantom(hero.getCoordX(), hero.getCoordY(), hero.getGo());
 
-				if (meetTheFantom(blinky) || meetTheFantom(pinky) || meetTheFantom(inky) || meetTheFantom(clyde)) {
-					coordX = 252;
-					coordY = 448;
+				vue.refresh();
+
+				// si on se fait attraper par un fantome
+				if (meetTheFantom(blinky, hero) || meetTheFantom(pinky, hero) || meetTheFantom(inky, hero)
+						|| meetTheFantom(clyde, hero)) {
+					catchMeIfYouCan = true;
 				}
 				try {
 					Thread.sleep(8);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+			}
+			if(gumGum==0){
+				win=true;
+			}
+			if (hero.getLife() <= 0) {
+				System.exit(0);
 			}
 		}
 	}
