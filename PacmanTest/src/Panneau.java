@@ -212,6 +212,8 @@ public class Panneau extends JPanel {
 				else
 					g.drawImage(eyes_right, inky.getCoordX(), inky.getCoordY(), this);
 			}
+			
+			
 			switch (pinky.getState()) {
 			case 0:
 				if (pinky.getGo() == Modele.Direction.UP || pinky.getGo() == Modele.Direction.LEFT)
@@ -228,6 +230,8 @@ public class Panneau extends JPanel {
 				else
 					g.drawImage(eyes_right, pinky.getCoordX(), pinky.getCoordY(), this);
 			}
+			
+			
 			switch (clyde.getState()) {
 			case 0:
 				if (clyde.getGo() == Modele.Direction.UP || clyde.getGo() == Modele.Direction.LEFT)
@@ -240,10 +244,12 @@ public class Panneau extends JPanel {
 				break;
 			case 2:
 				if (clyde.getGo() == Modele.Direction.UP || clyde.getGo() == Modele.Direction.LEFT)
-					g.drawImage(eyes_left, blinky.getCoordX(), clyde.getCoordY(), this);
+					g.drawImage(eyes_left, clyde.getCoordX(), clyde.getCoordY(), this);
 				else
 					g.drawImage(eyes_right, clyde.getCoordX(), clyde.getCoordY(), this);
 			}
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

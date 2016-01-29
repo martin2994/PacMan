@@ -46,27 +46,28 @@ public class Modele {
 			x = ((hero.getCoordX() + (length_box / 2)) / length_box) % 19;
 			break;
 		}
-		if(labyrinth[x][y] == -5){
+		if (labyrinth[x][y] == -5) {
 			labyrinth[x][y] = 0;
 			gumGum--;
 			return true;
 		}
-		if (labyrinth[x][y] == 1  ) {
+		if (labyrinth[x][y] == 1) {
 			labyrinth[x][y] = 0;
 			gumGum--;
 		}
 		return false;
 	}
 
-	public static void superPacman(Ghost actual){
-		if (actual.getState()==0 || actual.getState()==1)
+	public static void superPacman(Ghost actual) {
+		if (actual.getState() == 0 || actual.getState() == 1)
 			actual.setState(1);
 	}
-	public static void normalPacman(Ghost actual){
-		if (actual.getState()==1)
-			actual.setState(0);	
+
+	public static void normalPacman(Ghost actual) {
+		if (actual.getState() == 1)
+			actual.setState(0);
 	}
-	
+
 	public static void whatsTheName() {
 
 		switch (file_name) {
@@ -86,26 +87,32 @@ public class Modele {
 		// fantome actual
 
 		// haut-gauche
-		if ((hero.getCoordX()+hero.getLength_box()/2) >= actual.getCoordX() && (hero.getCoordX()+hero.getLength_box()/2) <= (actual.getCoordX() + actual.getLength_box())
-				&& (hero.getCoordY()+hero.getLength_box()/2) >= actual.getCoordY()
-				&& (hero.getCoordY()+hero.getLength_box()/2) <= (actual.getCoordY() + actual.getLength_box()) ||
+		if ((hero.getCoordX() + hero.getLength_box() / 2) >= actual.getCoordX()
+				&& (hero.getCoordX() + hero.getLength_box() / 2) <= (actual.getCoordX() + actual.getLength_box())
+				&& (hero.getCoordY() + hero.getLength_box() / 2) >= actual.getCoordY()
+				&& (hero.getCoordY() + hero.getLength_box() / 2) <= (actual.getCoordY() + actual.getLength_box()) ||
 				// Haut-droit
-						(hero.getCoordX()+hero.getLength_box()/2) >= actual.getCoordX()
-						&& (hero.getCoordX()+hero.getLength_box()/2) <= (actual.getCoordX() + actual.getLength_box())
-						&& (hero.getCoordY()+hero.getLength_box()/2) >= actual.getCoordY()
-						&& (hero.getCoordY()+hero.getLength_box()/2) <= (actual.getCoordY() + actual.getLength_box())
+				(hero.getCoordX() + hero.getLength_box() / 2) >= actual.getCoordX()
+						&& (hero.getCoordX() + hero.getLength_box() / 2) <= (actual.getCoordX()
+								+ actual.getLength_box())
+						&& (hero.getCoordY() + hero.getLength_box() / 2) >= actual.getCoordY()
+						&& (hero.getCoordY() + hero.getLength_box() / 2) <= (actual.getCoordY()
+								+ actual.getLength_box())
 				||
 				// bas-gauche
-				(hero.getCoordX()+hero.getLength_box()/2) >= actual.getCoordX()
-						&& (hero.getCoordX()+hero.getLength_box()/2) <= (actual.getCoordX() + actual.getLength_box())
-						&& (hero.getCoordY()+hero.getLength_box()/2) >= actual.getCoordY()
-						&& (hero.getCoordY()+hero.getLength_box()/2) <= (actual.getCoordY() + actual.getLength_box())
+				(hero.getCoordX() + hero.getLength_box() / 2) >= actual.getCoordX()
+						&& (hero.getCoordX() + hero.getLength_box() / 2) <= (actual.getCoordX()
+								+ actual.getLength_box())
+						&& (hero.getCoordY() + hero.getLength_box() / 2) >= actual.getCoordY()
+						&& (hero.getCoordY() + hero.getLength_box() / 2) <= (actual.getCoordY()
+								+ actual.getLength_box())
 				||
 				// bas-droite
-				(hero.getCoordX()+hero.getLength_box()/2) >= actual.getCoordX()
-						&& (hero.getCoordX()+hero.getLength_box()/2) <= (actual.getCoordX() + actual.getLength_box())
-						&& (hero.getCoordY()+hero.getLength_box()/2) >= actual.getCoordY()
-						&& (hero.getCoordY()+hero.getLength_box()/2) <= (actual.getCoordY() + actual.getLength_box())) {
+				(hero.getCoordX() + hero.getLength_box() / 2) >= actual.getCoordX()
+						&& (hero.getCoordX() + hero.getLength_box() / 2) <= (actual.getCoordX()
+								+ actual.getLength_box())
+						&& (hero.getCoordY() + hero.getLength_box() / 2) >= actual.getCoordY() && (hero.getCoordY()
+								+ hero.getLength_box() / 2) <= (actual.getCoordY() + actual.getLength_box())) {
 			return true;
 		} else {
 			return false;
@@ -121,7 +128,7 @@ public class Modele {
 		Ghost pinky;
 		Ghost inky;
 		Ghost clyde;
-		int cpt=0;
+		int cpt = 0;
 
 		Pacman hero = new Pacman();
 
@@ -154,11 +161,11 @@ public class Modele {
 			blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box);
 			pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box);
 			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
-			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
+			clyde = new Ghost(224, 280, 2, "Clyde", deplacement, length_box);
 
 			vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde);
 
-			// Attente de 5 secondes avant le début de chaque partie
+			// Attente de 3 secondes avant le début de chaque partie
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -178,15 +185,15 @@ public class Modele {
 				}
 
 				// Test si on mange une gomme
-				if (canIEatTheGum(hero)){
-					cpt=1;
+				if (canIEatTheGum(hero)) {
+					cpt = 1;
 					superPacman(blinky);
 					superPacman(inky);
 					superPacman(clyde);
 					superPacman(pinky);
 				}
-				if(cpt==500){
-					cpt=0;
+				if (cpt == 500) {
+					cpt = 0;
 					normalPacman(blinky);
 					normalPacman(clyde);
 					normalPacman(pinky);
@@ -200,56 +207,57 @@ public class Modele {
 				clyde.deplaceTheFantom(hero.getCoordX(), hero.getCoordY(), hero.getGo());
 
 				vue.refresh();
-				
-				if (blinky.getState()==1 || clyde.getState()==1 || pinky.getState()==1 || inky.getState()==1)
+
+				if (blinky.getState() == 1 || clyde.getState() == 1 || pinky.getState() == 1 || inky.getState() == 1)
 					cpt++;
-				
+
 				// si on se fait attraper par un fantome
-				/*if (meetTheFantom(blinky, hero) || meetTheFantom(pinky, hero) || meetTheFantom(inky, hero)
-						|| meetTheFantom(clyde, hero)) {
-					catchMeIfYouCan = true;
-				}*/
-				if (meetTheFantom(blinky, hero)){
-					if(blinky.getState()==1 ){
+				/*
+				 * if (meetTheFantom(blinky, hero) || meetTheFantom(pinky, hero)
+				 * || meetTheFantom(inky, hero) || meetTheFantom(clyde, hero)) {
+				 * catchMeIfYouCan = true; }
+				 */
+				if (meetTheFantom(blinky, hero)) {
+					if (blinky.getState() == 1) {
 						blinky.setCoordX(252);
 						blinky.setCoordY(224);
 						blinky.setState(2);
 						blinky.returnToTheBase();
-					}else{
-						if(blinky.getState()==0 )
+					} else {
+						if (blinky.getState() == 0)
 							catchMeIfYouCan = true;
 					}
 				}
-				if (meetTheFantom(inky, hero) ){
-					if(inky.getState()==1){
+				if (meetTheFantom(inky, hero)) {
+					if (inky.getState() == 1) {
 						inky.setCoordX(252);
 						inky.setCoordY(224);
 						inky.setState(2);
 						inky.returnToTheBase();
-					}else{
-						if(inky.getState()==0 )
+					} else {
+						if (inky.getState() == 0)
 							catchMeIfYouCan = true;
 					}
 				}
-				if (meetTheFantom(pinky, hero) ){
-					if(pinky.getState()==1){
+				if (meetTheFantom(pinky, hero)) {
+					if (pinky.getState() == 1) {
 						pinky.setCoordX(252);
 						pinky.setCoordY(224);
 						pinky.setState(2);
 						pinky.returnToTheBase();
-					}else{
-						if(pinky.getState()==0 )
+					} else {
+						if (pinky.getState() == 0)
 							catchMeIfYouCan = true;
 					}
 				}
-				if (meetTheFantom(clyde, hero)){
-					if(clyde.getState()==1){
+				if (meetTheFantom(clyde, hero)) {
+					if (clyde.getState() == 1) {
 						clyde.setCoordX(252);
 						clyde.setCoordY(224);
 						clyde.setState(2);
 						clyde.returnToTheBase();
-					}else{
-						if(clyde.getState()==0 )
+					} else {
+						if (clyde.getState() == 0)
 							catchMeIfYouCan = true;
 					}
 				}
