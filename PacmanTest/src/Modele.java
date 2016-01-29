@@ -204,22 +204,38 @@ public class Modele {
 				if (blinky.getState() == 2) {
 					blinky.returnToTheBase();
 				} else {
-					blinky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+					if ((blinky.getState() == 1 && (blinky.getGame_lap() % 3) == 0) || blinky.getState()==0) {
+						blinky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+					} else {
+						blinky.anotherLap();
+					}
 				}
 				if (pinky.getState() == 2) {
 					pinky.returnToTheBase();
 				} else {
-					pinky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+					if ((pinky.getState() == 1 && pinky.getGame_lap() % 3 == 0) || pinky.getState()==0) {
+						pinky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+					} else {
+						pinky.anotherLap();
+					}
 				}
 				if (inky.getState() == 2) {
 					inky.returnToTheBase();
 				} else {
-					inky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+					if ((inky.getState() == 1 && inky.getGame_lap() % 3 == 0) || inky.getState()==0) {
+						inky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+					} else {
+						inky.anotherLap();
+					}
 				}
 				if (clyde.getState() == 2) {
 					clyde.returnToTheBase();
 				} else {
-					clyde.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+					if ((clyde.getState() == 1 && clyde.getGame_lap() % 3 == 0) || clyde.getState()==0) {
+						clyde.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+					} else {
+						clyde.anotherLap();
+					}
 				}
 				vue.refresh();
 

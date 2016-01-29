@@ -372,6 +372,14 @@ public class Ghost {
 		return length_box;
 	}
 
+	public int getGame_lap() {
+		return game_lap;
+	}
+	
+	public void anotherLap(){
+		this.game_lap++;
+	}
+
 	public void returnToTheBase() {
 		int left = 0;
 		int right = 0;
