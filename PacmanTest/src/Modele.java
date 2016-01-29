@@ -161,7 +161,7 @@ public class Modele {
 			blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box);
 			pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box);
 			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
-			clyde = new Ghost(224, 280, 2, "Clyde", deplacement, length_box);
+			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
 
 			vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde);
 
@@ -201,28 +201,34 @@ public class Modele {
 				}
 
 				// Deplacement des fantomes
-				blinky.deplaceTheFantom(hero.getCoordX(), hero.getCoordY(), hero.getGo());
-				pinky.deplaceTheFantom(hero.getCoordX(), hero.getCoordY(), hero.getGo());
-				inky.deplaceTheFantom(hero.getCoordX(), hero.getCoordY(), hero.getGo());
-				clyde.deplaceTheFantom(hero.getCoordX(), hero.getCoordY(), hero.getGo());
-
+				if (blinky.getState() == 2) {
+					blinky.returnToTheBase();
+				} else {
+					blinky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+				}
+				if (pinky.getState() == 2) {
+					pinky.returnToTheBase();
+				} else {
+					pinky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+				}
+				if (inky.getState() == 2) {
+					inky.returnToTheBase();
+				} else {
+					inky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+				}
+				if (clyde.getState() == 2) {
+					clyde.returnToTheBase();
+				} else {
+					clyde.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+				}
 				vue.refresh();
 
 				if (blinky.getState() == 1 || clyde.getState() == 1 || pinky.getState() == 1 || inky.getState() == 1)
 					cpt++;
 
-				// si on se fait attraper par un fantome
-				/*
-				 * if (meetTheFantom(blinky, hero) || meetTheFantom(pinky, hero)
-				 * || meetTheFantom(inky, hero) || meetTheFantom(clyde, hero)) {
-				 * catchMeIfYouCan = true; }
-				 */
 				if (meetTheFantom(blinky, hero)) {
 					if (blinky.getState() == 1) {
-						blinky.setCoordX(252);
-						blinky.setCoordY(224);
 						blinky.setState(2);
-						blinky.returnToTheBase();
 					} else {
 						if (blinky.getState() == 0)
 							catchMeIfYouCan = true;
@@ -230,10 +236,7 @@ public class Modele {
 				}
 				if (meetTheFantom(inky, hero)) {
 					if (inky.getState() == 1) {
-						inky.setCoordX(252);
-						inky.setCoordY(224);
 						inky.setState(2);
-						inky.returnToTheBase();
 					} else {
 						if (inky.getState() == 0)
 							catchMeIfYouCan = true;
@@ -241,10 +244,7 @@ public class Modele {
 				}
 				if (meetTheFantom(pinky, hero)) {
 					if (pinky.getState() == 1) {
-						pinky.setCoordX(252);
-						pinky.setCoordY(224);
 						pinky.setState(2);
-						pinky.returnToTheBase();
 					} else {
 						if (pinky.getState() == 0)
 							catchMeIfYouCan = true;
@@ -252,10 +252,7 @@ public class Modele {
 				}
 				if (meetTheFantom(clyde, hero)) {
 					if (clyde.getState() == 1) {
-						clyde.setCoordX(252);
-						clyde.setCoordY(224);
 						clyde.setState(2);
-						clyde.returnToTheBase();
 					} else {
 						if (clyde.getState() == 0)
 							catchMeIfYouCan = true;

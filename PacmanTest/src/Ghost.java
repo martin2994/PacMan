@@ -22,7 +22,7 @@ public class Ghost {
 		this.game_lap = 0;
 	}
 
-	public void deplaceTheFantom(int coordXPacman, int coordYPacman, Modele.Direction goPacman) {
+	public void deplaceTheGhost(int coordXPacman, int coordYPacman, Modele.Direction goPacman) {
 		game_lap++;
 		switch (name) {
 		case "Blinky":
@@ -373,7 +373,65 @@ public class Ghost {
 	}
 
 	public void returnToTheBase() {
-		// TODO Auto-generated method stub
-		
+		int left = 0;
+		int right = 0;
+		int up = 0;
+		int down = 0;
+
+		int iComeFromX = 252;
+		int iComeFromY = 224;
+
+		if (coordX == iComeFromX && coordY == iComeFromY) {
+			this.state = 0;
+		} else {
+
+			if (canIGoHere(Modele.Direction.LEFT) && goToTheOtherSide != Modele.Direction.LEFT) {
+				left = 1;
+			}
+			if (canIGoHere(Modele.Direction.RIGHT) && goToTheOtherSide != Modele.Direction.RIGHT) {
+				right = 1;
+			}
+			if (canIGoHere(Modele.Direction.UP) && goToTheOtherSide != Modele.Direction.UP) {
+				up = 1;
+			}
+			if (canIGoHere(Modele.Direction.DOWN) && goToTheOtherSide != Modele.Direction.DOWN) {
+				down = 1;
+			}
+			int min_distance = 1000;
+
+			Modele.Direction toGo = Modele.Direction.UNKNOW;
+			boolean whereWillIGo;
+			if (left == 1) {
+				whereWillIGo = min_distance > distance(coordX - deplacement, coordY, iComeFromX, iComeFromY);
+				if (whereWillIGo) {
+					min_distance = distance(coordX - deplacement, coordY, iComeFromX, iComeFromY);
+					toGo = Modele.Direction.LEFT;
+				}
+			}
+			if (right == 1) {
+				whereWillIGo = min_distance > distance(coordX + deplacement, coordY, iComeFromX, iComeFromY);
+				if (whereWillIGo) {
+					min_distance = distance(coordX + deplacement, coordY, iComeFromX, iComeFromY);
+					toGo = Modele.Direction.RIGHT;
+				}
+			}
+			if (up == 1) {
+				whereWillIGo = min_distance > distance(coordX, coordY - deplacement, iComeFromX, iComeFromY);
+				if (whereWillIGo) {
+					min_distance = distance(coordX, coordY - deplacement, iComeFromX, iComeFromY);
+					toGo = Modele.Direction.UP;
+				}
+			}
+			if (down == 1) {
+				whereWillIGo = min_distance > distance(coordX, coordY + deplacement, iComeFromX, iComeFromY);
+				if (whereWillIGo) {
+					min_distance = distance(coordX, coordY + deplacement, iComeFromX, iComeFromY);
+					toGo = Modele.Direction.DOWN;
+				}
+			}
+			go = toGo;
+			goToTheOtherSide = theOtherSide(go);
+			move();
+		}
 	}
 }
