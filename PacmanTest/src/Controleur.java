@@ -5,61 +5,31 @@ import java.awt.event.MouseListener;
 
 public class Controleur implements KeyListener,MouseListener {
 
-	private int up;
-	private int down;
-	private int left;
-	private int right;
+
+	private Modele.Direction go;
 	
-	public Controleur(int _up, int _down, int _right, int _left){
-		this.up=_up;
-		this.down=_down;
-		this.left=_left;
-		this.right=_right;
-	}
-	
-	//public enum Direction { UP,DOWN,LEFT,RIGHT }
-	
-	private void reset_values(){
-		this.up=0;
-		this.down=0;
-		this.left=0;
-		this.right=0;
+	public Controleur(Modele.Direction _go){
+		this.go=_go;
 	}
 	
 	public Modele.Direction tellMeTheWayToGoPlease(){
-		if(this.up==1){
-			return Modele.Direction.UP;
-		}
-		if(this.down==1){
-			return Modele.Direction.DOWN;
-		}
-		if(this.left==1){
-			return Modele.Direction.LEFT;
-		}
-		if(this.right==1){
-			return Modele.Direction.RIGHT;
-		}
-		return Modele.Direction.UNKNOW;
+		return go;
 	}
 	
 	@Override
 	public void keyPressed(KeyEvent k) {
 		switch (k.getKeyCode()){
 		case KeyEvent.VK_UP :
-			reset_values();
-			this.up=1;
+			go=Modele.Direction.UP;
 			break;
 		case KeyEvent.VK_DOWN :
-			reset_values();
-			this.down=1;
+			go=Modele.Direction.DOWN;
 			break;
 		case KeyEvent.VK_LEFT :
-			reset_values();
-			this.left=1;
+			go=Modele.Direction.LEFT;
 			break;
 		case KeyEvent.VK_RIGHT :
-			reset_values();
-			this.right=1;
+			go=Modele.Direction.RIGHT;
 	}
 		// TODO Auto-generated method stub
 		

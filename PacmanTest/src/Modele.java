@@ -26,12 +26,6 @@ public class Modele {
 		} catch (IOException e) {
 			System.out.println("Erreur IO");
 		}
-
-		/*
-		 * for (int i = 0; i < 19; i++) { for (int j = 0; j < 22; j++) {
-		 * labyrinth[i][j] = ; }}
-		 */
-
 	}
 
 	public static void canIEatTheGum(Pacman hero) {
@@ -104,7 +98,7 @@ public class Modele {
 	}
 
 	public static void main(String[] args) {
-		Controleur controle = new Controleur(0, 0, 0, 0);
+		Controleur controle = new Controleur(Direction.UP);
 		Vue vue = new Vue(controle);
 
 		// Fantomes
