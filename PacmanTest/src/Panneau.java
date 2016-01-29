@@ -31,6 +31,7 @@ public class Panneau extends JPanel {
 		try { // chargement des images
 			Image img0 = ImageIO.read(new File("src/image/case0.png"));
 			Image img1 = ImageIO.read(new File("src/image/case1.png"));
+			Image img_5 = ImageIO.read(new File("src/image/case-5.png"));
 			Image img2 = ImageIO.read(new File("src/image/case2.png"));
 			Image img3 = ImageIO.read(new File("src/image/case3.png"));
 			Image img4 = ImageIO.read(new File("src/image/case4.png"));
@@ -68,9 +69,14 @@ public class Panneau extends JPanel {
 			Image pinky_left = ImageIO.read(new File("src/image/Pinky_left.png"));
 			Image pinky_right = ImageIO.read(new File("src/image/Pinky_right.png"));
 			Image ghost = ImageIO.read(new File("src/image/Fantome.png"));
+			Image eyes_right = ImageIO.read(new File("src/image/eyes_right.png"));
+			Image eyes_left = ImageIO.read(new File("src/image/eyes_right.png"));
 			for (int i = 0; i < 19; i++) {
 				for (int j = 0; j < 22; j++) {
 					switch (mat[i][j]) {
+					case -5:
+						g.drawImage(img_5, i * 28, j * 28, this);
+						break;
 					case 0:
 						g.drawImage(img0, i * 28, j * 28, this);
 						break;
@@ -174,37 +180,69 @@ public class Panneau extends JPanel {
 				timer_anim_pacman = 0;
 				form_pacman = true;
 			}
-			if (blinky.getState() == 0) {
+			switch (blinky.getState()) {
+			case 0:
 				if (blinky.getGo() == Modele.Direction.UP || blinky.getGo() == Modele.Direction.LEFT)
 					g.drawImage(blinky_left, blinky.getCoordX(), blinky.getCoordY(), this);
 				else
 					g.drawImage(blinky_right, blinky.getCoordX(), blinky.getCoordY(), this);
-			} else {
+				break;
+			case 1:
 				g.drawImage(ghost, blinky.getCoordX(), blinky.getCoordY(), this);
+				break;
+			case 2:
+				if (blinky.getGo() == Modele.Direction.UP || blinky.getGo() == Modele.Direction.LEFT)
+					g.drawImage(eyes_left, blinky.getCoordX(), blinky.getCoordY(), this);
+				else
+					g.drawImage(eyes_right, blinky.getCoordX(), blinky.getCoordY(), this);
 			}
-			if (inky.getState() == 0) {
+			switch (inky.getState()) {
+			case 0:
 				if (inky.getGo() == Modele.Direction.UP || inky.getGo() == Modele.Direction.LEFT)
 					g.drawImage(inky_left, inky.getCoordX(), inky.getCoordY(), this);
 				else
 					g.drawImage(inky_right, inky.getCoordX(), inky.getCoordY(), this);
-			} else {
+				break;
+			case 1:
 				g.drawImage(ghost, inky.getCoordX(), inky.getCoordY(), this);
+				break;
+			case 2:
+				if (inky.getGo() == Modele.Direction.UP || inky.getGo() == Modele.Direction.LEFT)
+					g.drawImage(eyes_left, inky.getCoordX(), inky.getCoordY(), this);
+				else
+					g.drawImage(eyes_right, inky.getCoordX(), inky.getCoordY(), this);
 			}
-			if (pinky.getState() == 0) {
+			switch (pinky.getState()) {
+			case 0:
 				if (pinky.getGo() == Modele.Direction.UP || pinky.getGo() == Modele.Direction.LEFT)
 					g.drawImage(pinky_left, pinky.getCoordX(), pinky.getCoordY(), this);
 				else
 					g.drawImage(pinky_right, pinky.getCoordX(), pinky.getCoordY(), this);
-			} else {
+				break;
+			case 1:
 				g.drawImage(ghost, pinky.getCoordX(), pinky.getCoordY(), this);
+				break;
+			case 2:
+				if (pinky.getGo() == Modele.Direction.UP || pinky.getGo() == Modele.Direction.LEFT)
+					g.drawImage(eyes_left, pinky.getCoordX(), pinky.getCoordY(), this);
+				else
+					g.drawImage(eyes_right, pinky.getCoordX(), pinky.getCoordY(), this);
 			}
-			if (clyde.getState() == 0) {
+			switch (clyde.getState()) {
+			case 0:
 				if (clyde.getGo() == Modele.Direction.UP || clyde.getGo() == Modele.Direction.LEFT)
 					g.drawImage(clyde_left, clyde.getCoordX(), clyde.getCoordY(), this);
 				else
 					g.drawImage(clyde_right, clyde.getCoordX(), clyde.getCoordY(), this);
-			} else {
+				break;
+			case 1:
 				g.drawImage(ghost, clyde.getCoordX(), clyde.getCoordY(), this);
+				break;
+			case 2:
+				if (clyde.getGo() == Modele.Direction.UP || clyde.getGo() == Modele.Direction.LEFT)
+					g.drawImage(eyes_left, blinky.getCoordX(), clyde.getCoordY(), this);
+				else
+					g.drawImage(eyes_right, clyde.getCoordX(), clyde.getCoordY(), this);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -259,7 +297,7 @@ public class Panneau extends JPanel {
 	public void setTimer_anim_pacman(int timer_anim_pacman) {
 		this.timer_anim_pacman = timer_anim_pacman;
 	}
-	
+
 	public void setHero(Pacman hero) {
 		this.hero = hero;
 	}

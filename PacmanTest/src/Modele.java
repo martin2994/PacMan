@@ -28,7 +28,7 @@ public class Modele {
 		}
 	}
 
-	public static void canIEatTheGum(Pacman hero) {
+	public static boolean canIEatTheGum(Pacman hero) {
 
 		int x = (hero.getCoordX() / length_box) % 19;
 		int y = (hero.getCoordY() / length_box) % 22;
@@ -46,12 +46,27 @@ public class Modele {
 			x = ((hero.getCoordX() + (length_box / 2)) / length_box) % 19;
 			break;
 		}
-		if (labyrinth[x][y] == 1) {
+		if(labyrinth[x][y] == -5){
+			labyrinth[x][y] = 0;
+			gumGum--;
+			return true;
+		}
+		if (labyrinth[x][y] == 1  ) {
 			labyrinth[x][y] = 0;
 			gumGum--;
 		}
+		return false;
 	}
 
+	public static void superPacman(Ghost actual){
+		if (actual.getState()==0 || actual.getState()==1)
+			actual.setState(1);
+	}
+	public static void normalPacman(Ghost actual){
+		if (actual.getState()==1)
+			actual.setState(0);	
+	}
+	
 	public static void whatsTheName() {
 
 		switch (file_name) {
@@ -106,6 +121,7 @@ public class Modele {
 		Ghost pinky;
 		Ghost inky;
 		Ghost clyde;
+		int cpt=0;
 
 		Pacman hero = new Pacman();
 
@@ -162,7 +178,20 @@ public class Modele {
 				}
 
 				// Test si on mange une gomme
-				canIEatTheGum(hero);
+				if (canIEatTheGum(hero)){
+					cpt=1;
+					superPacman(blinky);
+					superPacman(inky);
+					superPacman(clyde);
+					superPacman(pinky);
+				}
+				if(cpt==500){
+					cpt=0;
+					normalPacman(blinky);
+					normalPacman(clyde);
+					normalPacman(pinky);
+					normalPacman(inky);
+				}
 
 				// Deplacement des fantomes
 				blinky.deplaceTheFantom(hero.getCoordX(), hero.getCoordY(), hero.getGo());
@@ -171,11 +200,58 @@ public class Modele {
 				clyde.deplaceTheFantom(hero.getCoordX(), hero.getCoordY(), hero.getGo());
 
 				vue.refresh();
-
+				
+				if (blinky.getState()==1 || clyde.getState()==1 || pinky.getState()==1 || inky.getState()==1)
+					cpt++;
+				
 				// si on se fait attraper par un fantome
-				if (meetTheFantom(blinky, hero) || meetTheFantom(pinky, hero) || meetTheFantom(inky, hero)
+				/*if (meetTheFantom(blinky, hero) || meetTheFantom(pinky, hero) || meetTheFantom(inky, hero)
 						|| meetTheFantom(clyde, hero)) {
 					catchMeIfYouCan = true;
+				}*/
+				if (meetTheFantom(blinky, hero)){
+					if(blinky.getState()==1 ){
+						blinky.setCoordX(252);
+						blinky.setCoordY(224);
+						blinky.setState(2);
+						blinky.returnToTheBase();
+					}else{
+						if(blinky.getState()==0 )
+							catchMeIfYouCan = true;
+					}
+				}
+				if (meetTheFantom(inky, hero) ){
+					if(inky.getState()==1){
+						inky.setCoordX(252);
+						inky.setCoordY(224);
+						inky.setState(2);
+						inky.returnToTheBase();
+					}else{
+						if(inky.getState()==0 )
+							catchMeIfYouCan = true;
+					}
+				}
+				if (meetTheFantom(pinky, hero) ){
+					if(pinky.getState()==1){
+						pinky.setCoordX(252);
+						pinky.setCoordY(224);
+						pinky.setState(2);
+						pinky.returnToTheBase();
+					}else{
+						if(pinky.getState()==0 )
+							catchMeIfYouCan = true;
+					}
+				}
+				if (meetTheFantom(clyde, hero)){
+					if(clyde.getState()==1){
+						clyde.setCoordX(252);
+						clyde.setCoordY(224);
+						clyde.setState(2);
+						clyde.returnToTheBase();
+					}else{
+						if(clyde.getState()==0 )
+							catchMeIfYouCan = true;
+					}
 				}
 				try {
 					Thread.sleep(8);

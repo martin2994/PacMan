@@ -371,4 +371,9 @@ public class Ghost {
 	public int getLength_box() {
 		return length_box;
 	}
+
+	public void returnToTheBase() {
+		// TODO Auto-generated method stub
+		
+	}
 }
