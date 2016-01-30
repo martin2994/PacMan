@@ -61,15 +61,25 @@ public class Panneau extends JPanel {
 			Image pacman_down = ImageIO.read(new File("src/image/Pacman_down.png"));
 			Image pacman_close = ImageIO.read(new File("src/image/Pacman_close.png"));
 			Image blinky_left = ImageIO.read(new File("src/image/Blinky_left.png"));
+			Image blinky_up = ImageIO.read(new File("src/image/Blinky_up.png"));
+			Image blinky_down = ImageIO.read(new File("src/image/Blinky_down.png"));
 			Image blinky_right = ImageIO.read(new File("src/image/Blinky_right.png"));
 			Image clyde_left = ImageIO.read(new File("src/image/Clyde_left.png"));
+			Image clyde_up = ImageIO.read(new File("src/image/Clyde_up.png"));
+			Image clyde_down = ImageIO.read(new File("src/image/Clyde_down.png"));
 			Image clyde_right = ImageIO.read(new File("src/image/Clyde_right.png"));
 			Image inky_left = ImageIO.read(new File("src/image/Inky_left.png"));
+			Image inky_up = ImageIO.read(new File("src/image/Inky_up.png"));
+			Image inky_down = ImageIO.read(new File("src/image/Inky_down.png"));
 			Image inky_right = ImageIO.read(new File("src/image/Inky_right.png"));
 			Image pinky_left = ImageIO.read(new File("src/image/Pinky_left.png"));
+			Image pinky_up = ImageIO.read(new File("src/image/Pinky_up.png"));
+			Image pinky_down = ImageIO.read(new File("src/image/Pinky_down.png"));
 			Image pinky_right = ImageIO.read(new File("src/image/Pinky_right.png"));
 			Image ghost = ImageIO.read(new File("src/image/Fantome.png"));
 			Image eyes_right = ImageIO.read(new File("src/image/eyes_right.png"));
+			Image eyes_up = ImageIO.read(new File("src/image/eyes_up.png"));
+			Image eyes_down = ImageIO.read(new File("src/image/eyes_down.png"));
 			Image eyes_left = ImageIO.read(new File("src/image/eyes_right.png"));
 			for (int i = 0; i < 19; i++) {
 				for (int j = 0; j < 22; j++) {
@@ -182,71 +192,48 @@ public class Panneau extends JPanel {
 			}
 			switch (blinky.getState()) {
 			case 0:
-				if (blinky.getGo() == Modele.Direction.UP || blinky.getGo() == Modele.Direction.LEFT)
-					g.drawImage(blinky_left, blinky.getCoordX(), blinky.getCoordY(), this);
-				else
-					g.drawImage(blinky_right, blinky.getCoordX(), blinky.getCoordY(), this);
+				drawGhost(g,blinky,blinky_up,blinky_down,blinky_left,blinky_right);
 				break;
 			case 1:
 				g.drawImage(ghost, blinky.getCoordX(), blinky.getCoordY(), this);
 				break;
 			case 2:
-				if (blinky.getGo() == Modele.Direction.UP || blinky.getGo() == Modele.Direction.LEFT)
-					g.drawImage(eyes_left, blinky.getCoordX(), blinky.getCoordY(), this);
-				else
-					g.drawImage(eyes_right, blinky.getCoordX(), blinky.getCoordY(), this);
+				drawGhost(g,blinky,eyes_up,eyes_down,eyes_left,eyes_right);
+				break;
 			}
 			switch (inky.getState()) {
 			case 0:
-				if (inky.getGo() == Modele.Direction.UP || inky.getGo() == Modele.Direction.LEFT)
-					g.drawImage(inky_left, inky.getCoordX(), inky.getCoordY(), this);
-				else
-					g.drawImage(inky_right, inky.getCoordX(), inky.getCoordY(), this);
+				drawGhost(g,inky,inky_up,inky_down,inky_left,inky_right);
 				break;
 			case 1:
 				g.drawImage(ghost, inky.getCoordX(), inky.getCoordY(), this);
 				break;
 			case 2:
-				if (inky.getGo() == Modele.Direction.UP || inky.getGo() == Modele.Direction.LEFT)
-					g.drawImage(eyes_left, inky.getCoordX(), inky.getCoordY(), this);
-				else
-					g.drawImage(eyes_right, inky.getCoordX(), inky.getCoordY(), this);
-			}
-			
-			
+				drawGhost(g,inky,eyes_up,eyes_down,eyes_left,eyes_right);
+				break;
+			}				
 			switch (pinky.getState()) {
 			case 0:
-				if (pinky.getGo() == Modele.Direction.UP || pinky.getGo() == Modele.Direction.LEFT)
-					g.drawImage(pinky_left, pinky.getCoordX(), pinky.getCoordY(), this);
-				else
-					g.drawImage(pinky_right, pinky.getCoordX(), pinky.getCoordY(), this);
+				drawGhost(g,pinky,pinky_up,pinky_down,pinky_left,pinky_right);
 				break;
 			case 1:
 				g.drawImage(ghost, pinky.getCoordX(), pinky.getCoordY(), this);
 				break;
 			case 2:
-				if (pinky.getGo() == Modele.Direction.UP || pinky.getGo() == Modele.Direction.LEFT)
-					g.drawImage(eyes_left, pinky.getCoordX(), pinky.getCoordY(), this);
-				else
-					g.drawImage(eyes_right, pinky.getCoordX(), pinky.getCoordY(), this);
+				drawGhost(g,pinky,eyes_up,eyes_down,eyes_left,eyes_right);
+				break;
 			}
-			
-			
+					
 			switch (clyde.getState()) {
 			case 0:
-				if (clyde.getGo() == Modele.Direction.UP || clyde.getGo() == Modele.Direction.LEFT)
-					g.drawImage(clyde_left, clyde.getCoordX(), clyde.getCoordY(), this);
-				else
-					g.drawImage(clyde_right, clyde.getCoordX(), clyde.getCoordY(), this);
+				drawGhost(g,clyde,clyde_up,clyde_down,clyde_left,clyde_right);
 				break;
 			case 1:
 				g.drawImage(ghost, clyde.getCoordX(), clyde.getCoordY(), this);
 				break;
 			case 2:
-				if (clyde.getGo() == Modele.Direction.UP || clyde.getGo() == Modele.Direction.LEFT)
-					g.drawImage(eyes_left, clyde.getCoordX(), clyde.getCoordY(), this);
-				else
-					g.drawImage(eyes_right, clyde.getCoordX(), clyde.getCoordY(), this);
+				drawGhost(g,clyde,eyes_up,eyes_down,eyes_left,eyes_right);
+				break;
 			}
 			
 			
@@ -256,6 +243,25 @@ public class Panneau extends JPanel {
 		}
 	}
 
+	public void drawGhost(Graphics g, Ghost actual, Image up, Image down, Image left, Image right){
+		switch (actual.getGo()) {
+		case UP:
+			g.drawImage(up, actual.getCoordX(), actual.getCoordY(), this);
+			break;
+		case DOWN:
+			g.drawImage(down, actual.getCoordX(), actual.getCoordY(), this);
+			break;
+		case LEFT:
+			g.drawImage(left, actual.getCoordX(), actual.getCoordY(), this);
+			break;
+		case RIGHT:
+			g.drawImage(right, actual.getCoordX(), actual.getCoordY(), this);
+			break;
+		}
+	}
+		
+		
+		
 	public Ghost getBlinky() {
 		return blinky;
 	}
