@@ -178,7 +178,12 @@ public class Modele {
 				e.printStackTrace();
 			}
 			while (gumGum > 0 && !catchMeIfYouCan) {
-				hero.setToGo(controle.tellMeTheWayToGoPlease());
+				if(controle.isGimmeACheese()){
+					controle.setGimmeACheese(false);
+					controle.setGo(hero.setToGo(controle.getMouseX(), controle.getMouseY()));
+				} else {
+					hero.setToGo(controle.tellMeTheWayToGoPlease());
+				}
 
 				//System.out.println("score:" + score);
 

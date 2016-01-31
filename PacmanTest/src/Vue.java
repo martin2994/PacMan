@@ -9,6 +9,7 @@ public class Vue extends JFrame {
 
 	public Vue(Controleur controle){
 		pan = new Panneau();
+		addMouseListener(controle);
 		addKeyListener(controle);		
 		addWindowListener(new WindowAdapter(){
 			public void windowOpened(WindowEvent e){

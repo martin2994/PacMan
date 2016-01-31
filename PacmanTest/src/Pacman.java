@@ -114,6 +114,29 @@ public class Pacman {
 		this.toGo = toGo;
 	}
 
+	public Modele.Direction setToGo(int mouseX, int mouseY) {
+		int x = this.coordX - mouseX;
+		int y = this.coordY - mouseY;
+		if (Math.abs(x) > Math.abs(y)) {
+			if (x > 0) {
+				this.toGo = Modele.Direction.LEFT;
+				System.out.println("left");
+			} else {
+				this.toGo = Modele.Direction.RIGHT;
+				System.out.println("right");
+			}
+		} else {
+			if(y>0){
+				this.toGo=Modele.Direction.UP;
+				System.out.println("up");
+			} else {
+				this.toGo=Modele.Direction.DOWN;
+				System.out.println("down");
+			}
+		}
+		return this.toGo;
+	}
+
 	public int getCoordX() {
 		return coordX;
 	}
