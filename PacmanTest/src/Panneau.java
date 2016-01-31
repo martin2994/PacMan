@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -192,58 +193,61 @@ public class Panneau extends JPanel {
 			}
 			switch (blinky.getState()) {
 			case 0:
-				drawGhost(g,blinky,blinky_up,blinky_down,blinky_left,blinky_right);
+				drawGhost(g, blinky, blinky_up, blinky_down, blinky_left, blinky_right);
 				break;
 			case 1:
 				g.drawImage(ghost, blinky.getCoordX(), blinky.getCoordY(), this);
 				break;
 			case 2:
-				drawGhost(g,blinky,eyes_up,eyes_down,eyes_left,eyes_right);
+				drawGhost(g, blinky, eyes_up, eyes_down, eyes_left, eyes_right);
 				break;
 			}
 			switch (inky.getState()) {
 			case 0:
-				drawGhost(g,inky,inky_up,inky_down,inky_left,inky_right);
+				drawGhost(g, inky, inky_up, inky_down, inky_left, inky_right);
 				break;
 			case 1:
 				g.drawImage(ghost, inky.getCoordX(), inky.getCoordY(), this);
 				break;
 			case 2:
-				drawGhost(g,inky,eyes_up,eyes_down,eyes_left,eyes_right);
+				drawGhost(g, inky, eyes_up, eyes_down, eyes_left, eyes_right);
 				break;
-			}				
+			}
 			switch (pinky.getState()) {
 			case 0:
-				drawGhost(g,pinky,pinky_up,pinky_down,pinky_left,pinky_right);
+				drawGhost(g, pinky, pinky_up, pinky_down, pinky_left, pinky_right);
 				break;
 			case 1:
 				g.drawImage(ghost, pinky.getCoordX(), pinky.getCoordY(), this);
 				break;
 			case 2:
-				drawGhost(g,pinky,eyes_up,eyes_down,eyes_left,eyes_right);
+				drawGhost(g, pinky, eyes_up, eyes_down, eyes_left, eyes_right);
 				break;
 			}
-					
+
 			switch (clyde.getState()) {
 			case 0:
-				drawGhost(g,clyde,clyde_up,clyde_down,clyde_left,clyde_right);
+				drawGhost(g, clyde, clyde_up, clyde_down, clyde_left, clyde_right);
 				break;
 			case 1:
 				g.drawImage(ghost, clyde.getCoordX(), clyde.getCoordY(), this);
 				break;
 			case 2:
-				drawGhost(g,clyde,eyes_up,eyes_down,eyes_left,eyes_right);
+				drawGhost(g, clyde, eyes_up, eyes_down, eyes_left, eyes_right);
 				break;
 			}
-			
-			
+			Font font = new Font("Courier", Font.BOLD, 20);
+			g.setFont(font);
+			g.setColor(Color.white);
+			g.drawString("Score:" + Modele.score, 10, this.getHeight()-20);
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public void drawGhost(Graphics g, Ghost actual, Image up, Image down, Image left, Image right){
+	public void drawGhost(Graphics g, Ghost actual, Image up, Image down, Image left, Image right) {
 		switch (actual.getGo()) {
 		case UP:
 			g.drawImage(up, actual.getCoordX(), actual.getCoordY(), this);
@@ -259,9 +263,7 @@ public class Panneau extends JPanel {
 			break;
 		}
 	}
-		
-		
-		
+
 	public Ghost getBlinky() {
 		return blinky;
 	}

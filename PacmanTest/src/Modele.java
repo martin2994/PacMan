@@ -8,7 +8,7 @@ public class Modele {
 
 	// taille de la fenêtre
 	static int maxX = 532;
-	static int maxY = 644;
+	static int maxY = 700;//644;
 	// taille du labyrinthe
 	static int[][] labyrinth;
 	// taille d'une case en pixels
@@ -19,6 +19,8 @@ public class Modele {
 	static String file_name = "new";
 	// nombre de pixels parcourus par tour
 	static int deplacement = 1;
+
+	static int score = 0;
 
 	public static void fillMyTab() {
 		try {
@@ -49,11 +51,13 @@ public class Modele {
 		if (labyrinth[x][y] == -5) {
 			labyrinth[x][y] = 0;
 			gumGum--;
+			score += 50;
 			return true;
 		}
 		if (labyrinth[x][y] == 1) {
 			labyrinth[x][y] = 0;
 			gumGum--;
+			score += 10;
 		}
 		return false;
 	}
@@ -128,7 +132,9 @@ public class Modele {
 		Ghost pinky;
 		Ghost inky;
 		Ghost clyde;
+
 		int cpt = 0;
+		int combo = 1;
 
 		Pacman hero = new Pacman();
 
@@ -174,6 +180,8 @@ public class Modele {
 			while (gumGum > 0 && !catchMeIfYouCan) {
 				hero.setToGo(controle.tellMeTheWayToGoPlease());
 
+				//System.out.println("score:" + score);
+
 				// Deplacement de Pacman
 				if (hero.getToGo() != hero.getGo()) {
 					if (hero.canIGoHere(hero.getToGo()) == true) {
@@ -194,6 +202,7 @@ public class Modele {
 				}
 				if (cpt == 500) {
 					cpt = 0;
+					combo = 1;
 					normalPacman(blinky);
 					normalPacman(clyde);
 					normalPacman(pinky);
@@ -204,7 +213,7 @@ public class Modele {
 				if (blinky.getState() == 2) {
 					blinky.returnToTheBase();
 				} else {
-					if ((blinky.getState() == 1 && (blinky.getGame_lap() % 3) == 0) || blinky.getState()==0) {
+					if ((blinky.getState() == 1 && (blinky.getGame_lap() % 3) == 0) || blinky.getState() == 0) {
 						blinky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
 					} else {
 						blinky.anotherLap();
@@ -213,7 +222,7 @@ public class Modele {
 				if (pinky.getState() == 2) {
 					pinky.returnToTheBase();
 				} else {
-					if ((pinky.getState() == 1 && pinky.getGame_lap() % 3 == 0) || pinky.getState()==0) {
+					if ((pinky.getState() == 1 && pinky.getGame_lap() % 3 == 0) || pinky.getState() == 0) {
 						pinky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
 					} else {
 						pinky.anotherLap();
@@ -222,7 +231,7 @@ public class Modele {
 				if (inky.getState() == 2) {
 					inky.returnToTheBase();
 				} else {
-					if ((inky.getState() == 1 && inky.getGame_lap() % 3 == 0) || inky.getState()==0) {
+					if ((inky.getState() == 1 && inky.getGame_lap() % 3 == 0) || inky.getState() == 0) {
 						inky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
 					} else {
 						inky.anotherLap();
@@ -231,7 +240,7 @@ public class Modele {
 				if (clyde.getState() == 2) {
 					clyde.returnToTheBase();
 				} else {
-					if ((clyde.getState() == 1 && clyde.getGame_lap() % 3 == 0) || clyde.getState()==0) {
+					if ((clyde.getState() == 1 && clyde.getGame_lap() % 3 == 0) || clyde.getState() == 0) {
 						clyde.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
 					} else {
 						clyde.anotherLap();
@@ -244,6 +253,8 @@ public class Modele {
 
 				if (meetTheFantom(blinky, hero)) {
 					if (blinky.getState() == 1) {
+						score += combo * 200;
+						combo *= 2;
 						blinky.setState(2);
 					} else {
 						if (blinky.getState() == 0)
@@ -252,6 +263,8 @@ public class Modele {
 				}
 				if (meetTheFantom(inky, hero)) {
 					if (inky.getState() == 1) {
+						score += combo * 200;
+						combo *= 2;
 						inky.setState(2);
 					} else {
 						if (inky.getState() == 0)
@@ -260,6 +273,8 @@ public class Modele {
 				}
 				if (meetTheFantom(pinky, hero)) {
 					if (pinky.getState() == 1) {
+						score += combo * 200;
+						combo *= 2;
 						pinky.setState(2);
 					} else {
 						if (pinky.getState() == 0)
@@ -268,6 +283,8 @@ public class Modele {
 				}
 				if (meetTheFantom(clyde, hero)) {
 					if (clyde.getState() == 1) {
+						score += combo * 200;
+						combo *= 2;
 						clyde.setState(2);
 					} else {
 						if (clyde.getState() == 0)
