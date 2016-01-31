@@ -55,9 +55,6 @@ public class Controleur implements KeyListener,MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		this.mouseX=e.getX();
-		this.mouseY=e.getY();
-		this.gimmeACheese=true;
 	}
 
 	@Override
@@ -74,6 +71,9 @@ public class Controleur implements KeyListener,MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		this.mouseX=e.getX();
+		this.mouseY=e.getY();
+		this.gimmeACheese=true;
 		// TODO Auto-generated method stub
 		
 	}

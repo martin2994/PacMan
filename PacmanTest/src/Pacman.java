@@ -115,8 +115,11 @@ public class Pacman {
 	}
 
 	public Modele.Direction setToGo(int mouseX, int mouseY) {
+		mouseY=mouseY-25;
+		System.out.println(coordX+" "+coordY);
 		int x = this.coordX - mouseX;
 		int y = this.coordY - mouseY;
+		System.out.println(mouseX+" "+mouseY);
 		if (Math.abs(x) > Math.abs(y)) {
 			if (x > 0) {
 				this.toGo = Modele.Direction.LEFT;
