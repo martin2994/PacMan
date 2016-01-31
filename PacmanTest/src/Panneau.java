@@ -191,6 +191,10 @@ public class Panneau extends JPanel {
 				timer_anim_pacman = 0;
 				form_pacman = true;
 			}
+			for(int i=0;i<=hero.getLife();i++){
+				g.drawImage(pacman_right,(this.getWidth()/2)+i*30 , this.getHeight()-40, this);
+			}
+			
 			switch (blinky.getState()) {
 			case 0:
 				drawGhost(g, blinky, blinky_up, blinky_down, blinky_left, blinky_right);
