@@ -18,7 +18,6 @@ public class Pacman {
 		this.coordY = _coordY;
 		this.go = _go;
 		this.toGo = _toGo;
-		this.life--;
 		this.deplacement = _deplacement;
 		this.length_box = _length_box;
 	}
@@ -154,6 +153,10 @@ public class Pacman {
 
 	public void setCoordY(int coordY) {
 		this.coordY = coordY;
+	}
+
+	public void looseLife() {
+		this.life--;
 	}
 
 }

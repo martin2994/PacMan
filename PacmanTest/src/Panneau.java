@@ -269,7 +269,7 @@ public class Panneau extends JPanel {
 		g.setFont(font);
 		g.setColor(Color.white);
 		g.drawString("Life:", this.getWidth() - 105, (this.getHeight() / 3) - 28);
-		for (int i = 0; i <= hero.getLife(); i++) {
+		for (int i = 0; i < hero.getLife(); i++) {
 			g.drawImage(pacman_right, (this.getWidth() - 105) + i * 28, (this.getHeight() / 3) - 14, this);
 		}
 		g.drawString("Bonus:", this.getWidth() - 105, 2*(this.getHeight() /3 ) - 28);

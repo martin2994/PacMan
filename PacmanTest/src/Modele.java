@@ -155,6 +155,7 @@ public class Modele {
 				whatsTheName();
 				win = false;
 				hero.setLife(3);
+				System.out.println(hero.getLife());
 				// Init labyrinth
 				fillMyTab();
 			}
@@ -305,6 +306,8 @@ public class Modele {
 			}
 			if (gumGum == 0) {
 				win = true;
+			} else {
+				hero.looseLife();
 			}
 			if (hero.getLife() <= 0) {
 				System.exit(0);
