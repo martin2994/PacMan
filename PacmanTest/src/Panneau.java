@@ -79,7 +79,8 @@ public class Panneau extends JPanel {
 	private Image fraise;
 	private Image orange;
 	private Image pomme;
-
+	
+	// boolean et timer pour gerer la forme du pacman
 	private boolean form_pacman = false;
 	private int timer_anim_pacman = 0;
 
@@ -149,9 +150,12 @@ public class Panneau extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		int mat[][] = Modele.labyrinth;
+		
+		//affichage du fond noir
 		g.setColor(Color.black);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 	
+		//affichage du labyrinth
 		for (int i = 0; i < 19; i++) {
 			for (int j = 0; j < 22; j++) {
 				switch (mat[i][j]) {
@@ -236,9 +240,14 @@ public class Panneau extends JPanel {
 				}
 			}
 		}
+		//affichage des lignes de séparation labyrinth/option
 		g.setColor(Color.white);
 		g.fillRect(this.getWidth() - 120, 0, 2, this.getHeight());
 		g.fillRect(this.getWidth() - 124, 0, 2, this.getHeight());
+		/*
+		 * affichage de pacman en fonction de sa direction et du timer
+		 * pour faire l'animation
+		 */
 		if (form_pacman || timer_anim_pacman < 10) {
 			switch (hero.getGo()) {
 			case UP:
@@ -260,10 +269,16 @@ public class Panneau extends JPanel {
 			g.drawImage(pacman_close, hero.getCoordX(), hero.getCoordY(), this);
 		}
 		timer_anim_pacman++;
+		// réinitialisation du timer
 		if (timer_anim_pacman == 20) {
 			timer_anim_pacman = 0;
 			form_pacman = true;
 		}
+		/*
+		 * affichage des options:
+		 * - le nombre de vie
+		 * - les differents bonus 
+		 */
 		Font font = new Font("Courier", Font.BOLD, 20);
 		g.setFont(font);
 		g.setColor(Color.white);
@@ -276,6 +291,12 @@ public class Panneau extends JPanel {
 		g.drawImage(pomme, this.getWidth() - 50,  2*(this.getHeight() / 3)-10 , this);
 		g.drawImage(fraise, this.getWidth() - 105,  2*(this.getHeight() / 3)+ 32, this);
 		g.drawImage(orange, this.getWidth() - 50,  2*(this.getHeight() / 3) + 32, this);
+		
+		/*
+		 * affichage des 4 fantomes en fonction de:
+		 * - leur etat (0->normal,1->bleu,2->yeux)
+		 * - leur direction
+		 */
 		switch (blinky.getState()) {
 		case 0:
 			drawGhost(g, blinky, blinky_up, blinky_down, blinky_left, blinky_right);
@@ -309,7 +330,6 @@ public class Panneau extends JPanel {
 			drawGhost(g, pinky, eyes_up, eyes_down, eyes_left, eyes_right);
 			break;
 		}
-
 		switch (clyde.getState()) {
 		case 0:
 			drawGhost(g, clyde, clyde_up, clyde_down, clyde_left, clyde_right);
@@ -321,11 +341,16 @@ public class Panneau extends JPanel {
 			drawGhost(g, clyde, eyes_up, eyes_down, eyes_left, eyes_right);
 			break;
 		}
+		//affichage du score
 		g.drawString("Score:", this.getWidth() - 105, 50);
 		g.drawString("" + Modele.score, this.getWidth() - 105, 75);
 
 	}
-
+	
+	/*
+	 * méthode d'affichage des fantomes 
+	 */
+	
 	public void drawGhost(Graphics g, Ghost actual, Image up, Image down, Image left, Image right) {
 		switch (actual.getGo()) {
 		case UP:
