@@ -41,13 +41,13 @@ public class Pacman {
 			break;
 		case LEFT:
 			if (coordX - deplacement < 0) {
-				coordX = Modele.maxX - length_box;
+				coordX = Modele.maxX - length_box - 122;
 			} else {
 				coordX -= deplacement;
 			}
 			break;
 		case RIGHT:
-			if (coordX + deplacement + length_box > Modele.maxX) {
+			if (coordX + deplacement + length_box > Modele.maxX -122) {
 				coordX = 0;
 			} else {
 				coordX += deplacement;

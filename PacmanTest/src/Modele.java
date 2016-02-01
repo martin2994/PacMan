@@ -7,8 +7,8 @@ public class Modele {
 	}
 
 	// taille de la fenêtre
-	static int maxX = 532;
-	static int maxY = 700;//644;
+	static int maxX = 660;
+	static int maxY = 652;
 	// taille du labyrinthe
 	static int[][] labyrinth;
 	// taille d'une case en pixels
