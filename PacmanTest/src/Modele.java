@@ -29,6 +29,7 @@ public class Modele {
 			System.out.println("Erreur IO");
 		}
 	}
+	//test
 
 	public static boolean canIEatTheGum(Pacman hero) {
 
