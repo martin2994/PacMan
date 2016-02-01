@@ -1,6 +1,8 @@
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class Vue extends JFrame {
@@ -10,6 +12,12 @@ public class Vue extends JFrame {
 	// Constructeur
 	public Vue(Controleur controle) {
 		pan = new Panneau();
+		pan.setLayout(null);
+		JButton options = new JButton("Options");
+		pan.add(options);
+		//position x,position y,taille x,taille y
+		options.setBounds(540, 540, 110, 50);
+		options.addActionListener(controle);
 		addMouseListener(controle);
 		addKeyListener(controle);
 		addWindowListener(new WindowAdapter() {

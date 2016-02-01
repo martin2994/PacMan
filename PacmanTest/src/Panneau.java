@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import java.awt.Color;
@@ -142,14 +143,12 @@ public class Panneau extends JPanel {
 			pomme = ImageIO.read(new File("src/image/pomme.png"));
 			cle = ImageIO.read(new File("src/image/cle.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public void paintComponent(Graphics g) {
 		int mat[][] = Modele.labyrinth;
-		// int length=mat.length;
 		g.setColor(Color.black);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 	

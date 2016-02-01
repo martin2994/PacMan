@@ -1,10 +1,12 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /* Gère toutes les entrées utilisateur, que ce soit au clavier ou à la souris */
-public class Controleur implements KeyListener, MouseListener {
+public class Controleur implements KeyListener, MouseListener, ActionListener {
 
 	// Direction demandée
 	private Modele.Direction go;
@@ -89,6 +91,11 @@ public class Controleur implements KeyListener, MouseListener {
 
 	public void setGo(Modele.Direction go) {
 		this.go = go;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		System.out.println("Tu cliques, tu niques");
 	}
 
 }
