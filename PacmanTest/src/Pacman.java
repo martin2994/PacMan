@@ -1,17 +1,31 @@
 public class Pacman {
 
+	// Coordonnées de Pacman
 	private int coordX;
 	private int coordY;
+	// Direction dans laquelle Pacman va actuellement
 	private Modele.Direction go;
+	/*
+	 * Direction choisie par l'utilisateur et dans laquelle il faudra aller dès
+	 * que Pacman pourra
+	 */
 	private Modele.Direction toGo;
+	// Nombre de vies de Pacman
 	private int life;
+	// Nombre de pixels parcourus par Pacman à chaque tour de boucle
 	private int deplacement;
+	// Taille de la hitbox de Pacman
 	private int length_box;
 
+	// Constructeur
 	public Pacman() {
 		this.life = 3;
 	}
 
+	/*
+	 * Reset entier du pacman à ses coordonnées d'origine et sa direction
+	 * d'origine
+	 */
 	public void reset(int _coordX, int _coordY, Modele.Direction _go, Modele.Direction _toGo, int _deplacement,
 			int _length_box) {
 		this.coordX = _coordX;
@@ -22,6 +36,10 @@ public class Pacman {
 		this.length_box = _length_box;
 	}
 
+	/*
+	 * Actualise les coordonnées x et y de Pacman en fonction de sa direction
+	 * actuelle
+	 */
 	public void actualize_XY() {
 		switch (go) {
 		case UP:
@@ -46,7 +64,7 @@ public class Pacman {
 			}
 			break;
 		case RIGHT:
-			if (coordX + deplacement + length_box > Modele.maxX -122) {
+			if (coordX + deplacement + length_box > Modele.maxX - 122) {
 				coordX = 0;
 			} else {
 				coordX += deplacement;
@@ -56,6 +74,7 @@ public class Pacman {
 		}
 	}
 
+	// Teste si Pacman est contre un mur
 	public boolean letMeDoTheSmartThings(int tempX, int tempY) {
 		tempX = (tempX / length_box) % 19;
 		tempY = (tempY / length_box) % 22;
@@ -65,6 +84,7 @@ public class Pacman {
 			return true;
 	}
 
+	// Regarde si Pacman peut avancer dans la direction toTest
 	public boolean canIGoHere(Modele.Direction toTest) {
 
 		switch (toTest) {
@@ -83,6 +103,10 @@ public class Pacman {
 		default:
 		}
 		return false;
+	}
+
+	public void looseLife() {
+		this.life--;
 	}
 
 	public int getLife() {
@@ -113,27 +137,25 @@ public class Pacman {
 		this.toGo = toGo;
 	}
 
+	/*
+	 * Setter spécifique de toGo pour Pacman en cas de clic de la souris de
+	 * l'utilisateur
+	 */
 	public Modele.Direction setToGo(int mouseX, int mouseY) {
-		mouseY=mouseY-25;
-		System.out.println(coordX+" "+coordY);
+		mouseY = mouseY - 25;
 		int x = this.coordX - mouseX;
 		int y = this.coordY - mouseY;
-		System.out.println(mouseX+" "+mouseY);
 		if (Math.abs(x) > Math.abs(y)) {
 			if (x > 0) {
 				this.toGo = Modele.Direction.LEFT;
-				System.out.println("left");
 			} else {
 				this.toGo = Modele.Direction.RIGHT;
-				System.out.println("right");
 			}
 		} else {
-			if(y>0){
-				this.toGo=Modele.Direction.UP;
-				System.out.println("up");
+			if (y > 0) {
+				this.toGo = Modele.Direction.UP;
 			} else {
-				this.toGo=Modele.Direction.DOWN;
-				System.out.println("down");
+				this.toGo = Modele.Direction.DOWN;
 			}
 		}
 		return this.toGo;
@@ -154,9 +176,4 @@ public class Pacman {
 	public void setCoordY(int coordY) {
 		this.coordY = coordY;
 	}
-
-	public void looseLife() {
-		this.life--;
-	}
-
 }

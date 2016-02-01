@@ -1,15 +1,27 @@
 public class Ghost {
 
+	// Coordonnées x et y du fantome
 	private int coordX;
 	private int coordY;
+	/*
+	 * Etat du fantome : 0 - "Non mangeable" par Pacman 1 - "Mangeable" par
+	 * Pacman 2 - Forme d'yeux retournant à la base
+	 */
 	private int state;
+	// Nom du fantome
 	private String name;
+	// Direction actuelle du fantome
 	private Modele.Direction go;
+	// Direction opposée de la directio nactuelle du fantome
 	private Modele.Direction goToTheOtherSide;
+	// Noùbre de pixels parcourus à chaque tour de boucle
 	private int deplacement;
+	// Taille de la hitbox
 	private int length_box;
+	// Tour de jeu actuel
 	private int game_lap;
 
+	// Constructeur
 	public Ghost(int _coordX, int _coordY, int _state, String _name, int _deplacement, int _length_box) {
 		this.coordX = _coordX;
 		this.coordY = _coordY;
@@ -22,6 +34,7 @@ public class Ghost {
 		this.game_lap = 0;
 	}
 
+	// Déplace le fantome selon son nom
 	public void deplaceTheGhost(int coordXPacman, int coordYPacman, Modele.Direction goPacman) {
 		game_lap++;
 		switch (name) {
@@ -47,6 +60,7 @@ public class Ghost {
 		}
 	}
 
+	// Bouge dans une direction aléatoire
 	private void moveToARandomWay() {
 		Modele.Direction IWantToGoHere;
 		do {
@@ -57,6 +71,7 @@ public class Ghost {
 		move();
 	}
 
+	// Calcule la direction opposée à actualGO
 	private Modele.Direction theOtherSide(Modele.Direction actualGo) {
 		switch (actualGo) {
 		case UP:
@@ -72,6 +87,7 @@ public class Ghost {
 		}
 	}
 
+	// Donne une direction aléatoire
 	private Modele.Direction getRandomDirection() {
 		int a = (int) (Math.random() * 4);
 		switch (a) {
@@ -110,6 +126,7 @@ public class Ghost {
 		}
 	}
 
+	// Bouge le fantome en fonctio nde la direction actuelle
 	public void move() {
 		switch (go) {
 		case UP:
@@ -128,13 +145,13 @@ public class Ghost {
 			break;
 		case LEFT:
 			if (coordX - deplacement < 0) {
-				coordX = Modele.maxX - length_box -122;
+				coordX = Modele.maxX - length_box - 122;
 			} else {
 				coordX -= deplacement;
 			}
 			break;
 		case RIGHT:
-			if (coordX + deplacement + length_box > Modele.maxX -122) {
+			if (coordX + deplacement + length_box > Modele.maxX - 122) {
 				coordX = 0;
 			} else {
 				coordX += deplacement;
@@ -144,6 +161,7 @@ public class Ghost {
 		}
 	}
 
+	// Regarde si la fantome va dans un mur
 	public boolean letMeDoTheSmartThings(int tempX, int tempY, Modele.Direction goTest) {
 		tempX = (tempX / length_box) % 19;
 		tempY = (tempY / length_box) % 22;
@@ -157,6 +175,7 @@ public class Ghost {
 			return true;
 	}
 
+	// Regarde si le fantome peut aller dans la direction goTest
 	private boolean canIGoHere(Modele.Direction goTest) {
 		switch (goTest) {
 		case UP:
@@ -176,8 +195,9 @@ public class Ghost {
 		return false;
 	}
 
+	// Vise l'endroit où va se trouver Pacman
 	private void deplacePinky(int coordXPacman, int coordYPacman, Modele.Direction goPacman) {
-		// Vise l'endroit où va se trouver Pacman
+		// Cas de départ
 		if (coordX <= 280 && coordX > 252 && coordY == 252) {
 			go = Modele.Direction.LEFT;
 			goToTheOtherSide = theOtherSide(go);
@@ -228,9 +248,8 @@ public class Ghost {
 		}
 	}
 
+	// Suit Pacman 75% du temps et le fuit sinon
 	private void deplaceInky(int coordXPacman, int coordYPacman) {
-		// 75% : Suit Pacman
-		// 25% : Fuit Pacman
 		if (coordX == 252 && coordY <= 280 && coordY >= 252) {
 			go = Modele.Direction.UP;
 			goToTheOtherSide = theOtherSide(go);
@@ -241,13 +260,13 @@ public class Ghost {
 
 	}
 
+	// Retourne la distance de Manhattan entre deux coordonnées
 	private int distance(int coordXG, int coordYG, int coordXP, int coordYP) {
 		return Math.abs(coordXP - coordXG) + Math.abs(coordYP - coordYG);
 	}
 
+	// Suit Pacman
 	private void deplaceBlinky(int coordXPacman, int coordYPacman, boolean helloIAmInky) {
-		// Suit Pacman
-
 		int r = (int) (Math.random() * 2);
 		if (r == 0) {
 			moveToARandomWay();
@@ -336,6 +355,78 @@ public class Ghost {
 		}
 	}
 
+	/*
+	 * Si le fantome se trouve en état 2, cette méthode se substitue à la
+	 * méthode de déplacement habituelle du fantome pour le faire revenir à sa
+	 * case de départ
+	 */
+	public void returnToTheBase() {
+		int left = 0;
+		int right = 0;
+		int up = 0;
+		int down = 0;
+
+		int iComeFromX = 252;
+		int iComeFromY = 224;
+
+		if (coordX == iComeFromX && coordY == iComeFromY) {
+			this.state = 0;
+		} else {
+
+			if (canIGoHere(Modele.Direction.LEFT) && goToTheOtherSide != Modele.Direction.LEFT) {
+				left = 1;
+			}
+			if (canIGoHere(Modele.Direction.RIGHT) && goToTheOtherSide != Modele.Direction.RIGHT) {
+				right = 1;
+			}
+			if (canIGoHere(Modele.Direction.UP) && goToTheOtherSide != Modele.Direction.UP) {
+				up = 1;
+			}
+			if (canIGoHere(Modele.Direction.DOWN) && goToTheOtherSide != Modele.Direction.DOWN) {
+				down = 1;
+			}
+			int min_distance = 1000;
+
+			/*
+			 * On calcule grace à la distance de Manhattan un chemin pour
+			 * retourner relativement rapidement au point de spawn
+			 */
+			Modele.Direction toGo = Modele.Direction.UNKNOW;
+			boolean whereWillIGo;
+			if (left == 1) {
+				whereWillIGo = min_distance > distance(coordX - deplacement, coordY, iComeFromX, iComeFromY);
+				if (whereWillIGo) {
+					min_distance = distance(coordX - deplacement, coordY, iComeFromX, iComeFromY);
+					toGo = Modele.Direction.LEFT;
+				}
+			}
+			if (right == 1) {
+				whereWillIGo = min_distance > distance(coordX + deplacement, coordY, iComeFromX, iComeFromY);
+				if (whereWillIGo) {
+					min_distance = distance(coordX + deplacement, coordY, iComeFromX, iComeFromY);
+					toGo = Modele.Direction.RIGHT;
+				}
+			}
+			if (up == 1) {
+				whereWillIGo = min_distance > distance(coordX, coordY - deplacement, iComeFromX, iComeFromY);
+				if (whereWillIGo) {
+					min_distance = distance(coordX, coordY - deplacement, iComeFromX, iComeFromY);
+					toGo = Modele.Direction.UP;
+				}
+			}
+			if (down == 1) {
+				whereWillIGo = min_distance > distance(coordX, coordY + deplacement, iComeFromX, iComeFromY);
+				if (whereWillIGo) {
+					min_distance = distance(coordX, coordY + deplacement, iComeFromX, iComeFromY);
+					toGo = Modele.Direction.DOWN;
+				}
+			}
+			go = toGo;
+			goToTheOtherSide = theOtherSide(go);
+			move();
+		}
+	}
+
 	public int getState() {
 		return state;
 	}
@@ -375,71 +466,8 @@ public class Ghost {
 	public int getGame_lap() {
 		return game_lap;
 	}
-	
-	public void anotherLap(){
+
+	public void anotherLap() {
 		this.game_lap++;
-	}
-
-	public void returnToTheBase() {
-		int left = 0;
-		int right = 0;
-		int up = 0;
-		int down = 0;
-
-		int iComeFromX = 252;
-		int iComeFromY = 224;
-
-		if (coordX == iComeFromX && coordY == iComeFromY) {
-			this.state = 0;
-		} else {
-
-			if (canIGoHere(Modele.Direction.LEFT) && goToTheOtherSide != Modele.Direction.LEFT) {
-				left = 1;
-			}
-			if (canIGoHere(Modele.Direction.RIGHT) && goToTheOtherSide != Modele.Direction.RIGHT) {
-				right = 1;
-			}
-			if (canIGoHere(Modele.Direction.UP) && goToTheOtherSide != Modele.Direction.UP) {
-				up = 1;
-			}
-			if (canIGoHere(Modele.Direction.DOWN) && goToTheOtherSide != Modele.Direction.DOWN) {
-				down = 1;
-			}
-			int min_distance = 1000;
-
-			Modele.Direction toGo = Modele.Direction.UNKNOW;
-			boolean whereWillIGo;
-			if (left == 1) {
-				whereWillIGo = min_distance > distance(coordX - deplacement, coordY, iComeFromX, iComeFromY);
-				if (whereWillIGo) {
-					min_distance = distance(coordX - deplacement, coordY, iComeFromX, iComeFromY);
-					toGo = Modele.Direction.LEFT;
-				}
-			}
-			if (right == 1) {
-				whereWillIGo = min_distance > distance(coordX + deplacement, coordY, iComeFromX, iComeFromY);
-				if (whereWillIGo) {
-					min_distance = distance(coordX + deplacement, coordY, iComeFromX, iComeFromY);
-					toGo = Modele.Direction.RIGHT;
-				}
-			}
-			if (up == 1) {
-				whereWillIGo = min_distance > distance(coordX, coordY - deplacement, iComeFromX, iComeFromY);
-				if (whereWillIGo) {
-					min_distance = distance(coordX, coordY - deplacement, iComeFromX, iComeFromY);
-					toGo = Modele.Direction.UP;
-				}
-			}
-			if (down == 1) {
-				whereWillIGo = min_distance > distance(coordX, coordY + deplacement, iComeFromX, iComeFromY);
-				if (whereWillIGo) {
-					min_distance = distance(coordX, coordY + deplacement, iComeFromX, iComeFromY);
-					toGo = Modele.Direction.DOWN;
-				}
-			}
-			go = toGo;
-			goToTheOtherSide = theOtherSide(go);
-			move();
-		}
 	}
 }
