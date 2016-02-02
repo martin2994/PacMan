@@ -7,8 +7,8 @@ public class Modele {
 	}
 
 	// taille de la fenêtre
-	static int maxX = 532;
-	static int maxY = 700;//644;
+	static int maxX = 660;
+	static int maxY = 652;
 	// taille du labyrinthe
 	static int[][] labyrinth;
 	// taille d'une case en pixels
@@ -22,6 +22,10 @@ public class Modele {
 
 	static int score = 0;
 
+	/*
+	 * Remplit la matrice en fonction des labyrinthes préchargés dans des
+	 * fichiers texte
+	 */
 	public static void fillMyTab() {
 		try {
 			IOTreatment.readMatrix(file_name);
@@ -30,6 +34,10 @@ public class Modele {
 		}
 	}
 
+	/*
+	 * Regarde si Pacman est en train de manger une gomme ou un super gomme afin
+	 * de mettre à jour le score et l'affichage
+	 */
 	public static boolean canIEatTheGum(Pacman hero) {
 
 		int x = (hero.getCoordX() / length_box) % 19;
@@ -62,16 +70,25 @@ public class Modele {
 		return false;
 	}
 
+	/*
+	 * Met l'état des fantomes en "mangeables" par Pacman
+	 */
 	public static void superPacman(Ghost actual) {
 		if (actual.getState() == 0 || actual.getState() == 1)
 			actual.setState(1);
 	}
 
+	/*
+	 * Met l'état des fantomes en "non-mangeables" par Pacman
+	 */
 	public static void normalPacman(Ghost actual) {
 		if (actual.getState() == 1)
 			actual.setState(0);
 	}
 
+	/*
+	 * Charge le labyrinthe correspondant au niveau actuel
+	 */
 	public static void whatsTheName() {
 
 		switch (file_name) {
@@ -86,9 +103,11 @@ public class Modele {
 		}
 	}
 
+	/*
+	 * On teste si un le centre de Pacman se trouve dans un des quatre coins de
+	 * la hitbox du fantome actual
+	 */
 	public static boolean meetTheFantom(Ghost actual, Pacman hero) {
-		// tester si un des 4 coins de pacman se trouve dans la hitbox du
-		// fantome actual
 
 		// haut-gauche
 		if ((hero.getCoordX() + hero.getLength_box() / 2) >= actual.getCoordX()
@@ -127,27 +146,33 @@ public class Modele {
 		Controleur controle = new Controleur(Direction.UP);
 		Vue vue = new Vue(controle);
 
-		// Fantomes
+		// Déclaration des fantomes
 		Ghost blinky;
 		Ghost pinky;
 		Ghost inky;
 		Ghost clyde;
 
+		/*
+		 * Déclaration du compteur de tour(utilisé pour changer l'état des
+		 * fantomes une fois que l'effet de la super-gomme se termine
+		 */
 		int cpt = 0;
+
+		// Déclaration du bonus de combo
 		int combo = 1;
 
+		// Déclaration du Pacman
 		Pacman hero = new Pacman();
-
-		// Utilisés plus loin pour lire la matrice
-		int x, y;
 
 		// Vrai si pacman se fait attraper
 		boolean catchMeIfYouCan = false;
+
 		// Vrai si la partie est gagnée
 		boolean win = false;
 		whatsTheName();
 		fillMyTab();
 
+		// On tourne tant que l'utilisateur n'a pas gagné ou perdu
 		while (true) {
 			// Init fichier
 			if (win) {
@@ -177,15 +202,21 @@ public class Modele {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
+			/*
+			 * Tant que Pacman ne se fait pas attraper et qu'il reste des
+			 * gommes, on tourne
+			 */
 			while (gumGum > 0 && !catchMeIfYouCan) {
-				if(controle.isGimmeACheese()){
+
+				// On prend la direction de la souris s'il y a eu un clic...
+				if (controle.isGimmeACheese()) {
 					controle.setGimmeACheese(false);
 					controle.setGo(hero.setToGo(controle.getMouseX(), controle.getMouseY()));
+					// ... ou sinon l'entrée clavier par défaut
 				} else {
 					hero.setToGo(controle.tellMeTheWayToGoPlease());
 				}
-
-				//System.out.println("score:" + score);
 
 				// Deplacement de Pacman
 				if (hero.getToGo() != hero.getGo()) {
@@ -205,6 +236,11 @@ public class Modele {
 					superPacman(clyde);
 					superPacman(pinky);
 				}
+
+				/*
+				 * Si on arrive à la fin du compteur, on repasse les fantomes en
+				 * mode normal
+				 */
 				if (cpt == 500) {
 					cpt = 0;
 					combo = 1;
@@ -214,7 +250,7 @@ public class Modele {
 					normalPacman(inky);
 				}
 
-				// Deplacement des fantomes
+				// Deplacement des fantomes en fonction de leur état
 				if (blinky.getState() == 2) {
 					blinky.returnToTheBase();
 				} else {
@@ -253,9 +289,17 @@ public class Modele {
 				}
 				vue.refresh();
 
+				/*
+				 * Si les fantomes sont en mode "mangeables", on incrémente le
+				 * compteur
+				 */
 				if (blinky.getState() == 1 || clyde.getState() == 1 || pinky.getState() == 1 || inky.getState() == 1)
 					cpt++;
 
+				/*
+				 * On gère les interaction entre pacman et un fantome s'il y en
+				 * a un, et en fonction de l'état du fantome
+				 */
 				if (meetTheFantom(blinky, hero)) {
 					if (blinky.getState() == 1) {
 						score += combo * 200;
@@ -304,6 +348,8 @@ public class Modele {
 			}
 			if (gumGum == 0) {
 				win = true;
+			} else {
+				hero.looseLife();
 			}
 			if (hero.getLife() <= 0) {
 				System.exit(0);

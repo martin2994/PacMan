@@ -1,20 +1,29 @@
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class Vue extends JFrame {
 
 	Panneau pan;
 
-	public Vue(Controleur controle){
+	// Constructeur
+	public Vue(Controleur controle) {
 		pan = new Panneau();
+		pan.setLayout(null);
+		JButton options = new JButton("Options");
+		pan.add(options);
+		//position x,position y,taille x,taille y
+		options.setBounds(540, 540, 110, 50);
+		options.addActionListener(controle);
 		addMouseListener(controle);
-		addKeyListener(controle);		
-		addWindowListener(new WindowAdapter(){
-			public void windowOpened(WindowEvent e){
+		addKeyListener(controle);
+		addWindowListener(new WindowAdapter() {
+			public void windowOpened(WindowEvent e) {
 				requestFocus();
-			}	
+			}
 		});
 		this.setResizable(false);
 		this.setVisible(true);
@@ -24,8 +33,11 @@ public class Vue extends JFrame {
 		pan.repaint();
 	}
 
-	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky,
-			Ghost clyde) {
+	/*
+	 * Permet de mettre à jour la vue et le panneau avec les coordonnées
+	 * actuelles de Pacman et des fantomes
+	 */
+	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde) {
 		this.setTitle("Pac-Man");
 		this.setSize(maxX, maxY);
 		this.setLocationRelativeTo(null);
