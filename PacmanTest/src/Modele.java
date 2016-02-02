@@ -3,7 +3,7 @@ import java.io.IOException;
 public class Modele {
 
 	public enum Direction {
-		UP, DOWN, LEFT, RIGHT, UNKNOW
+		UP, DOWN, LEFT, RIGHT, SPACE, UNKNOW
 	}
 
 	// taille de la fenêtre
@@ -31,6 +31,21 @@ public class Modele {
 			IOTreatment.readMatrix(file_name);
 		} catch (IOException e) {
 			System.out.println("Erreur IO");
+		}
+	}
+
+	public static void pause(Controleur controle, boolean loop) {
+		while (loop) {
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if (controle.tellMeTheWayToGoPlease().equals(Direction.SPACE)) {
+				System.out.println("fin");
+				loop = false;
+				controle.setGo(Direction.UP);
+			}
 		}
 	}
 
@@ -215,7 +230,13 @@ public class Modele {
 					controle.setGo(hero.setToGo(controle.getMouseX(), controle.getMouseY()));
 					// ... ou sinon l'entrée clavier par défaut
 				} else {
-					hero.setToGo(controle.tellMeTheWayToGoPlease());
+					// Test si l'utilisateur souhaite mettre en pause le jeu
+					if (controle.tellMeTheWayToGoPlease() == Direction.SPACE) {
+						controle.setGo(Direction.UP);
+						pause(controle, true);
+					} else {
+						hero.setToGo(controle.tellMeTheWayToGoPlease());
+					}
 				}
 
 				// Deplacement de Pacman

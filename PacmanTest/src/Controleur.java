@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /* Gère toutes les entrées utilisateur, que ce soit au clavier ou à la souris */
-public class Controleur implements KeyListener, MouseListener, ActionListener {
+public class Controleur implements KeyListener, MouseListener {
 
 	// Direction demandée
 	private Modele.Direction go;
@@ -45,6 +45,10 @@ public class Controleur implements KeyListener, MouseListener, ActionListener {
 			break;
 		case KeyEvent.VK_RIGHT:
 			go = Modele.Direction.RIGHT;
+			break;
+		case 32:
+			go=Modele.Direction.SPACE;
+			System.out.println("sapce");
 		}
 	}
 
@@ -68,6 +72,7 @@ public class Controleur implements KeyListener, MouseListener, ActionListener {
 		this.mouseX = e.getX();
 		this.mouseY = e.getY();
 		this.gimmeACheese = true;
+		System.out.println("clic");
 	}
 
 	public void mouseReleased(MouseEvent e) {
@@ -92,10 +97,4 @@ public class Controleur implements KeyListener, MouseListener, ActionListener {
 	public void setGo(Modele.Direction go) {
 		this.go = go;
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("Tu cliques, tu niques");
-	}
-
 }

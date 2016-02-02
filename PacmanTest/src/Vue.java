@@ -13,11 +13,6 @@ public class Vue extends JFrame {
 	public Vue(Controleur controle) {
 		pan = new Panneau();
 		pan.setLayout(null);
-		JButton options = new JButton("Options");
-		pan.add(options);
-		//position x,position y,taille x,taille y
-		options.setBounds(540, 540, 110, 50);
-		options.addActionListener(controle);
 		addMouseListener(controle);
 		addKeyListener(controle);
 		addWindowListener(new WindowAdapter() {
