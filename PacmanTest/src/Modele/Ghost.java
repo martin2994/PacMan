@@ -1,3 +1,6 @@
+package Modele;
+import Controller.*;
+
 public class Ghost {
 
 	// Coordonnées x et y du fantome
@@ -11,9 +14,9 @@ public class Ghost {
 	// Nom du fantome
 	private String name;
 	// Direction actuelle du fantome
-	private Modele.Direction go;
+	private Controller.Direction go;
 	// Direction opposée de la directio nactuelle du fantome
-	private Modele.Direction goToTheOtherSide;
+	private Controller.Direction goToTheOtherSide;
 	// Noùbre de pixels parcourus à chaque tour de boucle
 	private int deplacement;
 	// Taille de la hitbox
@@ -29,13 +32,13 @@ public class Ghost {
 		this.name = _name;
 		this.deplacement = _deplacement;
 		this.length_box = _length_box;
-		this.go = Modele.Direction.UP;
+		this.go = Controller.Direction.UP;
 		this.goToTheOtherSide = theOtherSide(go);
 		this.game_lap = 0;
 	}
 
 	// Déplace le fantome selon son nom
-	public void deplaceTheGhost(int coordXPacman, int coordYPacman, Modele.Direction goPacman) {
+	public void deplaceTheGhost(int coordXPacman, int coordYPacman, Controller.Direction goPacman) {
 		game_lap++;
 		switch (name) {
 		case "Blinky":
@@ -62,7 +65,7 @@ public class Ghost {
 
 	// Bouge dans une direction aléatoire
 	private void moveToARandomWay() {
-		Modele.Direction IWantToGoHere;
+		Controller.Direction IWantToGoHere;
 		do {
 			IWantToGoHere = getRandomDirection();
 		} while (!canIGoHere(IWantToGoHere) || IWantToGoHere == goToTheOtherSide);
@@ -72,35 +75,35 @@ public class Ghost {
 	}
 
 	// Calcule la direction opposée à actualGO
-	private Modele.Direction theOtherSide(Modele.Direction actualGo) {
+	private Controller.Direction theOtherSide(Controller.Direction actualGo) {
 		switch (actualGo) {
 		case UP:
-			return Modele.Direction.DOWN;
+			return Controller.Direction.DOWN;
 		case DOWN:
-			return Modele.Direction.UP;
+			return Controller.Direction.UP;
 		case LEFT:
-			return Modele.Direction.RIGHT;
+			return Controller.Direction.RIGHT;
 		case RIGHT:
-			return Modele.Direction.LEFT;
+			return Controller.Direction.LEFT;
 		default:
-			return Modele.Direction.UNKNOW;
+			return Controller.Direction.UNKNOW;
 		}
 	}
 
 	// Donne une direction aléatoire
-	private Modele.Direction getRandomDirection() {
+	private Controller.Direction getRandomDirection() {
 		int a = (int) (Math.random() * 4);
 		switch (a) {
 		case 0:
-			return Modele.Direction.UP;
+			return Controller.Direction.UP;
 		case 1:
-			return Modele.Direction.DOWN;
+			return Controller.Direction.DOWN;
 		case 2:
-			return Modele.Direction.LEFT;
+			return Controller.Direction.LEFT;
 		case 3:
-			return Modele.Direction.RIGHT;
+			return Controller.Direction.RIGHT;
 		default:
-			return Modele.Direction.UNKNOW;
+			return Controller.Direction.UNKNOW;
 		}
 	}
 
@@ -108,12 +111,12 @@ public class Ghost {
 	private void deplaceClyde() {
 		// départ
 		if (coordX == 224 && coordY == 280) {
-			go = Modele.Direction.RIGHT;
+			go = Controller.Direction.RIGHT;
 			goToTheOtherSide = theOtherSide(go);
 			move();
 		} else {
 			if (coordX == 252 && coordY == 280) {
-				go = Modele.Direction.UP;
+				go = Controller.Direction.UP;
 				goToTheOtherSide = theOtherSide(go);
 				move();
 			} else {
@@ -162,11 +165,11 @@ public class Ghost {
 	}
 
 	// Regarde si la fantome va dans un mur
-	public boolean letMeDoTheSmartThings(int tempX, int tempY, Modele.Direction goTest) {
+	public boolean letMeDoTheSmartThings(int tempX, int tempY, Controller.Direction goTest) {
 		tempX = (tempX / length_box) % 19;
 		tempY = (tempY / length_box) % 22;
 		// Cas de départ quand le fantome doit sortir
-		if ((Modele.labyrinth[tempX][tempY] == 24) && (goTest == Modele.Direction.UP)) {
+		if ((Modele.labyrinth[tempX][tempY] == 24) && (goTest == Controller.Direction.UP)) {
 			return true;
 		}
 		if (Modele.labyrinth[tempX][tempY] > 1)
@@ -176,7 +179,7 @@ public class Ghost {
 	}
 
 	// Regarde si le fantome peut aller dans la direction goTest
-	private boolean canIGoHere(Modele.Direction goTest) {
+	private boolean canIGoHere(Controller.Direction goTest) {
 		switch (goTest) {
 		case UP:
 			return (letMeDoTheSmartThings(coordX + length_box - deplacement, coordY - deplacement, goTest)
@@ -196,15 +199,15 @@ public class Ghost {
 	}
 
 	// Vise l'endroit où va se trouver Pacman
-	private void deplacePinky(int coordXPacman, int coordYPacman, Modele.Direction goPacman) {
+	private void deplacePinky(int coordXPacman, int coordYPacman, Controller.Direction goPacman) {
 		// Cas de départ
 		if (coordX <= 280 && coordX > 252 && coordY == 252) {
-			go = Modele.Direction.LEFT;
+			go = Controller.Direction.LEFT;
 			goToTheOtherSide = theOtherSide(go);
 			move();
 		} else {
 			if (coordX == 252 && coordY <= 280 && coordY >= 252) {
-				go = Modele.Direction.UP;
+				go = Controller.Direction.UP;
 				goToTheOtherSide = theOtherSide(go);
 				move();
 			} else {
@@ -251,7 +254,7 @@ public class Ghost {
 	// Suit Pacman 75% du temps et le fuit sinon
 	private void deplaceInky(int coordXPacman, int coordYPacman) {
 		if (coordX == 252 && coordY <= 280 && coordY >= 252) {
-			go = Modele.Direction.UP;
+			go = Controller.Direction.UP;
 			goToTheOtherSide = theOtherSide(go);
 			move();
 		} else {
@@ -276,16 +279,16 @@ public class Ghost {
 			int up = 0;
 			int down = 0;
 
-			if (canIGoHere(Modele.Direction.LEFT) && goToTheOtherSide != Modele.Direction.LEFT) {
+			if (canIGoHere(Controller.Direction.LEFT) && goToTheOtherSide != Controller.Direction.LEFT) {
 				left = 1;
 			}
-			if (canIGoHere(Modele.Direction.RIGHT) && goToTheOtherSide != Modele.Direction.RIGHT) {
+			if (canIGoHere(Controller.Direction.RIGHT) && goToTheOtherSide != Controller.Direction.RIGHT) {
 				right = 1;
 			}
-			if (canIGoHere(Modele.Direction.UP) && goToTheOtherSide != Modele.Direction.UP) {
+			if (canIGoHere(Controller.Direction.UP) && goToTheOtherSide != Controller.Direction.UP) {
 				up = 1;
 			}
-			if (canIGoHere(Modele.Direction.DOWN) && goToTheOtherSide != Modele.Direction.DOWN) {
+			if (canIGoHere(Controller.Direction.DOWN) && goToTheOtherSide != Controller.Direction.DOWN) {
 				down = 1;
 			}
 			int min_distance = 1000;
@@ -303,7 +306,7 @@ public class Ghost {
 				}
 			}
 
-			Modele.Direction toGo = Modele.Direction.UNKNOW;
+			Controller.Direction toGo = Controller.Direction.UNKNOW;
 			boolean whereWillIGo;
 			if (left == 1) {
 				if (!helloIAmInky) {
@@ -313,7 +316,7 @@ public class Ghost {
 				}
 				if (whereWillIGo) {
 					min_distance = distance(coordX - deplacement, coordY, coordXPacman, coordYPacman);
-					toGo = Modele.Direction.LEFT;
+					toGo = Controller.Direction.LEFT;
 				}
 			}
 			if (right == 1) {
@@ -324,7 +327,7 @@ public class Ghost {
 				}
 				if (whereWillIGo) {
 					min_distance = distance(coordX + deplacement, coordY, coordXPacman, coordYPacman);
-					toGo = Modele.Direction.RIGHT;
+					toGo = Controller.Direction.RIGHT;
 				}
 			}
 			if (up == 1) {
@@ -335,7 +338,7 @@ public class Ghost {
 				}
 				if (whereWillIGo) {
 					min_distance = distance(coordX, coordY - deplacement, coordXPacman, coordYPacman);
-					toGo = Modele.Direction.UP;
+					toGo = Controller.Direction.UP;
 				}
 			}
 			if (down == 1) {
@@ -346,7 +349,7 @@ public class Ghost {
 				}
 				if (whereWillIGo) {
 					min_distance = distance(coordX, coordY + deplacement, coordXPacman, coordYPacman);
-					toGo = Modele.Direction.DOWN;
+					toGo = Controller.Direction.DOWN;
 				}
 			}
 			go = toGo;
@@ -373,16 +376,16 @@ public class Ghost {
 			this.state = 0;
 		} else {
 
-			if (canIGoHere(Modele.Direction.LEFT) && goToTheOtherSide != Modele.Direction.LEFT) {
+			if (canIGoHere(Controller.Direction.LEFT) && goToTheOtherSide != Controller.Direction.LEFT) {
 				left = 1;
 			}
-			if (canIGoHere(Modele.Direction.RIGHT) && goToTheOtherSide != Modele.Direction.RIGHT) {
+			if (canIGoHere(Controller.Direction.RIGHT) && goToTheOtherSide != Controller.Direction.RIGHT) {
 				right = 1;
 			}
-			if (canIGoHere(Modele.Direction.UP) && goToTheOtherSide != Modele.Direction.UP) {
+			if (canIGoHere(Controller.Direction.UP) && goToTheOtherSide != Controller.Direction.UP) {
 				up = 1;
 			}
-			if (canIGoHere(Modele.Direction.DOWN) && goToTheOtherSide != Modele.Direction.DOWN) {
+			if (canIGoHere(Controller.Direction.DOWN) && goToTheOtherSide != Controller.Direction.DOWN) {
 				down = 1;
 			}
 			int min_distance = 1000;
@@ -391,34 +394,34 @@ public class Ghost {
 			 * On calcule grace à la distance de Manhattan un chemin pour
 			 * retourner relativement rapidement au point de spawn
 			 */
-			Modele.Direction toGo = Modele.Direction.UNKNOW;
+			Controller.Direction toGo = Controller.Direction.UNKNOW;
 			boolean whereWillIGo;
 			if (left == 1) {
 				whereWillIGo = min_distance > distance(coordX - deplacement, coordY, iComeFromX, iComeFromY);
 				if (whereWillIGo) {
 					min_distance = distance(coordX - deplacement, coordY, iComeFromX, iComeFromY);
-					toGo = Modele.Direction.LEFT;
+					toGo = Controller.Direction.LEFT;
 				}
 			}
 			if (right == 1) {
 				whereWillIGo = min_distance > distance(coordX + deplacement, coordY, iComeFromX, iComeFromY);
 				if (whereWillIGo) {
 					min_distance = distance(coordX + deplacement, coordY, iComeFromX, iComeFromY);
-					toGo = Modele.Direction.RIGHT;
+					toGo = Controller.Direction.RIGHT;
 				}
 			}
 			if (up == 1) {
 				whereWillIGo = min_distance > distance(coordX, coordY - deplacement, iComeFromX, iComeFromY);
 				if (whereWillIGo) {
 					min_distance = distance(coordX, coordY - deplacement, iComeFromX, iComeFromY);
-					toGo = Modele.Direction.UP;
+					toGo = Controller.Direction.UP;
 				}
 			}
 			if (down == 1) {
 				whereWillIGo = min_distance > distance(coordX, coordY + deplacement, iComeFromX, iComeFromY);
 				if (whereWillIGo) {
 					min_distance = distance(coordX, coordY + deplacement, iComeFromX, iComeFromY);
-					toGo = Modele.Direction.DOWN;
+					toGo = Controller.Direction.DOWN;
 				}
 			}
 			go = toGo;
@@ -455,7 +458,7 @@ public class Ghost {
 		return this.name;
 	}
 
-	public Modele.Direction getGo() {
+	public Controller.Direction getGo() {
 		return go;
 	}
 

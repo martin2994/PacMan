@@ -1,15 +1,19 @@
+package Modele;
+
+import Controller.*;
+
 public class Pacman {
 
 	// Coordonnées de Pacman
 	private int coordX;
 	private int coordY;
 	// Direction dans laquelle Pacman va actuellement
-	private Modele.Direction go;
+	private Controller.Direction go;
 	/*
 	 * Direction choisie par l'utilisateur et dans laquelle il faudra aller dès
 	 * que Pacman pourra
 	 */
-	private Modele.Direction toGo;
+	private Controller.Direction toGo;
 	// Nombre de vies de Pacman
 	private int life;
 	// Nombre de pixels parcourus par Pacman à chaque tour de boucle
@@ -26,7 +30,7 @@ public class Pacman {
 	 * Reset entier du pacman à ses coordonnées d'origine et sa direction
 	 * d'origine
 	 */
-	public void reset(int _coordX, int _coordY, Modele.Direction _go, Modele.Direction _toGo, int _deplacement,
+	public void reset(int _coordX, int _coordY, Controller.Direction _go, Controller.Direction _toGo, int _deplacement,
 			int _length_box) {
 		this.coordX = _coordX;
 		this.coordY = _coordY;
@@ -85,7 +89,7 @@ public class Pacman {
 	}
 
 	// Regarde si Pacman peut avancer dans la direction toTest
-	public boolean canIGoHere(Modele.Direction toTest) {
+	public boolean canIGoHere(Controller.Direction toTest) {
 
 		switch (toTest) {
 		case UP:
@@ -121,19 +125,19 @@ public class Pacman {
 		return length_box;
 	}
 
-	public Modele.Direction getGo() {
+	public Controller.Direction getGo() {
 		return go;
 	}
 
-	public void setGo(Modele.Direction go) {
+	public void setGo(Controller.Direction go) {
 		this.go = go;
 	}
 
-	public Modele.Direction getToGo() {
+	public Controller.Direction getToGo() {
 		return toGo;
 	}
 
-	public void setToGo(Modele.Direction toGo) {
+	public void setToGo(Controller.Direction toGo) {
 		this.toGo = toGo;
 	}
 
@@ -141,21 +145,21 @@ public class Pacman {
 	 * Setter spécifique de toGo pour Pacman en cas de clic de la souris de
 	 * l'utilisateur
 	 */
-	public Modele.Direction setToGo(int mouseX, int mouseY) {
+	public Controller.Direction setToGo(int mouseX, int mouseY) {
 		mouseY = mouseY - 25;
 		int x = this.coordX - mouseX;
 		int y = this.coordY - mouseY;
 		if (Math.abs(x) > Math.abs(y)) {
 			if (x > 0) {
-				this.toGo = Modele.Direction.LEFT;
+				this.toGo = Controller.Direction.LEFT;
 			} else {
-				this.toGo = Modele.Direction.RIGHT;
+				this.toGo = Controller.Direction.RIGHT;
 			}
 		} else {
 			if (y > 0) {
-				this.toGo = Modele.Direction.UP;
+				this.toGo = Controller.Direction.UP;
 			} else {
-				this.toGo = Modele.Direction.DOWN;
+				this.toGo = Controller.Direction.DOWN;
 			}
 		}
 		return this.toGo;

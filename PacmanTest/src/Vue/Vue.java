@@ -1,3 +1,6 @@
+package Vue;
+import Controller.*;
+
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -5,12 +8,17 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import Modele.Ghost;
+import Modele.Pacman;
+
 public class Vue extends JFrame {
 
 	Panneau pan;
+	KeyboardAndMouseMovementsInputs controle;
 
 	// Constructeur
-	public Vue(Controleur controle) {
+	public Vue(KeyboardAndMouseMovementsInputs _controle) {
+		controle = _controle;
 		pan = new Panneau();
 		pan.setLayout(null);
 		addMouseListener(controle);

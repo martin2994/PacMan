@@ -1,26 +1,26 @@
+package Modele;
+
 import java.io.IOException;
+
+import Controller.*;
 
 public class Modele {
 
-	public enum Direction {
-		UP, DOWN, LEFT, RIGHT, SPACE, UNKNOW
-	}
-
 	// taille de la fenêtre
-	static int maxX = 660;
-	static int maxY = 652;
+	public static int maxX = 660;
+	public static int maxY = 652;
 	// taille du labyrinthe
-	static int[][] labyrinth;
+	public static int[][] labyrinth;
 	// taille d'une case en pixels
-	static int length_box = 28;
+	public static int length_box = 28;
 	// nombre de gommes dans le labyrinthe
-	static int gumGum;
+	public static int gumGum;
 	// Nom du fichier dans lequel le niveau est enregistré
-	static String file_name = "new";
+	public static String file_name = "new";
 	// nombre de pixels parcourus par tour
-	static int deplacement = 1;
+	public static int deplacement = 1;
 
-	static int score = 0;
+	public static int score = 0;
 
 	/*
 	 * Remplit la matrice en fonction des labyrinthes préchargés dans des
@@ -34,17 +34,16 @@ public class Modele {
 		}
 	}
 
-	public static void pause(Controleur controle, boolean loop) {
+	public static void pause(Controller controle, Pacman hero, boolean loop) {
 		while (loop) {
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if (controle.tellMeTheWayToGoPlease().equals(Direction.SPACE)) {
-				System.out.println("fin");
+			controle.tellMeTheWayToGoPlease();
+			if (hero.getToGo().equals(Controller.Direction.SPACE)) {
 				loop = false;
-				controle.setGo(Direction.UP);
 			}
 		}
 	}
@@ -158,8 +157,6 @@ public class Modele {
 	}
 
 	public static void main(String[] args) {
-		Controleur controle = new Controleur(Direction.UP);
-		Vue vue = new Vue(controle);
 
 		// Déclaration des fantomes
 		Ghost blinky;
@@ -178,6 +175,9 @@ public class Modele {
 
 		// Déclaration du Pacman
 		Pacman hero = new Pacman();
+
+		// On initialise le controller
+		Controller controle = new Controller(hero);
 
 		// Vrai si pacman se fait attraper
 		boolean catchMeIfYouCan = false;
@@ -201,7 +201,7 @@ public class Modele {
 			catchMeIfYouCan = false;
 
 			// Init pacman
-			hero.reset(252, 448, Direction.UP, Direction.UP, deplacement, length_box);
+			hero.reset(252, 448, Controller.Direction.UP, Controller.Direction.UP, deplacement, length_box);
 
 			// Init fantomes
 			blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box);
@@ -209,7 +209,7 @@ public class Modele {
 			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
 			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
 
-			vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde);
+			controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde);
 
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
@@ -224,19 +224,10 @@ public class Modele {
 			 */
 			while (gumGum > 0 && !catchMeIfYouCan) {
 
-				// On prend la direction de la souris s'il y a eu un clic...
-				if (controle.isGimmeACheese()) {
-					controle.setGimmeACheese(false);
-					controle.setGo(hero.setToGo(controle.getMouseX(), controle.getMouseY()));
-					// ... ou sinon l'entrée clavier par défaut
-				} else {
-					// Test si l'utilisateur souhaite mettre en pause le jeu
-					if (controle.tellMeTheWayToGoPlease() == Direction.SPACE) {
-						controle.setGo(Direction.UP);
-						pause(controle, true);
-					} else {
-						hero.setToGo(controle.tellMeTheWayToGoPlease());
-					}
+				controle.tellMeTheWayToGoPlease();
+				if (hero.getToGo() == Controller.Direction.SPACE) {
+					hero.setToGo(hero.getGo());
+					pause(controle, hero, true);
 				}
 
 				// Deplacement de Pacman
@@ -308,7 +299,7 @@ public class Modele {
 						clyde.anotherLap();
 					}
 				}
-				vue.refresh();
+				controle.refresh();
 
 				/*
 				 * Si les fantomes sont en mode "mangeables", on incrémente le

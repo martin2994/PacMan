@@ -1,3 +1,6 @@
+package Vue;
+
+import Controller.Controller;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,10 +13,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-import javax.swing.JPanel;
+import Modele.Ghost;
+import Modele.Modele;
+import Modele.Pacman;
 
 public class Panneau extends JPanel {
 	private Ghost blinky;
@@ -149,7 +151,7 @@ public class Panneau extends JPanel {
 	}
 
 	public void paintComponent(Graphics g) {
-		int mat[][] = Modele.labyrinth;
+		int mat[][] = Controller.getLabyrinth();
 		
 		//affichage du fond noir
 		g.setColor(Color.black);
@@ -343,7 +345,7 @@ public class Panneau extends JPanel {
 		}
 		//affichage du score
 		g.drawString("Score:", this.getWidth() - 105, 50);
-		g.drawString("" + Modele.score, this.getWidth() - 105, 75);
+		g.drawString("" + Controller.getScore(), this.getWidth() - 105, 75);
 
 	}
 	
