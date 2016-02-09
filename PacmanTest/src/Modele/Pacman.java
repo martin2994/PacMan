@@ -190,7 +190,7 @@ public class Pacman {
 	public void increment_Timer_superPacman(){
 		timer_superPacman++;
 	}
-	public void refresh_Timer_superPacman(){
+	public void reset_Timer_superPacman(){
 		timer_superPacman=0;
 	}
 }

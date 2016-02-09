@@ -1,4 +1,5 @@
 package Modele;
+
 import Controller.*;
 
 public class Ghost {
@@ -270,91 +271,105 @@ public class Ghost {
 
 	// Suit Pacman
 	private void deplaceBlinky(int coordXPacman, int coordYPacman, boolean helloIAmInky) {
-		int r = (int) (Math.random() * 2);
-		if (r == 0) {
-			moveToARandomWay();
-		} else {
-			int left = 0;
-			int right = 0;
-			int up = 0;
-			int down = 0;
-
-			if (canIGoHere(Controller.Direction.LEFT) && goToTheOtherSide != Controller.Direction.LEFT) {
-				left = 1;
-			}
-			if (canIGoHere(Controller.Direction.RIGHT) && goToTheOtherSide != Controller.Direction.RIGHT) {
-				right = 1;
-			}
-			if (canIGoHere(Controller.Direction.UP) && goToTheOtherSide != Controller.Direction.UP) {
-				up = 1;
-			}
-			if (canIGoHere(Controller.Direction.DOWN) && goToTheOtherSide != Controller.Direction.DOWN) {
-				down = 1;
-			}
-			int min_distance = 1000;
-
-			// si c'est Inky, il y a une chance sur 4 pour qu'il décide de
-			// partir
-			// dans la direction opposée de pacman
-			if (helloIAmInky) {
-				int random = (int) (Math.random() * 4);
-				if (random == 0) {
-					helloIAmInky = true;
-					min_distance = 0;
-				} else {
-					helloIAmInky = false;
-				}
-			}
-
-			Controller.Direction toGo = Controller.Direction.UNKNOW;
-			boolean whereWillIGo;
-			if (left == 1) {
-				if (!helloIAmInky) {
-					whereWillIGo = min_distance > distance(coordX - deplacement, coordY, coordXPacman, coordYPacman);
-				} else {
-					whereWillIGo = min_distance < distance(coordX - deplacement, coordY, coordXPacman, coordYPacman);
-				}
-				if (whereWillIGo) {
-					min_distance = distance(coordX - deplacement, coordY, coordXPacman, coordYPacman);
-					toGo = Controller.Direction.LEFT;
-				}
-			}
-			if (right == 1) {
-				if (!helloIAmInky) {
-					whereWillIGo = min_distance > distance(coordX + deplacement, coordY, coordXPacman, coordYPacman);
-				} else {
-					whereWillIGo = min_distance < distance(coordX + deplacement, coordY, coordXPacman, coordYPacman);
-				}
-				if (whereWillIGo) {
-					min_distance = distance(coordX + deplacement, coordY, coordXPacman, coordYPacman);
-					toGo = Controller.Direction.RIGHT;
-				}
-			}
-			if (up == 1) {
-				if (!helloIAmInky) {
-					whereWillIGo = min_distance > distance(coordX, coordY - deplacement, coordXPacman, coordYPacman);
-				} else {
-					whereWillIGo = min_distance < distance(coordX, coordY - deplacement, coordXPacman, coordYPacman);
-				}
-				if (whereWillIGo) {
-					min_distance = distance(coordX, coordY - deplacement, coordXPacman, coordYPacman);
-					toGo = Controller.Direction.UP;
-				}
-			}
-			if (down == 1) {
-				if (!helloIAmInky) {
-					whereWillIGo = min_distance > distance(coordX, coordY + deplacement, coordXPacman, coordYPacman);
-				} else {
-					whereWillIGo = min_distance < distance(coordX, coordY + deplacement, coordXPacman, coordYPacman);
-				}
-				if (whereWillIGo) {
-					min_distance = distance(coordX, coordY + deplacement, coordXPacman, coordYPacman);
-					toGo = Controller.Direction.DOWN;
-				}
-			}
-			go = toGo;
+		if (coordX == 252 && coordY <= 280 && coordY >= 252) {
+			go = Controller.Direction.UP;
 			goToTheOtherSide = theOtherSide(go);
 			move();
+		} else {
+			int r = (int) (Math.random() * 2);
+			if (r == 0) {
+				moveToARandomWay();
+			} else {
+				int left = 0;
+				int right = 0;
+				int up = 0;
+				int down = 0;
+
+				if (canIGoHere(Controller.Direction.LEFT) && goToTheOtherSide != Controller.Direction.LEFT) {
+					left = 1;
+				}
+				if (canIGoHere(Controller.Direction.RIGHT) && goToTheOtherSide != Controller.Direction.RIGHT) {
+					right = 1;
+				}
+				if (canIGoHere(Controller.Direction.UP) && goToTheOtherSide != Controller.Direction.UP) {
+					up = 1;
+				}
+				if (canIGoHere(Controller.Direction.DOWN) && goToTheOtherSide != Controller.Direction.DOWN) {
+					down = 1;
+				}
+				int min_distance = 1000;
+
+				// si c'est Inky, il y a une chance sur 4 pour qu'il décide de
+				// partir
+				// dans la direction opposée de pacman
+				if (helloIAmInky) {
+					int random = (int) (Math.random() * 4);
+					if (random == 0) {
+						helloIAmInky = true;
+						min_distance = 0;
+					} else {
+						helloIAmInky = false;
+					}
+				}
+
+				Controller.Direction toGo = Controller.Direction.UNKNOW;
+				boolean whereWillIGo;
+				if (left == 1) {
+					if (!helloIAmInky) {
+						whereWillIGo = min_distance > distance(coordX - deplacement, coordY, coordXPacman,
+								coordYPacman);
+					} else {
+						whereWillIGo = min_distance < distance(coordX - deplacement, coordY, coordXPacman,
+								coordYPacman);
+					}
+					if (whereWillIGo) {
+						min_distance = distance(coordX - deplacement, coordY, coordXPacman, coordYPacman);
+						toGo = Controller.Direction.LEFT;
+					}
+				}
+				if (right == 1) {
+					if (!helloIAmInky) {
+						whereWillIGo = min_distance > distance(coordX + deplacement, coordY, coordXPacman,
+								coordYPacman);
+					} else {
+						whereWillIGo = min_distance < distance(coordX + deplacement, coordY, coordXPacman,
+								coordYPacman);
+					}
+					if (whereWillIGo) {
+						min_distance = distance(coordX + deplacement, coordY, coordXPacman, coordYPacman);
+						toGo = Controller.Direction.RIGHT;
+					}
+				}
+				if (up == 1) {
+					if (!helloIAmInky) {
+						whereWillIGo = min_distance > distance(coordX, coordY - deplacement, coordXPacman,
+								coordYPacman);
+					} else {
+						whereWillIGo = min_distance < distance(coordX, coordY - deplacement, coordXPacman,
+								coordYPacman);
+					}
+					if (whereWillIGo) {
+						min_distance = distance(coordX, coordY - deplacement, coordXPacman, coordYPacman);
+						toGo = Controller.Direction.UP;
+					}
+				}
+				if (down == 1) {
+					if (!helloIAmInky) {
+						whereWillIGo = min_distance > distance(coordX, coordY + deplacement, coordXPacman,
+								coordYPacman);
+					} else {
+						whereWillIGo = min_distance < distance(coordX, coordY + deplacement, coordXPacman,
+								coordYPacman);
+					}
+					if (whereWillIGo) {
+						min_distance = distance(coordX, coordY + deplacement, coordXPacman, coordYPacman);
+						toGo = Controller.Direction.DOWN;
+					}
+				}
+				go = toGo;
+				goToTheOtherSide = theOtherSide(go);
+				move();
+			}
 		}
 	}
 
@@ -372,60 +387,69 @@ public class Ghost {
 		int iComeFromX = 252;
 		int iComeFromY = 224;
 
-		if (coordX == iComeFromX && coordY == iComeFromY) {
-			this.state = 0;
+		if (coordX == 252 && coordY >= 224 && coordY < 280) {
+			this.go = Controller.Direction.DOWN;
+			this.goToTheOtherSide = theOtherSide(go);
+			move();
 		} else {
+			if (coordX == 252 && coordY == 280) {
+				this.state = 0;
+				this.go = Controller.Direction.UP;
+				this.goToTheOtherSide = theOtherSide(go);
+				
+			} else {
 
-			if (canIGoHere(Controller.Direction.LEFT) && goToTheOtherSide != Controller.Direction.LEFT) {
-				left = 1;
-			}
-			if (canIGoHere(Controller.Direction.RIGHT) && goToTheOtherSide != Controller.Direction.RIGHT) {
-				right = 1;
-			}
-			if (canIGoHere(Controller.Direction.UP) && goToTheOtherSide != Controller.Direction.UP) {
-				up = 1;
-			}
-			if (canIGoHere(Controller.Direction.DOWN) && goToTheOtherSide != Controller.Direction.DOWN) {
-				down = 1;
-			}
-			int min_distance = 1000;
+				if (canIGoHere(Controller.Direction.LEFT) && goToTheOtherSide != Controller.Direction.LEFT) {
+					left = 1;
+				}
+				if (canIGoHere(Controller.Direction.RIGHT) && goToTheOtherSide != Controller.Direction.RIGHT) {
+					right = 1;
+				}
+				if (canIGoHere(Controller.Direction.UP) && goToTheOtherSide != Controller.Direction.UP) {
+					up = 1;
+				}
+				if (canIGoHere(Controller.Direction.DOWN) && goToTheOtherSide != Controller.Direction.DOWN) {
+					down = 1;
+				}
+				int min_distance = 1000;
 
-			/*
-			 * On calcule grace à la distance de Manhattan un chemin pour
-			 * retourner relativement rapidement au point de spawn
-			 */
-			Controller.Direction toGo = Controller.Direction.UNKNOW;
-			boolean whereWillIGo;
-			if (left == 1) {
-				whereWillIGo = min_distance > distance(coordX - deplacement, coordY, iComeFromX, iComeFromY);
-				if (whereWillIGo) {
-					min_distance = distance(coordX - deplacement, coordY, iComeFromX, iComeFromY);
-					toGo = Controller.Direction.LEFT;
+				/*
+				 * On calcule grace à la distance de Manhattan un chemin pour
+				 * retourner relativement rapidement au point de spawn
+				 */
+				Controller.Direction toGo = Controller.Direction.UNKNOW;
+				boolean whereWillIGo;
+				if (left == 1) {
+					whereWillIGo = min_distance > distance(coordX - deplacement, coordY, iComeFromX, iComeFromY);
+					if (whereWillIGo) {
+						min_distance = distance(coordX - deplacement, coordY, iComeFromX, iComeFromY);
+						toGo = Controller.Direction.LEFT;
+					}
 				}
-			}
-			if (right == 1) {
-				whereWillIGo = min_distance > distance(coordX + deplacement, coordY, iComeFromX, iComeFromY);
-				if (whereWillIGo) {
-					min_distance = distance(coordX + deplacement, coordY, iComeFromX, iComeFromY);
-					toGo = Controller.Direction.RIGHT;
+				if (right == 1) {
+					whereWillIGo = min_distance > distance(coordX + deplacement, coordY, iComeFromX, iComeFromY);
+					if (whereWillIGo) {
+						min_distance = distance(coordX + deplacement, coordY, iComeFromX, iComeFromY);
+						toGo = Controller.Direction.RIGHT;
+					}
 				}
-			}
-			if (up == 1) {
-				whereWillIGo = min_distance > distance(coordX, coordY - deplacement, iComeFromX, iComeFromY);
-				if (whereWillIGo) {
-					min_distance = distance(coordX, coordY - deplacement, iComeFromX, iComeFromY);
-					toGo = Controller.Direction.UP;
+				if (up == 1) {
+					whereWillIGo = min_distance > distance(coordX, coordY - deplacement, iComeFromX, iComeFromY);
+					if (whereWillIGo) {
+						min_distance = distance(coordX, coordY - deplacement, iComeFromX, iComeFromY);
+						toGo = Controller.Direction.UP;
+					}
 				}
-			}
-			if (down == 1) {
-				whereWillIGo = min_distance > distance(coordX, coordY + deplacement, iComeFromX, iComeFromY);
-				if (whereWillIGo) {
-					min_distance = distance(coordX, coordY + deplacement, iComeFromX, iComeFromY);
-					toGo = Controller.Direction.DOWN;
+				if (down == 1) {
+					whereWillIGo = min_distance > distance(coordX, coordY + deplacement, iComeFromX, iComeFromY);
+					if (whereWillIGo) {
+						min_distance = distance(coordX, coordY + deplacement, iComeFromX, iComeFromY);
+						toGo = Controller.Direction.DOWN;
+					}
 				}
+				go = toGo;
+				goToTheOtherSide = theOtherSide(go);
 			}
-			go = toGo;
-			goToTheOtherSide = theOtherSide(go);
 			move();
 		}
 	}

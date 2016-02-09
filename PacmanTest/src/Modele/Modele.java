@@ -112,6 +112,9 @@ public class Modele {
 		case "stage1.txt":
 			file_name = "stage2.txt";
 			break;
+		case "stage2.txt":
+			file_name = "stage3.txt";
+			break;
 		default:
 			System.exit(0);
 		}
@@ -237,6 +240,7 @@ public class Modele {
 
 				// Test si on mange une gomme
 				if (canIEatTheGum(hero)) {
+					hero.reset_Timer_superPacman();
 					superPacman(blinky);
 					superPacman(inky);
 					superPacman(clyde);
@@ -248,7 +252,7 @@ public class Modele {
 				 * mode normal
 				 */
 				if (hero.getTimer_superPacman() == 500) {
-					hero.refresh_Timer_superPacman();
+					hero.reset_Timer_superPacman();
 					combo = 1;
 					normalPacman(blinky);
 					normalPacman(clyde);
@@ -260,7 +264,7 @@ public class Modele {
 				if (blinky.getState() == 2) {
 					blinky.returnToTheBase();
 				} else {
-					if ((blinky.getState() == 1 && (blinky.getGame_lap() % 3) == 0) || blinky.getState() == 0) {
+					if ((blinky.getState() == 1 && (blinky.getGame_lap() % 2) == 0) || blinky.getState() == 0) {
 						blinky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
 					} else {
 						blinky.anotherLap();
@@ -269,7 +273,7 @@ public class Modele {
 				if (pinky.getState() == 2) {
 					pinky.returnToTheBase();
 				} else {
-					if ((pinky.getState() == 1 && pinky.getGame_lap() % 3 == 0) || pinky.getState() == 0) {
+					if ((pinky.getState() == 1 && pinky.getGame_lap() % 2 == 0) || pinky.getState() == 0) {
 						pinky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
 					} else {
 						pinky.anotherLap();
@@ -278,7 +282,7 @@ public class Modele {
 				if (inky.getState() == 2) {
 					inky.returnToTheBase();
 				} else {
-					if ((inky.getState() == 1 && inky.getGame_lap() % 3 == 0) || inky.getState() == 0) {
+					if ((inky.getState() == 1 && inky.getGame_lap() % 2 == 0) || inky.getState() == 0) {
 						inky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
 					} else {
 						inky.anotherLap();
@@ -287,7 +291,7 @@ public class Modele {
 				if (clyde.getState() == 2) {
 					clyde.returnToTheBase();
 				} else {
-					if ((clyde.getState() == 1 && clyde.getGame_lap() % 3 == 0) || clyde.getState() == 0) {
+					if ((clyde.getState() == 1 && clyde.getGame_lap() % 2 == 0) || clyde.getState() == 0) {
 						clyde.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
 					} else {
 						clyde.anotherLap();
