@@ -21,7 +21,6 @@ public class Vue extends JFrame {
 
 	// Constructeur
 	public Vue(int maxX, int maxY) {
-		System.out.println("constructeur vue");
 		this.setTitle("Pac-Man");
 		this.setSize(maxX, maxY);
 		panIG = new PannelInGame();
@@ -33,7 +32,6 @@ public class Vue extends JFrame {
 	}
 
 	public void setPanelIngame(KeyboardAndMouseMovementsInputs _controle) {
-		System.out.println("setPanelIG");
 		controle_kammi = _controle;
 		panIG.setLayout(null);
 		this.setContentPane(panIG);
@@ -45,15 +43,26 @@ public class Vue extends JFrame {
 	}
 
 	public void setPanelStart(MouseClic _controle) {
-		System.out.println("setPanelS");
 		controle_c = _controle;
 		panS.setLayout(null);
 		this.setContentPane(panS);
 		this.revalidate();
 		JButton start=new JButton("Start");
 		panS.add(start);
-		start.setBounds(540, 540, 110, 50);
+		start.setBounds(260, 100, 110, 50);
 		start.addActionListener(controle_c);
+		JButton options=new JButton("Options");
+		panS.add(options);
+		options.setBounds(260, 200, 110, 50);
+		options.addActionListener(controle_c);
+		JButton about=new JButton("About");
+		panS.add(about);
+		about.setBounds(260, 300, 110, 50);
+		about.addActionListener(controle_c);
+		JButton quit=new JButton("Quit");
+		panS.add(quit);
+		quit.setBounds(260, 400, 110, 50);
+		quit.addActionListener(controle_c);
 		
 	}
 
@@ -66,7 +75,6 @@ public class Vue extends JFrame {
 	 * actuelles de Pacman et des fantomes
 	 */
 	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde) {
-		System.out.println("majVue");
 		panIG.setHero(hero);
 		panIG.setBlinky(blinky);
 		panIG.setPinky(pinky);

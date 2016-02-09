@@ -203,15 +203,39 @@ public class Modele {
 		}
 	}
 
+	public static void runStartPage(Controller controle) {
+		boolean userAction = false;
+		String action;
+		while (!userAction) {
+			action = controle.majStartPage();
+			switch (action) {
+			case "Start":
+				userAction = true;
+				break;
+			case "Options":
+				userAction = true;
+				break;
+			case "About":
+				userAction = true;
+				break;
+			case "Quit":
+				System.exit(0);
+			default:
+			}
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
 	public static void run() {
 
 		Controller controle = new Controller(maxX, maxY);
 		controle.startPage();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		runStartPage(controle);
 
 		bonus = new boolean[4];
 		for (int i = 0; i < bonus.length; i++) {

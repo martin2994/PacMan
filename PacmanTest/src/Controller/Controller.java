@@ -15,7 +15,6 @@ public class Controller {
 	Pacman hero;
 
 	public Controller(int maxX,int maxY) {
-		System.out.println("constructeur controller");
 		this.kammi = new KeyboardAndMouseMovementsInputs(Direction.UP);
 		this.mc=new MouseClic();
 		this.vue = new Vue(maxX,maxY);
@@ -71,8 +70,6 @@ public class Controller {
 	}
 
 	public void startPage() {
-		// TODO Auto-generated method stub
-		System.out.println("startpage");
 		vue.setPanelStart(mc);
 	}
 	
@@ -82,6 +79,10 @@ public class Controller {
 	
 	public void setHero(Pacman hero) {
 		this.hero = hero;
+	}
+
+	public String majStartPage() {
+		return mc.getAction();
 	}
 	
 }
