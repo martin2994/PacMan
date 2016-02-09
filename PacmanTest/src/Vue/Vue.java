@@ -13,13 +13,13 @@ import Modele.Pacman;
 
 public class Vue extends JFrame {
 
-	Panneau pan;
+	PannelInGame pan;
 	KeyboardAndMouseMovementsInputs controle;
 
 	// Constructeur
 	public Vue(KeyboardAndMouseMovementsInputs _controle) {
 		controle = _controle;
-		pan = new Panneau();
+		pan = new PannelInGame();
 		pan.setLayout(null);
 		addMouseListener(controle);
 		addKeyListener(controle);

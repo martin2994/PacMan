@@ -17,7 +17,7 @@ import Modele.Ghost;
 import Modele.Modele;
 import Modele.Pacman;
 
-public class Panneau extends JPanel {
+public class PannelInGame extends JPanel {
 	private Ghost blinky;
 	private Ghost pinky;
 	private Ghost inky;
@@ -86,7 +86,7 @@ public class Panneau extends JPanel {
 	private boolean form_pacman = false;
 	private int timer_anim_pacman = 0;
 
-	public Panneau() {
+	public PannelInGame() {
 		try { // chargement des images
 			img0 = ImageIO.read(new File("src/image/case0.png"));
 			img1 = ImageIO.read(new File("src/image/case1.png"));

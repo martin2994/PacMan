@@ -20,7 +20,10 @@ public class Pacman {
 	private int deplacement;
 	// Taille de la hitbox de Pacman
 	private int length_box;
+	//Timer de super Pacman
+	private int timer_superPacman=0;
 
+	
 	// Constructeur
 	public Pacman() {
 		this.life = 3;
@@ -179,5 +182,15 @@ public class Pacman {
 
 	public void setCoordY(int coordY) {
 		this.coordY = coordY;
+	}
+	
+	public int getTimer_superPacman() {
+		return timer_superPacman;
+	}
+	public void increment_Timer_superPacman(){
+		timer_superPacman++;
+	}
+	public void refresh_Timer_superPacman(){
+		timer_superPacman=0;
 	}
 }

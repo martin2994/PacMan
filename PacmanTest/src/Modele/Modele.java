@@ -164,11 +164,6 @@ public class Modele {
 		Ghost inky;
 		Ghost clyde;
 
-		/*
-		 * Déclaration du compteur de tour(utilisé pour changer l'état des
-		 * fantomes une fois que l'effet de la super-gomme se termine
-		 */
-		int cpt = 0;
 
 		// Déclaration du bonus de combo
 		int combo = 1;
@@ -242,7 +237,6 @@ public class Modele {
 
 				// Test si on mange une gomme
 				if (canIEatTheGum(hero)) {
-					cpt = 1;
 					superPacman(blinky);
 					superPacman(inky);
 					superPacman(clyde);
@@ -253,8 +247,8 @@ public class Modele {
 				 * Si on arrive à la fin du compteur, on repasse les fantomes en
 				 * mode normal
 				 */
-				if (cpt == 500) {
-					cpt = 0;
+				if (hero.getTimer_superPacman() == 500) {
+					hero.refresh_Timer_superPacman();
 					combo = 1;
 					normalPacman(blinky);
 					normalPacman(clyde);
@@ -306,7 +300,7 @@ public class Modele {
 				 * compteur
 				 */
 				if (blinky.getState() == 1 || clyde.getState() == 1 || pinky.getState() == 1 || inky.getState() == 1)
-					cpt++;
+					hero.increment_Timer_superPacman();
 
 				/*
 				 * On gère les interaction entre pacman et un fantome s'il y en
