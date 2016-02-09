@@ -204,6 +204,15 @@ public class Modele {
 	}
 
 	public static void run() {
+
+		Controller controle = new Controller(maxX, maxY);
+		controle.startPage();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 		bonus = new boolean[4];
 		for (int i = 0; i < bonus.length; i++) {
 			bonus[i] = false;
@@ -221,9 +230,6 @@ public class Modele {
 		// Déclaration du Pacman
 		Pacman hero = new Pacman();
 
-		// On initialise le controller
-		Controller controle = new Controller(hero);
-
 		// Vrai si pacman se fait attraper
 		boolean catchMeIfYouCan = false;
 
@@ -231,6 +237,10 @@ public class Modele {
 		boolean win = false;
 		whatsTheName();
 		fillMyTab();
+
+		// On initialise le controller
+		controle.setHero(hero);
+		controle.startGame();
 
 		// On tourne tant que l'utilisateur n'a pas gagné ou perdu
 		while (true) {

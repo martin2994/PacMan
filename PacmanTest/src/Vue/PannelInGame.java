@@ -90,6 +90,7 @@ public class PannelInGame extends JPanel {
 	private int timer_anim_pacman = 0;
 
 	public PannelInGame() {
+		System.out.println("constructeur IG");
 		pause=false;
 		try { // chargement des images
 			img0 = ImageIO.read(new File("src/image/case0.png"));
@@ -156,6 +157,7 @@ public class PannelInGame extends JPanel {
 	}
 
 	public void paintComponent(Graphics g) {
+		System.out.println("paintComponentIG");
 		drawLabyrinth(g);
 		drawPacman(g);
 		drawOptions(g);

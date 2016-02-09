@@ -11,12 +11,15 @@ public class Controller {
 
 	Vue vue;
 	KeyboardAndMouseMovementsInputs kammi;
+	MouseClic mc;
 	Pacman hero;
 
-	public Controller(Pacman _hero) {
+	public Controller(int maxX,int maxY) {
+		System.out.println("constructeur controller");
 		this.kammi = new KeyboardAndMouseMovementsInputs(Direction.UP);
-		this.vue = new Vue(kammi);
-		this.hero=_hero;
+		this.mc=new MouseClic();
+		this.vue = new Vue(maxX,maxY);
+	
 	}
 
 	public boolean isItAClickOrATap() {
@@ -66,4 +69,19 @@ public class Controller {
 	public void refresh() {
 		vue.refresh();
 	}
+
+	public void startPage() {
+		// TODO Auto-generated method stub
+		System.out.println("startpage");
+		vue.setPanelStart(mc);
+	}
+	
+	public void startGame(){
+		vue.setPanelIngame(kammi);
+	}
+	
+	public void setHero(Pacman hero) {
+		this.hero = hero;
+	}
+	
 }

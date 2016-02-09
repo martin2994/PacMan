@@ -1,4 +1,5 @@
 package Vue;
+
 import Controller.*;
 
 import java.awt.event.ActionListener;
@@ -13,27 +14,51 @@ import Modele.Pacman;
 
 public class Vue extends JFrame {
 
-	PannelInGame pan;
-	KeyboardAndMouseMovementsInputs controle;
+	PannelInGame panIG;
+	PannelStart panS;
+	KeyboardAndMouseMovementsInputs controle_kammi;
+	MouseClic controle_c;
 
 	// Constructeur
-	public Vue(KeyboardAndMouseMovementsInputs _controle) {
-		controle = _controle;
-		pan = new PannelInGame();
-		pan.setLayout(null);
-		addMouseListener(controle);
-		addKeyListener(controle);
-		addWindowListener(new WindowAdapter() {
-			public void windowOpened(WindowEvent e) {
-				requestFocus();
-			}
-		});
+	public Vue(int maxX, int maxY) {
+		System.out.println("constructeur vue");
+		this.setTitle("Pac-Man");
+		this.setSize(maxX, maxY);
+		panIG = new PannelInGame();
+		panS = new PannelStart();
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setVisible(true);
 	}
 
+	public void setPanelIngame(KeyboardAndMouseMovementsInputs _controle) {
+		System.out.println("setPanelIG");
+		controle_kammi = _controle;
+		panIG.setLayout(null);
+		this.setContentPane(panIG);
+		this.revalidate();
+		addMouseListener(controle_kammi);
+		addKeyListener(controle_kammi);
+		requestFocus();
+		
+	}
+
+	public void setPanelStart(MouseClic _controle) {
+		System.out.println("setPanelS");
+		controle_c = _controle;
+		panS.setLayout(null);
+		this.setContentPane(panS);
+		this.revalidate();
+		JButton start=new JButton("Start");
+		panS.add(start);
+		start.setBounds(540, 540, 110, 50);
+		start.addActionListener(controle_c);
+		
+	}
+
 	public void refresh() {
-		pan.repaint();
+		panIG.repaint();
 	}
 
 	/*
@@ -41,23 +66,20 @@ public class Vue extends JFrame {
 	 * actuelles de Pacman et des fantomes
 	 */
 	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde) {
-		this.setTitle("Pac-Man");
-		this.setSize(maxX, maxY);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setContentPane(pan);
-		pan.setHero(hero);
-		pan.setBlinky(blinky);
-		pan.setPinky(pinky);
-		pan.setInky(inky);
-		pan.setClyde(clyde);
+		System.out.println("majVue");
+		panIG.setHero(hero);
+		panIG.setBlinky(blinky);
+		panIG.setPinky(pinky);
+		panIG.setInky(inky);
+		panIG.setClyde(clyde);
+		this.setContentPane(panIG);
 	}
-	
-	public void showPause(){
-		pan.setPause(true);
+
+	public void showPause() {
+		panIG.setPause(true);
 	}
-	
-	public void hidePause(){
-		pan.setPause(false);
+
+	public void hidePause() {
+		panIG.setPause(false);
 	}
 }

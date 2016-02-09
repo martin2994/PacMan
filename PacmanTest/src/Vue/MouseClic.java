@@ -6,7 +6,7 @@ public class MouseClic implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		System.out.println("clic");
 		
 	}
 
