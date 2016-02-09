@@ -34,18 +34,25 @@ public class Modele {
 		}
 	}
 
-	public static void pause(Controller controle, Pacman hero, boolean loop) {
+	public static void pause(Controller controle, Pacman hero, boolean loop, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde) {
 		while (loop) {
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			controle.showPause();
 			controle.tellMeTheWayToGoPlease();
+			updateVue(controle,hero,blinky,pinky,inky,clyde);
 			if (hero.getToGo().equals(Controller.Direction.SPACE)) {
+				controle.hidePause();
 				loop = false;
 			}
 		}
+	}
+	
+	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde){
+		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde);
 	}
 
 	/*
@@ -207,7 +214,7 @@ public class Modele {
 			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
 			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
 
-			controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde);
+			updateVue(controle,hero, blinky, pinky, inky, clyde);
 
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
@@ -225,7 +232,7 @@ public class Modele {
 				controle.tellMeTheWayToGoPlease();
 				if (hero.getToGo() == Controller.Direction.SPACE) {
 					hero.setToGo(hero.getGo());
-					pause(controle, hero, true);
+					pause(controle, hero, true, blinky, pinky, inky, clyde);
 				}
 
 				// Deplacement de Pacman

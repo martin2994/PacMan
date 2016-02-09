@@ -52,4 +52,12 @@ public class Vue extends JFrame {
 		pan.setInky(inky);
 		pan.setClyde(clyde);
 	}
+	
+	public void showPause(){
+		pan.setPause(true);
+	}
+	
+	public void hidePause(){
+		pan.setPause(false);
+	}
 }

@@ -30,6 +30,14 @@ public class Controller {
 	public static int[][] getLabyrinth() {
 		return Modele.labyrinth;
 	}
+	
+	public void showPause(){
+		vue.showPause();
+	}
+	
+	public void hidePause(){
+		vue.hidePause();
+	}
 
 	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde) {
 		vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde);

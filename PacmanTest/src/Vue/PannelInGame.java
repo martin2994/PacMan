@@ -18,6 +18,8 @@ import Modele.Modele;
 import Modele.Pacman;
 
 public class PannelInGame extends JPanel {
+	private boolean pause;
+	
 	private Ghost blinky;
 	private Ghost pinky;
 	private Ghost inky;
@@ -88,6 +90,7 @@ public class PannelInGame extends JPanel {
 	private int timer_anim_pacman = 0;
 
 	public PannelInGame() {
+		pause=false;
 		try { // chargement des images
 			img0 = ImageIO.read(new File("src/image/case0.png"));
 			img1 = ImageIO.read(new File("src/image/case1.png"));
@@ -157,6 +160,9 @@ public class PannelInGame extends JPanel {
 		drawPacman(g);
 		drawOptions(g);
 		drawGhost(g);
+		if(pause){
+			drawPause(g);
+		}
 	}
 
 	public void drawLabyrinth(Graphics g) {
@@ -262,7 +268,7 @@ public class PannelInGame extends JPanel {
 		 * affichage de pacman en fonction de sa direction et du timer pour
 		 * faire l'animation
 		 */
-		if (form_pacman || timer_anim_pacman < 10) {
+		if ((form_pacman || timer_anim_pacman < 10) && !this.pause) {
 			switch (hero.getGo()) {
 			case UP:
 				g.drawImage(pacman_up, hero.getCoordX(), hero.getCoordY(), this);
@@ -288,6 +294,13 @@ public class PannelInGame extends JPanel {
 			timer_anim_pacman = 0;
 			form_pacman = true;
 		}
+	}
+	
+	public void drawPause(Graphics g){
+		Font font = new Font("Courier", Font.BOLD, 100);
+		g.setFont(font);
+		g.setColor(Color.YELLOW);
+		g.drawString("PAUSE", this.getWidth()/5-14, this.getHeight() / 2);
 	}
 
 	public void drawOptions(Graphics g) {
@@ -446,6 +459,10 @@ public class PannelInGame extends JPanel {
 
 	public void setHero(Pacman hero) {
 		this.hero = hero;
+	}
+
+	public void setPause(boolean _pause) {
+		this.pause=_pause;
 	}
 
 }
