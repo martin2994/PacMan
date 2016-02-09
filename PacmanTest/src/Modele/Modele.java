@@ -21,11 +21,10 @@ public class Modele {
 	public static String file_name = "new";
 	// nombre de pixels parcourus par tour
 	public static int deplacement = 1;
-	/* tableau des bonus :
-	 * false : Bonus pas encore apparu
-	 * true : Bonus apparu
+	/*
+	 * tableau des bonus : false : Bonus pas encore apparu true : Bonus apparu
 	 */
-	public static boolean [] bonus;
+	public static boolean[] bonus;
 
 	public static int score = 0;
 
@@ -41,7 +40,8 @@ public class Modele {
 		}
 	}
 
-	public static void pause(Controller controle, Pacman hero, boolean loop, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde) {
+	public static void pause(Controller controle, Pacman hero, boolean loop, Ghost blinky, Ghost pinky, Ghost inky,
+			Ghost clyde) {
 		while (loop) {
 			try {
 				Thread.sleep(10);
@@ -50,15 +50,15 @@ public class Modele {
 			}
 			controle.showPause();
 			controle.tellMeTheWayToGoPlease();
-			updateVue(controle,hero,blinky,pinky,inky,clyde);
+			updateVue(controle, hero, blinky, pinky, inky, clyde);
 			if (hero.getToGo().equals(Controller.Direction.SPACE)) {
 				controle.hidePause();
 				loop = false;
 			}
 		}
 	}
-	
-	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde){
+
+	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde) {
 		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde);
 	}
 
@@ -90,11 +90,11 @@ public class Modele {
 			score += 50;
 			return true;
 		}
-		if(labyrinth[x][y] <0 &&labyrinth[x][y] >-5 ){
-			labyrinth[x][y]=0;
-			score+=100;
+		if (labyrinth[x][y] < 0 && labyrinth[x][y] > -5) {
+			labyrinth[x][y] = 0;
+			score += 100;
 		}
-		
+
 		if (labyrinth[x][y] == 1) {
 			labyrinth[x][y] = 0;
 			gumGum--;
@@ -177,35 +177,36 @@ public class Modele {
 			return false;
 		}
 	}
-	public static void putBonus(){
-		int cpt=((totalGumGum-gumGum)*100/totalGumGum);
+
+	public static void putBonus() {
+		int cpt = ((totalGumGum - gumGum) * 100 / totalGumGum);
 		System.out.println(cpt);
-		if(cpt==80 && bonus[0]==false){
-			labyrinth[6][8]=-1;
-			bonus[0]=true;
-			//placerbonus
+		if (cpt == 80 && bonus[0] == false) {
+			labyrinth[6][8] = -1;
+			bonus[0] = true;
+			// placerbonus
 		}
-		if(cpt==60 && bonus[1]==false){
-			labyrinth[12][8]=-2;
-			bonus[1]=true;
-			//placerbonus
+		if (cpt == 60 && bonus[1] == false) {
+			labyrinth[12][8] = -2;
+			bonus[1] = true;
+			// placerbonus
 		}
-		if(cpt==40 && bonus[2]==false){
-			labyrinth[6][12]=-3;
-			bonus[2]=true;
-			//placerbonus
+		if (cpt == 40 && bonus[2] == false) {
+			labyrinth[6][12] = -3;
+			bonus[2] = true;
+			// placerbonus
 		}
-		if(cpt==20 && bonus[3]==false){
-			labyrinth[12][12]=-4;
-			bonus[3]=true;
-			//placerbonus
+		if (cpt == 20 && bonus[3] == false) {
+			labyrinth[12][12] = -4;
+			bonus[3] = true;
+			// placerbonus
 		}
 	}
 
-	public static void main(String[] args) {
-		bonus=new boolean[4];
-		for(int i=0;i<bonus.length;i++){
-			bonus[i]=false;
+	public static void run() {
+		bonus = new boolean[4];
+		for (int i = 0; i < bonus.length; i++) {
+			bonus[i] = false;
 		}
 
 		// Déclaration des fantomes
@@ -213,7 +214,6 @@ public class Modele {
 		Ghost pinky;
 		Ghost inky;
 		Ghost clyde;
-
 
 		// Déclaration du bonus de combo
 		int combo = 1;
@@ -236,8 +236,8 @@ public class Modele {
 		while (true) {
 			// Init fichier
 			if (win) {
-				for(int i=0;i<bonus.length;i++){
-					bonus[i]=false;
+				for (int i = 0; i < bonus.length; i++) {
+					bonus[i] = false;
 				}
 				whatsTheName();
 				win = false;
@@ -257,7 +257,7 @@ public class Modele {
 			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
 			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
 
-			updateVue(controle,hero, blinky, pinky, inky, clyde);
+			updateVue(controle, hero, blinky, pinky, inky, clyde);
 
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
@@ -271,8 +271,8 @@ public class Modele {
 			 * gommes, on tourne
 			 */
 			while (gumGum > 0 && !catchMeIfYouCan) {
-				
-				//Test si il faut placer un bonus
+
+				// Test si il faut placer un bonus
 				putBonus();
 
 				controle.tellMeTheWayToGoPlease();
@@ -420,4 +420,7 @@ public class Modele {
 		}
 	}
 
+	public static void main(String[] args) {
+		run();
+	}
 }
