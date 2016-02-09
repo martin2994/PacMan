@@ -15,10 +15,17 @@ public class Modele {
 	public static int length_box = 28;
 	// nombre de gommes dans le labyrinthe
 	public static int gumGum;
+	// nombre de gommes total
+	public static int totalGumGum;
 	// Nom du fichier dans lequel le niveau est enregistré
 	public static String file_name = "new";
 	// nombre de pixels parcourus par tour
 	public static int deplacement = 1;
+	/* tableau des bonus :
+	 * false : Bonus pas encore apparu
+	 * true : Bonus apparu
+	 */
+	public static boolean [] bonus;
 
 	public static int score = 0;
 
@@ -83,6 +90,11 @@ public class Modele {
 			score += 50;
 			return true;
 		}
+		if(labyrinth[x][y] <0 &&labyrinth[x][y] >-5 ){
+			labyrinth[x][y]=0;
+			score+=100;
+		}
+		
 		if (labyrinth[x][y] == 1) {
 			labyrinth[x][y] = 0;
 			gumGum--;
@@ -165,8 +177,36 @@ public class Modele {
 			return false;
 		}
 	}
+	public static void putBonus(){
+		int cpt=((totalGumGum-gumGum)*100/totalGumGum);
+		System.out.println(cpt);
+		if(cpt==80 && bonus[0]==false){
+			labyrinth[6][8]=-1;
+			bonus[0]=true;
+			//placerbonus
+		}
+		if(cpt==60 && bonus[1]==false){
+			labyrinth[12][8]=-2;
+			bonus[1]=true;
+			//placerbonus
+		}
+		if(cpt==40 && bonus[2]==false){
+			labyrinth[6][12]=-3;
+			bonus[2]=true;
+			//placerbonus
+		}
+		if(cpt==20 && bonus[3]==false){
+			labyrinth[12][12]=-4;
+			bonus[3]=true;
+			//placerbonus
+		}
+	}
 
 	public static void main(String[] args) {
+		bonus=new boolean[4];
+		for(int i=0;i<bonus.length;i++){
+			bonus[i]=false;
+		}
 
 		// Déclaration des fantomes
 		Ghost blinky;
@@ -196,6 +236,9 @@ public class Modele {
 		while (true) {
 			// Init fichier
 			if (win) {
+				for(int i=0;i<bonus.length;i++){
+					bonus[i]=false;
+				}
 				whatsTheName();
 				win = false;
 				hero.setLife(3);
@@ -228,6 +271,9 @@ public class Modele {
 			 * gommes, on tourne
 			 */
 			while (gumGum > 0 && !catchMeIfYouCan) {
+				
+				//Test si il faut placer un bonus
+				putBonus();
 
 				controle.tellMeTheWayToGoPlease();
 				if (hero.getToGo() == Controller.Direction.SPACE) {

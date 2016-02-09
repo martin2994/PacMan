@@ -18,7 +18,7 @@ public class IOTreatment {
 		int width = Integer.parseInt(br.readLine().toString());
 		int height = Integer.parseInt(br.readLine().toString());
 		Modele.labyrinth = new int[width][height];
-		Modele.gumGum = Integer.parseInt(br.readLine().toString());
+		Modele.totalGumGum=Modele.gumGum = Integer.parseInt(br.readLine().toString());
 		int count = 0;
 		while ((currentLine = br.readLine()) != null) {
 			StringTokenizer currentChar = new StringTokenizer(currentLine);
