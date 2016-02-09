@@ -145,8 +145,8 @@ public class PannelInGame extends JPanel {
 			eyes_up = ImageIO.read(new File("src/image/eyes_up.png"));
 			eyes_down = ImageIO.read(new File("src/image/eyes_down.png"));
 			eyes_left = ImageIO.read(new File("src/image/eyes_left.png"));
-			fraise = ImageIO.read(new File("src/image/fraise.png"));
-			orange = ImageIO.read(new File("src/image/orange.png"));
+			fraise = ImageIO.read(new File("src/image/fraise.png")); 
+			orange = ImageIO.read(new File("src/image/orange.png")); 
 			cerise = ImageIO.read(new File("src/image/cerise.png"));
 			pomme = ImageIO.read(new File("src/image/pomme.png"));
 			cle = ImageIO.read(new File("src/image/cle.png"));
@@ -178,6 +178,18 @@ public class PannelInGame extends JPanel {
 				switch (mat[i][j]) {
 				case -5:
 					g.drawImage(img_5, i * 28, j * 28, this);
+					break;
+				case -4:
+					g.drawImage(fraise, i * 28, j * 28, this);
+					break;
+				case -3:
+					g.drawImage(cerise, i * 28, j * 28, this);
+					break;
+				case -2:
+					g.drawImage(orange, i * 28, j * 28, this);
+					break;
+				case -1:
+					g.drawImage(pomme, i * 28, j * 28, this);
 					break;
 				case 0:
 					g.drawImage(img0, i * 28, j * 28, this);
