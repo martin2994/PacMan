@@ -71,7 +71,8 @@ public class PannelInGame extends JPanel {
 	private Image pinky_up;
 	private Image pinky_down;
 	private Image pinky_right;
-	private Image ghost;
+	private Image blue_ghost;
+	private Image white_ghost;
 	private Image eyes_right;
 	private Image eyes_up;
 	private Image eyes_down;
@@ -81,7 +82,7 @@ public class PannelInGame extends JPanel {
 	private Image fraise;
 	private Image orange;
 	private Image pomme;
-	
+
 	// boolean et timer pour gerer la forme du pacman
 	private boolean form_pacman = false;
 	private int timer_anim_pacman = 0;
@@ -135,7 +136,8 @@ public class PannelInGame extends JPanel {
 			pinky_up = ImageIO.read(new File("src/image/Pinky_up.png"));
 			pinky_down = ImageIO.read(new File("src/image/Pinky_down.png"));
 			pinky_right = ImageIO.read(new File("src/image/Pinky_right.png"));
-			ghost = ImageIO.read(new File("src/image/Fantome.png"));
+			blue_ghost = ImageIO.read(new File("src/image/Blue_Ghost.png"));
+			white_ghost = ImageIO.read(new File("src/image/White_Ghost.png"));
 			eyes_right = ImageIO.read(new File("src/image/eyes_right.png"));
 			eyes_up = ImageIO.read(new File("src/image/eyes_up.png"));
 			eyes_down = ImageIO.read(new File("src/image/eyes_down.png"));
@@ -151,13 +153,20 @@ public class PannelInGame extends JPanel {
 	}
 
 	public void paintComponent(Graphics g) {
+		drawLabyrinth(g);
+		drawPacman(g);
+		drawOptions(g);
+		drawGhost(g);
+	}
+
+	public void drawLabyrinth(Graphics g) {
 		int mat[][] = Controller.getLabyrinth();
-		
-		//affichage du fond noir
+
+		// affichage du fond noir
 		g.setColor(Color.black);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-	
-		//affichage du labyrinth
+
+		// affichage du labyrinth
 		for (int i = 0; i < 19; i++) {
 			for (int j = 0; j < 22; j++) {
 				switch (mat[i][j]) {
@@ -242,13 +251,16 @@ public class PannelInGame extends JPanel {
 				}
 			}
 		}
-		//affichage des lignes de séparation labyrinth/option
+		// affichage des lignes de séparation labyrinth/option
 		g.setColor(Color.white);
 		g.fillRect(this.getWidth() - 120, 0, 2, this.getHeight());
 		g.fillRect(this.getWidth() - 124, 0, 2, this.getHeight());
+	}
+
+	public void drawPacman(Graphics g) {
 		/*
-		 * affichage de pacman en fonction de sa direction et du timer
-		 * pour faire l'animation
+		 * affichage de pacman en fonction de sa direction et du timer pour
+		 * faire l'animation
 		 */
 		if (form_pacman || timer_anim_pacman < 10) {
 			switch (hero.getGo()) {
@@ -276,10 +288,11 @@ public class PannelInGame extends JPanel {
 			timer_anim_pacman = 0;
 			form_pacman = true;
 		}
+	}
+
+	public void drawOptions(Graphics g) {
 		/*
-		 * affichage des options:
-		 * - le nombre de vie
-		 * - les differents bonus 
+		 * affichage des options: - le nombre de vie - les differents bonus
 		 */
 		Font font = new Font("Courier", Font.BOLD, 20);
 		g.setFont(font);
@@ -288,72 +301,21 @@ public class PannelInGame extends JPanel {
 		for (int i = 0; i < hero.getLife(); i++) {
 			g.drawImage(pacman_right, (this.getWidth() - 105) + i * 28, (this.getHeight() / 3) - 14, this);
 		}
-		g.drawString("Bonus:", this.getWidth() - 105, 2*(this.getHeight() /3 ) - 28);
-		g.drawImage(cerise, this.getWidth() - 105, 2*(this.getHeight() / 3)-10 , this);
-		g.drawImage(pomme, this.getWidth() - 50,  2*(this.getHeight() / 3)-10 , this);
-		g.drawImage(fraise, this.getWidth() - 105,  2*(this.getHeight() / 3)+ 32, this);
-		g.drawImage(orange, this.getWidth() - 50,  2*(this.getHeight() / 3) + 32, this);
-		
-		/*
-		 * affichage des 4 fantomes en fonction de:
-		 * - leur etat (0->normal,1->bleu,2->yeux)
-		 * - leur direction
-		 */
-		switch (blinky.getState()) {
-		case 0:
-			drawGhost(g, blinky, blinky_up, blinky_down, blinky_left, blinky_right);
-			break;
-		case 1:
-			g.drawImage(ghost, blinky.getCoordX(), blinky.getCoordY(), this);
-			break;
-		case 2:
-			drawGhost(g, blinky, eyes_up, eyes_down, eyes_left, eyes_right);
-			break;
-		}
-		switch (inky.getState()) {
-		case 0:
-			drawGhost(g, inky, inky_up, inky_down, inky_left, inky_right);
-			break;
-		case 1:
-			g.drawImage(ghost, inky.getCoordX(), inky.getCoordY(), this);
-			break;
-		case 2:
-			drawGhost(g, inky, eyes_up, eyes_down, eyes_left, eyes_right);
-			break;
-		}
-		switch (pinky.getState()) {
-		case 0:
-			drawGhost(g, pinky, pinky_up, pinky_down, pinky_left, pinky_right);
-			break;
-		case 1:
-			g.drawImage(ghost, pinky.getCoordX(), pinky.getCoordY(), this);
-			break;
-		case 2:
-			drawGhost(g, pinky, eyes_up, eyes_down, eyes_left, eyes_right);
-			break;
-		}
-		switch (clyde.getState()) {
-		case 0:
-			drawGhost(g, clyde, clyde_up, clyde_down, clyde_left, clyde_right);
-			break;
-		case 1:
-			g.drawImage(ghost, clyde.getCoordX(), clyde.getCoordY(), this);
-			break;
-		case 2:
-			drawGhost(g, clyde, eyes_up, eyes_down, eyes_left, eyes_right);
-			break;
-		}
-		//affichage du score
+		g.drawString("Bonus:", this.getWidth() - 105, 2 * (this.getHeight() / 3) - 28);
+		g.drawImage(cerise, this.getWidth() - 105, 2 * (this.getHeight() / 3) - 10, this);
+		g.drawImage(pomme, this.getWidth() - 50, 2 * (this.getHeight() / 3) - 10, this);
+		g.drawImage(fraise, this.getWidth() - 105, 2 * (this.getHeight() / 3) + 32, this);
+		g.drawImage(orange, this.getWidth() - 50, 2 * (this.getHeight() / 3) + 32, this);
+		// affichage du score
 		g.drawString("Score:", this.getWidth() - 105, 50);
 		g.drawString("" + Controller.getScore(), this.getWidth() - 105, 75);
-
 	}
-	
+
 	/*
-	 * méthode d'affichage des fantomes 
+	 * méthode d'affichage des fantomes
 	 */
-	
-	public void drawGhost(Graphics g, Ghost actual, Image up, Image down, Image left, Image right) {
+
+	public void drawDirectionGhost(Graphics g, Ghost actual, Image up, Image down, Image left, Image right) {
 		switch (actual.getGo()) {
 		case UP:
 			g.drawImage(up, actual.getCoordX(), actual.getCoordY(), this);
@@ -368,6 +330,70 @@ public class PannelInGame extends JPanel {
 			g.drawImage(right, actual.getCoordX(), actual.getCoordY(), this);
 			break;
 		}
+	}
+	
+	public void drawEatableGhost(Graphics g,Ghost actual){
+		if (hero.getTimer_superPacman()>=800){
+			if (hero.getTimer_superPacman()%25<13){
+				g.drawImage(white_ghost,actual.getCoordX() , actual.getCoordY(), this);
+			}else{
+				g.drawImage(blue_ghost,actual.getCoordX() , actual.getCoordY(), this);
+			}
+		}else{
+			g.drawImage(blue_ghost,actual.getCoordX() , actual.getCoordY(), this);
+		}
+	}
+	
+	public void drawGhost(Graphics g){
+		/*
+		 * affichage des 4 fantomes en fonction de: - leur etat
+		 * (0->normal,1->bleu,2->yeux) - leur direction
+		 */
+		switch (blinky.getState()) {
+		case 0:
+			drawDirectionGhost(g, blinky, blinky_up, blinky_down, blinky_left, blinky_right);
+			break;
+		case 1:
+			drawEatableGhost(g,blinky);
+			break;
+		case 2:
+			drawDirectionGhost(g, blinky, eyes_up, eyes_down, eyes_left, eyes_right);
+			break;
+		}
+		switch (inky.getState()) {
+		case 0:
+			drawDirectionGhost(g, inky, inky_up, inky_down, inky_left, inky_right);
+			break;
+		case 1:
+			drawEatableGhost(g,inky);
+			break;
+		case 2:
+			drawDirectionGhost(g, inky, eyes_up, eyes_down, eyes_left, eyes_right);
+			break;
+		}
+		switch (pinky.getState()) {
+		case 0:
+			drawDirectionGhost(g, pinky, pinky_up, pinky_down, pinky_left, pinky_right);
+			break;
+		case 1:
+			drawEatableGhost(g,pinky);
+			break;
+		case 2:
+			drawDirectionGhost(g, pinky, eyes_up, eyes_down, eyes_left, eyes_right);
+			break;
+		}
+		switch (clyde.getState()) {
+		case 0:
+			drawDirectionGhost(g, clyde, clyde_up, clyde_down, clyde_left, clyde_right);
+			break;
+		case 1:
+			drawEatableGhost(g,clyde);
+			break;
+		case 2:
+			drawDirectionGhost(g, clyde, eyes_up, eyes_down, eyes_left, eyes_right);
+			break;
+		}
+
 	}
 
 	public Ghost getBlinky() {
