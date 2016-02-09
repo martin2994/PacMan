@@ -331,20 +331,20 @@ public class PannelInGame extends JPanel {
 			break;
 		}
 	}
-	
-	public void drawEatableGhost(Graphics g,Ghost actual){
-		if (hero.getTimer_superPacman()>=800){
-			if (hero.getTimer_superPacman()%25<13){
-				g.drawImage(white_ghost,actual.getCoordX() , actual.getCoordY(), this);
-			}else{
-				g.drawImage(blue_ghost,actual.getCoordX() , actual.getCoordY(), this);
+
+	public void drawEatableGhost(Graphics g, Ghost actual) {
+		if (hero.getTimer_superPacman() >= 625) {
+			if (hero.getTimer_superPacman() % 25 < 13) {
+				g.drawImage(white_ghost, actual.getCoordX(), actual.getCoordY(), this);
+			} else {
+				g.drawImage(blue_ghost, actual.getCoordX(), actual.getCoordY(), this);
 			}
-		}else{
-			g.drawImage(blue_ghost,actual.getCoordX() , actual.getCoordY(), this);
+		} else {
+			g.drawImage(blue_ghost, actual.getCoordX(), actual.getCoordY(), this);
 		}
 	}
-	
-	public void drawGhost(Graphics g){
+
+	public void drawGhost(Graphics g) {
 		/*
 		 * affichage des 4 fantomes en fonction de: - leur etat
 		 * (0->normal,1->bleu,2->yeux) - leur direction
@@ -354,7 +354,7 @@ public class PannelInGame extends JPanel {
 			drawDirectionGhost(g, blinky, blinky_up, blinky_down, blinky_left, blinky_right);
 			break;
 		case 1:
-			drawEatableGhost(g,blinky);
+			drawEatableGhost(g, blinky);
 			break;
 		case 2:
 			drawDirectionGhost(g, blinky, eyes_up, eyes_down, eyes_left, eyes_right);
@@ -365,7 +365,7 @@ public class PannelInGame extends JPanel {
 			drawDirectionGhost(g, inky, inky_up, inky_down, inky_left, inky_right);
 			break;
 		case 1:
-			drawEatableGhost(g,inky);
+			drawEatableGhost(g, inky);
 			break;
 		case 2:
 			drawDirectionGhost(g, inky, eyes_up, eyes_down, eyes_left, eyes_right);
@@ -376,7 +376,7 @@ public class PannelInGame extends JPanel {
 			drawDirectionGhost(g, pinky, pinky_up, pinky_down, pinky_left, pinky_right);
 			break;
 		case 1:
-			drawEatableGhost(g,pinky);
+			drawEatableGhost(g, pinky);
 			break;
 		case 2:
 			drawDirectionGhost(g, pinky, eyes_up, eyes_down, eyes_left, eyes_right);
@@ -387,7 +387,7 @@ public class PannelInGame extends JPanel {
 			drawDirectionGhost(g, clyde, clyde_up, clyde_down, clyde_left, clyde_right);
 			break;
 		case 1:
-			drawEatableGhost(g,clyde);
+			drawEatableGhost(g, clyde);
 			break;
 		case 2:
 			drawDirectionGhost(g, clyde, eyes_up, eyes_down, eyes_left, eyes_right);

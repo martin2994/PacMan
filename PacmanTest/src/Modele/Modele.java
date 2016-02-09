@@ -251,7 +251,7 @@ public class Modele {
 				 * Si on arrive à la fin du compteur, on repasse les fantomes en
 				 * mode normal
 				 */
-				if (hero.getTimer_superPacman() == 1000) {
+				if (hero.getTimer_superPacman() == 875) {
 					hero.reset_Timer_superPacman();
 					combo = 1;
 					normalPacman(blinky);
