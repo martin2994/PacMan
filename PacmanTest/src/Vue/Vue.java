@@ -26,6 +26,7 @@ public class Vue extends JFrame {
 		this.setSize(maxX, maxY);
 		panIG = new PannelInGame();
 		panS = new PannelStart();
+		panA=new PannelAbout();
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -48,9 +49,9 @@ public class Vue extends JFrame {
 		panA.setLayout(null);
 		this.setContentPane(panA);
 		this.revalidate();
-		JButton returnAbout = new JButton("ReturnAbout");
+		JButton returnAbout = new JButton("Return to menu");
 		panA.add(returnAbout);
-		returnAbout.setBounds(260,300,110,50);
+		returnAbout.setBounds(516,570,135,50);
 		returnAbout.addActionListener(controle_c);
 	}
 

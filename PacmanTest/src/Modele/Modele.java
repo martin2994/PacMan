@@ -219,6 +219,29 @@ public class Modele {
 			// placerbonus
 		}
 	}
+	
+	public static void runAboutPage(Controller controle){
+		boolean userAction = false;
+		String action;
+		controle.aboutPage();
+		while (!userAction) {
+			System.out.println("case about useraction");
+			action = controle.majStartPage();
+			switch (action) {
+			case "ReturnAbout":
+				System.out.println("case about useraction=true;");
+				userAction=true;
+				break;
+			default:
+			}
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		controle.startPage();
+	}
 
 	public static void runStartPage(Controller controle) {
 		boolean userAction = false;
@@ -233,7 +256,8 @@ public class Modele {
 				userAction = true;
 				break;
 			case "About":
-				userAction = true;
+				System.out.println("case about");
+				runAboutPage(controle);
 				break;
 			case "Quit":
 				System.exit(0);

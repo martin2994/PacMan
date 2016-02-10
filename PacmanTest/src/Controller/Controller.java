@@ -73,6 +73,10 @@ public class Controller {
 		vue.setPanelStart(mc);
 	}
 	
+	public void aboutPage(){
+		vue.setPanelAbout(mc);
+	}
+	
 	public void startGame(){
 		vue.setPanelIngame(kammi);
 	}
