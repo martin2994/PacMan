@@ -10,16 +10,14 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Modele.Ghost;
-import Modele.Modele;
 import Modele.Pacman;
 
 public class PannelInGame extends JPanel {
 	private boolean pause;
-	
+
 	private Ghost blinky;
 	private Ghost pinky;
 	private Ghost inky;
@@ -90,7 +88,7 @@ public class PannelInGame extends JPanel {
 	private int timer_anim_pacman = 0;
 
 	public PannelInGame() {
-		pause=false;
+		pause = false;
 		try { // chargement des images
 			img0 = ImageIO.read(new File("src/image/case0.png"));
 			img1 = ImageIO.read(new File("src/image/case1.png"));
@@ -145,8 +143,8 @@ public class PannelInGame extends JPanel {
 			eyes_up = ImageIO.read(new File("src/image/eyes_up.png"));
 			eyes_down = ImageIO.read(new File("src/image/eyes_down.png"));
 			eyes_left = ImageIO.read(new File("src/image/eyes_left.png"));
-			fraise = ImageIO.read(new File("src/image/fraise.png")); 
-			orange = ImageIO.read(new File("src/image/orange.png")); 
+			fraise = ImageIO.read(new File("src/image/fraise.png"));
+			orange = ImageIO.read(new File("src/image/orange.png"));
 			cerise = ImageIO.read(new File("src/image/cerise.png"));
 			pomme = ImageIO.read(new File("src/image/pomme.png"));
 			cle = ImageIO.read(new File("src/image/cle.png"));
@@ -160,7 +158,7 @@ public class PannelInGame extends JPanel {
 		drawPacman(g);
 		drawOptions(g);
 		drawGhost(g);
-		if(pause){
+		if (pause) {
 			drawPause(g);
 		}
 	}
@@ -294,6 +292,7 @@ public class PannelInGame extends JPanel {
 			case RIGHT:
 				g.drawImage(pacman_right, hero.getCoordX(), hero.getCoordY(), this);
 				break;
+			default:
 			}
 			if (timer_anim_pacman == 9)
 				form_pacman = false;
@@ -307,12 +306,12 @@ public class PannelInGame extends JPanel {
 			form_pacman = true;
 		}
 	}
-	
-	public void drawPause(Graphics g){
+
+	public void drawPause(Graphics g) {
 		Font font = new Font("Courier", Font.BOLD, 100);
 		g.setFont(font);
 		g.setColor(Color.YELLOW);
-		g.drawString("PAUSE", this.getWidth()/5-14, this.getHeight() / 2);
+		g.drawString("PAUSE", this.getWidth() / 5 - 14, this.getHeight() / 2);
 	}
 
 	public void drawOptions(Graphics g) {
@@ -354,6 +353,7 @@ public class PannelInGame extends JPanel {
 		case RIGHT:
 			g.drawImage(right, actual.getCoordX(), actual.getCoordY(), this);
 			break;
+		default:
 		}
 	}
 
@@ -474,7 +474,7 @@ public class PannelInGame extends JPanel {
 	}
 
 	public void setPause(boolean _pause) {
-		this.pause=_pause;
+		this.pause = _pause;
 	}
 
 }

@@ -83,6 +83,7 @@ public class Modele {
 		case RIGHT:
 			x = ((hero.getCoordX() + (length_box / 2)) / length_box) % 19;
 			break;
+		default:
 		}
 		if (labyrinth[x][y] == -5) {
 			labyrinth[x][y] = 0;
@@ -306,7 +307,7 @@ public class Modele {
 			 */
 			while (gumGum > 0 && !catchMeIfYouCan) {
 
-				// Test si il faut placer un bonus
+				// Test s'il faut placer un bonus
 				putBonus();
 
 				controle.tellMeTheWayToGoPlease();
