@@ -16,6 +16,7 @@ public class Vue extends JFrame {
 
 	PannelInGame panIG;
 	PannelStart panS;
+	PannelAbout panA;
 	KeyboardAndMouseMovementsInputs controle_kammi;
 	MouseClic controle_c;
 
@@ -40,6 +41,17 @@ public class Vue extends JFrame {
 		addKeyListener(controle_kammi);
 		requestFocus();
 		
+	}
+	
+	public void setPanelAbout(MouseClic _controle){
+		controle_c = _controle;
+		panA.setLayout(null);
+		this.setContentPane(panA);
+		this.revalidate();
+		JButton returnAbout = new JButton("ReturnAbout");
+		panA.add(returnAbout);
+		returnAbout.setBounds(260,300,110,50);
+		returnAbout.addActionListener(controle_c);
 	}
 
 	public void setPanelStart(MouseClic _controle) {

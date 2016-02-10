@@ -229,7 +229,6 @@ public class Modele {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public static void run() {
