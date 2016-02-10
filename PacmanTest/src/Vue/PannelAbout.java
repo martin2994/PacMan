@@ -6,7 +6,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-public class PanelAbout extends JPanel {
+public class PannelAbout extends JPanel {
 
 	private int pixelStarring;
 	private int pixelMaxime;
@@ -16,7 +16,7 @@ public class PanelAbout extends JPanel {
 	private int pixelPacman;
 	private int pixelGhost;
 
-	public PanelAbout() {
+	public PannelAbout() {
 		this.pixelStarring = 20;
 		this.pixelMaxime = 60;
 		this.pixelMartin = 90;

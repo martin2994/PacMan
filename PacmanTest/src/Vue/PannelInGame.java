@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import Modele.Ghost;
 import Modele.Pacman;
 
-public class PanelInGame extends JPanel {
+public class PannelInGame extends JPanel {
 	private boolean pause;
 
 	private Ghost blinky;
@@ -88,7 +88,7 @@ public class PanelInGame extends JPanel {
 	private boolean form_pacman = false;
 	private int timer_anim_pacman = 0;
 
-	public PanelInGame() {
+	public PannelInGame() {
 		pause = false;
 		try { // chargement des images
 			img0 = ImageIO.read(new File("src/image/case0.png"));

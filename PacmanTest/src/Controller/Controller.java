@@ -76,10 +76,6 @@ public class Controller {
 	public void refreshAbout() {
 		vue.refreshAbout();
 	}
-	
-	public void refreshStart(){
-		vue.refreshStart();
-	}
 
 	public void aboutPage() {
 		vue.setPanelAbout(mc);
