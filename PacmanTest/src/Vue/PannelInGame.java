@@ -23,6 +23,7 @@ public class PannelInGame extends JPanel {
 	private Ghost inky;
 	private Ghost clyde;
 	private Pacman hero;
+	private boolean[] bonus;
 
 	private Image img0;
 	private Image img1;
@@ -326,10 +327,15 @@ public class PannelInGame extends JPanel {
 			g.drawImage(pacman_right, (this.getWidth() - 105) + i * 28, (this.getHeight() / 3) - 14, this);
 		}
 		g.drawString("Bonus:", this.getWidth() - 105, 2 * (this.getHeight() / 3) - 28);
-		g.drawImage(cerise, this.getWidth() - 105, 2 * (this.getHeight() / 3) - 10, this);
-		g.drawImage(pomme, this.getWidth() - 50, 2 * (this.getHeight() / 3) - 10, this);
-		g.drawImage(fraise, this.getWidth() - 105, 2 * (this.getHeight() / 3) + 32, this);
-		g.drawImage(orange, this.getWidth() - 50, 2 * (this.getHeight() / 3) + 32, this);
+		if (bonus[0])
+			g.drawImage(pomme, this.getWidth() - 50, 2 * (this.getHeight() / 3) +32, this);
+		if (bonus[1])
+			g.drawImage(orange, this.getWidth() - 105, 2 * (this.getHeight() / 3) +32, this);
+		if (bonus[2])
+			g.drawImage(cerise, this.getWidth() - 50, 2 * (this.getHeight() / 3) -10, this);
+		if (bonus[3])
+			g.drawImage(fraise, this.getWidth() - 105, 2 * (this.getHeight() / 3) -10, this);
+		
 		// affichage du score
 		g.drawString("Score:", this.getWidth() - 105, 50);
 		g.drawString("" + Controller.getScore(), this.getWidth() - 105, 75);
@@ -475,6 +481,10 @@ public class PannelInGame extends JPanel {
 
 	public void setPause(boolean _pause) {
 		this.pause = _pause;
+	}
+
+	public void setBonus(boolean[] bonus) {
+		this.bonus = bonus;
 	}
 
 }

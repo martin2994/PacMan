@@ -86,12 +86,13 @@ public class Vue extends JFrame {
 	 * Permet de mettre à jour la vue et le panneau avec les coordonnées
 	 * actuelles de Pacman et des fantomes
 	 */
-	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde) {
+	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde, boolean[] bonus) {
 		panIG.setHero(hero);
 		panIG.setBlinky(blinky);
 		panIG.setPinky(pinky);
 		panIG.setInky(inky);
 		panIG.setClyde(clyde);
+		panIG.setBonus(bonus);
 		this.setContentPane(panIG);
 	}
 

@@ -24,7 +24,9 @@ public class Modele {
 	/*
 	 * tableau des bonus : false : Bonus pas encore apparu true : Bonus apparu
 	 */
-	public static boolean[] bonus;
+	public static boolean[] bonus_pop;
+	
+	public static boolean [] bonus_eat;
 
 	public static int score = 0;
 
@@ -50,7 +52,7 @@ public class Modele {
 			}
 			controle.showPause();
 			controle.tellMeTheWayToGoPlease();
-			updateVue(controle, hero, blinky, pinky, inky, clyde);
+			updateVue(controle, hero, blinky, pinky, inky, clyde,bonus_eat);
 			if (hero.getToGo().equals(Controller.Direction.SPACE)) {
 				controle.hidePause();
 				loop = false;
@@ -58,8 +60,8 @@ public class Modele {
 		}
 	}
 
-	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde) {
-		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde);
+	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde, boolean[] bonus) {
+		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde,bonus);
 	}
 
 	/*
@@ -92,6 +94,20 @@ public class Modele {
 			return true;
 		}
 		if (labyrinth[x][y] < 0 && labyrinth[x][y] > -5) {
+			switch (labyrinth[x][y]){
+			case -1:
+				bonus_eat[0]=true;
+				break;
+			case -2:
+				bonus_eat[1]=true;
+				break;
+			case -3:
+				bonus_eat[2]=true;
+				break;
+			case -4:
+				bonus_eat[3]=true;
+				break;			
+			}
 			labyrinth[x][y] = 0;
 			score += 100;
 		}
@@ -182,24 +198,24 @@ public class Modele {
 	public static void putBonus() {
 		int cpt = ((totalGumGum - gumGum) * 100 / totalGumGum);
 		System.out.println(cpt);
-		if (cpt == 80 && bonus[0] == false) {
+		if (cpt == 80 && bonus_pop[0] == false) {
 			labyrinth[6][8] = -1;
-			bonus[0] = true;
+			bonus_pop[0] = true;
 			// placerbonus
 		}
-		if (cpt == 60 && bonus[1] == false) {
+		if (cpt == 60 && bonus_pop[1] == false) {
 			labyrinth[12][8] = -2;
-			bonus[1] = true;
+			bonus_pop[1] = true;
 			// placerbonus
 		}
-		if (cpt == 40 && bonus[2] == false) {
+		if (cpt == 40 && bonus_pop[2] == false) {
 			labyrinth[6][12] = -3;
-			bonus[2] = true;
+			bonus_pop[2] = true;
 			// placerbonus
 		}
-		if (cpt == 20 && bonus[3] == false) {
+		if (cpt == 20 && bonus_pop[3] == false) {
 			labyrinth[12][12] = -4;
-			bonus[3] = true;
+			bonus_pop[3] = true;
 			// placerbonus
 		}
 	}
@@ -237,9 +253,11 @@ public class Modele {
 		controle.startPage();
 		runStartPage(controle);
 
-		bonus = new boolean[4];
-		for (int i = 0; i < bonus.length; i++) {
-			bonus[i] = false;
+		bonus_pop = new boolean[4];
+		bonus_eat = new boolean[4];
+		for (int i = 0; i < bonus_pop.length; i++) {
+			bonus_pop[i] = false;
+			bonus_eat[i] = false;
 		}
 
 		// Déclaration des fantomes
@@ -270,8 +288,8 @@ public class Modele {
 		while (true) {
 			// Init fichier
 			if (win) {
-				for (int i = 0; i < bonus.length; i++) {
-					bonus[i] = false;
+				for (int i = 0; i < bonus_pop.length; i++) {
+					bonus_pop[i] = false;
 				}
 				whatsTheName();
 				win = false;
@@ -291,7 +309,7 @@ public class Modele {
 			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
 			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
 
-			updateVue(controle, hero, blinky, pinky, inky, clyde);
+			updateVue(controle, hero, blinky, pinky, inky, clyde,bonus_eat);
 
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
