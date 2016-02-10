@@ -73,6 +73,10 @@ public class Controller {
 		vue.setPanelStart(mc);
 	}
 	
+	public void refreshAbout(){
+		vue.refreshAbout();
+	}
+	
 	public void aboutPage(){
 		vue.setPanelAbout(mc);
 	}

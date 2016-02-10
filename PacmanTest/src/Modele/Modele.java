@@ -225,11 +225,10 @@ public class Modele {
 		String action;
 		controle.aboutPage();
 		while (!userAction) {
-			System.out.println("case about useraction");
+			controle.refreshAbout();
 			action = controle.majStartPage();
 			switch (action) {
 			case "ReturnAbout":
-				System.out.println("case about useraction=true;");
 				userAction=true;
 				break;
 			default:

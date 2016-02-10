@@ -82,6 +82,10 @@ public class Vue extends JFrame {
 	public void refresh() {
 		panIG.repaint();
 	}
+	
+	public void refreshAbout(){
+		panA.repaint();
+	}
 
 	/*
 	 * Permet de mettre à jour la vue et le panneau avec les coordonnées
