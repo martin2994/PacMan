@@ -251,7 +251,6 @@ public class Modele {
 				userAction = true;
 				break;
 			case "Options":
-				userAction = true;
 				break;
 			case "About":
 				runAboutPage(controle);
