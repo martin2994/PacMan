@@ -15,10 +15,10 @@ import Modele.Pacman;
 
 public class Vue extends JFrame {
 
-	PannelInGame panIG;
-	PannelStart panS;
-	PannelAbout panA;
-	PannelOption panO;
+	PanelInGame panIG;
+	PanelStart panS;
+	PanelAbout panA;
+	PanelOption panO;
 	KeyboardAndMouseMovementsInputs controle_kammi;
 	MouseClic controle_c;
 	JButton returnAbout;
@@ -27,10 +27,10 @@ public class Vue extends JFrame {
 	public Vue(int maxX, int maxY) {
 		this.setTitle("Pac-Man");
 		this.setSize(maxX, maxY);
-		panIG = new PannelInGame();
-		panS = new PannelStart();
-		panA = new PannelAbout();
-		panO = new PannelOption();
+		panIG = new PanelInGame();
+		panS = new PanelStart();
+		panA = new PanelAbout();
+		panO = new PanelOption();
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -88,19 +88,19 @@ public class Vue extends JFrame {
 		this.revalidate();
 		JButton start = new JButton("Start");
 		panS.add(start);
-		start.setBounds(260, 100, 110, 50);
+		start.setBounds(268, 145, 110, 50);
 		start.addActionListener(controle_c);
 		JButton options = new JButton("Options");
 		panS.add(options);
-		options.setBounds(260, 200, 110, 50);
+		options.setBounds(268, 245, 110, 50);
 		options.addActionListener(controle_c);
 		JButton about = new JButton("About");
 		panS.add(about);
-		about.setBounds(260, 300, 110, 50);
+		about.setBounds(268, 345, 110, 50);
 		about.addActionListener(controle_c);
 		JButton quit = new JButton("Quit");
 		panS.add(quit);
-		quit.setBounds(260, 400, 110, 50);
+		quit.setBounds(268, 445, 110, 50);
 		quit.addActionListener(controle_c);
 
 	}
@@ -116,6 +116,9 @@ public class Vue extends JFrame {
 	public void refreshOption(String difficulty) {
 		panO.setDifficulty(difficulty);
 		panO.repaint();
+	}
+	public void refreshStart(){
+		panS.repaint();
 	}
 
 	/*

@@ -25,12 +25,13 @@ public class Modele {
 	 * tableau des bonus : false : Bonus pas encore apparu true : Bonus apparu
 	 */
 	public static boolean[] bonus_pop;
-	
-	public static boolean [] bonus_eat;
+
+	public static boolean[] bonus_eat;
 
 	public static int score = 0;
 
-	public static int difficulty=50;
+	public static int difficulty = 50;
+
 	/*
 	 * Remplit la matrice en fonction des labyrinthes préchargés dans des
 	 * fichiers texte
@@ -53,7 +54,7 @@ public class Modele {
 			}
 			controle.showPause();
 			controle.tellMeTheWayToGoPlease();
-			updateVue(controle, hero, blinky, pinky, inky, clyde,bonus_eat);
+			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat);
 			if (hero.getToGo().equals(Controller.Direction.SPACE)) {
 				controle.hidePause();
 				loop = false;
@@ -61,8 +62,9 @@ public class Modele {
 		}
 	}
 
-	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde, boolean[] bonus) {
-		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde,bonus);
+	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
+			boolean[] bonus) {
+		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus);
 	}
 
 	/*
@@ -95,19 +97,19 @@ public class Modele {
 			return true;
 		}
 		if (labyrinth[x][y] < 0 && labyrinth[x][y] > -5) {
-			switch (labyrinth[x][y]){
+			switch (labyrinth[x][y]) {
 			case -1:
-				bonus_eat[0]=true;
+				bonus_eat[0] = true;
 				break;
 			case -2:
-				bonus_eat[1]=true;
+				bonus_eat[1] = true;
 				break;
 			case -3:
-				bonus_eat[2]=true;
+				bonus_eat[2] = true;
 				break;
 			case -4:
-				bonus_eat[3]=true;
-				break;			
+				bonus_eat[3] = true;
+				break;
 			}
 			labyrinth[x][y] = 0;
 			score += 100;
@@ -219,8 +221,8 @@ public class Modele {
 			// placerbonus
 		}
 	}
-	
-	public static void runAboutPage(Controller controle){
+
+	public static void runAboutPage(Controller controle) {
 		boolean userAction = false;
 		String action;
 		controle.aboutPage();
@@ -229,7 +231,7 @@ public class Modele {
 			action = controle.majStartPage();
 			switch (action) {
 			case "ReturnAbout":
-				userAction=true;
+				userAction = true;
 				break;
 			default:
 			}
@@ -241,8 +243,8 @@ public class Modele {
 		}
 		controle.startPage();
 	}
-	
-	public static void runOptionPage(Controller controle){
+
+	public static void runOptionPage(Controller controle) {
 		boolean userAction = false;
 		String action;
 		controle.optionPage();
@@ -251,16 +253,16 @@ public class Modele {
 			action = controle.majStartPage();
 			switch (action) {
 			case "ReturnAbout":
-				userAction=true;
+				userAction = true;
 				break;
 			case "Easy":
-				difficulty=100;
+				difficulty = 100;
 				break;
 			case "Medium":
-				difficulty=50;
+				difficulty = 50;
 				break;
 			case "Hard":
-				difficulty=0;
+				difficulty = 0;
 				break;
 			default:
 			}
@@ -277,6 +279,7 @@ public class Modele {
 		boolean userAction = false;
 		String action;
 		while (!userAction) {
+			controle.refreshStart();
 			action = controle.majStartPage();
 			switch (action) {
 			case "Start":
@@ -357,12 +360,12 @@ public class Modele {
 			hero.reset(252, 448, Controller.Direction.UP, Controller.Direction.UP, deplacement, length_box);
 
 			// Init fantomes
-			blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box,difficulty);
-			pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box,difficulty);
-			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box,difficulty);
-			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box,difficulty);
+			blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box, difficulty);
+			pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box, difficulty);
+			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box, difficulty);
+			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty);
 
-			updateVue(controle, hero, blinky, pinky, inky, clyde,bonus_eat);
+			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat);
 
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
