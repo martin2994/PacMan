@@ -281,6 +281,7 @@ public class Ghost {
 		} else {
 			int r = (int) (Math.random() * 101);
 			if (r < difficulty) {
+				System.out.println("random");
 				moveToARandomWay();
 			} else {
 				int left = 0;

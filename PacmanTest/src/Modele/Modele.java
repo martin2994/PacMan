@@ -30,6 +30,7 @@ public class Modele {
 
 	public static int score = 0;
 
+	public static int difficulty=50;
 	/*
 	 * Remplit la matrice en fonction des labyrinthes préchargés dans des
 	 * fichiers texte
@@ -240,6 +241,37 @@ public class Modele {
 		}
 		controle.startPage();
 	}
+	
+	public static void runOptionPage(Controller controle){
+		boolean userAction = false;
+		String action;
+		controle.optionPage();
+		while (!userAction) {
+			action = controle.majStartPage();
+			switch (action) {
+			case "ReturnAbout":
+				System.out.println("returnAbout");
+				userAction=true;
+				break;
+			case "Easy":
+				difficulty=100;
+				break;
+			case "Medium":
+				difficulty=50;
+				break;
+			case "Hard":
+				difficulty=0;
+				break;
+			default:
+			}
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		controle.startPage();
+	}
 
 	public static void runStartPage(Controller controle) {
 		boolean userAction = false;
@@ -251,6 +283,7 @@ public class Modele {
 				userAction = true;
 				break;
 			case "Options":
+				runOptionPage(controle);
 				break;
 			case "About":
 				runAboutPage(controle);
@@ -324,10 +357,10 @@ public class Modele {
 			hero.reset(252, 448, Controller.Direction.UP, Controller.Direction.UP, deplacement, length_box);
 
 			// Init fantomes
-			blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box);
-			pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box);
-			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box);
-			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box);
+			blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box,difficulty);
+			pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box,difficulty);
+			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box,difficulty);
+			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box,difficulty);
 
 			updateVue(controle, hero, blinky, pinky, inky, clyde,bonus_eat);
 

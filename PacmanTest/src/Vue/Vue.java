@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import Modele.Ghost;
 import Modele.Pacman;
@@ -17,8 +19,10 @@ public class Vue extends JFrame {
 	PannelInGame panIG;
 	PannelStart panS;
 	PannelAbout panA;
+	PannelOption panO;
 	KeyboardAndMouseMovementsInputs controle_kammi;
 	MouseClic controle_c;
+	JButton returnAbout; 
 
 	// Constructeur
 	public Vue(int maxX, int maxY) {
@@ -27,10 +31,12 @@ public class Vue extends JFrame {
 		panIG = new PannelInGame();
 		panS = new PannelStart();
 		panA=new PannelAbout();
+		panO=new PannelOption();
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setVisible(true);
+		returnAbout = new JButton("Return to menu");
 	}
 
 	public void setPanelIngame(KeyboardAndMouseMovementsInputs _controle) {
@@ -49,10 +55,31 @@ public class Vue extends JFrame {
 		panA.setLayout(null);
 		this.setContentPane(panA);
 		this.revalidate();
-		JButton returnAbout = new JButton("Return to menu");
 		panA.add(returnAbout);
 		returnAbout.setBounds(516,570,135,50);
 		returnAbout.addActionListener(controle_c);
+	}
+	
+	public void setPanelOption(MouseClic _controle){
+		controle_c = _controle;
+		panO.setLayout(null);
+		this.setContentPane(panO);
+		this.revalidate();
+		panO.add(returnAbout);
+		returnAbout.setBounds(516,570,135,50);
+		returnAbout.addActionListener(controle_c);
+		JButton easy=new JButton("Easy");
+		panO.add(easy);
+		easy.setBounds(100,100,135,50);
+		easy.addActionListener(controle_c);
+		JButton medium=new JButton("Medium");
+		panO.add(medium);
+		medium.setBounds(250,100,135,50);
+		medium.addActionListener(controle_c);
+		JButton hard=new JButton("Hard");
+		panO.add(hard);
+		hard.setBounds(400,100,135,50);
+		hard.addActionListener(controle_c);
 	}
 
 	public void setPanelStart(MouseClic _controle) {
@@ -82,11 +109,14 @@ public class Vue extends JFrame {
 	public void refresh() {
 		panIG.repaint();
 	}
-	
+
 	public void refreshAbout(){
 		panA.repaint();
 	}
-
+	
+	public void refreshOption(){
+		panO.repaint();
+	}
 	/*
 	 * Permet de mettre à jour la vue et le panneau avec les coordonnées
 	 * actuelles de Pacman et des fantomes

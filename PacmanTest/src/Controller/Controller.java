@@ -80,6 +80,9 @@ public class Controller {
 	public void aboutPage(){
 		vue.setPanelAbout(mc);
 	}
+	public void optionPage(){
+		vue.setPanelOption(mc);
+	}
 	
 	public void startGame(){
 		vue.setPanelIngame(kammi);
@@ -91,6 +94,10 @@ public class Controller {
 
 	public String majStartPage() {
 		return mc.getAction();
+	}
+
+	public void refreshOption() {
+		vue.refreshOption();
 	}
 	
 }

@@ -26,6 +26,16 @@ public class MouseClic implements ActionListener{
 			break;
 		case "Return to menu":
 			this.action="ReturnAbout";
+			break;
+		case "Easy":
+			this.action="Easy";
+			break;
+		case "Medium":
+			this.action="Medium";
+			break;
+		case "Hard":
+			this.action="Hard";
+			break;
 		}
 	}
 	
