@@ -343,6 +343,7 @@ public class Modele {
 			if (win) {
 				for (int i = 0; i < bonus_pop.length; i++) {
 					bonus_pop[i] = false;
+					bonus_eat[i] = false;
 				}
 				whatsTheName();
 				win = false;
