@@ -41,8 +41,8 @@ public class Controller {
 		vue.hidePause();
 	}
 
-	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde) {
-		vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde);
+	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde, boolean[] bonus) {
+		vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde,bonus);
 	}
 
 	public void tellMeTheWayToGoPlease() {
@@ -71,6 +71,10 @@ public class Controller {
 
 	public void startPage() {
 		vue.setPanelStart(mc);
+	}
+	
+	public void aboutPage(){
+		vue.setPanelAbout(mc);
 	}
 	
 	public void startGame(){

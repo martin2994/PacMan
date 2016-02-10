@@ -26,6 +26,7 @@ public class Vue extends JFrame {
 		this.setSize(maxX, maxY);
 		panIG = new PannelInGame();
 		panS = new PannelStart();
+		panA=new PannelAbout();
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -48,9 +49,9 @@ public class Vue extends JFrame {
 		panA.setLayout(null);
 		this.setContentPane(panA);
 		this.revalidate();
-		JButton returnAbout = new JButton("ReturnAbout");
+		JButton returnAbout = new JButton("Return to menu");
 		panA.add(returnAbout);
-		returnAbout.setBounds(260,300,110,50);
+		returnAbout.setBounds(516,570,135,50);
 		returnAbout.addActionListener(controle_c);
 	}
 
@@ -86,12 +87,13 @@ public class Vue extends JFrame {
 	 * Permet de mettre à jour la vue et le panneau avec les coordonnées
 	 * actuelles de Pacman et des fantomes
 	 */
-	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde) {
+	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde, boolean[] bonus) {
 		panIG.setHero(hero);
 		panIG.setBlinky(blinky);
 		panIG.setPinky(pinky);
 		panIG.setInky(inky);
 		panIG.setClyde(clyde);
+		panIG.setBonus(bonus);
 		this.setContentPane(panIG);
 	}
 
