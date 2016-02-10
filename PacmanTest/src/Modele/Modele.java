@@ -197,7 +197,6 @@ public class Modele {
 
 	public static void putBonus() {
 		int cpt = ((totalGumGum - gumGum) * 100 / totalGumGum);
-		System.out.println(cpt);
 		if (cpt == 80 && bonus_pop[0] == false) {
 			labyrinth[6][8] = -1;
 			bonus_pop[0] = true;
@@ -255,7 +254,6 @@ public class Modele {
 				userAction = true;
 				break;
 			case "About":
-				System.out.println("case about");
 				runAboutPage(controle);
 				break;
 			case "Quit":
