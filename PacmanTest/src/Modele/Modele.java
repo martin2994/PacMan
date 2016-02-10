@@ -247,10 +247,10 @@ public class Modele {
 		String action;
 		controle.optionPage();
 		while (!userAction) {
+			controle.refreshOption(difficulty);
 			action = controle.majStartPage();
 			switch (action) {
 			case "ReturnAbout":
-				System.out.println("returnAbout");
 				userAction=true;
 				break;
 			case "Easy":

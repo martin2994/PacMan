@@ -24,11 +24,12 @@ public class Ghost {
 	private int length_box;
 	// Tour de jeu actuel
 	private int game_lap;
-	//Dose de danrom dans les deplacements des fantomes
+	// Dose de danrom dans les deplacements des fantomes
 	private int difficulty;
 
 	// Constructeur
-	public Ghost(int _coordX, int _coordY, int _state, String _name, int _deplacement, int _length_box, int _difficulty) {
+	public Ghost(int _coordX, int _coordY, int _state, String _name, int _deplacement, int _length_box,
+			int _difficulty) {
 		this.coordX = _coordX;
 		this.coordY = _coordY;
 		this.state = _state;
@@ -38,7 +39,7 @@ public class Ghost {
 		this.go = Controller.Direction.UP;
 		this.goToTheOtherSide = theOtherSide(go);
 		this.game_lap = 0;
-		this.difficulty=_difficulty;
+		this.difficulty = _difficulty;
 	}
 
 	// Déplace le fantome selon son nom
@@ -281,7 +282,6 @@ public class Ghost {
 		} else {
 			int r = (int) (Math.random() * 101);
 			if (r < difficulty) {
-				System.out.println("random");
 				moveToARandomWay();
 			} else {
 				int left = 0;
@@ -400,7 +400,7 @@ public class Ghost {
 				this.state = 0;
 				this.go = Controller.Direction.UP;
 				this.goToTheOtherSide = theOtherSide(go);
-				
+
 			} else {
 
 				if (canIGoHere(Controller.Direction.LEFT) && goToTheOtherSide != Controller.Direction.LEFT) {

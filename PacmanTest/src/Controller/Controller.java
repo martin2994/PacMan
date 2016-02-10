@@ -14,11 +14,11 @@ public class Controller {
 	MouseClic mc;
 	Pacman hero;
 
-	public Controller(int maxX,int maxY) {
+	public Controller(int maxX, int maxY) {
 		this.kammi = new KeyboardAndMouseMovementsInputs(Direction.UP);
-		this.mc=new MouseClic();
-		this.vue = new Vue(maxX,maxY);
-	
+		this.mc = new MouseClic();
+		this.vue = new Vue(maxX, maxY);
+
 	}
 
 	public boolean isItAClickOrATap() {
@@ -32,21 +32,21 @@ public class Controller {
 	public static int[][] getLabyrinth() {
 		return Modele.labyrinth;
 	}
-	
-	public void showPause(){
+
+	public void showPause() {
 		vue.showPause();
 	}
-	
-	public void hidePause(){
+
+	public void hidePause() {
 		vue.hidePause();
 	}
 
-	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde, boolean[] bonus) {
-		vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde,bonus);
+	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
+			boolean[] bonus) {
+		vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus);
 	}
 
 	public void tellMeTheWayToGoPlease() {
-		
 
 		// On prend la Controller.Direction de la souris s'il y a eu un clic...
 		if (kammi.isGimmeACheese()) {
@@ -72,22 +72,23 @@ public class Controller {
 	public void startPage() {
 		vue.setPanelStart(mc);
 	}
-	
-	public void refreshAbout(){
+
+	public void refreshAbout() {
 		vue.refreshAbout();
 	}
-	
-	public void aboutPage(){
+
+	public void aboutPage() {
 		vue.setPanelAbout(mc);
 	}
-	public void optionPage(){
+
+	public void optionPage() {
 		vue.setPanelOption(mc);
 	}
-	
-	public void startGame(){
+
+	public void startGame() {
 		vue.setPanelIngame(kammi);
 	}
-	
+
 	public void setHero(Pacman hero) {
 		this.hero = hero;
 	}
@@ -96,8 +97,22 @@ public class Controller {
 		return mc.getAction();
 	}
 
-	public void refreshOption() {
-		vue.refreshOption();
+	public void refreshOption(int difficulty) {
+		String difficultyString;
+		switch (difficulty) {
+		case 0:
+			difficultyString = "Hard";
+			break;
+		case 50:
+			difficultyString = "Medium";
+			break;
+		case 100:
+			difficultyString = "Easy";
+			break;
+		default:
+			difficultyString = "Unknow";
+		}
+		vue.refreshOption(difficultyString);
 	}
-	
+
 }
