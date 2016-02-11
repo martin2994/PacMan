@@ -28,6 +28,7 @@ public class PannelStart extends JPanel {
 	private Image pinky_up;
 	private Image pinky_down;
 	private Image pinky_right;
+	private Image startpage;
 
 	public PannelStart() {
 		try {
