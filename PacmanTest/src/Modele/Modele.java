@@ -521,6 +521,11 @@ public class Modele {
 				hero.looseLife();
 			}
 			if (hero.getLife() <= 0) {
+				try {
+					IOTreatment.saveHighScore(score,  file_name);
+				} catch (IOException e){
+					System.out.println("Erreur d'écriture");
+				}
 				System.exit(0);
 			}
 		}
