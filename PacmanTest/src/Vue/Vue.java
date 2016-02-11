@@ -15,10 +15,10 @@ import Modele.Pacman;
 
 public class Vue extends JFrame {
 
-	PannelInGame panIG;
-	PannelStart panS;
-	PannelAbout panA;
-	PannelOption panO;
+	PanelInGame panIG;
+	PanelStart panS;
+	PanelAbout panA;
+	PanelOption panO;
 	KeyboardAndMouseMovementsInputs controle_kammi;
 	MouseClic controle_c;
 	JButton returnAbout;
@@ -27,10 +27,10 @@ public class Vue extends JFrame {
 	public Vue(int maxX, int maxY) {
 		this.setTitle("Pac-Man");
 		this.setSize(maxX, maxY);
-		panIG = new PannelInGame();
-		panS = new PannelStart();
-		panA = new PannelAbout();
-		panO = new PannelOption();
+		panIG = new PanelInGame();
+		panS = new PanelStart();
+		panA = new PanelAbout();
+		panO = new PanelOption();
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -116,6 +116,10 @@ public class Vue extends JFrame {
 	public void refreshOption(String difficulty) {
 		panO.setDifficulty(difficulty);
 		panO.repaint();
+	}
+	
+	public void refreshStart(){
+		panS.repaint();
 	}
 
 	/*

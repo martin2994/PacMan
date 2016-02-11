@@ -115,4 +115,8 @@ public class Controller {
 		vue.refreshOption(difficultyString);
 	}
 
+	public void refreshStart() {
+		vue.refreshStart();
+	}
+
 }

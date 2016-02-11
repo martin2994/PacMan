@@ -277,6 +277,7 @@ public class Modele {
 		boolean userAction = false;
 		String action;
 		while (!userAction) {
+			controle.refreshStart();
 			action = controle.majStartPage();
 			switch (action) {
 			case "Start":
