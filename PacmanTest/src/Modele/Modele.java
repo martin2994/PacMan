@@ -386,11 +386,16 @@ public class Modele {
 			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box,difficulty);
 			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box,difficulty);
 
-			updateVue(controle, hero, blinky, pinky, inky, clyde,bonus_eat);
 
+			updateVue(controle, hero, blinky, pinky, inky, clyde,bonus_eat);
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
-				Thread.sleep(3000);
+				controle.refresh();
+				Thread.sleep(1000);
+				controle.refresh();
+				Thread.sleep(1000);
+				controle.refresh();
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

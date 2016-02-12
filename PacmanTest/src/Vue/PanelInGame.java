@@ -17,6 +17,7 @@ import Modele.Pacman;
 
 public class PanelInGame extends JPanel {
 	private boolean pause;
+	private int counter;
 
 	private Ghost blinky;
 	private Ghost pinky;
@@ -90,6 +91,7 @@ public class PanelInGame extends JPanel {
 
 	public PanelInGame() {
 		pause = false;
+		counter = 4;
 		try { // chargement des images
 			img0 = ImageIO.read(new File("src/image/case0.png"));
 			img1 = ImageIO.read(new File("src/image/case1.png"));
@@ -161,6 +163,13 @@ public class PanelInGame extends JPanel {
 		drawGhost(g);
 		if (pause) {
 			drawPause(g);
+		}
+		if(counter>0){
+			Font font = new Font("Courier", Font.BOLD, 150);
+			g.setFont(font);
+			g.setColor(Color.YELLOW);
+			g.drawString(Integer.toString(counter), this.getWidth() / 2 - 100, this.getHeight() / 2 + 32);
+			counter--;
 		}
 	}
 
