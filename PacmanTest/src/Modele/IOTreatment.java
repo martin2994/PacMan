@@ -31,25 +31,6 @@ public class IOTreatment {
 	}
 	
 	
-	/* 
-	 * Enregistre les meilleurs scores dans un fichier
-	 */
-	public static void saveHighScore(int score, String file_name) throws IOException {
-		System.out.println("saveHighScore");
-		String name = "BOWSER";
-		String [][] current_score = new String[10][2];
-		File current_file = new File("HighScore.txt");
-		current_score=extract(current_file);
-		if (Integer.parseInt(current_score[9][1]) < score){
-			int count=0;
-			while(Integer.parseInt(current_score[count][1]) > score){
-				count++;
-			}
-			put(current_score, count, score, name, current_file);
-		}
-	}
-	
-	
 	/*
 	 * Ecrase le fichier et en crée un nouveau
 	 * avec le nouveau score à l'intérieur

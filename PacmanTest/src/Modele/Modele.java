@@ -1,5 +1,6 @@
 package Modele;
 
+import java.io.File;
 import java.io.IOException;
 
 import Controller.*;
@@ -153,6 +154,11 @@ public class Modele {
 			file_name = "stage3.txt";
 			break;
 		default:
+			try { 
+				saveHighScore(score,  file_name);
+			} catch (IOException e){
+				System.out.println("Erreur écriture");
+			}
 			System.exit(0);
 		}
 	}
@@ -298,6 +304,23 @@ public class Modele {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	/* 
+	 * Enregistre les meilleurs scores dans un fichier
+	 */
+	public static void saveHighScore(int score, String file_name) throws IOException {
+		String name = "BOWSER";
+		String [][] current_score = new String[10][2];
+		File current_file = new File("HighScore.txt");
+		current_score=IOTreatment.extract(current_file);
+		if (Integer.parseInt(current_score[9][1]) < score){
+			int count=0;
+			while(Integer.parseInt(current_score[count][1]) > score){
+				count++;
+			}
+			IOTreatment.put(current_score, count, score, name, current_file);
 		}
 	}
 
@@ -522,7 +545,7 @@ public class Modele {
 			}
 			if (hero.getLife() <= 0) {
 				try {
-					IOTreatment.saveHighScore(score,  file_name);
+					saveHighScore(score,  file_name);
 				} catch (IOException e){
 					System.out.println("Erreur d'écriture");
 				}
