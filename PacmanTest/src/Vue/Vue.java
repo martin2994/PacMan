@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import Modele.Ghost;
 import Modele.Pacman;
@@ -19,6 +20,7 @@ public class Vue extends JFrame {
 	PanelStart panS;
 	PanelAbout panA;
 	PanelOption panO;
+	PanelEndGame panEG;
 	KeyboardAndMouseMovementsInputs controle_kammi;
 	MouseClic controle_c;
 	JButton returnAbout;
@@ -31,11 +33,22 @@ public class Vue extends JFrame {
 		panS = new PanelStart();
 		panA = new PanelAbout();
 		panO = new PanelOption();
+		panEG = new PanelEndGame();
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setVisible(true);
 		returnAbout = new JButton("Return to menu");
+	}
+	
+	public void setPanelEndGame(MouseClic _controle_c){
+		controle_c=_controle_c;
+		this.setContentPane(panEG);
+		this.revalidate();
+		returnAbout.setBounds(516,570,135,50);
+		returnAbout.addActionListener(controle_c);
+		JTextField name=new JTextField(3);
+		name.addActionListener(controle_c);
 	}
 
 	public void setPanelIngame(KeyboardAndMouseMovementsInputs _controle) {
@@ -103,6 +116,10 @@ public class Vue extends JFrame {
 		quit.setBounds(260, 400, 110, 50);
 		quit.addActionListener(controle_c);
 
+	}
+	
+	public void refreshEndGame(){
+		panEG.repaint(controle_c.getName());
 	}
 
 	public void refresh() {

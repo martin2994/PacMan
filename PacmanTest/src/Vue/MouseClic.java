@@ -3,11 +3,19 @@ package Vue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JTextField;
+
 public class MouseClic implements ActionListener {
 	private String action;
+	private JTextField name;
+	private String input;
 
 	public MouseClic() {
 		this.action = "Nothing";
+	}
+	public MouseClic(JTextField _name){
+		this.name=_name;
+		this.input="";
 	}
 
 	@Override
@@ -37,6 +45,9 @@ public class MouseClic implements ActionListener {
 		case "Hard":
 			this.action = "Hard";
 			break;
+		}
+		if(e.getSource() == name){
+			input = e.getActionCommand();
 		}
 	}
 
