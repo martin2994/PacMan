@@ -69,6 +69,10 @@ public class Controller {
 		vue.refresh();
 	}
 
+	public void endPage(){
+		vue.setPanelEndGame(mc);
+	}
+	
 	public void startPage() {
 		vue.setPanelStart(mc);
 	}
@@ -117,6 +121,14 @@ public class Controller {
 
 	public void refreshStart() {
 		vue.refreshStart();
+	}
+
+	public void refreshEnd() {
+		vue.refreshEndGame();
+	}
+
+	public String getUserName() {
+		return mc.getName();
 	}
 
 }

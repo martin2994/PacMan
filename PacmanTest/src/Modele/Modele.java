@@ -26,12 +26,17 @@ public class Modele {
 	 * tableau des bonus : false : Bonus pas encore apparu true : Bonus apparu
 	 */
 	public static boolean[] bonus_pop;
-	
-	public static boolean [] bonus_eat;
+
+	public static boolean[] bonus_eat;
 
 	public static int score = 0;
 
-	public static int difficulty=50;
+	public static int difficulty = 50;
+
+	public static int stagePlaying = 0;
+	
+	public static String username="";
+
 	/*
 	 * Remplit la matrice en fonction des labyrinthes préchargés dans des
 	 * fichiers texte
@@ -54,7 +59,7 @@ public class Modele {
 			}
 			controle.showPause();
 			controle.tellMeTheWayToGoPlease();
-			updateVue(controle, hero, blinky, pinky, inky, clyde,bonus_eat);
+			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat);
 			if (hero.getToGo().equals(Controller.Direction.SPACE)) {
 				controle.hidePause();
 				loop = false;
@@ -62,8 +67,9 @@ public class Modele {
 		}
 	}
 
-	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde, boolean[] bonus) {
-		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde,bonus);
+	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
+			boolean[] bonus) {
+		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus);
 	}
 
 	/*
@@ -96,19 +102,19 @@ public class Modele {
 			return true;
 		}
 		if (labyrinth[x][y] < 0 && labyrinth[x][y] > -5) {
-			switch (labyrinth[x][y]){
+			switch (labyrinth[x][y]) {
 			case -1:
-				bonus_eat[0]=true;
+				bonus_eat[0] = true;
 				break;
 			case -2:
-				bonus_eat[1]=true;
+				bonus_eat[1] = true;
 				break;
 			case -3:
-				bonus_eat[2]=true;
+				bonus_eat[2] = true;
 				break;
 			case -4:
-				bonus_eat[3]=true;
-				break;			
+				bonus_eat[3] = true;
+				break;
 			}
 			labyrinth[x][y] = 0;
 			score += 100;
@@ -141,11 +147,15 @@ public class Modele {
 	/*
 	 * Charge le labyrinthe correspondant au niveau actuel
 	 */
-	public static void whatsTheName() {
+	public static void whatsTheName(Controller controle) {
 
 		switch (file_name) {
 		case "new":
-			file_name = "stage1.txt";
+			if (stagePlaying != 0) {
+				file_name = "stage" + Integer.toString(stagePlaying) + ".txt";
+			} else {
+				file_name = "stage1.txt";
+			}
 			break;
 		case "stage1.txt":
 			file_name = "stage2.txt";
@@ -154,9 +164,11 @@ public class Modele {
 			file_name = "stage3.txt";
 			break;
 		default:
-			try { 
-				saveHighScore(score,  file_name);
-			} catch (IOException e){
+			controle.endPage();
+			runEndPage(controle);
+			try {
+				saveHighScore(score, file_name);
+			} catch (IOException e) {
 				System.out.println("Erreur écriture");
 			}
 			System.exit(0);
@@ -225,8 +237,8 @@ public class Modele {
 			// placerbonus
 		}
 	}
-	
-	public static void runAboutPage(Controller controle){
+
+	public static void runAboutPage(Controller controle) {
 		boolean userAction = false;
 		String action;
 		controle.aboutPage();
@@ -235,7 +247,7 @@ public class Modele {
 			action = controle.majStartPage();
 			switch (action) {
 			case "ReturnAbout":
-				userAction=true;
+				userAction = true;
 				break;
 			default:
 			}
@@ -247,8 +259,8 @@ public class Modele {
 		}
 		controle.startPage();
 	}
-	
-	public static void runOptionPage(Controller controle){
+
+	public static void runOptionPage(Controller controle) {
 		boolean userAction = false;
 		String action;
 		controle.optionPage();
@@ -257,16 +269,16 @@ public class Modele {
 			action = controle.majStartPage();
 			switch (action) {
 			case "ReturnAbout":
-				userAction=true;
+				userAction = true;
 				break;
 			case "Easy":
-				difficulty=100;
+				difficulty = 100;
 				break;
 			case "Medium":
-				difficulty=50;
+				difficulty = 50;
 				break;
 			case "Hard":
-				difficulty=0;
+				difficulty = 0;
 				break;
 			default:
 			}
@@ -277,6 +289,24 @@ public class Modele {
 			}
 		}
 		controle.startPage();
+	}
+
+	public static void runEndPage(Controller controle) {
+		boolean userAction = false;
+		String action = "";
+		while (!userAction) {
+			controle.refreshEnd();
+			action = controle.majStartPage();
+			if (action.equals("Save")) {
+				userAction = true;
+				username = controle.getUserName();
+			}
+		}
+		try {
+			Thread.sleep(5);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void runStartPage(Controller controle) {
@@ -306,21 +336,25 @@ public class Modele {
 			}
 		}
 	}
-	
-	/* 
+
+	/*
 	 * Enregistre les meilleurs scores dans un fichier
 	 */
 	public static void saveHighScore(int score, String file_name) throws IOException {
-		String name = "BOWSER";
-		String [][] current_score = new String[10][2];
-		File current_file = new File("HighScore.txt");
-		current_score=IOTreatment.extract(current_file);
-		if (Integer.parseInt(current_score[9][1]) < score){
-			int count=0;
-			while(Integer.parseInt(current_score[count][1]) > score){
+		String[][] current_score = new String[10][2];
+		File current_file;
+		if(stagePlaying != 0){
+			current_file=new File(IOTreatment.findFile(file_name));
+		} else {
+			current_file=new File("HighScore.txt");
+		}
+		current_score = IOTreatment.extract(current_file);
+		if (Integer.parseInt(current_score[9][1]) < score) {
+			int count = 0;
+			while (Integer.parseInt(current_score[count][1]) > score) {
 				count++;
 			}
-			IOTreatment.put(current_score, count, score, name, current_file);
+			IOTreatment.put(current_score, count, score, username, current_file);
 		}
 	}
 
@@ -354,7 +388,7 @@ public class Modele {
 
 		// Vrai si la partie est gagnée
 		boolean win = false;
-		whatsTheName();
+		whatsTheName(controle);
 		fillMyTab();
 
 		// On initialise le controller
@@ -368,7 +402,7 @@ public class Modele {
 				for (int i = 0; i < bonus_pop.length; i++) {
 					bonus_pop[i] = false;
 				}
-				whatsTheName();
+				whatsTheName(controle);
 				win = false;
 				hero.setLife(3);
 				// Init labyrinth
@@ -381,13 +415,12 @@ public class Modele {
 			hero.reset(252, 448, Controller.Direction.UP, Controller.Direction.UP, deplacement, length_box);
 
 			// Init fantomes
-			blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box,difficulty);
-			pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box,difficulty);
-			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box,difficulty);
-			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box,difficulty);
+			blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box, difficulty);
+			pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box, difficulty);
+			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box, difficulty);
+			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty);
 
-
-			updateVue(controle, hero, blinky, pinky, inky, clyde,bonus_eat);
+			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat);
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
 				controle.refresh();
@@ -545,13 +578,25 @@ public class Modele {
 			}
 			if (gumGum == 0) {
 				win = true;
+				if(stagePlaying != 0){
+					controle.endPage();
+					runEndPage(controle);
+					try{
+						saveHighScore(score, file_name);
+					} catch(IOException e) {
+						System.out.println("Erreur IO");
+					}
+					System.exit(0);
+				}
 			} else {
 				hero.looseLife();
 			}
 			if (hero.getLife() <= 0) {
+				controle.endPage();
+				runEndPage(controle);
 				try {
-					saveHighScore(score,  file_name);
-				} catch (IOException e){
+					saveHighScore(score, file_name);
+				} catch (IOException e) {
 					System.out.println("Erreur d'écriture");
 				}
 				System.exit(0);
