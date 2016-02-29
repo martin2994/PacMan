@@ -495,5 +495,10 @@ public class PanelInGame extends JPanel {
 	public void setBonus(boolean[] bonus) {
 		this.bonus = bonus;
 	}
+	
+	public void resetCounter(){
+		this.counter=4;
+		timer_anim_pacman=0;
+	}
 
 }

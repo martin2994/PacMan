@@ -158,13 +158,16 @@ public class Vue extends JFrame {
 	 * actuelles de Pacman et des fantomes
 	 */
 	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
-			boolean[] bonus) {
+			boolean[] bonus, boolean reset) {
 		panIG.setHero(hero);
 		panIG.setBlinky(blinky);
 		panIG.setPinky(pinky);
 		panIG.setInky(inky);
 		panIG.setClyde(clyde);
 		panIG.setBonus(bonus);
+		if(reset){
+			panIG.resetCounter();
+		}
 		this.setContentPane(panIG);
 	}
 

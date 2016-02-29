@@ -42,8 +42,8 @@ public class Controller {
 	}
 
 	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
-			boolean[] bonus) {
-		vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus);
+			boolean[] bonus, boolean reset) {
+		vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus, reset);
 	}
 
 	public void tellMeTheWayToGoPlease() {
@@ -63,6 +63,10 @@ public class Controller {
 				hero.setToGo(kammi.tellMeTheWayToGoPlease());
 			}
 		}
+	}
+	
+	public void resetDirection(){
+		kammi.setGo(Direction.UP);
 	}
 
 	public void refresh() {

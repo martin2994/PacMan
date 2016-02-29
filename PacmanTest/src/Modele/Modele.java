@@ -61,7 +61,7 @@ public class Modele {
 			}
 			controle.showPause();
 			controle.tellMeTheWayToGoPlease();
-			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat);
+			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat, false);
 			if (hero.getToGo().equals(Controller.Direction.SPACE)) {
 				controle.hidePause();
 				loop = false;
@@ -70,8 +70,8 @@ public class Modele {
 	}
 
 	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
-			boolean[] bonus) {
-		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus);
+			boolean[] bonus, boolean reset) {
+		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus, reset);
 	}
 
 	/*
@@ -426,7 +426,7 @@ public class Modele {
 			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box, difficulty);
 			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty);
 
-			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat);
+			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat, true);
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
 				controle.refresh();
@@ -438,6 +438,9 @@ public class Modele {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			
+			//Remet par défaut la direction de pacman vers le haut
+			controle.resetDirection();
 
 			/*
 			 * Tant que Pacman ne se fait pas attraper et qu'il reste des
