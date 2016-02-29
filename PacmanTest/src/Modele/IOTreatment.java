@@ -74,4 +74,17 @@ public class IOTreatment {
 		}
 		return current_score;
 	}
+	
+	public static String findFile (String file_name) {
+		switch (file_name) {
+		case("stage1.txt") :
+			return "stage1HS.txt";
+		case ("stage2.txt") :
+			return "stage2HS.txt";
+		case ("stage3.txt") :
+			return "stage3HS.txt";
+		default : 
+			return file_name.substring(5)+"HS.txt";
+		}
+	}
 }

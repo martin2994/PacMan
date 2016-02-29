@@ -32,6 +32,17 @@ public class Modele {
 	public static int score = 0;
 
 	public static int difficulty=50;
+	
+	/*
+	 * true : le jeu se termine a la fin du niveau 
+	 */
+	public static boolean byLevel=true;
+	
+	/*
+	 * Stage choisi par l'utilisateur
+	 */
+	public static int stagePlaying=3;
+	
 	/*
 	 * Remplit la matrice en fonction des labyrinthes préchargés dans des
 	 * fichiers texte
@@ -145,7 +156,11 @@ public class Modele {
 
 		switch (file_name) {
 		case "new":
-			file_name = "stage1.txt";
+			if(byLevel){
+				file_name = "stage"+Integer.toString(stagePlaying)+".txt";
+			} else {
+				file_name = "stage1.txt";
+			}
 			break;
 		case "stage1.txt":
 			file_name = "stage2.txt";
@@ -155,7 +170,7 @@ public class Modele {
 			break;
 		default:
 			try { 
-				saveHighScore(score,  file_name);
+				saveHighScore(score, file_name);
 			} catch (IOException e){
 				System.out.println("Erreur écriture");
 			}
@@ -313,7 +328,12 @@ public class Modele {
 	public static void saveHighScore(int score, String file_name) throws IOException {
 		String name = "BOWSER";
 		String [][] current_score = new String[10][2];
-		File current_file = new File("HighScore.txt");
+		File current_file;
+		if(byLevel){
+			current_file = new File (IOTreatment.findFile(file_name));
+		} else {
+			current_file = new File("HighScore.txt");
+		}
 		current_score=IOTreatment.extract(current_file);
 		if (Integer.parseInt(current_score[9][1]) < score){
 			int count=0;
@@ -545,12 +565,20 @@ public class Modele {
 			}
 			if (gumGum == 0) {
 				win = true;
+				if (byLevel){
+					try {
+					saveHighScore(score, file_name);
+					} catch (IOException e) {
+						System.out.println("Erreur IO");
+					}
+					System.exit(0);
+				}
 			} else {
 				hero.looseLife();
 			}
 			if (hero.getLife() <= 0) {
 				try {
-					saveHighScore(score,  file_name);
+					saveHighScore(score, file_name);
 				} catch (IOException e){
 					System.out.println("Erreur d'écriture");
 				}
