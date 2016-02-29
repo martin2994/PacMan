@@ -343,6 +343,10 @@ public class Modele {
 	 * Enregistre les meilleurs scores dans un fichier
 	 */
 	public static void saveHighScore(int score, String file_name) throws IOException {
+		if(username.equals("")){
+			username="ABC";
+		}
+		username = username.replaceAll(" ","");
 		String[][] current_score = new String[10][2];
 		File current_file;
 		if(stagePlaying != 0){

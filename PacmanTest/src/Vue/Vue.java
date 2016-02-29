@@ -59,7 +59,7 @@ public class Vue extends JFrame {
 		name=new JTextField();
 	    name.setPreferredSize(name.getPreferredSize());
 		panEG.add(name);
-		name.setBounds(100,100,100,100 );
+		name.setBounds(250, 260, 135, 50);
 		name.addActionListener(controle_c);
 		
 	}

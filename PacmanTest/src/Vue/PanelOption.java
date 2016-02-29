@@ -18,9 +18,8 @@ public class PanelOption extends JPanel {
 	public PanelOption() {
 		this.difficulty = "Medium";
 		try {
-			startpage=ImageIO.read(new File("src/image/startpage.png"));
+			startpage = ImageIO.read(new File("src/image/startpage.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -28,8 +27,7 @@ public class PanelOption extends JPanel {
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		g.drawImage(startpage, 0,0,this);
-
+		g.drawImage(startpage, 0, 0, this);
 		Font font = new Font("Courier", Font.BOLD, 25);
 		g.setFont(font);
 		g.setColor(Color.YELLOW);
