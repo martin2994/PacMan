@@ -31,12 +31,27 @@ public class Modele {
 
 	public static int score = 0;
 
+<<<<<<< HEAD
 	public static int difficulty = 50;
 
 	public static int stagePlaying = 0;
 	
 	public static String username="";
 
+=======
+	public static int difficulty=50;
+	
+	/*
+	 * true : le jeu se termine a la fin du niveau 
+	 */
+	public static boolean byLevel=true;
+	
+	/*
+	 * Stage choisi par l'utilisateur
+	 */
+	public static int stagePlaying=3;
+	
+>>>>>>> origin/master
 	/*
 	 * Remplit la matrice en fonction des labyrinthes préchargés dans des
 	 * fichiers texte
@@ -151,8 +166,13 @@ public class Modele {
 
 		switch (file_name) {
 		case "new":
+<<<<<<< HEAD
 			if (stagePlaying != 0) {
 				file_name = "stage" + Integer.toString(stagePlaying) + ".txt";
+=======
+			if(byLevel){
+				file_name = "stage"+Integer.toString(stagePlaying)+".txt";
+>>>>>>> origin/master
 			} else {
 				file_name = "stage1.txt";
 			}
@@ -164,11 +184,17 @@ public class Modele {
 			file_name = "stage3.txt";
 			break;
 		default:
+<<<<<<< HEAD
 			controle.endPage();
 			runEndPage(controle);
 			try {
 				saveHighScore(score, file_name);
 			} catch (IOException e) {
+=======
+			try { 
+				saveHighScore(score, file_name);
+			} catch (IOException e){
+>>>>>>> origin/master
 				System.out.println("Erreur écriture");
 			}
 			System.exit(0);
@@ -341,6 +367,7 @@ public class Modele {
 	 * Enregistre les meilleurs scores dans un fichier
 	 */
 	public static void saveHighScore(int score, String file_name) throws IOException {
+<<<<<<< HEAD
 		String[][] current_score = new String[10][2];
 		File current_file;
 		if(stagePlaying != 0){
@@ -352,6 +379,20 @@ public class Modele {
 		if (Integer.parseInt(current_score[9][1]) < score) {
 			int count = 0;
 			while (Integer.parseInt(current_score[count][1]) > score) {
+=======
+		String name = "BOWSER";
+		String [][] current_score = new String[10][2];
+		File current_file;
+		if(byLevel){
+			current_file = new File (IOTreatment.findFile(file_name));
+		} else {
+			current_file = new File("HighScore.txt");
+		}
+		current_score=IOTreatment.extract(current_file);
+		if (Integer.parseInt(current_score[9][1]) < score){
+			int count=0;
+			while(Integer.parseInt(current_score[count][1]) > score){
+>>>>>>> origin/master
 				count++;
 			}
 			IOTreatment.put(current_score, count, score, username, current_file);
@@ -578,12 +619,19 @@ public class Modele {
 			}
 			if (gumGum == 0) {
 				win = true;
+<<<<<<< HEAD
 				if(stagePlaying != 0){
 					controle.endPage();
 					runEndPage(controle);
 					try{
 						saveHighScore(score, file_name);
 					} catch(IOException e) {
+=======
+				if (byLevel){
+					try {
+					saveHighScore(score, file_name);
+					} catch (IOException e) {
+>>>>>>> origin/master
 						System.out.println("Erreur IO");
 					}
 					System.exit(0);
@@ -596,7 +644,11 @@ public class Modele {
 				runEndPage(controle);
 				try {
 					saveHighScore(score, file_name);
+<<<<<<< HEAD
 				} catch (IOException e) {
+=======
+				} catch (IOException e){
+>>>>>>> origin/master
 					System.out.println("Erreur d'écriture");
 				}
 				System.exit(0);
