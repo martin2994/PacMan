@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 
 import Modele.Ghost;
 import Modele.Pacman;
@@ -104,7 +105,7 @@ public class Vue extends JFrame {
 		returnAbout.addActionListener(controle_c);
 	}
 
-	public void setPanelOption(MouseClic _controle) {
+	public void setPanelOption(MouseClic _controle,boolean stopstartmusic) {
 		controle_c = _controle;
 		panO.setLayout(null);
 		this.setContentPane(panO);
@@ -124,6 +125,10 @@ public class Vue extends JFrame {
 		panO.add(hard);
 		hard.setBounds(407, 60, 135, 50);
 		hard.addActionListener(controle_c);
+		JToggleButton music=new JToggleButton("On/Off",!stopstartmusic);
+		panO.add(music);
+		music.setBounds(this.getWidth()/2-58,this.getHeight()/2,100,50);
+		music.addActionListener(controle_c);
 		comboLevel.addActionListener(controle_c);
 		comboLevel.setBounds(412, 200, 50, 25);
 		panO.add(comboLevel);

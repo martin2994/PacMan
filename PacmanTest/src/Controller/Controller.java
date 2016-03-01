@@ -14,6 +14,7 @@ public class Controller {
 	MouseClic mc;
 	Pacman hero;
 	Music current_music;
+	boolean stopstartmusic=true;
 
 	public Controller(int maxX, int maxY) {
 		this.kammi = new KeyboardAndMouseMovementsInputs(Direction.UP);
@@ -95,7 +96,7 @@ public class Controller {
 	}
 
 	public void optionPage() {
-		vue.setPanelOption(mc);
+		vue.setPanelOption(mc,stopstartmusic);
 	}
 
 	public void startGame() {
@@ -148,6 +149,24 @@ public class Controller {
 		return mc.getLevel();
 	}
 	public void changeMusic(String new_song){
-		current_music.changeMusic(new_song);
+		if(stopstartmusic)
+			current_music.changeMusic(new_song);
 	}
+	public void stopMusic(){
+		mc.setAction("Nothing");
+		current_music.stopMusic();
+		if (stopstartmusic)
+			stopstartmusic=false;
+		else
+			stopstartmusic=true;
+	}
+
+	public void setStopstartmusic(boolean stopstartmusic) {
+		this.stopstartmusic = stopstartmusic;
+	}
+
+	public boolean isStopstartmusic() {
+		return stopstartmusic;
+	}
+	
 }

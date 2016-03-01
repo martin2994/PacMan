@@ -291,6 +291,8 @@ public class Modele {
 			case "Hard":
 				difficulty = 0;
 				break;
+			case "On/Off":
+				controle.stopMusic();
 			default:
 			}
 			try {

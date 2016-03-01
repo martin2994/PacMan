@@ -48,6 +48,9 @@ public class MouseClic implements ActionListener {
 		case "Save":
 			this.action = "Save";
 			break;
+		case "On/Off":
+			this.action ="On/Off";
+			break;
 		}
 	}
 
