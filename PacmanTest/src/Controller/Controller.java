@@ -13,12 +13,13 @@ public class Controller {
 	KeyboardAndMouseMovementsInputs kammi;
 	MouseClic mc;
 	Pacman hero;
+	Music current_music;
 
 	public Controller(int maxX, int maxY) {
 		this.kammi = new KeyboardAndMouseMovementsInputs(Direction.UP);
 		this.mc = new MouseClic();
 		this.vue = new Vue(maxX, maxY);
-
+		current_music=new Music();
 	}
 
 	public boolean isItAClickOrATap() {
@@ -146,5 +147,7 @@ public class Controller {
 	public String whichLevel() {
 		return mc.getLevel();
 	}
-
+	public void changeMusic(String new_song){
+		current_music.changeMusic(new_song);
+	}
 }

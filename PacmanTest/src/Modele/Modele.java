@@ -176,6 +176,14 @@ public class Modele {
 			}
 			System.exit(0);
 		}
+		switch(file_name){
+		case "stage1.txt":
+			controle.changeMusic("music/lvl1.wav");
+			break;
+		case "stage2.txt":
+			controle.changeMusic("music/lvl2.wav");
+			break;
+		}
 	}
 
 	/*
