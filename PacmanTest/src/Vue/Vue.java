@@ -53,16 +53,16 @@ public class Vue extends JFrame {
 	}
 
 	public void setPanelLeaderBoard(MouseClic _controle_c) {
-		controle_c = controle_c;
+		controle_c = _controle_c;
 		panLB.setLayout(null);
 		this.setContentPane(panLB);
 		this.revalidate();
-		returnAbout.setBounds(516, 570, 135, 50);
+		returnAbout.setBounds(5, 570, 135, 50);
 		returnAbout.addActionListener(controle_c);
 		panLB.add(returnAbout);
 		JButton quit = new JButton("Quit");
-		returnAbout.setBounds(5, 570, 135, 50);
-		returnAbout.addActionListener(controle_c);
+		quit.setBounds(516, 570, 135, 50);
+		quit.addActionListener(controle_c);
 		panLB.add(quit);
 	}
 

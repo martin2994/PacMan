@@ -319,11 +319,11 @@ public class Modele {
 				userAction = true;
 				username = controle.getUserName();
 			}
-		}
-		try {
-			Thread.sleep(5);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
