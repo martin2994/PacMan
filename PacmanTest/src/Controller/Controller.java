@@ -64,8 +64,8 @@ public class Controller {
 			}
 		}
 	}
-	
-	public void resetDirection(){
+
+	public void resetDirection() {
 		kammi.setGo(Direction.UP);
 	}
 
@@ -73,10 +73,14 @@ public class Controller {
 		vue.refresh();
 	}
 
-	public void endPage(){
+	public void leaderBoard() {
+		vue.setPanelLeaderBoard(mc);
+	}
+
+	public void endPage() {
 		vue.setPanelEndGame(mc);
 	}
-	
+
 	public void startPage() {
 		vue.setPanelStart(mc);
 	}
@@ -131,8 +135,16 @@ public class Controller {
 		vue.refreshEndGame();
 	}
 
+	public void refreshLeaderBoard() {
+		vue.refreshLeaderBoard();
+	}
+
 	public String getUserName() {
 		return mc.getName();
+	}
+
+	public String whichLevel() {
+		return mc.getLevel();
 	}
 
 }

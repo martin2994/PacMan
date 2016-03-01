@@ -10,10 +10,12 @@ public class MouseClic implements ActionListener {
 	private String action;
 	private String name;
 	private JComboBox jcmbType;
+	private String level;
 
 	public MouseClic() {
 		this.action = "Nothing";
 		this.name = "";
+		this.level="All";
 	}
 
 	@Override
@@ -46,9 +48,6 @@ public class MouseClic implements ActionListener {
 		case "Save":
 			this.action = "Save";
 			break;
-		default:
-			jcmbType = (JComboBox) e.getSource();
-			this.action = (String) jcmbType.getSelectedItem();
 		}
 	}
 
@@ -66,6 +65,14 @@ public class MouseClic implements ActionListener {
 
 	public String getName() {
 		return this.name;
+	}
+
+	public void setLevel(String _level) {
+		this.level=_level;
+	}
+	
+	public String getLevel(){
+		return this.level;
 	}
 
 }

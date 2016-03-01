@@ -25,10 +25,12 @@ public class Vue extends JFrame {
 	PanelAbout panA;
 	PanelOption panO;
 	PanelEndGame panEG;
+	PanelLeaderBoard panLB;
 	KeyboardAndMouseMovementsInputs controle_kammi;
 	MouseClic controle_c;
 	JButton returnAbout;
 	JTextField name;
+	JComboBox<String> comboLevel;
 
 	// Constructeur
 	public Vue(int maxX, int maxY) {
@@ -44,25 +46,41 @@ public class Vue extends JFrame {
 		this.setResizable(false);
 		this.setVisible(true);
 		returnAbout = new JButton("Return to menu");
-		name=new JTextField(3);
+		name = new JTextField(3);
 		name.setText("");
+		String[] choices = { "All", "1", "2", "3", "4", "5", "6" };
+		comboLevel = new JComboBox<String>(choices);
 	}
-	
-	public void setPanelEndGame(MouseClic _controle_c){
-		controle_c=_controle_c;
+
+	public void setPanelLeaderBoard(MouseClic _controle_c) {
+		controle_c = controle_c;
+		panLB.setLayout(null);
+		this.setContentPane(panLB);
+		this.revalidate();
+		returnAbout.setBounds(516, 570, 135, 50);
+		returnAbout.addActionListener(controle_c);
+		panLB.add(returnAbout);
+		JButton quit = new JButton("Quit");
+		returnAbout.setBounds(5, 570, 135, 50);
+		returnAbout.addActionListener(controle_c);
+		panLB.add(quit);
+	}
+
+	public void setPanelEndGame(MouseClic _controle_c) {
+		controle_c = _controle_c;
 		panEG.setLayout(null);
 		this.setContentPane(panEG);
 		this.revalidate();
 		JButton save = new JButton("Save");
-		save.setBounds(516,570,135,50);
+		save.setBounds(516, 570, 135, 50);
 		save.addActionListener(controle_c);
 		panEG.add(save);
-		name=new JTextField();
-	    name.setPreferredSize(name.getPreferredSize());
+		name = new JTextField();
+		name.setPreferredSize(name.getPreferredSize());
 		panEG.add(name);
 		name.setBounds(250, 260, 135, 50);
 		name.addActionListener(controle_c);
-		
+
 	}
 
 	public void setPanelIngame(KeyboardAndMouseMovementsInputs _controle) {
@@ -106,10 +124,8 @@ public class Vue extends JFrame {
 		panO.add(hard);
 		hard.setBounds(407, 60, 135, 50);
 		hard.addActionListener(controle_c);
-		String [] choices = {"All","1","2","3","4","5","6"};
-		JComboBox<String> comboLevel = new JComboBox<String>(choices);
 		comboLevel.addActionListener(controle_c);
-		comboLevel.setBounds(412,200,50,25);
+		comboLevel.setBounds(412, 200, 50, 25);
 		panO.add(comboLevel);
 	}
 
@@ -136,8 +152,12 @@ public class Vue extends JFrame {
 		quit.addActionListener(controle_c);
 
 	}
-	
-	public void refreshEndGame(){
+
+	public void refreshLeaderBoard() {
+		panLB.repaint();
+	}
+
+	public void refreshEndGame() {
 		controle_c.setName(this.name.getText());
 		panEG.repaint();
 	}
@@ -151,11 +171,12 @@ public class Vue extends JFrame {
 	}
 
 	public void refreshOption(String difficulty) {
+		controle_c.setLevel((String)this.comboLevel.getSelectedItem());
 		panO.setDifficulty(difficulty);
 		panO.repaint();
 	}
-	
-	public void refreshStart(){
+
+	public void refreshStart() {
 		panS.repaint();
 	}
 
@@ -171,7 +192,7 @@ public class Vue extends JFrame {
 		panIG.setInky(inky);
 		panIG.setClyde(clyde);
 		panIG.setBonus(bonus);
-		if(reset){
+		if (reset) {
 			panIG.resetCounter();
 		}
 		this.setContentPane(panIG);

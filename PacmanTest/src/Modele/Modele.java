@@ -283,6 +283,16 @@ public class Modele {
 			case "Hard":
 				difficulty = 0;
 				break;
+			default:
+			}
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			action = controle.whichLevel();
+			switch (action) {
+
 			case "1":
 			case "2":
 			case "3":
@@ -294,12 +304,6 @@ public class Modele {
 			case "All":
 				stagePlaying = 0;
 				break;
-			default:
-			}
-			try {
-				Thread.sleep(5);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
 			}
 		}
 		controle.startPage();

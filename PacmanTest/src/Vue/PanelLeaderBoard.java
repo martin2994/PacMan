@@ -1,5 +1,7 @@
 package Vue;
 
-public class PanelLeaderBoard {
+import javax.swing.JPanel;
+
+public class PanelLeaderBoard extends JPanel {
 
 }
