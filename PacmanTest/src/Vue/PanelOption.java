@@ -31,15 +31,18 @@ public class PanelOption extends JPanel {
 		Font font = new Font("Courier", Font.BOLD, 25);
 		g.setFont(font);
 		g.setColor(Color.YELLOW);
-		g.drawString("Ghost level:", this.getWidth() / 3 + 11, 40);
+		g.drawString("Ghost difficulty:", this.getWidth() / 3 -14, 40);
 		drawDifficulty(g);
+		g.drawLine(0, this.getHeight()/4+21, this.getWidth(), this.getHeight()/4+21);
+		g.drawLine(0, this.getHeight()/4+23, this.getWidth(), this.getHeight()/4+23);
+		g.drawString ("Choose level : ", this.getWidth()/3-33,222);
 	}
 
 	public void drawDifficulty(Graphics g) {
 		Font font = new Font("Courier", Font.BOLD, 25);
 		g.setFont(font);
 		g.setColor(Color.YELLOW);
-		g.drawString("Current level: " + difficulty, this.getWidth() / 3 - 65, 150);
+		g.drawString("Current difficulty: " + difficulty, this.getWidth() / 3 - 88, 150);
 
 	}
 

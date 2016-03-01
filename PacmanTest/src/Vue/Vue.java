@@ -9,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -95,16 +96,21 @@ public class Vue extends JFrame {
 		returnAbout.addActionListener(controle_c);
 		JButton easy = new JButton("Easy");
 		panO.add(easy);
-		easy.setBounds(100, 60, 135, 50);
+		easy.setBounds(107, 60, 135, 50);
 		easy.addActionListener(controle_c);
 		JButton medium = new JButton("Medium");
 		panO.add(medium);
-		medium.setBounds(250, 60, 135, 50);
+		medium.setBounds(257, 60, 135, 50);
 		medium.addActionListener(controle_c);
 		JButton hard = new JButton("Hard");
 		panO.add(hard);
-		hard.setBounds(400, 60, 135, 50);
+		hard.setBounds(407, 60, 135, 50);
 		hard.addActionListener(controle_c);
+		String [] choices = {"All","1","2","3","4","5","6"};
+		JComboBox<String> comboLevel = new JComboBox<String>(choices);
+		comboLevel.addActionListener(controle_c);
+		comboLevel.setBounds(412,200,50,25);
+		panO.add(comboLevel);
 	}
 
 	public void setPanelStart(MouseClic _controle) {

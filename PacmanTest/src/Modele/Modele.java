@@ -32,13 +32,14 @@ public class Modele {
 	public static int score = 0;
 
 	public static int difficulty = 50;
-	
-	public static String username="";
-	
+
+	public static String username = "";
+
 	/*
 	 * Stage choisi par l'utilisateur
 	 */
-	public static int stagePlaying=0;
+	public static int stagePlaying = 0;
+
 	/*
 	 * Remplit la matrice en fonction des labyrinthes préchargés dans des
 	 * fichiers texte
@@ -282,6 +283,17 @@ public class Modele {
 			case "Hard":
 				difficulty = 0;
 				break;
+			case "1":
+			case "2":
+			case "3":
+			case "4":
+			case "5":
+			case "6":
+				stagePlaying = Integer.parseInt(action);
+				break;
+			case "All":
+				stagePlaying = 0;
+				break;
 			default:
 			}
 			try {
@@ -343,16 +355,16 @@ public class Modele {
 	 * Enregistre les meilleurs scores dans un fichier
 	 */
 	public static void saveHighScore(int score, String file_name) throws IOException {
-		if(username.equals("")){
-			username="ABC";
+		if (username.equals("")) {
+			username = "ABC";
 		}
-		username = username.replaceAll(" ","");
+		username = username.replaceAll(" ", "");
 		String[][] current_score = new String[10][2];
 		File current_file;
-		if(stagePlaying != 0){
-			current_file=new File(IOTreatment.findFile(file_name));
+		if (stagePlaying != 0) {
+			current_file = new File(IOTreatment.findFile(file_name));
 		} else {
-			current_file=new File("HighScore.txt");
+			current_file = new File("HighScore.txt");
 		}
 		current_score = IOTreatment.extract(current_file);
 		if (Integer.parseInt(current_score[9][1]) < score) {
@@ -438,8 +450,8 @@ public class Modele {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
-			//Remet par défaut la direction de pacman vers le haut
+
+			// Remet par défaut la direction de pacman vers le haut
 			controle.resetDirection();
 
 			/*
@@ -587,12 +599,12 @@ public class Modele {
 			}
 			if (gumGum == 0) {
 				win = true;
-				if(stagePlaying != 0){
+				if (stagePlaying != 0) {
 					controle.endPage();
 					runEndPage(controle);
-					try{
+					try {
 						saveHighScore(score, file_name);
-					} catch(IOException e) {
+					} catch (IOException e) {
 						System.out.println("Erreur IO");
 					}
 					System.exit(0);
