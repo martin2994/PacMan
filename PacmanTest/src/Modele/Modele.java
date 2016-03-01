@@ -336,6 +336,22 @@ public class Modele {
 			}
 		}
 	}
+	
+	public static boolean runLeaderBoard (Controller controle) {
+		boolean userAction = false;
+		String action ="";
+		while(!userAction) {
+			controle.refreshLeaderBoard();
+			action = controle.majStartPage();
+			if (action.equals("Quit")){
+				System.exit(0);
+			}
+			/*if (action.equals("ReturnAbout")) {
+				return false;
+			}*/
+		}
+		return true;
+	}
 
 	public static void runStartPage(Controller controle) {
 		boolean userAction = false;
