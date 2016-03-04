@@ -75,8 +75,8 @@ public class Controller {
 		vue.refresh();
 	}
 
-	public void leaderBoard() {
-		vue.setPanelLeaderBoard(mc);
+	public void leaderBoard(String [][] tab) {
+		vue.setPanelLeaderBoard(mc, tab);
 	}
 
 	public void endPage() {
@@ -167,6 +167,10 @@ public class Controller {
 
 	public boolean isStopstartmusic() {
 		return stopstartmusic;
+	}
+
+	public void setCounter(int i) {
+		vue.setCounter(i);
 	}
 	
 }

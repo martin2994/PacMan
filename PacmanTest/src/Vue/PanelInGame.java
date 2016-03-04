@@ -500,5 +500,9 @@ public class PanelInGame extends JPanel {
 		this.counter=4;
 		timer_anim_pacman=0;
 	}
+	
+	public void setCounter(int i){
+		this.counter=i;
+	}
 
 }

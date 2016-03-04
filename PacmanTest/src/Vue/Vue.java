@@ -42,6 +42,7 @@ public class Vue extends JFrame {
 		panA = new PanelAbout();
 		panO = new PanelOption();
 		panEG = new PanelEndGame();
+		panLB = new PanelLeaderBoard();
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -53,11 +54,12 @@ public class Vue extends JFrame {
 		comboLevel = new JComboBox<String>(choices);
 	}
 
-	public void setPanelLeaderBoard(MouseClic _controle_c) {
+	public void setPanelLeaderBoard(MouseClic _controle_c, String [][] tab) {
 		controle_c = _controle_c;
 		panLB.setLayout(null);
 		this.setContentPane(panLB);
 		this.revalidate();
+		panLB.setTab(tab);
 		returnAbout.setBounds(5, 570, 135, 50);
 		returnAbout.addActionListener(controle_c);
 		panLB.add(returnAbout);
@@ -209,5 +211,9 @@ public class Vue extends JFrame {
 
 	public void hidePause() {
 		panIG.setPause(false);
+	}
+
+	public void setCounter(int i) {
+		panIG.setCounter(i);
 	}
 }

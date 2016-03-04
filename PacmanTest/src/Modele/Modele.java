@@ -29,7 +29,7 @@ public class Modele {
 
 	public static boolean[] bonus_eat;
 
-	public static int score = 0;
+	public static int score;
 
 	public static int difficulty = 50;
 
@@ -337,7 +337,7 @@ public class Modele {
 		}
 	}
 	
-	public static boolean runLeaderBoard (Controller controle) {
+	public static void runLeaderBoard (Controller controle) {
 		boolean userAction = false;
 		String action ="";
 		while(!userAction) {
@@ -346,11 +346,10 @@ public class Modele {
 			if (action.equals("Quit")){
 				System.exit(0);
 			}
-			/*if (action.equals("ReturnAbout")) {
-				return false;
-			}*/
+			if (action.equals("ReturnAbout")) {
+				userAction=true;
+			}
 		}
-		return true;
 	}
 
 	public static void runStartPage(Controller controle) {
@@ -397,7 +396,7 @@ public class Modele {
 			current_file = new File("HighScore.txt");
 		}
 		current_score = IOTreatment.extract(current_file);
-		if (Integer.parseInt(current_score[9][1]) < score) {
+		if (Integer.parseInt(current_score[current_score.length-1][current_score[0].length-1]) < score) {
 			int count = 0;
 			while (Integer.parseInt(current_score[count][1]) > score) {
 				count++;
@@ -406,9 +405,7 @@ public class Modele {
 		}
 	}
 
-	public static void run() {
-
-		Controller controle = new Controller(maxX, maxY);
+	public static void run(Controller controle) {
 		controle.startPage();
 		runStartPage(controle);
 
@@ -443,8 +440,9 @@ public class Modele {
 		controle.setHero(hero);
 		controle.startGame();
 
+		boolean loop=true;
 		// On tourne tant que l'utilisateur n'a pas gagné ou perdu
-		while (true) {
+		while (loop) {
 			// Init fichier
 			if (win) {
 				for (int i = 0; i < bonus_pop.length; i++) {
@@ -469,6 +467,7 @@ public class Modele {
 			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty);
 
 			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat, true);
+			controle.setCounter(4);
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
 				controle.refresh();
@@ -637,7 +636,19 @@ public class Modele {
 					} catch (IOException e) {
 						System.out.println("Erreur IO");
 					}
-					System.exit(0);
+					File file;
+					if(stagePlaying != 0){
+						file=new File(file_name);
+					} else {
+						file=new File("HighScore.txt");
+					}
+					try {
+						controle.leaderBoard(IOTreatment.extract(file));
+						runLeaderBoard(controle);
+						loop=false;
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 				}
 			} else {
 				hero.looseLife();
@@ -650,12 +661,29 @@ public class Modele {
 				} catch (IOException e) {
 					System.out.println("Erreur d'écriture");
 				}
-				System.exit(0);
+
+				File file;
+				if(stagePlaying != 0){
+					file=new File(file_name);
+				} else {
+					file=new File("HighScore.txt");
+				}
+				try {
+					controle.leaderBoard(IOTreatment.extract(file));
+					runLeaderBoard(controle);
+					loop=false;
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 	}
 
 	public static void main(String[] args) {
-		run();
+		Controller controle = new Controller(maxX, maxY);
+		while(true){
+			score=0;
+			run(controle);
+		}
 	}
 }
