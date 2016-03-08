@@ -555,8 +555,8 @@ public class Modele {
 			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty);
 
 			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat, true);
-			controle.setCounter(4);
-			System.out.println("set Counter Before try");
+			//controle.setCounter(4);
+			//System.out.println("set Counter Before try");
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
 				controle.refresh();
