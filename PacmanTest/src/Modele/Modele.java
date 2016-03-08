@@ -176,7 +176,7 @@ public class Modele {
 			}
 			File file;
 			if(stagePlaying != 0){
-				file=new File(file_name);
+				file=new File(IOTreatment.findFile(file_name));
 			} else {
 				file=new File("HighScore.txt");
 			}
@@ -653,7 +653,7 @@ public class Modele {
 					}
 					File file;
 					if(stagePlaying != 0){
-						file=new File(file_name);
+						file=new File(IOTreatment.findFile(file_name));
 					} else {
 						file=new File("HighScore.txt");
 					}
@@ -679,7 +679,7 @@ public class Modele {
 
 				File file;
 				if(stagePlaying != 0){
-					file=new File(file_name);
+					file=new File(IOTreatment.findFile(file_name));
 				} else {
 					file=new File("HighScore.txt");
 				}

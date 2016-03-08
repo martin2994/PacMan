@@ -1,7 +1,7 @@
 BOWSER 2730
+testmanu1 390
 test 200
-AAA 000
-AAA 000
+ererer 130
 AAA 000
 AAA 000
 AAA 000
