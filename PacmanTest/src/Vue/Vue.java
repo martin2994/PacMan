@@ -34,7 +34,7 @@ public class Vue extends JFrame {
 	public void create(){
 		panIG = new PanelInGame();
 		panS = new PanelStart();
-		panA = new PanelAbout();
+		panA = new PanelAbout(this.getHeight());
 		panO = new PanelOption();
 		panEG = new PanelEndGame();
 		panLB = new PanelLeaderBoard();

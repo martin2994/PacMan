@@ -12,7 +12,6 @@ public class PanelAbout extends JPanel {
 	private int pixelMaxime;
 	private int pixelMartin;
 	private int pixelManu;
-	private int pixelGuest;
 	private int pixelPacman;
 	private int pixelGhost;
 	private int pixelProducer;
@@ -20,65 +19,64 @@ public class PanelAbout extends JPanel {
 	private int pixelScreenwriter;
 	private int pixelMusician;
 
-	public PanelAbout() {
-		this.pixelProducer=20;
-		this.pixelMaxime = 50;
-		this.pixelDirector=80;
-		this.pixelManu = 110;
-		this.pixelScreenwriter=140;
-		this.pixelMartin = 170;
-		this.pixelStarring = 200;
-		this.pixelPacman = 230;
-		this.pixelGhost = 250;
-		this.pixelMusician=280;
+	private int baseProducer;
+	private int baseMaxime;
+	private int baseDirector;
+	private int baseManu;
+	private int baseScreenwriter;
+	private int baseMartin;
+	private int baseStarring;
+	private int basePacman;
+	private int baseGhost;
+	private int baseMusician;
+
+	public PanelAbout(int height) {
+		this.baseProducer=height+20;
+		this.baseMaxime=height+60;
+		this.baseDirector=height+100;
+		this.baseManu=height+140;
+		this.baseScreenwriter=height+180;
+		this.baseMartin=height+220;
+		this.baseStarring=height+260;
+		this.basePacman=height+300;
+		this.baseGhost=height+330;
+		this.baseMusician=height+370;
+		this.pixelProducer=baseProducer;
+		this.pixelMaxime = baseMaxime;
+		this.pixelDirector=baseDirector;
+		this.pixelManu = baseManu;
+		this.pixelScreenwriter=baseScreenwriter;
+		this.pixelMartin = baseMartin;
+		this.pixelStarring = baseStarring;
+		this.pixelPacman = basePacman;
+		this.pixelGhost = baseGhost;
+		this.pixelMusician=baseMusician;
 	}
 
 	public void paintComponent(Graphics g) {
-
-		if (pixelStarring == this.getHeight()) {
-			pixelStarring = 0;
-		}
-		if (pixelMaxime == this.getHeight()) {
-			pixelMaxime = 0;
-		}
-		if (pixelMartin == this.getHeight()) {
-			pixelMartin = 0;
-		}
-		if (pixelManu == this.getHeight()) {
-			pixelManu = 0;
-		}
-		if (pixelGuest == this.getHeight()) {
-			pixelGuest = 0;
-		}
-		if (pixelPacman == this.getHeight()) {
-			pixelPacman = 0;
-		}
-		if (pixelGhost == this.getHeight()) {
-			pixelGhost = 0;
-		}
-		if (pixelDirector == this.getHeight()) {
-			pixelDirector = 0;
-		}
-		if (pixelProducer == this.getHeight()) {
-			pixelProducer = 0;
-		}
-		if (pixelScreenwriter == this.getHeight()) {
-			pixelScreenwriter = 0;
-		}
-		if (pixelMusician == this.getHeight()) {
-			pixelMusician = 0;
+		if (pixelMusician == -10) {
+			this.pixelProducer=baseProducer;
+			this.pixelMaxime = baseMaxime;
+			this.pixelDirector=baseDirector;
+			this.pixelManu = baseManu;
+			this.pixelScreenwriter=baseScreenwriter;
+			this.pixelMartin = baseMartin;
+			this.pixelStarring = baseStarring;
+			this.pixelPacman = basePacman;
+			this.pixelGhost = baseGhost;
+			this.pixelMusician=baseMusician;
 		}
 
-		this.pixelStarring++;
-		this.pixelMaxime++;
-		this.pixelMartin++;
-		this.pixelManu++;
-		this.pixelPacman++;
-		this.pixelGhost++;
-		this.pixelProducer++;
-		this.pixelDirector++;
-		this.pixelScreenwriter++;
-		this.pixelMusician++;
+		this.pixelStarring--;
+		this.pixelMaxime--;
+		this.pixelMartin--;
+		this.pixelManu--;
+		this.pixelPacman--;
+		this.pixelGhost--;
+		this.pixelProducer--;
+		this.pixelDirector--;
+		this.pixelScreenwriter--;
+		this.pixelMusician--;
 
 		g.setColor(Color.black);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
