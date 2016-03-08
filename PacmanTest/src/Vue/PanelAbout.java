@@ -19,8 +19,8 @@ public class PanelAbout extends JPanel {
 	public PanelAbout() {
 		this.pixelStarring = 20;
 		this.pixelMaxime = 60;
-		this.pixelMartin = 90;
-		this.pixelManu = 120;
+		this.pixelManu = 90;
+		this.pixelMartin = 120;
 		this.pixelGuest = 160;
 		this.pixelPacman = 200;
 		this.pixelGhost = 230;

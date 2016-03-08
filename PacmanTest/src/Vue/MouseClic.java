@@ -3,9 +3,6 @@ package Vue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-
 public class MouseClic implements ActionListener {
 	private String action;
 	private String name;
@@ -15,51 +12,30 @@ public class MouseClic implements ActionListener {
 	public MouseClic() {
 		this.action = "Nothing";
 		this.name = "";
-		this.level="All";
-		this.delete="All";
+		this.level = "All";
+		this.delete = "All";
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "Start":
-			this.action = "Start";
-			break;
 		case "Options":
-			this.action = "Options";
-			break;
-		case "Scoreboard" :
-			this.action="Scoreboard";
-			break;
+		case "Scoreboard":
 		case "About":
-			this.action = "About";
-			break;
 		case "Quit":
-			this.action = "Quit";
-			break;
 		case "Next":
-			this.action = "Next";
+		case "Easy":
+		case "Medium":
+		case "Hard":
+		case "Delete":
+		case "Save":
+		case "On/Off":
+			this.action = e.getActionCommand();
 			break;
 		case "Return to menu":
 			this.action = "ReturnAbout";
 			break;
-		case "Easy":
-			this.action = "Easy";
-			break;
-		case "Medium":
-			this.action = "Medium";
-			break;
-		case "Hard":
-			this.action = "Hard";
-			break;
-		case "Delete":
-			this.action="Delete";
-			break;
-		case "Save":
-			this.action = "Save";
-			break;
-		case "On/Off":
-			this.action ="On/Off";
-			break;
+		default:
 		}
 	}
 
@@ -80,18 +56,18 @@ public class MouseClic implements ActionListener {
 	}
 
 	public void setLevel(String _level) {
-		this.level=_level;
+		this.level = _level;
 	}
-	
-	public String getLevel(){
+
+	public String getLevel() {
 		return this.level;
 	}
-	
+
 	public void setDelete(String _delete) {
-		this.delete=_delete;
+		this.delete = _delete;
 	}
-	
-	public String getDelete(){
+
+	public String getDelete() {
 		return this.delete;
 	}
 
