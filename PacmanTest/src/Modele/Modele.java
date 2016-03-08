@@ -166,9 +166,6 @@ public class Modele {
 		case "stage2.txt":
 			file_name = "stage3.txt";
 			break;
-		case "stage3.txt":
-			file_name = "stage4.txt";
-			break;
 		default:
 			controle.endPage();
 			runEndPage(controle);

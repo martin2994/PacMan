@@ -66,7 +66,6 @@ public class IOTreatment {
 				StringTokenizer currentChar = new StringTokenizer(currentLine);
 				current_score[i][0] = currentChar.nextToken().toString();
 				current_score[i][1] = currentChar.nextToken().toString();
-				System.out.println(current_score[i][0]+" "+current_score[i][1]+" "+i);
 			}
 			else {
 				current_score[i][0] = "AAA";
@@ -84,8 +83,6 @@ public class IOTreatment {
 			return "stage2HS.txt";
 		case ("stage3.txt") :
 			return "stage3HS.txt";
-		case ("stage4.txt") :
-			return "stage4HS.txt";
 		default:
 			return file_name.substring(5)+"HS.txt";
 		}
