@@ -304,6 +304,22 @@ public class Modele {
 			case "Hard":
 				difficulty = 0;
 				break;
+			case "Delete":
+				action = controle.whichDelete();
+				switch (action) {
+				case "1":
+				case "2":
+				case "3":
+				case "4":
+				case "5":
+				case "6":
+					new File("Stage"+action+"HS.txt").delete();
+					break;
+				case "All":
+					new File("HighScore.txt").delete();
+					break;
+				}
+				break;
 			case "On/Off":
 				controle.stopMusic();
 			default:

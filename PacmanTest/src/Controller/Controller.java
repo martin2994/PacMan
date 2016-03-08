@@ -148,6 +148,11 @@ public class Controller {
 	public String whichLevel() {
 		return mc.getLevel();
 	}
+	
+	public String whichDelete() {
+		return mc.getDelete();
+	}
+	
 	public void changeMusic(String new_song){
 		if(stopstartmusic)
 			current_music.changeMusic(new_song);

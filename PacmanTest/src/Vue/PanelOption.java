@@ -35,10 +35,13 @@ public class PanelOption extends JPanel {
 		drawDifficulty(g);
 		g.drawLine(0, this.getHeight()/4+21, this.getWidth(), this.getHeight()/4+21);
 		g.drawLine(0, this.getHeight()/4+23, this.getWidth(), this.getHeight()/4+23);
-		g.drawString ("Choose level : ", this.getWidth()/3-33,222);
+		g.drawString ("Choose level: ", this.getWidth()/3-33,222);
 		g.drawLine(0, this.getHeight()/2-55, this.getWidth(), this.getHeight()/2-55);
 		g.drawLine(0, this.getHeight()/2-53, this.getWidth(), this.getHeight()/2-53);
 		g.drawString ("Sound: ", this.getWidth()/2-50,this.getHeight()/2-8);
+		g.drawLine(0, this.getHeight()/2+93, this.getWidth(), this.getHeight()/2+93);
+		g.drawLine(0, this.getHeight()/2+95, this.getWidth(), this.getHeight()/2+95);
+		g.drawString ("Delete level high score:",this.getWidth()/4, 450);
 	}
 
 	public void drawDifficulty(Graphics g) {

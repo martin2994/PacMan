@@ -32,6 +32,7 @@ public class Vue extends JFrame {
 	JButton returnAbout;
 	JTextField name;
 	JComboBox<String> comboLevel;
+	JComboBox<String> comboDelete;
 
 	// Constructeur
 	public Vue(int maxX, int maxY) {
@@ -56,6 +57,7 @@ public class Vue extends JFrame {
 		name.setText("");
 		String[] choices = { "All", "1", "2", "3", "4", "5", "6" };
 		comboLevel = new JComboBox<String>(choices);
+		comboDelete = new JComboBox<String>(choices);
 	}
 
 	public void setPanelLeaderBoard(MouseClic _controle_c, String [][] tab) {
@@ -156,6 +158,13 @@ public class Vue extends JFrame {
 		comboLevel.addActionListener(controle_c);
 		comboLevel.setBounds(412, 200, 50, 25);
 		panO.add(comboLevel);
+		comboDelete.addActionListener(controle_c);
+		comboDelete.setBounds(230, 490, 50, 25);
+		panO.add(comboDelete);
+		JButton delete = new JButton("Delete");
+		panO.add(delete);
+		delete.setBounds(330,475,135,50);
+		delete.addActionListener(controle_c);
 	}
 
 	public void setPanelStart(MouseClic _controle) {
@@ -207,6 +216,7 @@ public class Vue extends JFrame {
 
 	public void refreshOption(String difficulty) {
 		controle_c.setLevel((String)this.comboLevel.getSelectedItem());
+		controle_c.setDelete((String)this.comboDelete.getSelectedItem());
 		panO.setDifficulty(difficulty);
 		panO.repaint();
 	}

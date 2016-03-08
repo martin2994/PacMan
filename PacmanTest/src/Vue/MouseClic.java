@@ -9,13 +9,14 @@ import javax.swing.JTextField;
 public class MouseClic implements ActionListener {
 	private String action;
 	private String name;
-	private JComboBox jcmbType;
 	private String level;
+	private String delete;
 
 	public MouseClic() {
 		this.action = "Nothing";
 		this.name = "";
 		this.level="All";
+		this.delete="All";
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -50,6 +51,9 @@ public class MouseClic implements ActionListener {
 		case "Hard":
 			this.action = "Hard";
 			break;
+		case "Delete":
+			this.action="Delete";
+			break;
 		case "Save":
 			this.action = "Save";
 			break;
@@ -81,6 +85,14 @@ public class MouseClic implements ActionListener {
 	
 	public String getLevel(){
 		return this.level;
+	}
+	
+	public void setDelete(String _delete) {
+		this.delete=_delete;
+	}
+	
+	public String getDelete(){
+		return this.delete;
 	}
 
 }
