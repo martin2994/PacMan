@@ -19,7 +19,7 @@ public class Modele {
 	// nombre de gommes total
 	public static int totalGumGum;
 	// Nom du fichier dans lequel le niveau est enregistré
-	public static String file_name = "new";
+	public static String file_name;
 	// nombre de pixels parcourus par tour
 	public static int deplacement = 1;
 	/*
@@ -38,7 +38,7 @@ public class Modele {
 	/*
 	 * Stage choisi par l'utilisateur
 	 */
-	public static int stagePlaying = 0;
+	public static int stagePlaying;
 
 	/*
 	 * Remplit la matrice en fonction des labyrinthes préchargés dans des
@@ -150,7 +150,7 @@ public class Modele {
 	/*
 	 * Charge le labyrinthe correspondant au niveau actuel
 	 */
-	public static void whatsTheName(Controller controle) {
+	public static boolean whatsTheName(Controller controle) {
 
 		switch (file_name) {
 		case "new":
@@ -174,7 +174,19 @@ public class Modele {
 			} catch (IOException e) {
 				System.out.println("Erreur écriture");
 			}
-			System.exit(0);
+			File file;
+			if(stagePlaying != 0){
+				file=new File(file_name);
+			} else {
+				file=new File("HighScore.txt");
+			}
+			try {
+				controle.leaderBoard(IOTreatment.extract(file));
+				runLeaderBoard(controle);
+				return false;
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 		switch(file_name){
 		case "stage1.txt":
@@ -184,6 +196,7 @@ public class Modele {
 			controle.changeMusic("music/lvl2.wav");
 			break;
 		}
+		return true;
 	}
 
 	/*
@@ -431,16 +444,18 @@ public class Modele {
 		// Vrai si pacman se fait attraper
 		boolean catchMeIfYouCan = false;
 
+
+		boolean loop=true;
+		
 		// Vrai si la partie est gagnée
 		boolean win = false;
-		whatsTheName(controle);
+		loop = whatsTheName(controle);
 		fillMyTab();
 
 		// On initialise le controller
 		controle.setHero(hero);
 		controle.startGame();
 
-		boolean loop=true;
 		// On tourne tant que l'utilisateur n'a pas gagné ou perdu
 		while (loop) {
 			// Init fichier
@@ -448,7 +463,7 @@ public class Modele {
 				for (int i = 0; i < bonus_pop.length; i++) {
 					bonus_pop[i] = false;
 				}
-				whatsTheName(controle);
+				loop=whatsTheName(controle);
 				win = false;
 				hero.setLife(3);
 				// Init labyrinth
@@ -683,6 +698,8 @@ public class Modele {
 		Controller controle = new Controller(maxX, maxY);
 		while(true){
 			score=0;
+			file_name="new";
+			stagePlaying =0;
 			run(controle);
 		}
 	}
