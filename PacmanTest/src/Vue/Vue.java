@@ -59,6 +59,7 @@ public class Vue extends JFrame {
 	}
 
 	public void setPanelLeaderBoard(MouseClic _controle_c, String [][] tab) {
+		panLB = new PanelLeaderBoard();
 		controle_c = _controle_c;
 		panLB.setLayout(null);
 		this.setContentPane(panLB);
@@ -71,6 +72,23 @@ public class Vue extends JFrame {
 		quit.setBounds(516, 570, 135, 50);
 		quit.addActionListener(controle_c);
 		panLB.add(quit);
+	}
+	
+	public void setPanelLeaderBoardFromStartPage(MouseClic _controle_c, String [][] tab, String level){
+		controle_c=_controle_c;
+		panLB.setLayout(null);
+		this.setContentPane(panLB);
+		this.revalidate();
+		panLB.setTab(tab);
+		panLB.setLevel(level);
+		returnAbout.setBounds(5, 570, 135, 50);
+		returnAbout.addActionListener(controle_c);
+		panLB.add(returnAbout);
+		JButton next = new JButton("Next");
+		next.setBounds(516, 570, 135, 50);
+		next.addActionListener(controle_c);
+		panLB.add(next);
+		
 	}
 
 	public void setPanelEndGame(MouseClic _controle_c) {
@@ -147,19 +165,25 @@ public class Vue extends JFrame {
 		this.revalidate();
 		JButton start = new JButton("Start");
 		panS.add(start);
-		start.setBounds(260, 100, 110, 50);
+		start.setBounds(260, 86, 110, 50);
 		start.addActionListener(controle_c);
 		JButton options = new JButton("Options");
 		panS.add(options);
-		options.setBounds(260, 200, 110, 50);
+		options.setBounds(260, 186, 110, 50);
 		options.addActionListener(controle_c);
+
+		JButton scoreboard = new JButton("Scoreboard");
+		panS.add(scoreboard);
+		scoreboard.setBounds(260, 286, 110, 50);
+		scoreboard.addActionListener(controle_c);
+		
 		JButton about = new JButton("About");
 		panS.add(about);
-		about.setBounds(260, 300, 110, 50);
+		about.setBounds(260, 386, 110, 50);
 		about.addActionListener(controle_c);
 		JButton quit = new JButton("Quit");
 		panS.add(quit);
-		quit.setBounds(260, 400, 110, 50);
+		quit.setBounds(260, 486, 110, 50);
 		quit.addActionListener(controle_c);
 
 	}
@@ -219,5 +243,11 @@ public class Vue extends JFrame {
 
 	public void setCounter(int i) {
 		panIG.setCounter(i);
+	}
+
+	public void setTabLeaderBoard(String[][] extract, String level) {
+		panLB.setTab(extract);
+		panLB.setLevel(level);
+		panLB.repaint();
 	}
 }

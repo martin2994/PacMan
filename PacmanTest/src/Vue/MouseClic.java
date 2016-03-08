@@ -18,7 +18,6 @@ public class MouseClic implements ActionListener {
 		this.level="All";
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "Start":
@@ -27,11 +26,17 @@ public class MouseClic implements ActionListener {
 		case "Options":
 			this.action = "Options";
 			break;
+		case "Scoreboard" :
+			this.action="Scoreboard";
+			break;
 		case "About":
 			this.action = "About";
 			break;
 		case "Quit":
 			this.action = "Quit";
+			break;
+		case "Next":
+			this.action = "Next";
 			break;
 		case "Return to menu":
 			this.action = "ReturnAbout";

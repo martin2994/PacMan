@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 public class PanelLeaderBoard extends JPanel {
 
 	private String tab[][];
+	private String level="";
 
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.BLACK);
@@ -17,6 +18,7 @@ public class PanelLeaderBoard extends JPanel {
 		g.setFont(font);
 		g.setColor(Color.YELLOW);
 		g.drawString("LEADERBOARD", this.getWidth() / 3 + 17, 30);
+		g.drawString (level,this.getWidth() / 3 + 17, 60);
 		for (int i = 0; i < tab.length; i++) {
 			g.drawString(i + 1 + " -", 10, 130 + 35 * i);
 			g.drawString(tab[i][1], 160, 130 + 35 * i);
@@ -31,5 +33,9 @@ public class PanelLeaderBoard extends JPanel {
 				tab[i][j] = _tab[i][j];
 			}
 		}
+	}
+	
+	public void setLevel(String _level){
+		this.level=_level;
 	}
 }

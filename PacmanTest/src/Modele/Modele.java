@@ -175,10 +175,10 @@ public class Modele {
 				System.out.println("Erreur écriture");
 			}
 			File file;
-			if(stagePlaying != 0){
-				file=new File(IOTreatment.findFile(file_name));
+			if (stagePlaying != 0) {
+				file = new File(IOTreatment.findFile(file_name));
 			} else {
-				file=new File("HighScore.txt");
+				file = new File("HighScore.txt");
 			}
 			try {
 				controle.leaderBoard(IOTreatment.extract(file));
@@ -188,7 +188,7 @@ public class Modele {
 				e1.printStackTrace();
 			}
 		}
-		switch(file_name){
+		switch (file_name) {
 		case "stage1.txt":
 			controle.changeMusic("music/lvl1.wav");
 			break;
@@ -349,18 +349,18 @@ public class Modele {
 			}
 		}
 	}
-	
-	public static void runLeaderBoard (Controller controle) {
+
+	public static void runLeaderBoard(Controller controle) {
 		boolean userAction = false;
-		String action ="";
-		while(!userAction) {
+		String action = "";
+		while (!userAction) {
 			controle.refreshLeaderBoard();
 			action = controle.majStartPage();
-			if (action.equals("Quit")){
+			if (action.equals("Quit")) {
 				System.exit(0);
 			}
 			if (action.equals("ReturnAbout")) {
-				userAction=true;
+				userAction = true;
 			}
 		}
 	}
@@ -378,12 +378,60 @@ public class Modele {
 			case "Options":
 				runOptionPage(controle);
 				break;
+			case "Scoreboard":
+				runScoreboardFromStartPage(controle);
 			case "About":
 				runAboutPage(controle);
 				break;
 			case "Quit":
 				System.exit(0);
 			default:
+			}
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void runScoreboardFromStartPage(Controller controle) {
+		String file_name_view = "HighScore.txt";
+		boolean userAction = false;
+		String action = "";
+		try {
+			controle.setPanelLeaderBoardFromStartPage(IOTreatment.extract(new File(file_name_view)),"General");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		while (!userAction) {
+			action = controle.majStartPage();
+			if (action.equals("Next")) {
+				controle.resetAction();
+				if (file_name_view.equals("HighScore.txt")) {
+					file_name_view = "Stage1HS.txt";
+				} else {
+					if (file_name_view.equals("Stage6HS.txt")) {
+						file_name_view = "HighScore.txt";
+					} else {
+						char i = file_name_view.charAt(5);
+						i++;
+						file_name_view = file_name_view.substring(0, 5) + i + "HS.txt";
+					}
+				}
+				try {
+					if (file_name_view.equals("HighScore.txt")){
+					controle.setTabLeaderBoard(IOTreatment.extract(new File(file_name_view)),"General");
+					} else {
+						controle.setTabLeaderBoard(IOTreatment.extract(new File(file_name_view)),
+								file_name_view.substring(0, 5) + " " + file_name_view.charAt(5));
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			if (action.equals("ReturnAbout")) {
+				userAction = true;
 			}
 			try {
 				Thread.sleep(5);
@@ -409,7 +457,7 @@ public class Modele {
 			current_file = new File("HighScore.txt");
 		}
 		current_score = IOTreatment.extract(current_file);
-		if (Integer.parseInt(current_score[current_score.length-1][current_score[0].length-1]) < score) {
+		if (Integer.parseInt(current_score[current_score.length - 1][current_score[0].length - 1]) < score) {
 			int count = 0;
 			while (Integer.parseInt(current_score[count][1]) > score) {
 				count++;
@@ -444,9 +492,8 @@ public class Modele {
 		// Vrai si pacman se fait attraper
 		boolean catchMeIfYouCan = false;
 
+		boolean loop = true;
 
-		boolean loop=true;
-		
 		// Vrai si la partie est gagnée
 		boolean win = false;
 		loop = whatsTheName(controle);
@@ -456,6 +503,8 @@ public class Modele {
 		controle.setHero(hero);
 		controle.startGame();
 
+		hero.setLife(3);
+
 		// On tourne tant que l'utilisateur n'a pas gagné ou perdu
 		while (loop) {
 			// Init fichier
@@ -463,9 +512,8 @@ public class Modele {
 				for (int i = 0; i < bonus_pop.length; i++) {
 					bonus_pop[i] = false;
 				}
-				loop=whatsTheName(controle);
+				loop = whatsTheName(controle);
 				win = false;
-				hero.setLife(3);
 				// Init labyrinth
 				fillMyTab();
 			}
@@ -652,15 +700,15 @@ public class Modele {
 						System.out.println("Erreur IO");
 					}
 					File file;
-					if(stagePlaying != 0){
-						file=new File(IOTreatment.findFile(file_name));
+					if (stagePlaying != 0) {
+						file = new File(IOTreatment.findFile(file_name));
 					} else {
-						file=new File("HighScore.txt");
+						file = new File("HighScore.txt");
 					}
 					try {
 						controle.leaderBoard(IOTreatment.extract(file));
 						runLeaderBoard(controle);
-						loop=false;
+						loop = false;
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -678,15 +726,15 @@ public class Modele {
 				}
 
 				File file;
-				if(stagePlaying != 0){
-					file=new File(IOTreatment.findFile(file_name));
+				if (stagePlaying != 0) {
+					file = new File(IOTreatment.findFile(file_name));
 				} else {
-					file=new File("HighScore.txt");
+					file = new File("HighScore.txt");
 				}
 				try {
 					controle.leaderBoard(IOTreatment.extract(file));
 					runLeaderBoard(controle);
-					loop=false;
+					loop = false;
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -696,10 +744,10 @@ public class Modele {
 
 	public static void main(String[] args) {
 		Controller controle = new Controller(maxX, maxY);
-		while(true){
-			score=0;
-			file_name="new";
-			stagePlaying =0;
+		while (true) {
+			score = 0;
+			file_name = "new";
+			stagePlaying = 0;
 			controle.resetVue();
 			run(controle);
 		}

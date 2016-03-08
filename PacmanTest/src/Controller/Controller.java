@@ -152,8 +152,13 @@ public class Controller {
 		if(stopstartmusic)
 			current_music.changeMusic(new_song);
 	}
-	public void stopMusic(){
+	
+	public void resetAction(){
 		mc.setAction("Nothing");
+	}
+	
+	public void stopMusic(){
+		resetAction();
 		current_music.stopMusic();
 		if (stopstartmusic)
 			stopstartmusic=false;
@@ -175,6 +180,14 @@ public class Controller {
 
 	public void resetVue() {
 		vue.create();
+	}
+
+	public void setTabLeaderBoard(String[][] extract, String level) {
+		vue.setTabLeaderBoard(extract, level);
+	}
+
+	public void setPanelLeaderBoardFromStartPage(String[][] extract, String level) {
+		vue.setPanelLeaderBoardFromStartPage(mc,extract, level);
 	}
 	
 }
