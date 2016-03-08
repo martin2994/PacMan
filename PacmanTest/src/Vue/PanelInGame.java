@@ -34,6 +34,7 @@ public class PanelInGame extends JPanel {
 
 	public PanelInGame() {
 		pause = false;
+		System.out.println("Counter initialisé PanelInGame");
 		counter = 4;
 		myimage=new MyImage();
 	}

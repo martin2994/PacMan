@@ -17,7 +17,7 @@ public class Music {
 		}
 		public void changeMusic(String music){
 			if (current_clip.isRunning()){
-				current_clip.stop();
+				current_clip.close();
 			}
 			setMusic(music);
 		}

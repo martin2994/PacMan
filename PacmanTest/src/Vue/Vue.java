@@ -229,6 +229,7 @@ public class Vue extends JFrame {
 		panIG.setBonus(bonus);
 		if (reset) {
 			panIG.resetCounter();
+			System.out.println("Reset Vue majVue()");
 		}
 		this.setContentPane(panIG);
 	}
