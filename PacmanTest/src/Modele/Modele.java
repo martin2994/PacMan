@@ -275,8 +275,12 @@ public class Modele {
 		boolean userAction = false;
 		String action;
 		controle.aboutPage();
+		int i=0;
 		while (!userAction) {
-			controle.refreshAbout();
+			i++;
+			if(i%3==0){
+				controle.refreshAbout();
+			}
 			action = controle.majStartPage();
 			switch (action) {
 			case "ReturnAbout":

@@ -15,15 +15,22 @@ public class PanelAbout extends JPanel {
 	private int pixelGuest;
 	private int pixelPacman;
 	private int pixelGhost;
+	private int pixelProducer;
+	private int pixelDirector;
+	private int pixelScreenwriter;
+	private int pixelMusician;
 
 	public PanelAbout() {
-		this.pixelStarring = 20;
-		this.pixelMaxime = 60;
-		this.pixelManu = 90;
-		this.pixelMartin = 120;
-		this.pixelGuest = 160;
-		this.pixelPacman = 200;
-		this.pixelGhost = 230;
+		this.pixelProducer=20;
+		this.pixelMaxime = 50;
+		this.pixelDirector=80;
+		this.pixelManu = 110;
+		this.pixelScreenwriter=140;
+		this.pixelMartin = 170;
+		this.pixelStarring = 200;
+		this.pixelPacman = 230;
+		this.pixelGhost = 250;
+		this.pixelMusician=280;
 	}
 
 	public void paintComponent(Graphics g) {
@@ -49,14 +56,29 @@ public class PanelAbout extends JPanel {
 		if (pixelGhost == this.getHeight()) {
 			pixelGhost = 0;
 		}
+		if (pixelDirector == this.getHeight()) {
+			pixelDirector = 0;
+		}
+		if (pixelProducer == this.getHeight()) {
+			pixelProducer = 0;
+		}
+		if (pixelScreenwriter == this.getHeight()) {
+			pixelScreenwriter = 0;
+		}
+		if (pixelMusician == this.getHeight()) {
+			pixelMusician = 0;
+		}
 
 		this.pixelStarring++;
 		this.pixelMaxime++;
 		this.pixelMartin++;
 		this.pixelManu++;
-		this.pixelGuest++;
 		this.pixelPacman++;
 		this.pixelGhost++;
+		this.pixelProducer++;
+		this.pixelDirector++;
+		this.pixelScreenwriter++;
+		this.pixelMusician++;
 
 		g.setColor(Color.black);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
@@ -64,19 +86,19 @@ public class PanelAbout extends JPanel {
 		Font font = new Font("Courier", Font.BOLD, 25);
 		g.setFont(font);
 		g.setColor(Color.YELLOW);
-		g.drawString("Starring", 3 * (this.getWidth() / 7) - 10, pixelStarring);
-		g.drawString("Special Guest", this.getWidth() / 2 - 95, pixelGuest);
+		g.drawString("Executive Producer", this.getWidth()/3, pixelProducer);
+		g.drawString("Director",this.getWidth()/3, pixelDirector);
+		g.drawString("Screenwriter",this.getWidth()/3, pixelScreenwriter);
+		g.drawString("Starring",this.getWidth()/3, pixelStarring);
+		g.drawString("Music by",this.getWidth()/3, pixelMusician);
 
 		Font font2 = new Font("Courier", Font.BOLD, 20);
 		g.setFont(font2);
 		g.setColor(Color.YELLOW);
-		g.drawString("Duchene", this.getWidth() / 2 - 103, pixelMaxime);
-		g.drawString("Maxime", this.getWidth() / 2 + 20, pixelMaxime);
-		g.drawString("Rety", this.getWidth() / 2 - 67, pixelMartin);
-		g.drawString("Martin", this.getWidth() / 2 + 20, pixelMartin);
-		g.drawString("Herrmann", this.getWidth() / 2 - 113, pixelManu);
-		g.drawString("Emmanuel", this.getWidth() / 2 + 20, pixelManu);
-		g.drawString("Pacman", this.getWidth() / 2 - 35, pixelPacman);
-		g.drawString("and the Ghosts", this.getWidth() / 2 - 80, pixelGhost);
+		g.drawString("Duchene Maxime", this.getWidth()/3+30, pixelMaxime);
+		g.drawString("Herrmann Emmanuel", this.getWidth()/3+30, pixelManu);
+		g.drawString("Rety Martin", this.getWidth()/3+30, pixelMartin);
+		g.drawString("Pacman", this.getWidth()/3+30, pixelPacman);
+		g.drawString("and the Ghosts", this.getWidth()/3+30, pixelGhost);
 	}
 }
