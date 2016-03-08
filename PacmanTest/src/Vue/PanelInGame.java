@@ -25,65 +25,8 @@ public class PanelInGame extends JPanel {
 	private Ghost clyde;
 	private Pacman hero;
 	private boolean[] bonus;
+	private MyImage myimage;
 
-	private Image img0;
-	private Image img1;
-	private Image img_5;
-	private Image img2;
-	private Image img3;
-	private Image img4;
-	private Image img5;
-	private Image img6;
-	private Image img7;
-	private Image img8;
-	private Image img9;
-	private Image img10;
-	private Image img11;
-	private Image img12;
-	private Image img13;
-	private Image img14;
-	private Image img15;
-	private Image img16;
-	private Image img17;
-	private Image img18;
-	private Image img19;
-	private Image img20;
-	private Image img21;
-	private Image img22;
-	private Image img23;
-	private Image img24;
-	private Image pacman_left;
-	private Image pacman_right;
-	private Image pacman_up;
-	private Image pacman_down;
-	private Image pacman_close;
-	private Image blinky_left;
-	private Image blinky_up;
-	private Image blinky_down;
-	private Image blinky_right;
-	private Image clyde_left;
-	private Image clyde_up;
-	private Image clyde_down;
-	private Image clyde_right;
-	private Image inky_left;
-	private Image inky_up;
-	private Image inky_down;
-	private Image inky_right;
-	private Image pinky_left;
-	private Image pinky_up;
-	private Image pinky_down;
-	private Image pinky_right;
-	private Image blue_ghost;
-	private Image white_ghost;
-	private Image eyes_right;
-	private Image eyes_up;
-	private Image eyes_down;
-	private Image eyes_left;
-	private Image cerise;
-	private Image cle;
-	private Image fraise;
-	private Image orange;
-	private Image pomme;
 
 	// boolean et timer pour gerer la forme du pacman
 	private boolean form_pacman = false;
@@ -92,68 +35,7 @@ public class PanelInGame extends JPanel {
 	public PanelInGame() {
 		pause = false;
 		counter = 4;
-		try { // chargement des images
-			img0 = ImageIO.read(new File("src/image/case0.png"));
-			img1 = ImageIO.read(new File("src/image/case1.png"));
-			img_5 = ImageIO.read(new File("src/image/case-5.png"));
-			img2 = ImageIO.read(new File("src/image/case2.png"));
-			img3 = ImageIO.read(new File("src/image/case3.png"));
-			img4 = ImageIO.read(new File("src/image/case4.png"));
-			img5 = ImageIO.read(new File("src/image/case5.png"));
-			img6 = ImageIO.read(new File("src/image/case6.png"));
-			img7 = ImageIO.read(new File("src/image/case7.png"));
-			img8 = ImageIO.read(new File("src/image/case8.png"));
-			img9 = ImageIO.read(new File("src/image/case9.png"));
-			img10 = ImageIO.read(new File("src/image/case10.png"));
-			img11 = ImageIO.read(new File("src/image/case11.png"));
-			img12 = ImageIO.read(new File("src/image/case12.png"));
-			img13 = ImageIO.read(new File("src/image/case13.png"));
-			img14 = ImageIO.read(new File("src/image/case14.png"));
-			img15 = ImageIO.read(new File("src/image/case15.png"));
-			img16 = ImageIO.read(new File("src/image/case16.png"));
-			img17 = ImageIO.read(new File("src/image/case17.png"));
-			img18 = ImageIO.read(new File("src/image/case18.png"));
-			img19 = ImageIO.read(new File("src/image/case19.png"));
-			img20 = ImageIO.read(new File("src/image/case20.png"));
-			img21 = ImageIO.read(new File("src/image/case21.png"));
-			img22 = ImageIO.read(new File("src/image/case22.png"));
-			img23 = ImageIO.read(new File("src/image/case23.png"));
-			img24 = ImageIO.read(new File("src/image/case24.png"));
-			pacman_left = ImageIO.read(new File("src/image/Pacman_left.png"));
-			pacman_right = ImageIO.read(new File("src/image/Pacman_right.png"));
-			pacman_up = ImageIO.read(new File("src/image/Pacman_up.png"));
-			pacman_down = ImageIO.read(new File("src/image/Pacman_down.png"));
-			pacman_close = ImageIO.read(new File("src/image/Pacman_close.png"));
-			blinky_left = ImageIO.read(new File("src/image/Blinky_left.png"));
-			blinky_up = ImageIO.read(new File("src/image/Blinky_up.png"));
-			blinky_down = ImageIO.read(new File("src/image/Blinky_down.png"));
-			blinky_right = ImageIO.read(new File("src/image/Blinky_right.png"));
-			clyde_left = ImageIO.read(new File("src/image/Clyde_left.png"));
-			clyde_up = ImageIO.read(new File("src/image/Clyde_up.png"));
-			clyde_down = ImageIO.read(new File("src/image/Clyde_down.png"));
-			clyde_right = ImageIO.read(new File("src/image/Clyde_right.png"));
-			inky_left = ImageIO.read(new File("src/image/Inky_left.png"));
-			inky_up = ImageIO.read(new File("src/image/Inky_up.png"));
-			inky_down = ImageIO.read(new File("src/image/Inky_down.png"));
-			inky_right = ImageIO.read(new File("src/image/Inky_right.png"));
-			pinky_left = ImageIO.read(new File("src/image/Pinky_left.png"));
-			pinky_up = ImageIO.read(new File("src/image/Pinky_up.png"));
-			pinky_down = ImageIO.read(new File("src/image/Pinky_down.png"));
-			pinky_right = ImageIO.read(new File("src/image/Pinky_right.png"));
-			blue_ghost = ImageIO.read(new File("src/image/Blue_Ghost.png"));
-			white_ghost = ImageIO.read(new File("src/image/White_Ghost.png"));
-			eyes_right = ImageIO.read(new File("src/image/eyes_right.png"));
-			eyes_up = ImageIO.read(new File("src/image/eyes_up.png"));
-			eyes_down = ImageIO.read(new File("src/image/eyes_down.png"));
-			eyes_left = ImageIO.read(new File("src/image/eyes_left.png"));
-			fraise = ImageIO.read(new File("src/image/fraise.png"));
-			orange = ImageIO.read(new File("src/image/orange.png"));
-			cerise = ImageIO.read(new File("src/image/cerise.png"));
-			pomme = ImageIO.read(new File("src/image/pomme.png"));
-			cle = ImageIO.read(new File("src/image/cle.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		myimage=new MyImage();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -185,94 +67,94 @@ public class PanelInGame extends JPanel {
 			for (int j = 0; j < 22; j++) {
 				switch (mat[i][j]) {
 				case -5:
-					g.drawImage(img_5, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(25), i * 28, j * 28, this);
 					break;
 				case -4:
-					g.drawImage(fraise, i * 28, j * 28, this);
+					g.drawImage(myimage.getBonus("Fraise"), i * 28, j * 28, this);
 					break;
 				case -3:
-					g.drawImage(cerise, i * 28, j * 28, this);
+					g.drawImage(myimage.getBonus("Cerise"), i * 28, j * 28, this);
 					break;
 				case -2:
-					g.drawImage(orange, i * 28, j * 28, this);
+					g.drawImage(myimage.getBonus("Orange"), i * 28, j * 28, this);
 					break;
 				case -1:
-					g.drawImage(pomme, i * 28, j * 28, this);
+					g.drawImage(myimage.getBonus("Pomme"), i * 28, j * 28, this);
 					break;
 				case 0:
-					g.drawImage(img0, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(0), i * 28, j * 28, this);
 					break;
 				case 1:
-					g.drawImage(img1, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(1), i * 28, j * 28, this);
 					break;
 				case 2:
-					g.drawImage(img2, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(2), i * 28, j * 28, this);
 					break;
 				case 3:
-					g.drawImage(img3, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(3), i * 28, j * 28, this);
 					break;
 				case 4:
-					g.drawImage(img4, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(4), i * 28, j * 28, this);
 					break;
 				case 5:
-					g.drawImage(img5, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(5), i * 28, j * 28, this);
 					break;
 				case 6:
-					g.drawImage(img6, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(6), i * 28, j * 28, this);
 					break;
 				case 7:
-					g.drawImage(img7, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(7), i * 28, j * 28, this);
 					break;
 				case 8:
-					g.drawImage(img8, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(8), i * 28, j * 28, this);
 					break;
 				case 9:
-					g.drawImage(img9, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(9), i * 28, j * 28, this);
 					break;
 				case 10:
-					g.drawImage(img10, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(10), i * 28, j * 28, this);
 					break;
 				case 11:
-					g.drawImage(img11, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(11), i * 28, j * 28, this);
 					break;
 				case 12:
-					g.drawImage(img12, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(12), i * 28, j * 28, this);
 					break;
 				case 13:
-					g.drawImage(img13, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(13), i * 28, j * 28, this);
 					break;
 				case 14:
-					g.drawImage(img14, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(14), i * 28, j * 28, this);
 					break;
 				case 15:
-					g.drawImage(img15, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(15), i * 28, j * 28, this);
 					break;
 				case 16:
-					g.drawImage(img16, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(16), i * 28, j * 28, this);
 					break;
 				case 17:
-					g.drawImage(img17, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(17), i * 28, j * 28, this);
 					break;
 				case 18:
-					g.drawImage(img18, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(18), i * 28, j * 28, this);
 					break;
 				case 19:
-					g.drawImage(img19, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(19), i * 28, j * 28, this);
 					break;
 				case 20:
-					g.drawImage(img20, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(20), i * 28, j * 28, this);
 					break;
 				case 21:
-					g.drawImage(img21, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(21), i * 28, j * 28, this);
 					break;
 				case 22:
-					g.drawImage(img22, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(22), i * 28, j * 28, this);
 					break;
 				case 23:
-					g.drawImage(img23, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(23), i * 28, j * 28, this);
 					break;
 				case 24:
-					g.drawImage(img24, i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(24), i * 28, j * 28, this);
 					break;
 				}
 			}
@@ -291,23 +173,23 @@ public class PanelInGame extends JPanel {
 		if ((form_pacman || timer_anim_pacman < 10) && !this.pause) {
 			switch (hero.getGo()) {
 			case UP:
-				g.drawImage(pacman_up, hero.getCoordX(), hero.getCoordY(), this);
+				g.drawImage(myimage.getPacman("up"), hero.getCoordX(), hero.getCoordY(), this);
 				break;
 			case DOWN:
-				g.drawImage(pacman_down, hero.getCoordX(), hero.getCoordY(), this);
+				g.drawImage(myimage.getPacman("down"), hero.getCoordX(), hero.getCoordY(), this);
 				break;
 			case LEFT:
-				g.drawImage(pacman_left, hero.getCoordX(), hero.getCoordY(), this);
+				g.drawImage(myimage.getPacman("left"), hero.getCoordX(), hero.getCoordY(), this);
 				break;
 			case RIGHT:
-				g.drawImage(pacman_right, hero.getCoordX(), hero.getCoordY(), this);
+				g.drawImage(myimage.getPacman("right"), hero.getCoordX(), hero.getCoordY(), this);
 				break;
 			default:
 			}
 			if (timer_anim_pacman == 9)
 				form_pacman = false;
 		} else {
-			g.drawImage(pacman_close, hero.getCoordX(), hero.getCoordY(), this);
+			g.drawImage(myimage.getPacman("close"), hero.getCoordX(), hero.getCoordY(), this);
 		}
 		timer_anim_pacman++;
 		// réinitialisation du timer
@@ -333,17 +215,17 @@ public class PanelInGame extends JPanel {
 		g.setColor(Color.white);
 		g.drawString("Life:", this.getWidth() - 105, (this.getHeight() / 3) - 28);
 		for (int i = 0; i < hero.getLife(); i++) {
-			g.drawImage(pacman_right, (this.getWidth() - 105) + i * 28, (this.getHeight() / 3) - 14, this);
+			g.drawImage(myimage.getPacman("right"), (this.getWidth() - 105) + i * 28, (this.getHeight() / 3) - 14, this);
 		}
 		g.drawString("Bonus:", this.getWidth() - 105, 2 * (this.getHeight() / 3) - 28);
 		if (bonus[0])
-			g.drawImage(pomme, this.getWidth() - 50, 2 * (this.getHeight() / 3) + 32, this);
+			g.drawImage(myimage.getBonus("pomme"), this.getWidth() - 50, 2 * (this.getHeight() / 3) + 32, this);
 		if (bonus[1])
-			g.drawImage(orange, this.getWidth() - 105, 2 * (this.getHeight() / 3) + 32, this);
+			g.drawImage(myimage.getBonus("Orange"), this.getWidth() - 105, 2 * (this.getHeight() / 3) + 32, this);
 		if (bonus[2])
-			g.drawImage(cerise, this.getWidth() - 50, 2 * (this.getHeight() / 3) - 10, this);
+			g.drawImage(myimage.getBonus("Cerise"), this.getWidth() - 50, 2 * (this.getHeight() / 3) - 10, this);
 		if (bonus[3])
-			g.drawImage(fraise, this.getWidth() - 105, 2 * (this.getHeight() / 3) - 10, this);
+			g.drawImage(myimage.getBonus("Fraise"), this.getWidth() - 105, 2 * (this.getHeight() / 3) - 10, this);
 
 		// affichage du score
 		g.drawString("Score:", this.getWidth() - 105, 50);
@@ -375,12 +257,12 @@ public class PanelInGame extends JPanel {
 	public void drawEatableGhost(Graphics g, Ghost actual) {
 		if (hero.getTimer_superPacman() >= 625) {
 			if (hero.getTimer_superPacman() % 25 < 13) {
-				g.drawImage(white_ghost, actual.getCoordX(), actual.getCoordY(), this);
+				g.drawImage(myimage.getGhost("White",""), actual.getCoordX(), actual.getCoordY(), this);
 			} else {
-				g.drawImage(blue_ghost, actual.getCoordX(), actual.getCoordY(), this);
+				g.drawImage(myimage.getGhost("Blue",""), actual.getCoordX(), actual.getCoordY(), this);
 			}
 		} else {
-			g.drawImage(blue_ghost, actual.getCoordX(), actual.getCoordY(), this);
+			g.drawImage(myimage.getGhost("Blue",""), actual.getCoordX(), actual.getCoordY(), this);
 		}
 	}
 
@@ -391,46 +273,46 @@ public class PanelInGame extends JPanel {
 		 */
 		switch (blinky.getState()) {
 		case 0:
-			drawDirectionGhost(g, blinky, blinky_up, blinky_down, blinky_left, blinky_right);
+			drawDirectionGhost(g, blinky, myimage.getGhost("Blinky","up"), myimage.getGhost("Blinky","down"), myimage.getGhost("Blinky","left"),myimage.getGhost("Blinky","right"));
 			break;
 		case 1:
 			drawEatableGhost(g, blinky);
 			break;
 		case 2:
-			drawDirectionGhost(g, blinky, eyes_up, eyes_down, eyes_left, eyes_right);
+			drawDirectionGhost(g, blinky, myimage.getGhost("Eye","up"), myimage.getGhost("Eye","down"), myimage.getGhost("Eye","left"),myimage.getGhost("Eye","right"));
 			break;
 		}
 		switch (inky.getState()) {
 		case 0:
-			drawDirectionGhost(g, inky, inky_up, inky_down, inky_left, inky_right);
+			drawDirectionGhost(g, inky, myimage.getGhost("Inky","up"), myimage.getGhost("Inky","down"), myimage.getGhost("Inky","left"),myimage.getGhost("Inky","right"));
 			break;
 		case 1:
 			drawEatableGhost(g, inky);
 			break;
 		case 2:
-			drawDirectionGhost(g, inky, eyes_up, eyes_down, eyes_left, eyes_right);
+			drawDirectionGhost(g, inky, myimage.getGhost("Eye","up"), myimage.getGhost("Eye","down"), myimage.getGhost("Eye","left"),myimage.getGhost("Eye","right"));
 			break;
 		}
 		switch (pinky.getState()) {
 		case 0:
-			drawDirectionGhost(g, pinky, pinky_up, pinky_down, pinky_left, pinky_right);
+			drawDirectionGhost(g, pinky,myimage.getGhost("Pinky","up"), myimage.getGhost("Pinky","down"), myimage.getGhost("Pinky","left"),myimage.getGhost("Pinky","right"));
 			break;
 		case 1:
 			drawEatableGhost(g, pinky);
 			break;
 		case 2:
-			drawDirectionGhost(g, pinky, eyes_up, eyes_down, eyes_left, eyes_right);
+			drawDirectionGhost(g, pinky, myimage.getGhost("Eye","up"), myimage.getGhost("Eye","down"), myimage.getGhost("Eye","left"),myimage.getGhost("Eye","right"));
 			break;
 		}
 		switch (clyde.getState()) {
 		case 0:
-			drawDirectionGhost(g, clyde, clyde_up, clyde_down, clyde_left, clyde_right);
+			drawDirectionGhost(g, clyde,myimage.getGhost("Clyde","up"), myimage.getGhost("Clyde","down"), myimage.getGhost("Clyde","left"),myimage.getGhost("Clyde","right"));
 			break;
 		case 1:
 			drawEatableGhost(g, clyde);
 			break;
 		case 2:
-			drawDirectionGhost(g, clyde, eyes_up, eyes_down, eyes_left, eyes_right);
+			drawDirectionGhost(g, clyde, myimage.getGhost("Eye","up"), myimage.getGhost("Eye","down"), myimage.getGhost("Eye","left"),myimage.getGhost("Eye","right"));
 			break;
 		}
 
