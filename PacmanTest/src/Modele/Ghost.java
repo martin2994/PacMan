@@ -55,9 +55,7 @@ public class Ghost {
 			}
 			break;
 		case "Inky":
-			if (game_lap > 1500) {
 				deplaceInky(coordXPacman, coordYPacman);
-			}
 			break;
 		case "Clyde":
 			if (game_lap > 500) {
