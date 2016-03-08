@@ -56,6 +56,9 @@ public class IOTreatment {
 	 * Extrait les meilleurs scores d'un fichier pour les mettre dans un tableau
 	 */
 	public static String[][] extract (File f) throws IOException{
+		if(! f.exists()){
+			f.createNewFile();
+		}
 		String [][] current_score = new String[10][2];
 		FileInputStream ips = new FileInputStream(f);
 		InputStreamReader ipsr = new InputStreamReader(ips);
@@ -76,15 +79,6 @@ public class IOTreatment {
 	}
 
 	public static String findFile(String file_name){
-		switch(file_name){
-		case ("stage1.txt") :
-			return "stage1HS.txt";
-		case ("stage2.txt") :
-			return "stage2HS.txt";
-		case ("stage3.txt") :
-			return "stage3HS.txt";
-		default:
-			return file_name.substring(5)+"HS.txt";
+			return file_name.substring(0, 6)+"HS.txt";
 		}
-	}
 }
