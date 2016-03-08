@@ -172,5 +172,9 @@ public class Controller {
 	public void setCounter(int i) {
 		vue.setCounter(i);
 	}
+
+	public void resetVue() {
+		vue.create();
+	}
 	
 }

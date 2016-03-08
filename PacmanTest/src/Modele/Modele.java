@@ -700,6 +700,7 @@ public class Modele {
 			score=0;
 			file_name="new";
 			stagePlaying =0;
+			controle.resetVue();
 			run(controle);
 		}
 	}

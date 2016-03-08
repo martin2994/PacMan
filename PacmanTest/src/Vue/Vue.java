@@ -37,6 +37,10 @@ public class Vue extends JFrame {
 	public Vue(int maxX, int maxY) {
 		this.setTitle("Pac-Man");
 		this.setSize(maxX, maxY);
+		create();
+	}
+	
+	public void create(){
 		panIG = new PanelInGame();
 		panS = new PanelStart();
 		panA = new PanelAbout();
