@@ -13,14 +13,14 @@ public class MyImage {
 	private Image[] myghost;
 
 	public MyImage() {
-			mylab=new Image[26];
+			mylab=new Image[27];
 			mybonus=new Image[4];
 			mypacman=new Image[5];
 			myghost=new Image[22];
 		try { // chargement des images
 			mylab[0] = ImageIO.read(new File("src/image/case0.png"));
 			mylab[1] = ImageIO.read(new File("src/image/case1.png"));
-			mylab[25] = ImageIO.read(new File("src/image/case-5.png"));
+			mylab[26] = ImageIO.read(new File("src/image/case-5.png"));
 			mylab[2] = ImageIO.read(new File("src/image/case2.png"));
 			mylab[3] = ImageIO.read(new File("src/image/case3.png"));
 			mylab[4] = ImageIO.read(new File("src/image/case4.png"));
@@ -44,6 +44,7 @@ public class MyImage {
 			mylab[22] = ImageIO.read(new File("src/image/case22.png"));
 			mylab[23] = ImageIO.read(new File("src/image/case23.png"));
 			mylab[24] = ImageIO.read(new File("src/image/case24.png"));
+			mylab[25] = ImageIO.read(new File("src/image/case24.png"));
 			mypacman[1] = ImageIO.read(new File("src/image/Pacman_left.png"));
 			mypacman[2]= ImageIO.read(new File("src/image/Pacman_right.png"));
 			mypacman[3] = ImageIO.read(new File("src/image/Pacman_up.png"));

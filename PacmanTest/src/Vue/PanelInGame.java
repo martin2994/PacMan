@@ -68,7 +68,7 @@ public class PanelInGame extends JPanel {
 			for (int j = 0; j < 22; j++) {
 				switch (mat[i][j]) {
 				case -5:
-					g.drawImage(myimage.getCase(25), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase(26), i * 28, j * 28, this);
 					break;
 				case -4:
 					g.drawImage(myimage.getBonus("Fraise"), i * 28, j * 28, this);
@@ -156,6 +156,9 @@ public class PanelInGame extends JPanel {
 					break;
 				case 24:
 					g.drawImage(myimage.getCase(24), i * 28, j * 28, this);
+					break;
+				case 25:
+					g.drawImage(myimage.getCase(25), i * 28, j * 28, this);
 					break;
 				}
 			}
