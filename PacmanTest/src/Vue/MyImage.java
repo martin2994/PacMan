@@ -44,7 +44,7 @@ public class MyImage {
 			mylab[22] = ImageIO.read(new File("src/image/case22.png"));
 			mylab[23] = ImageIO.read(new File("src/image/case23.png"));
 			mylab[24] = ImageIO.read(new File("src/image/case24.png"));
-			mylab[25] = ImageIO.read(new File("src/image/case24.png"));
+			mylab[25] = ImageIO.read(new File("src/image/case25.png"));
 			mypacman[1] = ImageIO.read(new File("src/image/Pacman_left.png"));
 			mypacman[2]= ImageIO.read(new File("src/image/Pacman_right.png"));
 			mypacman[3] = ImageIO.read(new File("src/image/Pacman_up.png"));
