@@ -204,6 +204,18 @@ public class Modele {
 		case "stage2.txt":
 			controle.changeMusic("music/lvl2.wav");
 			break;
+		case "stage3.txt":
+			controle.changeMusic("music/lvl3.wav");
+			break;
+		case "stage4.txt":
+			controle.changeMusic("music/lvl4.wav");
+			break;
+		case "stage5.txt":
+			controle.changeMusic("music/lvl5.wav");
+			break;
+		case "stage6.txt":
+			controle.changeMusic("music/lvl6.wav");
+			break;
 		}
 		return true;
 	}
@@ -275,6 +287,7 @@ public class Modele {
 		boolean userAction = false;
 		String action;
 		controle.aboutPage();
+		controle.changeMusic("music/aboutpage.wav");
 		int i=0;
 		while (!userAction) {
 			i++;
@@ -295,6 +308,7 @@ public class Modele {
 			}
 		}
 		controle.startPage();
+		controle.changeMusic("music/startpage.wav");
 	}
 
 	public static void runOptionPage(Controller controle) {
@@ -359,6 +373,7 @@ public class Modele {
 			}
 		}
 		controle.startPage();
+		controle.changeMusic("music/startpage.wav");
 	}
 
 	public static void runEndPage(Controller controle) {
@@ -390,6 +405,7 @@ public class Modele {
 			}
 			if (action.equals("ReturnAbout")) {
 				userAction = true;
+				controle.changeMusic("music/startpage.wav");
 			}
 		}
 	}
