@@ -334,15 +334,15 @@ public class Modele {
 			case "Delete":
 				action = controle.whichDelete();
 				switch (action) {
-				case "1":
-				case "2":
-				case "3":
-				case "4":
-				case "5":
-				case "6":
-					new File("Stage"+action+"HS.txt").delete();
+				case "Level 1":
+				case "Level 2":
+				case "Level 3":
+				case "Level 4":
+				case "Level 5":
+				case "Level 6":
+					new File("Stage"+action.charAt(6)+"HS.txt").delete();
 					break;
-				case "All":
+				case "General":
 					new File("HighScore.txt").delete();
 					break;
 				}

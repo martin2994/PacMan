@@ -45,9 +45,10 @@ public class Vue extends JFrame {
 		returnAbout = new JButton("Return to menu");
 		name = new JTextField(3);
 		name.setText("");
-		String[] choices = { "All", "1", "2", "3", "4", "5", "6" };
-		comboLevel = new JComboBox<String>(choices);
-		comboDelete = new JComboBox<String>(choices);
+		String[] choices_level = { "All", "1", "2", "3", "4", "5", "6" };
+		String[] choices_delete = { "None", "General", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6" };
+		comboLevel = new JComboBox<String>(choices_level);
+		comboDelete = new JComboBox<String>(choices_delete);
 	}
 
 	public void setPanelLeaderBoard(MouseClic _controle_c, String [][] tab) {
