@@ -150,7 +150,7 @@ public class Vue extends JFrame {
 		comboLevel.setBounds(412, 200, 50, 25);
 		panO.add(comboLevel);
 		comboDelete.addActionListener(controle_c);
-		comboDelete.setBounds(230, 490, 50, 25);
+		comboDelete.setBounds(200, 490, 80, 25);
 		panO.add(comboDelete);
 		JButton delete = new JButton("Delete");
 		panO.add(delete);

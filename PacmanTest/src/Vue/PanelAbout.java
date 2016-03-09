@@ -18,7 +18,8 @@ public class PanelAbout extends JPanel {
 	private int pixelDirector;
 	private int pixelScreenwriter;
 	private int pixelMusician;
-
+	private int [] pixelMusic;
+	
 	private int baseProducer;
 	private int baseMaxime;
 	private int baseDirector;
@@ -29,6 +30,7 @@ public class PanelAbout extends JPanel {
 	private int basePacman;
 	private int baseGhost;
 	private int baseMusician;
+	private int [] baseMusic;
 
 	public PanelAbout(int height) {
 		this.baseProducer=height+20;
@@ -51,10 +53,16 @@ public class PanelAbout extends JPanel {
 		this.pixelPacman = basePacman;
 		this.pixelGhost = baseGhost;
 		this.pixelMusician=baseMusician;
+		this.baseMusic = new int [7];
+		this.pixelMusic = new int [7];
+		this.baseMusic[0]=this.pixelMusic[0]=height+410;
+		for(int i=1 ; i<baseMusic.length;i++){
+			this.baseMusic[i]=this.pixelMusic[i]=this.pixelMusic[i-1]+30;
+		}
 	}
 
 	public void paintComponent(Graphics g) {
-		if (pixelMusician == -10) {
+		if (this.pixelMusic[this.pixelMusic.length-1] == -10) {
 			this.pixelProducer=baseProducer;
 			this.pixelMaxime = baseMaxime;
 			this.pixelDirector=baseDirector;
@@ -65,6 +73,9 @@ public class PanelAbout extends JPanel {
 			this.pixelPacman = basePacman;
 			this.pixelGhost = baseGhost;
 			this.pixelMusician=baseMusician;
+			for(int i=0 ; i<baseMusic.length;i++){
+				this.pixelMusic[i]=this.baseMusic[i];
+			}
 		}
 
 		this.pixelStarring--;
@@ -77,6 +88,9 @@ public class PanelAbout extends JPanel {
 		this.pixelDirector--;
 		this.pixelScreenwriter--;
 		this.pixelMusician--;
+		for(int i=0 ; i<baseMusic.length;i++){
+			this.pixelMusic[i]--;
+		}
 
 		g.setColor(Color.black);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
@@ -98,5 +112,12 @@ public class PanelAbout extends JPanel {
 		g.drawString("Rety Martin", this.getWidth()/3+30, pixelMartin);
 		g.drawString("Pacman", this.getWidth()/3+30, pixelPacman);
 		g.drawString("and the Ghosts", this.getWidth()/3+30, pixelGhost);
+		g.drawString("Even Deeper - Fight", this.getWidth()/3+30, pixelMusic[0]);
+		g.drawString("Eyeln - Final Battle", this.getWidth()/3+30, pixelMusic[1]);
+		g.drawString("Floating Isle - Booster Ignite", this.getWidth()/3+30, pixelMusic[2]);
+		g.drawString("Fun Electronics - Techniques III", this.getWidth()/3+30, pixelMusic[3]);
+		g.drawString("Plastic3 - Energetic Funk", this.getWidth()/3+30, pixelMusic[4]);
+		g.drawString("Dark Helmetz - 8-bit", this.getWidth()/3+30, pixelMusic[5]);
+		g.drawString("Multifaros - Number 3", this.getWidth()/3+30, pixelMusic[6]);
 	}
 }
