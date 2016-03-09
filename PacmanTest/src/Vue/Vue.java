@@ -74,11 +74,11 @@ public class Vue extends JFrame {
 		this.revalidate();
 		panLB.setTab(tab);
 		panLB.setLevel(level);
-		returnAbout.setBounds(5, 570, 135, 50);
+		returnAbout.setBounds(516, 570, 135, 50);
 		returnAbout.addActionListener(controle_c);
 		panLB.add(returnAbout);
 		JButton next = new JButton("Next");
-		next.setBounds(516, 570, 135, 50);
+		next.setBounds(3, 570, 135, 50);
 		next.addActionListener(controle_c);
 		panLB.add(next);
 		

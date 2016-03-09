@@ -5,6 +5,14 @@ import java.io.IOException;
 
 import Controller.*;
 
+/**
+ * Modele est la classe centralisant tous les algorithmes de données du Pacman
+ * 
+ * @author Duchene Herrmann Rety
+ * 
+ *
+ */
+
 public class Modele {
 
 	// taille de la fenêtre
@@ -40,7 +48,7 @@ public class Modele {
 	 */
 	public static int stagePlaying;
 
-	/*
+	/**
 	 * Remplit la matrice en fonction des labyrinthes préchargés dans des
 	 * fichiers texte
 	 */
@@ -52,6 +60,23 @@ public class Modele {
 		}
 	}
 
+	/**
+	 * 
+	 * @param controle
+	 *            Le controleur référent
+	 * @param hero
+	 *            Le Pacman courant
+	 * @param loop
+	 *            Pour arrêter la pause
+	 * @param blinky
+	 *            Fantome Blinky
+	 * @param pinky
+	 *            Fantome Clyde
+	 * @param inky
+	 *            Fantome Inky
+	 * @param clyde
+	 *            Fantome Clyde
+	 */
 	public static void pause(Controller controle, Pacman hero, boolean loop, Ghost blinky, Ghost pinky, Ghost inky,
 			Ghost clyde) {
 		while (loop) {
@@ -70,14 +95,39 @@ public class Modele {
 		}
 	}
 
+	/**
+	 * Met à jour la vue via le controlleur avec toutes les données mises à jour
+	 * 
+	 * @param controle
+	 *            Le controleur référent
+	 * @param hero
+	 *            Le Pacman courant
+	 * @param blinky
+	 *            Fantome Blinky
+	 * @param pinky
+	 *            Fantome Pinky
+	 * @param inky
+	 *            Fantome Inky
+	 * @param clyde
+	 *            Fantome Clyde
+	 * @param bonus
+	 *            Tableau de bonus mangés
+	 * @param reset
+	 *            Vrai si on doit reset le compteur (à la mort ou au chargement
+	 *            d'une partie)
+	 */
 	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
 			boolean[] bonus, boolean reset) {
 		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus, reset);
 	}
 
-	/*
-	 * Regarde si Pacman est en train de manger une gomme ou un super gomme afin
-	 * de mettre à jour le score et l'affichage
+	/**
+	 * Regarde si Pacman est en train de manger une gomme ou une super gomme
+	 * afin de mettre à jour le score et l'affichage
+	 * 
+	 * @param hero
+	 *            Pacman actuel
+	 * @return true si on a mangé une super gomme, false sinon
 	 */
 	public static boolean canIEatTheGum(Pacman hero) {
 
@@ -131,24 +181,34 @@ public class Modele {
 		return false;
 	}
 
-	/*
+	/**
 	 * Met l'état des fantomes en "mangeables" par Pacman
+	 * 
+	 * @param actual
+	 *            Le fantome dont l'état doit changer
 	 */
 	public static void superPacman(Ghost actual) {
 		if (actual.getState() == 0 || actual.getState() == 1)
 			actual.setState(1);
 	}
 
-	/*
+	/**
 	 * Met l'état des fantomes en "non-mangeables" par Pacman
+	 * 
+	 * @param actual
+	 *            Le fantome dont l'état doit changer
 	 */
 	public static void normalPacman(Ghost actual) {
 		if (actual.getState() == 1)
 			actual.setState(0);
 	}
 
-	/*
+	/**
 	 * Charge le labyrinthe correspondant au niveau actuel
+	 * 
+	 * @param controle
+	 *            Le controleur référent
+	 * @return true si le jeu est fini, false si un niveau doit être chargé
 	 */
 	public static boolean whatsTheName(Controller controle) {
 
@@ -197,6 +257,8 @@ public class Modele {
 				e1.printStackTrace();
 			}
 		}
+
+		/* Gestion de la musique en fonction du niveau */
 		switch (file_name) {
 		case "stage1.txt":
 			controle.changeMusic("music/lvl1.wav");
@@ -220,9 +282,15 @@ public class Modele {
 		return true;
 	}
 
-	/*
-	 * On teste si un le centre de Pacman se trouve dans un des quatre coins de
-	 * la hitbox du fantome actual
+	/**
+	 * On teste si le centre de Pacman se trouve dans un des quatre coins de la
+	 * hitbox du fantome actual
+	 * 
+	 * @param actual
+	 *            Fantome actuellement testé
+	 * @param hero
+	 *            Pacman actuel
+	 * @return true si il y a rencontre, false sinon
 	 */
 	public static boolean meetTheFantom(Ghost actual, Pacman hero) {
 
@@ -259,6 +327,10 @@ public class Modele {
 		}
 	}
 
+	/**
+	 * Fait apparaître les quatre bonus du niveau à 20, 40, 60 et 80% de gommes
+	 * mangées
+	 */
 	public static void putBonus() {
 		int cpt = ((totalGumGum - gumGum) * 100 / totalGumGum);
 		if (cpt == 80 && bonus_pop[0] == false) {
@@ -283,15 +355,20 @@ public class Modele {
 		}
 	}
 
+	/**
+	 * Lance la page About et fait défiler les crédits via le controleur
+	 * 
+	 * @param controle
+	 *            Le controleur référent
+	 */
 	public static void runAboutPage(Controller controle) {
 		boolean userAction = false;
 		String action;
 		controle.aboutPage();
-		controle.changeMusic("music/aboutpage.wav");
-		int i=0;
+		int i = 0;
 		while (!userAction) {
 			i++;
-			if(i%3==0){
+			if (i % 3 == 0) {
 				controle.refreshAbout();
 			}
 			action = controle.majStartPage();
@@ -308,9 +385,16 @@ public class Modele {
 			}
 		}
 		controle.startPage();
-		controle.changeMusic("music/startpage.wav");
 	}
 
+	/**
+	 * Lance la page d'Options et enregistre les changements demandés par
+	 * l'utilisateur (difficulté des IA , choix du niveau, son, suppression des
+	 * highscores)
+	 * 
+	 * @param controle
+	 *            Le controleur référent
+	 */
 	public static void runOptionPage(Controller controle) {
 		boolean userAction = false;
 		String action;
@@ -322,6 +406,9 @@ public class Modele {
 			case "ReturnAbout":
 				userAction = true;
 				break;
+
+			// Difficulté des fantomes
+
 			case "Easy":
 				difficulty = 100;
 				break;
@@ -331,6 +418,9 @@ public class Modele {
 			case "Hard":
 				difficulty = 0;
 				break;
+
+			// Suppression des highscore
+
 			case "Delete":
 				action = controle.whichDelete();
 				switch (action) {
@@ -340,13 +430,16 @@ public class Modele {
 				case "Level 4":
 				case "Level 5":
 				case "Level 6":
-					new File("Stage"+action.charAt(6)+"HS.txt").delete();
+					new File("Stage" + action.charAt(6) + "HS.txt").delete();
 					break;
 				case "General":
 					new File("HighScore.txt").delete();
 					break;
 				}
 				break;
+
+			// Controle du son
+
 			case "On/Off":
 				controle.stopMusic();
 			default:
@@ -356,6 +449,9 @@ public class Modele {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
+			// Choix du niveau à jouer
+
 			action = controle.whichLevel();
 			switch (action) {
 
@@ -373,9 +469,15 @@ public class Modele {
 			}
 		}
 		controle.startPage();
-		controle.changeMusic("music/startpage.wav");
 	}
 
+	/**
+	 * Lance la page de fin de partie où il est demandé à l'utilisateur son
+	 * pseudonyme
+	 * 
+	 * @param controle
+	 *            Le controleur référent
+	 */
 	public static void runEndPage(Controller controle) {
 		boolean userAction = false;
 		String action = "";
@@ -394,6 +496,14 @@ public class Modele {
 		}
 	}
 
+	/**
+	 * Lance la page de Leaderboard pour permettre à l'utilisateur de voir son
+	 * score parmi ceux enregistré s'il est plus grand que les dix premiers
+	 * enregistrés
+	 * 
+	 * @param controle
+	 *            Le controleur référent
+	 */
 	public static void runLeaderBoard(Controller controle) {
 		boolean userAction = false;
 		String action = "";
@@ -410,6 +520,10 @@ public class Modele {
 		}
 	}
 
+	/**
+	 * 
+	 * @param controle
+	 */
 	public static void runStartPage(Controller controle) {
 		boolean userAction = false;
 		String action;
@@ -440,17 +554,30 @@ public class Modele {
 		}
 	}
 
+	/**
+	 * Lance l'affichage des sept scoreboards possibles à partir de la startpage
+	 * 
+	 * @param controle
+	 *            Le controleur référent
+	 */
 	public static void runScoreboardFromStartPage(Controller controle) {
 		String file_name_view = "HighScore.txt";
 		boolean userAction = false;
 		String action = "";
+		// On affiche le scoreboard général par défaut
 		try {
-			controle.setPanelLeaderBoardFromStartPage(IOTreatment.extract(new File(file_name_view)),"General");
+			controle.setPanelLeaderBoardFromStartPage(IOTreatment.extract(new File(file_name_view)), "General");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		while (!userAction) {
 			action = controle.majStartPage();
+
+			/*
+			 * A chaque fois que l'utilisateur clique sur NEXT, on change la
+			 * matrice envoyé à la vue
+			 */
+
 			if (action.equals("Next")) {
 				controle.resetAction();
 				if (file_name_view.equals("HighScore.txt")) {
@@ -465,8 +592,8 @@ public class Modele {
 					}
 				}
 				try {
-					if (file_name_view.equals("HighScore.txt")){
-					controle.setTabLeaderBoard(IOTreatment.extract(new File(file_name_view)),"General");
+					if (file_name_view.equals("HighScore.txt")) {
+						controle.setTabLeaderBoard(IOTreatment.extract(new File(file_name_view)), "General");
 					} else {
 						controle.setTabLeaderBoard(IOTreatment.extract(new File(file_name_view)),
 								file_name_view.substring(0, 5) + " " + file_name_view.charAt(5));
@@ -486,8 +613,15 @@ public class Modele {
 		}
 	}
 
-	/*
+	/**
 	 * Enregistre les meilleurs scores dans un fichier
+	 * 
+	 * @param score
+	 *            Le score actuel à enregistrer
+	 * @param file_name
+	 *            Le nom du fichier correspondant au niveau joué
+	 * @throws IOException
+	 *             Si le fichier n'a pas été trouvé
 	 */
 	public static void saveHighScore(int score, String file_name) throws IOException {
 		if (username.equals("")) {
@@ -511,6 +645,15 @@ public class Modele {
 		}
 	}
 
+	/**
+	 * Toute l'algorithmique qui tourne pour chaque jour de jeu, avec
+	 * l'actualisation du placement des fantomes et de pacman, l'apparition de
+	 * bonus, le détection de collision avec des murs ou entre les entités, la
+	 * demande au controleur de mise à jour graphique, ...
+	 * 
+	 * @param controle
+	 *            Le controleur référent
+	 */
 	public static void run(Controller controle) {
 		controle.startPage();
 		runStartPage(controle);
@@ -556,6 +699,7 @@ public class Modele {
 			if (win) {
 				for (int i = 0; i < bonus_pop.length; i++) {
 					bonus_pop[i] = false;
+					bonus_eat[i] = false;
 				}
 				loop = whatsTheName(controle);
 				win = false;
@@ -575,8 +719,8 @@ public class Modele {
 			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty);
 
 			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat, true);
-			//controle.setCounter(4);
-			//System.out.println("set Counter Before try");
+			// controle.setCounter(4);
+			// System.out.println("set Counter Before try");
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
 				controle.refresh();
@@ -735,8 +879,14 @@ public class Modele {
 					e.printStackTrace();
 				}
 			}
+
+			/*
+			 * gumGum est à 0 lorsque toutes les gommes du niveau ont été
+			 * mangées et que celui-ci a donc été gagné
+			 */
 			if (gumGum == 0) {
 				win = true;
+				/* Si on ne jouait qu'un stage, on lance la EndPage */
 				if (stagePlaying != 0) {
 					controle.endPage();
 					runEndPage(controle);
@@ -788,6 +938,11 @@ public class Modele {
 		}
 	}
 
+	/**
+	 * Lance run
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Controller controle = new Controller(maxX, maxY);
 		while (true) {
