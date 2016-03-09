@@ -2,6 +2,12 @@ package Modele;
 
 import Controller.*;
 
+/**
+ * Est utilisée pour définir les objets Pacman
+ * 
+ * @author Duchene Herrmann Rety
+ *
+ */
 public class Pacman {
 
 	// Coordonnées de Pacman
@@ -23,14 +29,29 @@ public class Pacman {
 	// Timer de super Pacman
 	private int timer_superPacman = 0;
 
-	// Constructeur
+	/**
+	 * Constructeur
+	 */
 	public Pacman() {
 		this.life = 3;
 	}
 
-	/*
+	/**
 	 * Reset entier du pacman à ses coordonnées d'origine et sa direction
 	 * d'origine
+	 * 
+	 * @param _coordX
+	 *            Coordonée X à donner à Pacman
+	 * @param _coordY
+	 *            Coordonée y à donner à Pacman
+	 * @param _go
+	 *            Direction actuelle
+	 * @param _toGo
+	 *            Direction désirée
+	 * @param _deplacement
+	 *            Nombre de pixels à parcourir
+	 * @param _length_box
+	 *            Taille de la hitbox de Pacman
 	 */
 	public void reset(int _coordX, int _coordY, Controller.Direction _go, Controller.Direction _toGo, int _deplacement,
 			int _length_box) {
@@ -42,7 +63,7 @@ public class Pacman {
 		this.length_box = _length_box;
 	}
 
-	/*
+	/**
 	 * Actualise les coordonnées x et y de Pacman en fonction de sa direction
 	 * actuelle
 	 */
@@ -80,7 +101,15 @@ public class Pacman {
 		}
 	}
 
-	// Teste si Pacman est contre un mur
+	/**
+	 * Teste si Pacman est contre un mur
+	 * 
+	 * @param tempX
+	 *            Coordonée X à vérifier
+	 * @param tempY
+	 *            Coordonée Y à vérifier
+	 * @return false si c'est un mur
+	 */
 	public boolean letMeDoTheSmartThings(int tempX, int tempY) {
 		tempX = (tempX / length_box) % 19;
 		tempY = (tempY / length_box) % 22;
@@ -90,7 +119,13 @@ public class Pacman {
 			return true;
 	}
 
-	// Regarde si Pacman peut avancer dans la direction toTest
+	/**
+	 * Regarde si Pacman peut avancer dans la direction toTest
+	 * 
+	 * @param toTest
+	 *            Direction à tester
+	 * @return true si on peut aller dans cette direction
+	 */
 	public boolean canIGoHere(Controller.Direction toTest) {
 
 		switch (toTest) {
@@ -111,41 +146,88 @@ public class Pacman {
 		return false;
 	}
 
+	/**
+	 * Enlève une vie à Pacman
+	 */
 	public void looseLife() {
 		this.life--;
 	}
 
+	/**
+	 * Renvoie le nombre de vies restantes à Pacman
+	 * 
+	 * @return le nombre de vie
+	 */
 	public int getLife() {
 		return life;
 	}
 
+	/**
+	 * Change le nombre de vies de Pacman
+	 * 
+	 * @param _life
+	 *            Nouveau nombre de vie à donner
+	 */
 	public void setLife(int _life) {
 		this.life = _life;
 	}
 
+	/**
+	 * Renvoie la taille de la hitbox
+	 * 
+	 * @return taille de la hitbox
+	 */
 	public int getLength_box() {
 		return length_box;
 	}
 
+	/**
+	 * Renvoie la direction actuelle
+	 * 
+	 * @return la direction actuelle
+	 */
 	public Controller.Direction getGo() {
 		return go;
 	}
 
+	/**
+	 * Change la direction actuelle
+	 * 
+	 * @param go
+	 *            Nouvelle direction
+	 */
 	public void setGo(Controller.Direction go) {
 		this.go = go;
 	}
 
+	/**
+	 * Renvoie la direction désirée
+	 * 
+	 * @return la direction désirée
+	 */
 	public Controller.Direction getToGo() {
 		return toGo;
 	}
 
+	/**
+	 * Change la direction désirée
+	 * 
+	 * @param toGo
+	 *            Nouvelle direction désirée
+	 */
 	public void setToGo(Controller.Direction toGo) {
 		this.toGo = toGo;
 	}
 
-	/*
+	/**
 	 * Setter spécifique de toGo pour Pacman en cas de clic de la souris de
 	 * l'utilisateur
+	 * 
+	 * @param mouseX
+	 *            Coordonée X du pointeur
+	 * @param mouseY
+	 *            Coordonée Y du pointeur
+	 * @return Direction désirée par l'utilisateur
 	 */
 	public Controller.Direction setToGo(int mouseX, int mouseY) {
 		mouseY = mouseY - 25;
@@ -167,30 +249,64 @@ public class Pacman {
 		return this.toGo;
 	}
 
+	/**
+	 * Renvoie la coordonée X
+	 * 
+	 * @return la coordonée X
+	 */
 	public int getCoordX() {
 		return coordX;
 	}
 
+	/**
+	 * Change la coordonée X
+	 * 
+	 * @param coordX
+	 *            la coordonnée X
+	 */
 	public void setCoordX(int coordX) {
 		this.coordX = coordX;
 	}
 
+	/**
+	 * Renvoie la coordonée Y
+	 * 
+	 * @return la coordonée Y
+	 */
 	public int getCoordY() {
 		return coordY;
 	}
 
+	/**
+	 * Change la coordonnée Y
+	 * 
+	 * @param coordY
+	 *            La coordonnée Y
+	 */
 	public void setCoordY(int coordY) {
 		this.coordY = coordY;
 	}
 
+	/**
+	 * Renvoie le nombre de tours écoulés depuis avoir avalé une super gomme
+	 * 
+	 * @return Le nombre de tours
+	 */
 	public int getTimer_superPacman() {
 		return timer_superPacman;
 	}
 
+	/**
+	 * Augmente le nombre de tours écoulé depuis avoir avalé une super gomme de
+	 * un
+	 */
 	public void increment_Timer_superPacman() {
 		timer_superPacman++;
 	}
 
+	/**
+	 * Réinitialise le nombre de tours en tant que super pacman
+	 */
 	public void reset_Timer_superPacman() {
 		timer_superPacman = 0;
 	}

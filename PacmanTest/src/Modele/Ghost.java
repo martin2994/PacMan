@@ -2,6 +2,12 @@ package Modele;
 
 import Controller.*;
 
+/**
+ * Permet d'instancier des fantomes
+ * 
+ * @author Duchene Herrmann Rety
+ *
+ */
 public class Ghost {
 
 	// Coordonnées x et y du fantome
@@ -27,7 +33,24 @@ public class Ghost {
 	// Dose de danrom dans les deplacements des fantomes
 	private int difficulty;
 
-	// Constructeur
+	/**
+	 * Constructeur
+	 * 
+	 * @param _coordX
+	 *            La coordonnée X du fantome
+	 * @param _coordY
+	 *            La coordonnée Y du fantome
+	 * @param _state
+	 *            L'état initial à donner au fantome
+	 * @param _name
+	 *            Le nom du fantome
+	 * @param _deplacement
+	 *            Le nombre de pixel à avancer à chaque tour
+	 * @param _length_box
+	 *            Taille de la hitbox
+	 * @param _difficulty
+	 *            Difficulté du fantome en pourcentage de déplacement aléatoire
+	 */
 	public Ghost(int _coordX, int _coordY, int _state, String _name, int _deplacement, int _length_box,
 			int _difficulty) {
 		this.coordX = _coordX;
@@ -42,7 +65,16 @@ public class Ghost {
 		this.difficulty = _difficulty;
 	}
 
-	// Déplace le fantome selon son nom
+	/**
+	 * Déplace le fantome selon son nom
+	 * 
+	 * @param coordXPacman
+	 *            Coordonnée X actuelle de Pacman
+	 * @param coordYPacman
+	 *            Coordonnée Y actuelle de Pacman
+	 * @param goPacman
+	 *            Direction dans laquelle a Pacman
+	 */
 	public void deplaceTheGhost(int coordXPacman, int coordYPacman, Controller.Direction goPacman) {
 		game_lap++;
 		switch (name) {
@@ -55,7 +87,7 @@ public class Ghost {
 			}
 			break;
 		case "Inky":
-				deplaceInky(coordXPacman, coordYPacman);
+			deplaceInky(coordXPacman, coordYPacman);
 			break;
 		case "Clyde":
 			if (game_lap > 500) {
@@ -66,7 +98,9 @@ public class Ghost {
 		}
 	}
 
-	// Bouge dans une direction aléatoire
+	/**
+	 * Bouge dans une direction aléatoire
+	 */
 	private void moveToARandomWay() {
 		Controller.Direction IWantToGoHere;
 		do {
@@ -77,7 +111,13 @@ public class Ghost {
 		move();
 	}
 
-	// Calcule la direction opposée à actualGO
+	/**
+	 * Calcule la direction opposée à actualGo
+	 * 
+	 * @param actualGo
+	 *            Direction à tester
+	 * @return la direction inverse de celle à tester
+	 */
 	private Controller.Direction theOtherSide(Controller.Direction actualGo) {
 		switch (actualGo) {
 		case UP:
@@ -93,7 +133,11 @@ public class Ghost {
 		}
 	}
 
-	// Donne une direction aléatoire
+	/**
+	 * Donne une direction aléatoire
+	 * 
+	 * @return la direction trouvée aléatoirement
+	 */
 	private Controller.Direction getRandomDirection() {
 		int a = (int) (Math.random() * 4);
 		switch (a) {
@@ -110,7 +154,9 @@ public class Ghost {
 		}
 	}
 
-	// Clyde se déplace de manière aléatoire sur la carte
+	/**
+	 * Clyde se déplace de manière aléatoire sur la carte
+	 */
 	private void deplaceClyde() {
 		// départ
 		if (coordX == 224 && coordY == 280) {
@@ -132,7 +178,9 @@ public class Ghost {
 		}
 	}
 
-	// Bouge le fantome en fonctio nde la direction actuelle
+	/**
+	 * Bouge le fantome en fonctio nde la direction actuelle
+	 */
 	public void move() {
 		switch (go) {
 		case UP:
@@ -167,7 +215,17 @@ public class Ghost {
 		}
 	}
 
-	// Regarde si la fantome va dans un mur
+	/**
+	 * Regarde si la fantome va dans un mur
+	 * 
+	 * @param tempX
+	 *            Coordonnée X à tester
+	 * @param tempY
+	 *            Coordonnée Y à tester
+	 * @param goTest
+	 *            Direction à tester
+	 * @return true si le fantome ne va pas dans un mur
+	 */
 	public boolean letMeDoTheSmartThings(int tempX, int tempY, Controller.Direction goTest) {
 		tempX = (tempX / length_box) % 19;
 		tempY = (tempY / length_box) % 22;
@@ -181,7 +239,13 @@ public class Ghost {
 			return true;
 	}
 
-	// Regarde si le fantome peut aller dans la direction goTest
+	/**
+	 * Regarde si le fantome peut aller dans la direction goTest
+	 * 
+	 * @param goTest
+	 *            Direction à tester
+	 * @return true si le fantome peut aller dans cette direction
+	 */
 	private boolean canIGoHere(Controller.Direction goTest) {
 		switch (goTest) {
 		case UP:
@@ -201,7 +265,16 @@ public class Ghost {
 		return false;
 	}
 
-	// Vise l'endroit où va se trouver Pacman
+	/**
+	 * Vise l'endroit où va se trouver Pacman
+	 * 
+	 * @param coordXPacman
+	 *            Coordonnée X du Pacman
+	 * @param coordYPacman
+	 *            Coordonnée Y du Pacman
+	 * @param goPacman
+	 *            Direction actuelle du Pacman
+	 */
 	private void deplacePinky(int coordXPacman, int coordYPacman, Controller.Direction goPacman) {
 		// Cas de départ
 		if (coordX <= 280 && coordX > 252 && coordY == 252) {
@@ -254,7 +327,14 @@ public class Ghost {
 		}
 	}
 
-	// Suit Pacman 75% du temps et le fuit sinon
+	/**
+	 * Suit Pacman 75% du temps et le fuit sinon
+	 * 
+	 * @param coordXPacman
+	 *            Coordonnée X du Pacman
+	 * @param coordYPacman
+	 *            Coordonnée Y du Pacman
+	 */
 	private void deplaceInky(int coordXPacman, int coordYPacman) {
 		if (coordX == 252 && coordY <= 280 && coordY >= 252) {
 			go = Controller.Direction.UP;
@@ -266,12 +346,34 @@ public class Ghost {
 
 	}
 
-	// Retourne la distance de Manhattan entre deux coordonnées
+	/**
+	 * Retourne la distance de Manhattan entre deux coordonnées
+	 * 
+	 * @param coordXG
+	 *            Coordonnée X du Fantome
+	 * @param coordYG
+	 *            Coordonnée Y du Fantome
+	 * @param coordXP
+	 *            Coordonnée X du Pacman
+	 * @param coordYP
+	 *            Coordonnée Y du Pacman
+	 * @return la distance de Manhattan
+	 */
 	private int distance(int coordXG, int coordYG, int coordXP, int coordYP) {
 		return Math.abs(coordXP - coordXG) + Math.abs(coordYP - coordYG);
 	}
 
-	// Suit Pacman
+	/**
+	 * Suit Pacman
+	 * 
+	 * @param coordXPacman
+	 *            Coordonnée X de Pacman
+	 * @param coordYPacman
+	 *            Coordonnée Y de Pacman
+	 * @param helloIAmInky
+	 *            La méthode possède du code en commun avec le déplacement
+	 *            d'Inky, permet de savoir si c'est Inky qui l'utilise ou Blinky
+	 */
 	private void deplaceBlinky(int coordXPacman, int coordYPacman, boolean helloIAmInky) {
 		if (coordX == 252 && coordY <= 280 && coordY >= 252) {
 			go = Controller.Direction.UP;
@@ -375,7 +477,7 @@ public class Ghost {
 		}
 	}
 
-	/*
+	/**
 	 * Si le fantome se trouve en état 2, cette méthode se substitue à la
 	 * méthode de déplacement habituelle du fantome pour le faire revenir à sa
 	 * case de départ
@@ -456,46 +558,100 @@ public class Ghost {
 		}
 	}
 
+	/**
+	 * Renvoie l'état du fantome
+	 * 
+	 * @return l'état actuel du fantome
+	 */
 	public int getState() {
 		return state;
 	}
 
+	/**
+	 * Change l'état du fantome
+	 * 
+	 * @param _state
+	 *            le nouvel état
+	 */
 	public void setState(int _state) {
 		this.state = _state;
 	}
 
+	/**
+	 * Renvoie la coordonnée X du fantome
+	 * 
+	 * @return la coordonnée X
+	 */
 	public int getCoordX() {
 		return coordX;
 	}
 
+	/**
+	 * Change la coordonnée X du fantome
+	 * 
+	 * @param coordX
+	 *            la coordonnée X
+	 */
 	public void setCoordX(int coordX) {
 		this.coordX = coordX;
 	}
 
+	/**
+	 * Renvoie la coordonnée Y du fantome
+	 * 
+	 * @return la coordonnée Y
+	 */
 	public int getCoordY() {
 		return coordY;
 	}
 
+	/**
+	 * Change la coordonnée Y du fantome
+	 * 
+	 * @param coordY
+	 *            la coordonnée Y
+	 */
 	public void setCoordY(int coordY) {
 		this.coordY = coordY;
 	}
 
+	/**
+	 * Renvoie le nom du fantome
+	 */
 	public String toString() {
 		return this.name;
 	}
 
+	/**
+	 * Renvoie la direction actuelle du fantome
+	 * 
+	 * @return la direction actuelle
+	 */
 	public Controller.Direction getGo() {
 		return go;
 	}
 
+	/**
+	 * Renvoie la taille de la hitbox
+	 * 
+	 * @return la taille de la hitbox
+	 */
 	public int getLength_box() {
 		return length_box;
 	}
 
+	/**
+	 * Renvoie le comtpeur de tour
+	 * 
+	 * @return le compteur de tour
+	 */
 	public int getGame_lap() {
 		return game_lap;
 	}
 
+	/**
+	 * Incrémente le compteur de tour
+	 */
 	public void anotherLap() {
 		this.game_lap++;
 	}

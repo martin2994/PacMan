@@ -523,6 +523,7 @@ public class Modele {
 	/**
 	 * 
 	 * @param controle
+	 *            Le controleur référent
 	 */
 	public static void runStartPage(Controller controle) {
 		boolean userAction = false;
@@ -942,6 +943,7 @@ public class Modele {
 	 * Lance run
 	 * 
 	 * @param args
+	 *            Les arguments du programme
 	 */
 	public static void main(String[] args) {
 		Controller controle = new Controller(maxX, maxY);
