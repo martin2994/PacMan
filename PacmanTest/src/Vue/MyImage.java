@@ -6,12 +6,37 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Vue est la classe centralisant toutes les données et méthodes correspondant aux images du Pacman
+ * 
+ * @author Duchene Herrmann Rety
+ * 
+ *
+ */
 public class MyImage {
+	/**
+	 * tableau des images du labyrinth
+	 */
 	private Image[] mylab;
+	/**
+	 * tableau des images des bonus
+	 */
 	private Image[] mybonus;
+	/**
+	 * tableau des images du pacman
+	 */
 	private Image[] mypacman;
+	/**
+	 * tableau des images des fantômes
+	 */
 	private Image[] myghost;
 
+	/**
+	 * Contructeur de MyImage
+	 * chargement de toutes les images du dossier image
+	 * et création des tableaux regroupant ces images
+	 * 
+	 */
 	public MyImage() {
 			mylab=new Image[27];
 			mybonus=new Image[4];
@@ -80,9 +105,23 @@ public class MyImage {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 *  Retourne l'image à la case i du tableau lab
+	 *  @param i
+	 *  		ième case du tableau
+	 */
 	public Image getCase(int i){
 		return mylab[i];
 	}
+	
+	/**
+	 *  Retourne l'image d'un fantôme dans une direction du tableau myghost
+	 *  @param name
+	 *  		nom du fantôme
+	 *  @param direction
+	 *  		direction du fantôme
+	 */
 	public Image getGhost(String name,String direction){
 		int i;
 		switch (name){
@@ -131,6 +170,12 @@ public class MyImage {
 		default:return null;
 		}
 	}
+	
+	/**
+	 *  Retourne l'image d'une bonus du tableau mybonus
+	 *  @param name
+	 *  		nom du bonus
+	 */
 	public Image getBonus(String name){
 		switch (name){
 		case "Fraise":return mybonus[0];
@@ -140,6 +185,11 @@ public class MyImage {
 		default: return null;
 		}
 	}
+	/**
+	 *  Retourne l'image d'une direction de pacman du tableau mypacman
+	 *  @param name
+	 *  		nom de la direction du pacman
+	 */
 	public Image getPacman(String name){
 		switch (name){
 			case "left":return mypacman[1];

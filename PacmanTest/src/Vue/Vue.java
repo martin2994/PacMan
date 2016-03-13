@@ -9,28 +9,85 @@ import javax.swing.JToggleButton;
 import Modele.Ghost;
 import Modele.Pacman;
 
-public class Vue extends JFrame {
 
+/**
+ * Vue est la classe centralisant toutes données visibles par l'utilisateur (panneau, input) du Pacman
+ * 
+ * @author Duchene Herrmann Rety
+ * 
+ *
+ */
+
+public class Vue extends JFrame {
+	/**
+	 * Panneau qui gère le jeu
+	 */
 	PanelInGame panIG;
+	/**
+	 * Panneau qui gère le menu
+	 */
 	PanelStart panS;
+	/**
+	 * Panneau qui gère les crédits
+	 */
 	PanelAbout panA;
+	/**
+	 * Panneau qui gère les options
+	 */
 	PanelOption panO;
+	/**
+	 * Panneau qui gère la fin de jeu
+	 */
 	PanelEndGame panEG;
+	/**
+	 * Panneau qui gère le leaderboard
+	 */
 	PanelLeaderBoard panLB;
+	/**
+	 * controleur du clavier
+	 */
 	KeyboardAndMouseMovementsInputs controle_kammi;
+	/**
+	 * controleur de la souris
+	 */
 	MouseClic controle_c;
+	/**
+	 * bouton pour retourner au menu
+	 */
 	JButton returnAbout;
+	/**
+	 * champs de texte
+	 */
 	JTextField name;
+	/**
+	 * choix des niveaux à jouer
+	 */
 	JComboBox<String> comboLevel;
+	/**
+	 * choix des fichiers de scores à effacer
+	 */
 	JComboBox<String> comboDelete;
 
-	// Constructeur
+	/**
+	 * Constructeur de la Vue
+	 * création de la fenêtre et des panneaux
+	 * 
+	 * @param maxX
+	 *            largeur de la fenêtre
+	 * @param maxY
+	 *            hauteur de la fenêtre
+	 *
+	 */
 	public Vue(int maxX, int maxY) {
 		this.setTitle("Pac-Man");
 		this.setSize(maxX, maxY);
 		create();
 	}
-	
+	/**
+	 * Initialisation des panneaux et des boutons d'option
+	 * création du bouton retourn to menu, de choix des niveaux et des textes correspondants 
+	 * 
+	 */
 	public void create(){
 		panIG = new PanelInGame();
 		panS = new PanelStart();
@@ -50,9 +107,8 @@ public class Vue extends JFrame {
 		comboLevel = new JComboBox<String>(choices_level);
 		comboDelete = new JComboBox<String>(choices_delete);
 	}
-
+	
 	public void setPanelLeaderBoard(MouseClic _controle_c, String [][] tab) {
-		panLB = new PanelLeaderBoard();
 		controle_c = _controle_c;
 		panLB.setLayout(null);
 		this.setContentPane(panLB);
@@ -83,7 +139,16 @@ public class Vue extends JFrame {
 		panLB.add(next);
 		
 	}
-
+	
+	/**
+	 * Met à jour la Vue pour afficher le panneau PanelEndGame
+	 * et utiliser le bon controleur
+	 * ajout du bouton save et des textes correspondants
+	 * 
+	 * @param _controle_c
+	 *            controleur de la souris
+	 *            
+	 */
 	public void setPanelEndGame(MouseClic _controle_c) {
 		controle_c = _controle_c;
 		panEG.setLayout(null);
@@ -100,7 +165,14 @@ public class Vue extends JFrame {
 		name.addActionListener(controle_c);
 
 	}
-
+	/**
+	 * Met à jour la Vue pour afficher le panneau PanelInGame
+	 * et utiliser le bon controleur
+	 * 
+	 * @param _controle
+	 *            controleur des mouvements du pacman
+	 *            
+	 */
 	public void setPanelIngame(KeyboardAndMouseMovementsInputs _controle) {
 		controle_kammi = _controle;
 		panIG.setLayout(null);
@@ -112,6 +184,15 @@ public class Vue extends JFrame {
 
 	}
 
+	/**
+	 * Met à jour la Vue pour afficher le panneau PanelAbout
+	 * et utiliser le bon controleur
+	 * ajout du bouton retournAbout
+	 * 
+	 * @param _controle
+	 *            controleur de la souris
+	 *            
+	 */
 	public void setPanelAbout(MouseClic _controle) {
 		controle_c = _controle;
 		panA.setLayout(null);
@@ -122,6 +203,16 @@ public class Vue extends JFrame {
 		returnAbout.addActionListener(controle_c);
 	}
 
+	/**
+	 * Met à jour la Vue pour afficher le panneau PanelOption
+	 * et utiliser le bon controleur
+	 * ajout du bouton retournAbout et de ceux modifiant la difficulté, la musique et le leaderBoard
+	 * 
+	 * @param _controle
+	 *            controleur de la souris
+	 * @param stopstartmusic
+	 * 			  boolean pour l'activation/désactivation de la musique        
+	 */
 	public void setPanelOption(MouseClic _controle,boolean stopstartmusic) {
 		controle_c = _controle;
 		panO.setLayout(null);
@@ -158,6 +249,15 @@ public class Vue extends JFrame {
 		delete.addActionListener(controle_c);
 	}
 
+	/**
+	 * Met à jour la Vue pour afficher le panneau Start
+	 * et utiliser le bon controleur
+	 * ajout des boutons des différents menu (start,option,about,scoreboard et quit)
+	 * 
+	 * @param _controle
+	 *            controleur de la souris
+	 *        
+	 */
 	public void setPanelStart(MouseClic _controle) {
 		controle_c = _controle;
 		panS.setLayout(null);
@@ -188,23 +288,46 @@ public class Vue extends JFrame {
 
 	}
 
+	/**
+	 * Actualise le panneau PanelLeaderBoard
+	 *     
+	 */
 	public void refreshLeaderBoard() {
 		panLB.repaint();
 	}
 
+	/**
+	 * Actualise le panneau PanelEndGame
+	 *     
+	 */
 	public void refreshEndGame() {
 		controle_c.setName(this.name.getText());
 		panEG.repaint();
 	}
 
+	/**
+	 * Actualise le panneau PanelInGame
+	 *     
+	 */
 	public void refresh() {
 		panIG.repaint();
 	}
 
+	/**
+	 * Actualise le panneau PanelAbout
+	 *     
+	 */
 	public void refreshAbout() {
 		panA.repaint();
 	}
 
+	/**
+	 * Actualise le panneau PanelOption
+	 * et la difficulté du pacman
+	 *   
+	 * @param difficulty
+	 * 			choix de la difficulté    
+	 */
 	public void refreshOption(String difficulty) {
 		controle_c.setLevel((String)this.comboLevel.getSelectedItem());
 		controle_c.setDelete((String)this.comboDelete.getSelectedItem());
@@ -212,13 +335,37 @@ public class Vue extends JFrame {
 		panO.repaint();
 	}
 
+	/**
+	 * Actualise le panneau PanelStart
+	 *     
+	 */
 	public void refreshStart() {
 		panS.repaint();
 	}
 
-	/*
+	/**
 	 * Permet de mettre à jour la vue et le panneau avec les coordonnées
 	 * actuelles de Pacman et des fantomes
+	 * 
+	 * @param hero
+	 *            Le Pacman courant
+	 * @param maxX
+	 *            Largeur de la fenêtre
+	 * @param maxY
+	 *            Hauteur de la fenêtre
+	 * @param blinky
+	 *            Fantome Blinky
+	 * @param pinky
+	 *            Fantome Pinky
+	 * @param inky
+	 *            Fantome Inky
+	 * @param clyde
+	 *            Fantome Clyde
+	 * @param bonus
+	 *            tableau des bonus mangés
+	 * @param reset
+	 *            boolean de reset de partie
+	 *     
 	 */
 	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
 			boolean[] bonus, boolean reset) {
@@ -230,19 +377,30 @@ public class Vue extends JFrame {
 		panIG.setBonus(bonus);
 		if (reset) {
 			panIG.resetCounter();
-			System.out.println("Reset Vue majVue()");
 		}
 		this.setContentPane(panIG);
 	}
 
+	/**
+	 * Affichage de la pause
+	 *     
+	 */
 	public void showPause() {
 		panIG.setPause(true);
 	}
 
+	/**
+	 * Annulation de la pause
+	 *     
+	 */
 	public void hidePause() {
 		panIG.setPause(false);
 	}
 
+	/**
+	 * Permet de mettre à jour le compteur
+	 *     
+	 */
 	public void setCounter(int i) {
 		panIG.setCounter(i);
 	}

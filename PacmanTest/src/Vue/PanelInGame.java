@@ -12,30 +12,79 @@ import javax.swing.JPanel;
 import Modele.Ghost;
 import Modele.Pacman;
 
+
+/**
+ * PanelInGame est la classe centralisant toutes les méthodes d'affichage durant le jeu
+ * 
+ * @author Duchene Herrmann Rety
+ * 
+ *
+ */
 public class PanelInGame extends JPanel {
+	/**
+	 * boolean qui gère la pause du jeu
+	 */
 	private boolean pause;
+	/**
+	 * entier qui gère le compteur de début de jeu
+	 */
 	private int counter;
-
+	/**
+	 * attribut qui gère le fantôme Blinky
+	 */
 	private Ghost blinky;
+	/**
+	 * attribut qui gère le fantôme Pnky
+	 */
 	private Ghost pinky;
+	/**
+	 * attribut qui gère le fantôme Iky
+	 */
 	private Ghost inky;
+	/**
+	 * attribut qui gère le fantôme Clyde
+	 */
 	private Ghost clyde;
+	/**
+	 * attribut qui gère le Pacman
+	 */
 	private Pacman hero;
+	/**
+	 * tableau des bonus affichés
+	 */
 	private boolean[] bonus;
+	/**
+	 * attribut contenant toutes les images
+	 */
 	private MyImage myimage;
-
-
-	// boolean et timer pour gerer la forme du pacman
+	/**
+	 *  boolean pour gerer la forme du pacman
+	 */
 	private boolean form_pacman = false;
+	/**
+	 * timer pour gerer la forme du pacman
+	 */
 	private int timer_anim_pacman = 0;
 
+	
+	/**
+	 * Contructeur de PanelInHame
+	 * initialisation des images et des attributs du panneau 
+	 * 
+	 */
 	public PanelInGame() {
 		pause = false;
-		System.out.println("Counter initialisé PanelInGame");
 		counter = 4;
 		myimage=new MyImage();
 	}
 
+	/**
+	 * Affichage du labyrinth, du pacman, des fantômes et des options
+	 * affichage de la pause et du compteur si besoin
+	 * 
+	 * @param g
+	 * 			Fenêtre actuelle
+	 */
 	public void paintComponent(Graphics g) {
 		drawLabyrinth(g);
 		drawPacman(g);
@@ -53,6 +102,13 @@ public class PanelInGame extends JPanel {
 		}
 	}
 
+	/**
+	 * Affichage des cases du labyrinth
+	 * et des lignes de démarcation des bonus
+	 * 
+	 * @param g
+	 * 			Fenêtre actuelle
+	 */
 	public void drawLabyrinth(Graphics g) {
 		int mat[][] = Controller.getLabyrinth();
 
@@ -166,6 +222,12 @@ public class PanelInGame extends JPanel {
 		g.fillRect(this.getWidth() - 124, 0, 2, this.getHeight());
 	}
 
+	/**
+	 * Affichage  du pacman en fonction de sa direction et du temps
+	 * 
+	 * @param g
+	 * 			Fenêtre actuelle
+	 */
 	public void drawPacman(Graphics g) {
 		/*
 		 * affichage de pacman en fonction de sa direction et du timer pour
@@ -200,6 +262,12 @@ public class PanelInGame extends JPanel {
 		}
 	}
 
+	/**
+	 * Affichage  de la pause
+	 * 
+	 * @param g
+	 * 			Fenêtre actuelle
+	 */
 	public void drawPause(Graphics g) {
 		Font font = new Font("Courier", Font.BOLD, 100);
 		g.setFont(font);
@@ -207,6 +275,12 @@ public class PanelInGame extends JPanel {
 		g.drawString("PAUSE", this.getWidth() / 5 - 14, this.getHeight() / 2);
 	}
 
+	/**
+	 * Affichage  des options (bonus, score, vie)
+	 * 
+	 * @param g
+	 * 			Fenêtre actuelle
+	 */
 	public void drawOptions(Graphics g) {
 		/*
 		 * affichage des options: - le nombre de vie - les differents bonus
@@ -233,10 +307,23 @@ public class PanelInGame extends JPanel {
 		g.drawString("" + Controller.getScore(), this.getWidth() - 105, 75);
 	}
 
-	/*
-	 * méthode d'affichage des fantomes
+	
+	/**
+	 * Affichage  des fantomes en fonction de leur direction
+	 * 
+	 * @param g
+	 * 			Fenêtre actuelle
+	 * @param actual
+	 * 			fantôme à afficher
+	 * @param up
+	 * 			image du fantôme vers le haut
+	 * @param down
+	 * 			image du fantôme vers le bas
+	 * @param left
+	 * 			image du fantôme vers la gauche
+	 * @param right
+	 * 			image du fantôme vers la droite
 	 */
-
 	public void drawDirectionGhost(Graphics g, Ghost actual, Image up, Image down, Image left, Image right) {
 		switch (actual.getGo()) {
 		case UP:
@@ -255,6 +342,14 @@ public class PanelInGame extends JPanel {
 		}
 	}
 
+	/**
+	 * Affichage des fantomes mangeables
+	 * 
+	 * @param g
+	 * 			Fenêtre actuelle
+	 * @param actual
+	 * 			fantôme à afficher 
+	 */
 	public void drawEatableGhost(Graphics g, Ghost actual) {
 		if (hero.getTimer_superPacman() >= 625) {
 			if (hero.getTimer_superPacman() % 25 < 13) {
@@ -267,6 +362,13 @@ public class PanelInGame extends JPanel {
 		}
 	}
 
+	/**
+	 * Affichage des fantomes en fonction de leur direction et de leur état
+	 * 
+	 * @param g
+	 * 			Fenêtre actuelle
+
+	 */
 	public void drawGhost(Graphics g) {
 		/*
 		 * affichage des 4 fantomes en fonction de: - leur etat
@@ -319,71 +421,139 @@ public class PanelInGame extends JPanel {
 
 	}
 
+	/**
+	 * Getter du fantôme Blinky 
+	 */
 	public Ghost getBlinky() {
 		return blinky;
 	}
 
+	/**
+	 * Setter du fantôme Blinky 
+	 * @param Blinky
+	 * 			nouvelle état du fantôme
+	 */
 	public void setBlinky(Ghost blinky) {
 		this.blinky = blinky;
 	}
-
+	/**
+	 * Getter du fantôme Pinky
+	 */
 	public Ghost getPinky() {
 		return pinky;
 	}
 
+	/**
+	 * Setter du fantôme Pinky 
+	 * @param pinky
+	 * 			nouvelle état du fantôme
+	 */
 	public void setPinky(Ghost pinky) {
 		this.pinky = pinky;
 	}
-
+	/**
+	 * Getter du fantôme Inky
+	 */
 	public Ghost getInky() {
 		return inky;
 	}
 
+	/**
+	 * Setter du fantôme Inky 
+	 * @param inky
+	 * 			nouvelle état du fantôme
+	 */
 	public void setInky(Ghost inky) {
 		this.inky = inky;
 	}
-
+	/**
+	 * Getter du fantôme Clyde
+	 */
 	public Ghost getClyde() {
 		return clyde;
 	}
 
+	/**
+	 * Setter du fantôme Clyde 
+	 * @param clyde
+	 * 			nouvelle état du fantôme
+	 */
 	public void setClyde(Ghost clyde) {
 		this.clyde = clyde;
 	}
-
+	/**
+	 * Getter de la forme du pacman 
+	 */
 	public boolean getForm_pacman() {
 		return this.form_pacman;
 	}
 
+	/**
+	 * Setter de la forme du pacman 
+	 * @param new_form
+	 * 			nouvelle forme
+	 */
 	public void setForm_pacman(boolean new_form) {
 		this.form_pacman = new_form;
 	}
-
+	/**
+	 * Getter du timer de la l'animation du pacman
+	 */
 	public int getTimer_anim_pacman() {
 		return timer_anim_pacman;
 	}
 
+	/**
+	 * Setter du timer de la forme du pacman 
+	 * @param timer_anim_pacman
+	 * 			nouveau timer
+	 */
 	public void setTimer_anim_pacman(int timer_anim_pacman) {
 		this.timer_anim_pacman = timer_anim_pacman;
 	}
 
+	/**
+	 * Setter de la forme du pacman 
+	 * @param new_form
+	 * 			nouvelle forme
+	 */
 	public void setHero(Pacman hero) {
 		this.hero = hero;
 	}
 
+	/**
+	 * Setter de la pause 
+	 * @param _pause
+	 * 			nouvelle état
+	 */
 	public void setPause(boolean _pause) {
 		this.pause = _pause;
 	}
 
+	/**
+	 * Setter des nous
+	 * @param bonus
+	 * 			nouveaux états
+	 */
 	public void setBonus(boolean[] bonus) {
 		this.bonus = bonus;
 	}
 	
+	/**
+	 * Réinitialisation du compteur
+	 * 
+	 */
 	public void resetCounter(){
 		this.counter=4;
 		timer_anim_pacman=0;
 	}
 	
+	/**
+	 *  Setter du compteur
+	 * 
+	 * @param i
+	 * 		ième seconde
+	 */
 	public void setCounter(int i){
 		this.counter=i;
 	}

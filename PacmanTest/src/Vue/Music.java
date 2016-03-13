@@ -6,20 +6,53 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+/**
+ * Vue est la classe centralisant toutes les données et méthodes correspondant à la musique du Pacman
+ * 
+ * @author Duchene Herrmann Rety
+ * 
+ *
+ */
 public class Music {
-	
+	/**
+	 * url de la musique actuellement jouée
+	 */
 	URL current_music;
+	/**
+	 * clip de la musique actuellement jouée
+	 */
 	Clip current_clip;
-
+		
+	/**
+	 * Contructeur de Music
+	 * lancement de la musique du panneau Start
+	 * 
+	 */
 		public Music(){
 			setMusic("music/startpage.wav");
 		}
+		
+		/**
+		 * Permet de changer de musique
+		 * test si une musique est déjà en train d'être joué
+		 * 
+		 * @param music
+		 * 			nouvelle musique
+		 */
 		public void changeMusic(String music){
 			if (current_clip.isRunning()){
 				current_clip.close();
 			}
 			setMusic(music);
 		}
+		
+		/**
+		 * Permet de lire une nouvelle musique
+		 * charge la musique et la joue en boucle
+		 * 
+		 * @param music
+		 * 			nouvelle musique
+		 */
 		public void setMusic(String music){
 			try{
 				current_music=Vue.class.getResource(music);
@@ -33,6 +66,10 @@ public class Music {
 			}
 		}
 		
+		/**
+		 * Permet d'arrêter ou de relancer la musique actuelle
+		 *   
+		 */
 		public void stopMusic(){
 			if (current_clip.isRunning()){
 				current_clip.stop();
