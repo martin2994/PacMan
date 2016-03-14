@@ -56,13 +56,13 @@ public class Modele {
 	public static int deplacement = 1;
 
 	/**
-	 * tableau des bonus : false -> Bonus pas encore apparu et true -> Bonus
+	 * tableau des bonus : false = Bonus pas encore apparu et true = Bonus
 	 * apparu
 	 */
 	public static boolean[] bonus_pop;
 
 	/**
-	 * tableau des bonus mangés : false -> Bonus pas encore apparu et true ->
+	 * tableau des bonus mangés : false = Bonus pas encore apparu et true =
 	 * Bonus apparu
 	 */
 	public static boolean[] bonus_eat;

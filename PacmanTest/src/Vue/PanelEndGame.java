@@ -45,8 +45,8 @@ public class PanelEndGame extends JPanel {
 	/**
 	 * Change le nom
 	 * 
-	 * @param Le
-	 *            nouveau nom
+	 * @param _name
+	 *            Le nouveau nom
 	 */
 	public void setName(String _name) {
 		this.name = _name;

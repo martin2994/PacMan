@@ -439,6 +439,8 @@ public class PanelInGame extends JPanel {
 
 	/**
 	 * Getter du fantôme Blinky
+	 * 
+	 * @return Blinky
 	 */
 	public Ghost getBlinky() {
 		return blinky;
@@ -447,7 +449,7 @@ public class PanelInGame extends JPanel {
 	/**
 	 * Setter du fantôme Blinky
 	 * 
-	 * @param Blinky
+	 * @param blinky
 	 *            nouvelle état du fantôme
 	 */
 	public void setBlinky(Ghost blinky) {
@@ -456,6 +458,8 @@ public class PanelInGame extends JPanel {
 
 	/**
 	 * Getter du fantôme Pinky
+	 * 
+	 * @return Pinky
 	 */
 	public Ghost getPinky() {
 		return pinky;
@@ -473,6 +477,8 @@ public class PanelInGame extends JPanel {
 
 	/**
 	 * Getter du fantôme Inky
+	 * 
+	 * @return Inky
 	 */
 	public Ghost getInky() {
 		return inky;
@@ -490,6 +496,8 @@ public class PanelInGame extends JPanel {
 
 	/**
 	 * Getter du fantôme Clyde
+	 * 
+	 * @return Clyde
 	 */
 	public Ghost getClyde() {
 		return clyde;
@@ -507,6 +515,8 @@ public class PanelInGame extends JPanel {
 
 	/**
 	 * Getter de la forme du pacman
+	 * 
+	 * @return la forme
 	 */
 	public boolean getForm_pacman() {
 		return this.form_pacman;
@@ -524,6 +534,8 @@ public class PanelInGame extends JPanel {
 
 	/**
 	 * Getter du timer de la l'animation du pacman
+	 * 
+	 * @return le timer
 	 */
 	public int getTimer_anim_pacman() {
 		return timer_anim_pacman;
@@ -540,10 +552,10 @@ public class PanelInGame extends JPanel {
 	}
 
 	/**
-	 * Setter de la forme du pacman
+	 * Setter du pacman
 	 * 
-	 * @param new_form
-	 *            nouvelle forme
+	 * @param hero
+	 *            nouveau pacman
 	 */
 	public void setHero(Pacman hero) {
 		this.hero = hero;

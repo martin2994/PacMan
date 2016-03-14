@@ -175,7 +175,7 @@ public class Vue extends JFrame {
 		name.setPreferredSize(name.getPreferredSize());
 		Font font = new Font("Courier", Font.BOLD, 20);
 		name.setFont(font);
-	    name.setHorizontalAlignment(JTextField.CENTER); 
+		name.setHorizontalAlignment(JTextField.CENTER);
 		panEG.add(name);
 		name.setBounds(250, 260, 135, 50);
 		name.addActionListener(controle_c);
@@ -415,11 +415,21 @@ public class Vue extends JFrame {
 	/**
 	 * Permet de mettre à jour le compteur
 	 * 
+	 * @param i
+	 *            la nouvelle valeur
 	 */
 	public void setCounter(int i) {
 		panIG.setCounter(i);
 	}
 
+	/**
+	 * Met à jour le tableau et le niveau à afficher dans le leaderboard
+	 * 
+	 * @param extract
+	 *            Le nouveau tableau
+	 * @param level
+	 *            Le nouveau niveau
+	 */
 	public void setTabLeaderBoard(String[][] extract, String level) {
 		panLB.setTab(extract);
 		panLB.setLevel(level);
