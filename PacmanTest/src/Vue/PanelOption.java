@@ -34,7 +34,7 @@ public class PanelOption extends JPanel {
 	public PanelOption() {
 		this.difficulty = "Medium";
 		try {
-			startpage = ImageIO.read(new File("src/image/startpage.png"));
+			startpage = ImageIO.read(new File("src/Vue/image/startpage.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

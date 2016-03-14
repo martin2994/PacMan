@@ -127,11 +127,11 @@ public class PanelStart extends JPanel {
 	 */
 	public PanelStart() {
 		try {
-			blinky_down = ImageIO.read(new File("src/image/Blinky_down.png"));
-			clyde_down = ImageIO.read(new File("src/image/Clyde_down.png"));
-			inky_down = ImageIO.read(new File("src/image/Inky_down.png"));
-			pinky_down = ImageIO.read(new File("src/image/Pinky_down.png"));
-			startpage = ImageIO.read(new File("src/image/startpage.png"));
+			blinky_down = ImageIO.read(new File("src/Vue/image/Blinky_down.png"));
+			clyde_down = ImageIO.read(new File("src/Vue/image/Clyde_down.png"));
+			inky_down = ImageIO.read(new File("src/Vue/image/Inky_down.png"));
+			pinky_down = ImageIO.read(new File("src/Vue/image/Pinky_down.png"));
+			startpage = ImageIO.read(new File("src/Vue/image/startpage.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
