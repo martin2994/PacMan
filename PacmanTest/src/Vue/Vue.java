@@ -1,5 +1,7 @@
 package Vue;
 
+import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -169,8 +171,11 @@ public class Vue extends JFrame {
 		save.setBounds(516, 570, 135, 50);
 		save.addActionListener(controle_c);
 		panEG.add(save);
-		name = new JTextField();
+		name = new JTextField(8);
 		name.setPreferredSize(name.getPreferredSize());
+		Font font = new Font("Courier", Font.BOLD, 20);
+		name.setFont(font);
+	    name.setHorizontalAlignment(JTextField.CENTER); 
 		panEG.add(name);
 		name.setBounds(250, 260, 135, 50);
 		name.addActionListener(controle_c);
