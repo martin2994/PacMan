@@ -36,7 +36,7 @@ public class MyImage {
 	private Image[] myghost;
 
 	/**
-	 * Contructeur de MyImage chargement de toutes les images du dossier image
+	 * Contructeur de MyImage, chargement de toutes les images du dossier image
 	 * et création des tableaux regroupant ces images
 	 * 
 	 */

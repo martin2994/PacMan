@@ -34,7 +34,7 @@ public class Music {
 	}
 
 	/**
-	 * Permet de changer de musique test si une musique est déjà en train d'être
+	 * Permet de changer de musique, test si une musique est déjà en train d'être
 	 * joué
 	 * 
 	 * @param music
@@ -48,7 +48,7 @@ public class Music {
 	}
 
 	/**
-	 * Permet de lire une nouvelle musique charge la musique et la joue en
+	 * Permet de lire une nouvelle musique, charge la musique et la joue en
 	 * boucle
 	 * 
 	 * @param music

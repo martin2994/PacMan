@@ -77,7 +77,7 @@ public class PanelInGame extends JPanel {
 	private int timer_anim_pacman = 0;
 
 	/**
-	 * Contructeur de PanelInHame initialisation des images et des attributs du
+	 * Contructeur de PanelInGame, initialisation des images et des attributs du
 	 * panneau
 	 * 
 	 */
