@@ -103,6 +103,7 @@ public class PanelInGame extends JPanel {
 			drawPause(g);
 		}
 		if (counter > 0) {
+			System.out.println(counter);
 			Font font = new Font("Courier", Font.BOLD, 150);
 			g.setFont(font);
 			g.setColor(Color.YELLOW);
