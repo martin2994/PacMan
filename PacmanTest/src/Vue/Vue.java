@@ -9,68 +9,78 @@ import javax.swing.JToggleButton;
 import Modele.Ghost;
 import Modele.Pacman;
 
-
 /**
- * Vue est la classe centralisant toutes données visibles par l'utilisateur (panneau, input) du Pacman
+ * Vue est la classe centralisant toutes données visibles par l'utilisateur
+ * (panneau, input) du Pacman
  * 
  * @author Duchene Herrmann Rety
- * 
  *
  */
 
 public class Vue extends JFrame {
+
 	/**
 	 * Panneau qui gère le jeu
 	 */
 	PanelInGame panIG;
+
 	/**
 	 * Panneau qui gère le menu
 	 */
 	PanelStart panS;
+
 	/**
 	 * Panneau qui gère les crédits
 	 */
 	PanelAbout panA;
+
 	/**
 	 * Panneau qui gère les options
 	 */
 	PanelOption panO;
+
 	/**
 	 * Panneau qui gère la fin de jeu
 	 */
 	PanelEndGame panEG;
+
 	/**
 	 * Panneau qui gère le leaderboard
 	 */
 	PanelLeaderBoard panLB;
+
 	/**
-	 * controleur du clavier
+	 * lisetener du clavier et de la souris en jeu
 	 */
 	KeyboardAndMouseMovementsInputs controle_kammi;
+
 	/**
-	 * controleur de la souris
+	 * listener de la souris sur des boutons
 	 */
 	MouseClic controle_c;
+
 	/**
 	 * bouton pour retourner au menu
 	 */
 	JButton returnAbout;
+
 	/**
 	 * champs de texte
 	 */
 	JTextField name;
+
 	/**
 	 * choix des niveaux à jouer
 	 */
 	JComboBox<String> comboLevel;
+
 	/**
 	 * choix des fichiers de scores à effacer
 	 */
 	JComboBox<String> comboDelete;
 
 	/**
-	 * Constructeur de la Vue
-	 * création de la fenêtre et des panneaux
+	 * Constructeur de la Vue création de la fenêtre et des panneaux
 	 * 
 	 * @param maxX
 	 *            largeur de la fenêtre
@@ -83,12 +93,13 @@ public class Vue extends JFrame {
 		this.setSize(maxX, maxY);
 		create();
 	}
+
 	/**
-	 * Initialisation des panneaux et des boutons d'option
-	 * création du bouton retourn to menu, de choix des niveaux et des textes correspondants 
+	 * Initialisation des panneaux et des boutons d'option création du bouton
+	 * retourn to menu, de choix des niveaux et des textes correspondants
 	 * 
 	 */
-	public void create(){
+	public void create() {
 		panIG = new PanelInGame();
 		panS = new PanelStart();
 		panA = new PanelAbout(this.getHeight());
@@ -103,12 +114,13 @@ public class Vue extends JFrame {
 		name = new JTextField(3);
 		name.setText("");
 		String[] choices_level = { "All", "1", "2", "3", "4", "5", "6" };
-		String[] choices_delete = { "None", "General", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6" };
+		String[] choices_delete = { "None", "General", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5",
+				"Level 6" };
 		comboLevel = new JComboBox<String>(choices_level);
 		comboDelete = new JComboBox<String>(choices_delete);
 	}
-	
-	public void setPanelLeaderBoard(MouseClic _controle_c, String [][] tab) {
+
+	public void setPanelLeaderBoard(MouseClic _controle_c, String[][] tab) {
 		controle_c = _controle_c;
 		panLB.setLayout(null);
 		this.setContentPane(panLB);
@@ -122,9 +134,9 @@ public class Vue extends JFrame {
 		quit.addActionListener(controle_c);
 		panLB.add(quit);
 	}
-	
-	public void setPanelLeaderBoardFromStartPage(MouseClic _controle_c, String [][] tab, String level){
-		controle_c=_controle_c;
+
+	public void setPanelLeaderBoardFromStartPage(MouseClic _controle_c, String[][] tab, String level) {
+		controle_c = _controle_c;
 		panLB.setLayout(null);
 		this.setContentPane(panLB);
 		this.revalidate();
@@ -137,17 +149,16 @@ public class Vue extends JFrame {
 		next.setBounds(3, 570, 135, 50);
 		next.addActionListener(controle_c);
 		panLB.add(next);
-		
+
 	}
-	
+
 	/**
-	 * Met à jour la Vue pour afficher le panneau PanelEndGame
-	 * et utiliser le bon controleur
-	 * ajout du bouton save et des textes correspondants
+	 * Met à jour la Vue pour afficher le panneau PanelEndGame et utiliser le
+	 * bon controleur ajout du bouton save et des textes correspondants
 	 * 
 	 * @param _controle_c
 	 *            controleur de la souris
-	 *            
+	 * 
 	 */
 	public void setPanelEndGame(MouseClic _controle_c) {
 		controle_c = _controle_c;
@@ -165,13 +176,14 @@ public class Vue extends JFrame {
 		name.addActionListener(controle_c);
 
 	}
+
 	/**
-	 * Met à jour la Vue pour afficher le panneau PanelInGame
-	 * et utiliser le bon controleur
+	 * Met à jour la Vue pour afficher le panneau PanelInGame et utiliser le bon
+	 * controleur
 	 * 
 	 * @param _controle
 	 *            controleur des mouvements du pacman
-	 *            
+	 * 
 	 */
 	public void setPanelIngame(KeyboardAndMouseMovementsInputs _controle) {
 		controle_kammi = _controle;
@@ -185,13 +197,12 @@ public class Vue extends JFrame {
 	}
 
 	/**
-	 * Met à jour la Vue pour afficher le panneau PanelAbout
-	 * et utiliser le bon controleur
-	 * ajout du bouton retournAbout
+	 * Met à jour la Vue pour afficher le panneau PanelAbout et utiliser le bon
+	 * controleur ajout du bouton retournAbout
 	 * 
 	 * @param _controle
 	 *            controleur de la souris
-	 *            
+	 * 
 	 */
 	public void setPanelAbout(MouseClic _controle) {
 		controle_c = _controle;
@@ -204,16 +215,16 @@ public class Vue extends JFrame {
 	}
 
 	/**
-	 * Met à jour la Vue pour afficher le panneau PanelOption
-	 * et utiliser le bon controleur
-	 * ajout du bouton retournAbout et de ceux modifiant la difficulté, la musique et le leaderBoard
+	 * Met à jour la Vue pour afficher le panneau PanelOption et utiliser le bon
+	 * controleur ajout du bouton retournAbout et de ceux modifiant la
+	 * difficulté, la musique et le leaderBoard
 	 * 
 	 * @param _controle
 	 *            controleur de la souris
 	 * @param stopstartmusic
-	 * 			  boolean pour l'activation/désactivation de la musique        
+	 *            boolean pour l'activation/désactivation de la musique
 	 */
-	public void setPanelOption(MouseClic _controle,boolean stopstartmusic) {
+	public void setPanelOption(MouseClic _controle, boolean stopstartmusic) {
 		controle_c = _controle;
 		panO.setLayout(null);
 		this.setContentPane(panO);
@@ -233,9 +244,9 @@ public class Vue extends JFrame {
 		panO.add(hard);
 		hard.setBounds(407, 60, 135, 50);
 		hard.addActionListener(controle_c);
-		JToggleButton music=new JToggleButton("On/Off",!stopstartmusic);
+		JToggleButton music = new JToggleButton("On/Off", !stopstartmusic);
 		panO.add(music);
-		music.setBounds(this.getWidth()/2-58,this.getHeight()/2,100,50);
+		music.setBounds(this.getWidth() / 2 - 58, this.getHeight() / 2, 100, 50);
 		music.addActionListener(controle_c);
 		comboLevel.addActionListener(controle_c);
 		comboLevel.setBounds(412, 200, 50, 25);
@@ -245,18 +256,18 @@ public class Vue extends JFrame {
 		panO.add(comboDelete);
 		JButton delete = new JButton("Delete");
 		panO.add(delete);
-		delete.setBounds(330,475,135,50);
+		delete.setBounds(330, 475, 135, 50);
 		delete.addActionListener(controle_c);
 	}
 
 	/**
-	 * Met à jour la Vue pour afficher le panneau Start
-	 * et utiliser le bon controleur
-	 * ajout des boutons des différents menu (start,option,about,scoreboard et quit)
+	 * Met à jour la Vue pour afficher le panneau Start et utiliser le bon
+	 * controleur ajout des boutons des différents menu
+	 * (start,option,about,scoreboard et quit)
 	 * 
 	 * @param _controle
 	 *            controleur de la souris
-	 *        
+	 * 
 	 */
 	public void setPanelStart(MouseClic _controle) {
 		controle_c = _controle;
@@ -276,7 +287,7 @@ public class Vue extends JFrame {
 		panS.add(scoreboard);
 		scoreboard.setBounds(260, 286, 110, 50);
 		scoreboard.addActionListener(controle_c);
-		
+
 		JButton about = new JButton("About");
 		panS.add(about);
 		about.setBounds(260, 386, 110, 50);
@@ -290,7 +301,7 @@ public class Vue extends JFrame {
 
 	/**
 	 * Actualise le panneau PanelLeaderBoard
-	 *     
+	 * 
 	 */
 	public void refreshLeaderBoard() {
 		panLB.repaint();
@@ -298,7 +309,7 @@ public class Vue extends JFrame {
 
 	/**
 	 * Actualise le panneau PanelEndGame
-	 *     
+	 * 
 	 */
 	public void refreshEndGame() {
 		controle_c.setName(this.name.getText());
@@ -307,7 +318,7 @@ public class Vue extends JFrame {
 
 	/**
 	 * Actualise le panneau PanelInGame
-	 *     
+	 * 
 	 */
 	public void refresh() {
 		panIG.repaint();
@@ -315,29 +326,28 @@ public class Vue extends JFrame {
 
 	/**
 	 * Actualise le panneau PanelAbout
-	 *     
+	 * 
 	 */
 	public void refreshAbout() {
 		panA.repaint();
 	}
 
 	/**
-	 * Actualise le panneau PanelOption
-	 * et la difficulté du pacman
-	 *   
+	 * Actualise le panneau PanelOption et la difficulté du pacman
+	 * 
 	 * @param difficulty
-	 * 			choix de la difficulté    
+	 *            choix de la difficulté
 	 */
 	public void refreshOption(String difficulty) {
-		controle_c.setLevel((String)this.comboLevel.getSelectedItem());
-		controle_c.setDelete((String)this.comboDelete.getSelectedItem());
+		controle_c.setLevel((String) this.comboLevel.getSelectedItem());
+		controle_c.setDelete((String) this.comboDelete.getSelectedItem());
 		panO.setDifficulty(difficulty);
 		panO.repaint();
 	}
 
 	/**
 	 * Actualise le panneau PanelStart
-	 *     
+	 * 
 	 */
 	public void refreshStart() {
 		panS.repaint();
@@ -365,7 +375,7 @@ public class Vue extends JFrame {
 	 *            tableau des bonus mangés
 	 * @param reset
 	 *            boolean de reset de partie
-	 *     
+	 * 
 	 */
 	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
 			boolean[] bonus, boolean reset) {
@@ -383,7 +393,7 @@ public class Vue extends JFrame {
 
 	/**
 	 * Affichage de la pause
-	 *     
+	 * 
 	 */
 	public void showPause() {
 		panIG.setPause(true);
@@ -391,7 +401,7 @@ public class Vue extends JFrame {
 
 	/**
 	 * Annulation de la pause
-	 *     
+	 * 
 	 */
 	public void hidePause() {
 		panIG.setPause(false);
@@ -399,7 +409,7 @@ public class Vue extends JFrame {
 
 	/**
 	 * Permet de mettre à jour le compteur
-	 *     
+	 * 
 	 */
 	public void setCounter(int i) {
 		panIG.setCounter(i);

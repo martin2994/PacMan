@@ -7,41 +7,44 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Vue est la classe centralisant toutes les données et méthodes correspondant aux images du Pacman
+ * Précharge toutes les images du jeu pour pouvoir les afficher plus rapidement
+ * et proprement
  * 
  * @author Duchene Herrmann Rety
- * 
  *
  */
 public class MyImage {
+
 	/**
 	 * tableau des images du labyrinth
 	 */
 	private Image[] mylab;
+
 	/**
 	 * tableau des images des bonus
 	 */
 	private Image[] mybonus;
+
 	/**
 	 * tableau des images du pacman
 	 */
 	private Image[] mypacman;
+
 	/**
 	 * tableau des images des fantômes
 	 */
 	private Image[] myghost;
 
 	/**
-	 * Contructeur de MyImage
-	 * chargement de toutes les images du dossier image
+	 * Contructeur de MyImage chargement de toutes les images du dossier image
 	 * et création des tableaux regroupant ces images
 	 * 
 	 */
 	public MyImage() {
-			mylab=new Image[27];
-			mybonus=new Image[4];
-			mypacman=new Image[5];
-			myghost=new Image[22];
+		mylab = new Image[27];
+		mybonus = new Image[4];
+		mypacman = new Image[5];
+		myghost = new Image[22];
 		try { // chargement des images
 			mylab[0] = ImageIO.read(new File("src/image/case0.png"));
 			mylab[1] = ImageIO.read(new File("src/image/case1.png"));
@@ -71,7 +74,7 @@ public class MyImage {
 			mylab[24] = ImageIO.read(new File("src/image/case24.png"));
 			mylab[25] = ImageIO.read(new File("src/image/case25.png"));
 			mypacman[1] = ImageIO.read(new File("src/image/Pacman_left.png"));
-			mypacman[2]= ImageIO.read(new File("src/image/Pacman_right.png"));
+			mypacman[2] = ImageIO.read(new File("src/image/Pacman_right.png"));
 			mypacman[3] = ImageIO.read(new File("src/image/Pacman_up.png"));
 			mypacman[4] = ImageIO.read(new File("src/image/Pacman_down.png"));
 			mypacman[0] = ImageIO.read(new File("src/image/Pacman_close.png"));
@@ -105,99 +108,138 @@ public class MyImage {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 *  Retourne l'image à la case i du tableau lab
-	 *  @param i
-	 *  		ième case du tableau
+	 * Retourne l'image à la case i du tableau lab
+	 * 
+	 * @param i
+	 *            ième case du tableau
 	 */
-	public Image getCase(int i){
+	public Image getCase(int i) {
 		return mylab[i];
 	}
-	
+
 	/**
-	 *  Retourne l'image d'un fantôme dans une direction du tableau myghost
-	 *  @param name
-	 *  		nom du fantôme
-	 *  @param direction
-	 *  		direction du fantôme
+	 * Retourne l'image d'un fantôme dans une direction du tableau myghost
+	 * 
+	 * @param name
+	 *            nom du fantôme
+	 * @param direction
+	 *            direction du fantôme
 	 */
-	public Image getGhost(String name,String direction){
+	public Image getGhost(String name, String direction) {
 		int i;
-		switch (name){
+		switch (name) {
 		case "Blinky":
-			i=0;
-			switch (direction){
-			case "left":return myghost[4*i];
-			case "up":return myghost[4*i+1];
-			case "down":return myghost[4*i+2];
-			case "right":return myghost[4*i+3];
+			i = 0;
+			switch (direction) {
+			case "left":
+				return myghost[4 * i];
+			case "up":
+				return myghost[4 * i + 1];
+			case "down":
+				return myghost[4 * i + 2];
+			case "right":
+				return myghost[4 * i + 3];
 			}
 		case "Pinky":
-			i=3;
-			switch (direction){
-			case "left":return myghost[4*i];
-			case "up":return myghost[4*i+1];
-			case "down":return myghost[4*i+2];
-			case "right":return myghost[4*i+3];
+			i = 3;
+			switch (direction) {
+			case "left":
+				return myghost[4 * i];
+			case "up":
+				return myghost[4 * i + 1];
+			case "down":
+				return myghost[4 * i + 2];
+			case "right":
+				return myghost[4 * i + 3];
 			}
 		case "Clyde":
-			i=1;
-			switch (direction){
-			case "left":return myghost[4*i];
-			case "up":return myghost[4*i+1];
-			case "down":return myghost[4*i+2];
-			case "right":return myghost[4*i+3];
+			i = 1;
+			switch (direction) {
+			case "left":
+				return myghost[4 * i];
+			case "up":
+				return myghost[4 * i + 1];
+			case "down":
+				return myghost[4 * i + 2];
+			case "right":
+				return myghost[4 * i + 3];
 			}
 		case "Inky":
-			i=2;
-			switch (direction){
-			case "left":return myghost[4*i];
-			case "up":return myghost[4*i+1];
-			case "down":return myghost[4*i+2];
-			case "right":return myghost[4*i+3];
+			i = 2;
+			switch (direction) {
+			case "left":
+				return myghost[4 * i];
+			case "up":
+				return myghost[4 * i + 1];
+			case "down":
+				return myghost[4 * i + 2];
+			case "right":
+				return myghost[4 * i + 3];
 			}
 		case "Eye":
-			i=4;
-			switch (direction){
-			case "left":return myghost[4*i];
-			case "up":return myghost[4*i+1];
-			case "down":return myghost[4*i+2];
-			case "right":return myghost[4*i+3];
+			i = 4;
+			switch (direction) {
+			case "left":
+				return myghost[4 * i];
+			case "up":
+				return myghost[4 * i + 1];
+			case "down":
+				return myghost[4 * i + 2];
+			case "right":
+				return myghost[4 * i + 3];
 			}
-		case "Blue":return myghost[20];
-		case "White":return myghost[21];
-		default:return null;
+		case "Blue":
+			return myghost[20];
+		case "White":
+			return myghost[21];
+		default:
+			return null;
 		}
 	}
-	
+
 	/**
-	 *  Retourne l'image d'une bonus du tableau mybonus
-	 *  @param name
-	 *  		nom du bonus
+	 * Retourne l'image d'une bonus du tableau mybonus
+	 * 
+	 * @param name
+	 *            nom du bonus
 	 */
-	public Image getBonus(String name){
-		switch (name){
-		case "Fraise":return mybonus[0];
-		case "Orange":return mybonus[1];
-		case "Cerise":return mybonus[2];
-		case "Pomme":return mybonus[3];
-		default: return null;
+	public Image getBonus(String name) {
+		switch (name) {
+		case "Fraise":
+			return mybonus[0];
+		case "Orange":
+			return mybonus[1];
+		case "Cerise":
+			return mybonus[2];
+		case "Pomme":
+			return mybonus[3];
+		default:
+			return null;
 		}
 	}
+
 	/**
-	 *  Retourne l'image d'une direction de pacman du tableau mypacman
-	 *  @param name
-	 *  		nom de la direction du pacman
+	 * Retourne l'image d'une direction de pacman du tableau mypacman
+	 * 
+	 * @param name
+	 *            nom de la direction du pacman
 	 */
-	public Image getPacman(String name){
-		switch (name){
-			case "left":return mypacman[1];
-			case "up":return mypacman[3];
-			case "down":return mypacman[4];
-			case "right":return mypacman[2];
-			case "close":return mypacman[0];
-			default: return null;
+	public Image getPacman(String name) {
+		switch (name) {
+		case "left":
+			return mypacman[1];
+		case "up":
+			return mypacman[3];
+		case "down":
+			return mypacman[4];
+		case "right":
+			return mypacman[2];
+		case "close":
+			return mypacman[0];
+		default:
+			return null;
 		}
 	}
 }

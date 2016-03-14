@@ -12,78 +12,87 @@ import javax.swing.JPanel;
 import Modele.Ghost;
 import Modele.Pacman;
 
-
 /**
- * PanelInGame est la classe centralisant toutes les méthodes d'affichage durant le jeu
+ * PanelInGame est la classe centralisant toutes les méthodes d'affichage durant
+ * le jeu
  * 
  * @author Duchene Herrmann Rety
- * 
  *
  */
 public class PanelInGame extends JPanel {
+
 	/**
 	 * boolean qui gère la pause du jeu
 	 */
 	private boolean pause;
+
 	/**
 	 * entier qui gère le compteur de début de jeu
 	 */
 	private int counter;
+
 	/**
 	 * attribut qui gère le fantôme Blinky
 	 */
 	private Ghost blinky;
+
 	/**
 	 * attribut qui gère le fantôme Pnky
 	 */
 	private Ghost pinky;
+
 	/**
 	 * attribut qui gère le fantôme Iky
 	 */
 	private Ghost inky;
+
 	/**
 	 * attribut qui gère le fantôme Clyde
 	 */
 	private Ghost clyde;
+
 	/**
 	 * attribut qui gère le Pacman
 	 */
 	private Pacman hero;
+
 	/**
 	 * tableau des bonus affichés
 	 */
 	private boolean[] bonus;
+
 	/**
 	 * attribut contenant toutes les images
 	 */
 	private MyImage myimage;
+
 	/**
-	 *  boolean pour gerer la forme du pacman
+	 * boolean pour gerer la forme du pacman
 	 */
 	private boolean form_pacman = false;
+
 	/**
 	 * timer pour gerer la forme du pacman
 	 */
 	private int timer_anim_pacman = 0;
 
-	
 	/**
-	 * Contructeur de PanelInHame
-	 * initialisation des images et des attributs du panneau 
+	 * Contructeur de PanelInHame initialisation des images et des attributs du
+	 * panneau
 	 * 
 	 */
 	public PanelInGame() {
 		pause = false;
 		counter = 4;
-		myimage=new MyImage();
+		myimage = new MyImage();
 	}
 
 	/**
-	 * Affichage du labyrinth, du pacman, des fantômes et des options
-	 * affichage de la pause et du compteur si besoin
+	 * Affichage du labyrinth, du pacman, des fantômes et des options affichage
+	 * de la pause et du compteur si besoin
 	 * 
 	 * @param g
-	 * 			Fenêtre actuelle
+	 *            Fenêtre actuelle
 	 */
 	public void paintComponent(Graphics g) {
 		drawLabyrinth(g);
@@ -93,7 +102,7 @@ public class PanelInGame extends JPanel {
 		if (pause) {
 			drawPause(g);
 		}
-		if(counter>0){
+		if (counter > 0) {
 			Font font = new Font("Courier", Font.BOLD, 150);
 			g.setFont(font);
 			g.setColor(Color.YELLOW);
@@ -103,11 +112,10 @@ public class PanelInGame extends JPanel {
 	}
 
 	/**
-	 * Affichage des cases du labyrinth
-	 * et des lignes de démarcation des bonus
+	 * Affichage des cases du labyrinth et des lignes de démarcation des bonus
 	 * 
 	 * @param g
-	 * 			Fenêtre actuelle
+	 *            Fenêtre actuelle
 	 */
 	public void drawLabyrinth(Graphics g) {
 		int mat[][] = Controller.getLabyrinth();
@@ -223,10 +231,10 @@ public class PanelInGame extends JPanel {
 	}
 
 	/**
-	 * Affichage  du pacman en fonction de sa direction et du temps
+	 * Affichage du pacman en fonction de sa direction et du temps
 	 * 
 	 * @param g
-	 * 			Fenêtre actuelle
+	 *            Fenêtre actuelle
 	 */
 	public void drawPacman(Graphics g) {
 		/*
@@ -263,10 +271,10 @@ public class PanelInGame extends JPanel {
 	}
 
 	/**
-	 * Affichage  de la pause
+	 * Affichage de la pause
 	 * 
 	 * @param g
-	 * 			Fenêtre actuelle
+	 *            Fenêtre actuelle
 	 */
 	public void drawPause(Graphics g) {
 		Font font = new Font("Courier", Font.BOLD, 100);
@@ -276,10 +284,10 @@ public class PanelInGame extends JPanel {
 	}
 
 	/**
-	 * Affichage  des options (bonus, score, vie)
+	 * Affichage des options (bonus, score, vie)
 	 * 
 	 * @param g
-	 * 			Fenêtre actuelle
+	 *            Fenêtre actuelle
 	 */
 	public void drawOptions(Graphics g) {
 		/*
@@ -290,7 +298,8 @@ public class PanelInGame extends JPanel {
 		g.setColor(Color.white);
 		g.drawString("Life:", this.getWidth() - 105, (this.getHeight() / 3) - 28);
 		for (int i = 0; i < hero.getLife(); i++) {
-			g.drawImage(myimage.getPacman("right"), (this.getWidth() - 105) + i * 28, (this.getHeight() / 3) - 14, this);
+			g.drawImage(myimage.getPacman("right"), (this.getWidth() - 105) + i * 28, (this.getHeight() / 3) - 14,
+					this);
 		}
 		g.drawString("Bonus:", this.getWidth() - 105, 2 * (this.getHeight() / 3) - 28);
 		if (bonus[0])
@@ -307,22 +316,21 @@ public class PanelInGame extends JPanel {
 		g.drawString("" + Controller.getScore(), this.getWidth() - 105, 75);
 	}
 
-	
 	/**
-	 * Affichage  des fantomes en fonction de leur direction
+	 * Affichage des fantomes en fonction de leur direction
 	 * 
 	 * @param g
-	 * 			Fenêtre actuelle
+	 *            Fenêtre actuelle
 	 * @param actual
-	 * 			fantôme à afficher
+	 *            fantôme à afficher
 	 * @param up
-	 * 			image du fantôme vers le haut
+	 *            image du fantôme vers le haut
 	 * @param down
-	 * 			image du fantôme vers le bas
+	 *            image du fantôme vers le bas
 	 * @param left
-	 * 			image du fantôme vers la gauche
+	 *            image du fantôme vers la gauche
 	 * @param right
-	 * 			image du fantôme vers la droite
+	 *            image du fantôme vers la droite
 	 */
 	public void drawDirectionGhost(Graphics g, Ghost actual, Image up, Image down, Image left, Image right) {
 		switch (actual.getGo()) {
@@ -346,19 +354,19 @@ public class PanelInGame extends JPanel {
 	 * Affichage des fantomes mangeables
 	 * 
 	 * @param g
-	 * 			Fenêtre actuelle
+	 *            Fenêtre actuelle
 	 * @param actual
-	 * 			fantôme à afficher 
+	 *            fantôme à afficher
 	 */
 	public void drawEatableGhost(Graphics g, Ghost actual) {
 		if (hero.getTimer_superPacman() >= 625) {
 			if (hero.getTimer_superPacman() % 25 < 13) {
-				g.drawImage(myimage.getGhost("White",""), actual.getCoordX(), actual.getCoordY(), this);
+				g.drawImage(myimage.getGhost("White", ""), actual.getCoordX(), actual.getCoordY(), this);
 			} else {
-				g.drawImage(myimage.getGhost("Blue",""), actual.getCoordX(), actual.getCoordY(), this);
+				g.drawImage(myimage.getGhost("Blue", ""), actual.getCoordX(), actual.getCoordY(), this);
 			}
 		} else {
-			g.drawImage(myimage.getGhost("Blue",""), actual.getCoordX(), actual.getCoordY(), this);
+			g.drawImage(myimage.getGhost("Blue", ""), actual.getCoordX(), actual.getCoordY(), this);
 		}
 	}
 
@@ -366,8 +374,8 @@ public class PanelInGame extends JPanel {
 	 * Affichage des fantomes en fonction de leur direction et de leur état
 	 * 
 	 * @param g
-	 * 			Fenêtre actuelle
-
+	 *            Fenêtre actuelle
+	 * 
 	 */
 	public void drawGhost(Graphics g) {
 		/*
@@ -376,66 +384,76 @@ public class PanelInGame extends JPanel {
 		 */
 		switch (blinky.getState()) {
 		case 0:
-			drawDirectionGhost(g, blinky, myimage.getGhost("Blinky","up"), myimage.getGhost("Blinky","down"), myimage.getGhost("Blinky","left"),myimage.getGhost("Blinky","right"));
+			drawDirectionGhost(g, blinky, myimage.getGhost("Blinky", "up"), myimage.getGhost("Blinky", "down"),
+					myimage.getGhost("Blinky", "left"), myimage.getGhost("Blinky", "right"));
 			break;
 		case 1:
 			drawEatableGhost(g, blinky);
 			break;
 		case 2:
-			drawDirectionGhost(g, blinky, myimage.getGhost("Eye","up"), myimage.getGhost("Eye","down"), myimage.getGhost("Eye","left"),myimage.getGhost("Eye","right"));
+			drawDirectionGhost(g, blinky, myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
+					myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
 			break;
 		}
 		switch (inky.getState()) {
 		case 0:
-			drawDirectionGhost(g, inky, myimage.getGhost("Inky","up"), myimage.getGhost("Inky","down"), myimage.getGhost("Inky","left"),myimage.getGhost("Inky","right"));
+			drawDirectionGhost(g, inky, myimage.getGhost("Inky", "up"), myimage.getGhost("Inky", "down"),
+					myimage.getGhost("Inky", "left"), myimage.getGhost("Inky", "right"));
 			break;
 		case 1:
 			drawEatableGhost(g, inky);
 			break;
 		case 2:
-			drawDirectionGhost(g, inky, myimage.getGhost("Eye","up"), myimage.getGhost("Eye","down"), myimage.getGhost("Eye","left"),myimage.getGhost("Eye","right"));
+			drawDirectionGhost(g, inky, myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
+					myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
 			break;
 		}
 		switch (pinky.getState()) {
 		case 0:
-			drawDirectionGhost(g, pinky,myimage.getGhost("Pinky","up"), myimage.getGhost("Pinky","down"), myimage.getGhost("Pinky","left"),myimage.getGhost("Pinky","right"));
+			drawDirectionGhost(g, pinky, myimage.getGhost("Pinky", "up"), myimage.getGhost("Pinky", "down"),
+					myimage.getGhost("Pinky", "left"), myimage.getGhost("Pinky", "right"));
 			break;
 		case 1:
 			drawEatableGhost(g, pinky);
 			break;
 		case 2:
-			drawDirectionGhost(g, pinky, myimage.getGhost("Eye","up"), myimage.getGhost("Eye","down"), myimage.getGhost("Eye","left"),myimage.getGhost("Eye","right"));
+			drawDirectionGhost(g, pinky, myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
+					myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
 			break;
 		}
 		switch (clyde.getState()) {
 		case 0:
-			drawDirectionGhost(g, clyde,myimage.getGhost("Clyde","up"), myimage.getGhost("Clyde","down"), myimage.getGhost("Clyde","left"),myimage.getGhost("Clyde","right"));
+			drawDirectionGhost(g, clyde, myimage.getGhost("Clyde", "up"), myimage.getGhost("Clyde", "down"),
+					myimage.getGhost("Clyde", "left"), myimage.getGhost("Clyde", "right"));
 			break;
 		case 1:
 			drawEatableGhost(g, clyde);
 			break;
 		case 2:
-			drawDirectionGhost(g, clyde, myimage.getGhost("Eye","up"), myimage.getGhost("Eye","down"), myimage.getGhost("Eye","left"),myimage.getGhost("Eye","right"));
+			drawDirectionGhost(g, clyde, myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
+					myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
 			break;
 		}
 
 	}
 
 	/**
-	 * Getter du fantôme Blinky 
+	 * Getter du fantôme Blinky
 	 */
 	public Ghost getBlinky() {
 		return blinky;
 	}
 
 	/**
-	 * Setter du fantôme Blinky 
+	 * Setter du fantôme Blinky
+	 * 
 	 * @param Blinky
-	 * 			nouvelle état du fantôme
+	 *            nouvelle état du fantôme
 	 */
 	public void setBlinky(Ghost blinky) {
 		this.blinky = blinky;
 	}
+
 	/**
 	 * Getter du fantôme Pinky
 	 */
@@ -444,13 +462,15 @@ public class PanelInGame extends JPanel {
 	}
 
 	/**
-	 * Setter du fantôme Pinky 
+	 * Setter du fantôme Pinky
+	 * 
 	 * @param pinky
-	 * 			nouvelle état du fantôme
+	 *            nouvelle état du fantôme
 	 */
 	public void setPinky(Ghost pinky) {
 		this.pinky = pinky;
 	}
+
 	/**
 	 * Getter du fantôme Inky
 	 */
@@ -459,13 +479,15 @@ public class PanelInGame extends JPanel {
 	}
 
 	/**
-	 * Setter du fantôme Inky 
+	 * Setter du fantôme Inky
+	 * 
 	 * @param inky
-	 * 			nouvelle état du fantôme
+	 *            nouvelle état du fantôme
 	 */
 	public void setInky(Ghost inky) {
 		this.inky = inky;
 	}
+
 	/**
 	 * Getter du fantôme Clyde
 	 */
@@ -474,28 +496,32 @@ public class PanelInGame extends JPanel {
 	}
 
 	/**
-	 * Setter du fantôme Clyde 
+	 * Setter du fantôme Clyde
+	 * 
 	 * @param clyde
-	 * 			nouvelle état du fantôme
+	 *            nouvelle état du fantôme
 	 */
 	public void setClyde(Ghost clyde) {
 		this.clyde = clyde;
 	}
+
 	/**
-	 * Getter de la forme du pacman 
+	 * Getter de la forme du pacman
 	 */
 	public boolean getForm_pacman() {
 		return this.form_pacman;
 	}
 
 	/**
-	 * Setter de la forme du pacman 
+	 * Setter de la forme du pacman
+	 * 
 	 * @param new_form
-	 * 			nouvelle forme
+	 *            nouvelle forme
 	 */
 	public void setForm_pacman(boolean new_form) {
 		this.form_pacman = new_form;
 	}
+
 	/**
 	 * Getter du timer de la l'animation du pacman
 	 */
@@ -504,27 +530,30 @@ public class PanelInGame extends JPanel {
 	}
 
 	/**
-	 * Setter du timer de la forme du pacman 
+	 * Setter du timer de la forme du pacman
+	 * 
 	 * @param timer_anim_pacman
-	 * 			nouveau timer
+	 *            nouveau timer
 	 */
 	public void setTimer_anim_pacman(int timer_anim_pacman) {
 		this.timer_anim_pacman = timer_anim_pacman;
 	}
 
 	/**
-	 * Setter de la forme du pacman 
+	 * Setter de la forme du pacman
+	 * 
 	 * @param new_form
-	 * 			nouvelle forme
+	 *            nouvelle forme
 	 */
 	public void setHero(Pacman hero) {
 		this.hero = hero;
 	}
 
 	/**
-	 * Setter de la pause 
+	 * Setter de la pause
+	 * 
 	 * @param _pause
-	 * 			nouvelle état
+	 *            nouvelle état
 	 */
 	public void setPause(boolean _pause) {
 		this.pause = _pause;
@@ -532,30 +561,31 @@ public class PanelInGame extends JPanel {
 
 	/**
 	 * Setter des nous
+	 * 
 	 * @param bonus
-	 * 			nouveaux états
+	 *            nouveaux états
 	 */
 	public void setBonus(boolean[] bonus) {
 		this.bonus = bonus;
 	}
-	
+
 	/**
 	 * Réinitialisation du compteur
 	 * 
 	 */
-	public void resetCounter(){
-		this.counter=4;
-		timer_anim_pacman=0;
+	public void resetCounter() {
+		this.counter = 4;
+		timer_anim_pacman = 0;
 	}
-	
+
 	/**
-	 *  Setter du compteur
+	 * Setter du compteur
 	 * 
 	 * @param i
-	 * 		ième seconde
+	 *            ième seconde
 	 */
-	public void setCounter(int i){
-		this.counter=i;
+	public void setCounter(int i) {
+		this.counter = i;
 	}
 
 }

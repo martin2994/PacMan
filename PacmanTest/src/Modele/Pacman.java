@@ -10,23 +10,45 @@ import Controller.*;
  */
 public class Pacman {
 
-	// Coordonnées de Pacman
+	/**
+	 * Coordonnée X de Pacman
+	 */
 	private int coordX;
+
+	/**
+	 * Coordonnée Y de Pacman
+	 */
 	private int coordY;
-	// Direction dans laquelle Pacman va actuellement
+
+	/**
+	 * Direction dans laquelle Pacman va actuellement
+	 */
 	private Controller.Direction go;
-	/*
+
+	/**
 	 * Direction choisie par l'utilisateur et dans laquelle il faudra aller dès
 	 * que Pacman pourra
 	 */
 	private Controller.Direction toGo;
-	// Nombre de vies de Pacman
+	
+	/**
+	 *  Nombre de vies de Pacman
+	 */
 	private int life;
-	// Nombre de pixels parcourus par Pacman à chaque tour de boucle
+	
+	/**
+	 *  Nombre de pixels parcourus par Pacman à chaque tour de boucle
+	 */
 	private int deplacement;
-	// Taille de la hitbox de Pacman
+	
+	/**
+	 *  Taille de la hitbox de Pacman
+	 */
 	private int length_box;
-	// Timer de super Pacman
+	
+	/**
+	 *  Timer de super Pacman
+	 */
 	private int timer_superPacman = 0;
 
 	/**

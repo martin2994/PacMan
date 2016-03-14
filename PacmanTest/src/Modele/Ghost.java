@@ -10,27 +10,55 @@ import Controller.*;
  */
 public class Ghost {
 
-	// Coordonnées x et y du fantome
+	/**
+	 * Coordonnée x du fantome
+	 */
 	private int coordX;
+
+	/**
+	 * Coordonnée y du fantome
+	 */
 	private int coordY;
-	/*
+
+	/**
 	 * Etat du fantome : 0 - "Non mangeable" par Pacman 1 - "Mangeable" par
 	 * Pacman 2 - Forme d'yeux retournant à la base
 	 */
 	private int state;
-	// Nom du fantome
+
+	/**
+	 * Nom du fantome
+	 */
 	private String name;
-	// Direction actuelle du fantome
+
+	/**
+	 * Direction actuelle du fantome
+	 */
 	private Controller.Direction go;
-	// Direction opposée de la directio nactuelle du fantome
+
+	/**
+	 * Direction opposée de la directio nactuelle du fantome
+	 */
 	private Controller.Direction goToTheOtherSide;
-	// Noùbre de pixels parcourus à chaque tour de boucle
+
+	/**
+	 * Noùbre de pixels parcourus à chaque tour de boucle
+	 */
 	private int deplacement;
-	// Taille de la hitbox
+
+	/**
+	 * Taille de la hitbox
+	 */
 	private int length_box;
-	// Tour de jeu actuel
+
+	/**
+	 * Tour de jeu actuel
+	 */
 	private int game_lap;
-	// Dose de danrom dans les deplacements des fantomes
+
+	/**
+	 * Pourcentage de random dans les deplacements des fantomes
+	 */
 	private int difficulty;
 
 	/**

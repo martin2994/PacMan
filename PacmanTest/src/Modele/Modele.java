@@ -16,45 +16,71 @@ import Controller.*;
 public class Modele {
 
 	/**
-	 * taille de la fenêtre
+	 * taille X de la fenêtre
 	 */
 	public static int maxX = 660;
-	public static int maxY = 652;
+
 	/**
-	 *  taille du labyrinthe
+	 * taille Y de la fenêtre
+	 */
+	public static int maxY = 652;
+
+	/**
+	 * taille du labyrinthe
 	 */
 	public static int[][] labyrinth;
+
 	/**
-	 *taille d'une case en pixels
+	 * taille d'une case en pixels
 	 */
 	public static int length_box = 28;
+
 	/**
-	 *  nombre de gommes dans le labyrinthe
+	 * nombre de gommes dans le labyrinthe
 	 */
 	public static int gumGum;
+
 	/**
 	 * nombre de gommes total
 	 */
 	public static int totalGumGum;
+
 	/**
-	 *  Nom du fichier dans lequel le niveau est enregistré
+	 * Nom du fichier dans lequel le niveau est enregistré
 	 */
 	public static String file_name;
+
 	/**
-	 *  nombre de pixels parcourus par tour
+	 * nombre de pixels parcourus par tour
 	 */
 	public static int deplacement = 1;
+
 	/**
-	 * tableau des bonus : false : Bonus pas encore apparu true : Bonus apparu
+	 * tableau des bonus : false -> Bonus pas encore apparu et true -> Bonus
+	 * apparu
 	 */
 	public static boolean[] bonus_pop;
 
+	/**
+	 * tableau des bonus mangés : false -> Bonus pas encore apparu et true ->
+	 * Bonus apparu
+	 */
 	public static boolean[] bonus_eat;
 
+	/**
+	 * Nombre de points inscrits lors d'une partie
+	 */
 	public static int score;
 
+	/**
+	 * Difficulté du fantome en pourcentage d'aléatoire dans la direction des
+	 * fantomes
+	 */
 	public static int difficulty = 50;
 
+	/**
+	 * Nom choisi par l'utilisateur
+	 */
 	public static String username = "";
 
 	/**
