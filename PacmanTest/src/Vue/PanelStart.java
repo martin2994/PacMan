@@ -3,7 +3,6 @@ package Vue;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -127,11 +126,11 @@ public class PanelStart extends JPanel {
 	 */
 	public PanelStart() {
 		try {
-			blinky_down = ImageIO.read(new File("src/Vue/image/Blinky_down.png"));
-			clyde_down = ImageIO.read(new File("src/Vue/image/Clyde_down.png"));
-			inky_down = ImageIO.read(new File("src/Vue/image/Inky_down.png"));
-			pinky_down = ImageIO.read(new File("src/Vue/image/Pinky_down.png"));
-			startpage = ImageIO.read(new File("src/Vue/image/startpage.png"));
+			startpage=ImageIO.read(Vue.class.getResource("image/Startpage.png"));
+			blinky_down = ImageIO.read(Vue.class.getResource("image/Blinky_down.png"));
+			clyde_down = ImageIO.read(Vue.class.getResource("image/Clyde_down.png"));
+			inky_down = ImageIO.read(Vue.class.getResource("image/Inky_down.png"));
+			pinky_down = ImageIO.read(Vue.class.getResource("image/Pinky_down.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

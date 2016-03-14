@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -34,7 +33,7 @@ public class PanelOption extends JPanel {
 	public PanelOption() {
 		this.difficulty = "Medium";
 		try {
-			startpage = ImageIO.read(new File("src/Vue/image/startpage.png"));
+			startpage = ImageIO.read(Vue.class.getResource("image/Startpage.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
