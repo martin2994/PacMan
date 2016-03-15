@@ -255,25 +255,25 @@ public class Modele {
 		switch (file_name) {
 		case "new":
 			if (stagePlaying != 0) {
-				file_name = "stage" + Integer.toString(stagePlaying) + ".txt";
+				file_name = "Stage" + Integer.toString(stagePlaying) + ".txt";
 			} else {
-				file_name = "stage1.txt";
+				file_name = "Stage1.txt";
 			}
 			break;
-		case "stage1.txt":
-			file_name = "stage2.txt";
+		case "Stage1.txt":
+			file_name = "Stage2.txt";
 			break;
-		case "stage2.txt":
-			file_name = "stage3.txt";
+		case "Stage2.txt":
+			file_name = "Stage3.txt";
 			break;
-		case "stage3.txt":
-			file_name = "stage4.txt";
+		case "Stage3.txt":
+			file_name = "Stage4.txt";
 			break;
-		case "stage4.txt":
-			file_name = "stage5.txt";
+		case "Stage4.txt":
+			file_name = "Stage5.txt";
 			break;
-		case "stage5.txt":
-			file_name = "stage6.txt";
+		case "Stage5.txt":
+			file_name = "Stage6.txt";
 			break;
 		default:
 			controle.endPage();
@@ -300,22 +300,22 @@ public class Modele {
 
 		/* Gestion de la musique en fonction du niveau */
 		switch (file_name) {
-		case "stage1.txt":
+		case "Stage1.txt":
 			controle.changeMusic("music/lvl1.wav");
 			break;
-		case "stage2.txt":
+		case "Stage2.txt":
 			controle.changeMusic("music/lvl2.wav");
 			break;
-		case "stage3.txt":
+		case "Stage3.txt":
 			controle.changeMusic("music/lvl3.wav");
 			break;
-		case "stage4.txt":
+		case "Stage4.txt":
 			controle.changeMusic("music/lvl4.wav");
 			break;
-		case "stage5.txt":
+		case "Stage5.txt":
 			controle.changeMusic("music/lvl5.wav");
 			break;
-		case "stage6.txt":
+		case "Stage6.txt":
 			controle.changeMusic("music/lvl6.wav");
 			break;
 		}
