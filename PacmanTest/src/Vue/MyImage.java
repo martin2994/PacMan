@@ -42,7 +42,7 @@ public class MyImage {
 	public MyImage() {
 		mylab = new Image[27];
 		mybonus = new Image[4];
-		mypacman = new Image[5];
+		mypacman = new Image[8];
 		myghost = new Image[22];
 		try { // chargement des images
 
@@ -78,6 +78,9 @@ public class MyImage {
 			mypacman[3] = ImageIO.read(Vue.class.getResource("image/Pacman_up.png"));
 			mypacman[4] = ImageIO.read(Vue.class.getResource("image/Pacman_down.png"));
 			mypacman[0] = ImageIO.read(Vue.class.getResource("image/Pacman_close.png"));
+			mypacman[5] = ImageIO.read(Vue.class.getResource("image/Pacman_mort1.png"));
+			mypacman[6] = ImageIO.read(Vue.class.getResource("image/Pacman_mort2.png"));
+			mypacman[7] = ImageIO.read(Vue.class.getResource("image/Pacman_mort3.png"));
 			myghost[0] = ImageIO.read(Vue.class.getResource("image/Blinky_left.png"));
 			myghost[1] = ImageIO.read(Vue.class.getResource("image/Blinky_up.png"));
 			myghost[2] = ImageIO.read(Vue.class.getResource("image/Blinky_down.png"));
@@ -242,6 +245,12 @@ public class MyImage {
 			return mypacman[2];
 		case "close":
 			return mypacman[0];
+		case "mort1":
+			return mypacman[5];
+		case "mort2":
+			return mypacman[6];
+		case "mort3":
+			return mypacman[7];	
 		default:
 			return null;
 		}

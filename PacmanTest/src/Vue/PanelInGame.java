@@ -76,6 +76,7 @@ public class PanelInGame extends JPanel {
 	 */
 	private int timer_anim_pacman = 0;
 
+	private int timer_dead=0;
 	/**
 	 * Contructeur de PanelInGame, initialisation des images et des attributs du
 	 * panneau
@@ -240,32 +241,49 @@ public class PanelInGame extends JPanel {
 		 * affichage de pacman en fonction de sa direction et du timer pour
 		 * faire l'animation
 		 */
-		if ((form_pacman || timer_anim_pacman < 10) && !this.pause) {
-			switch (hero.getGo()) {
-			case UP:
-				g.drawImage(myimage.getPacman("up"), hero.getCoordX(), hero.getCoordY(), this);
-				break;
-			case DOWN:
-				g.drawImage(myimage.getPacman("down"), hero.getCoordX(), hero.getCoordY(), this);
-				break;
-			case LEFT:
-				g.drawImage(myimage.getPacman("left"), hero.getCoordX(), hero.getCoordY(), this);
-				break;
-			case RIGHT:
-				g.drawImage(myimage.getPacman("right"), hero.getCoordX(), hero.getCoordY(), this);
-				break;
-			default:
+		if (hero.isState()){
+			if ((form_pacman || timer_anim_pacman < 10) && !this.pause) {
+				switch (hero.getGo()) {
+				case UP:
+					g.drawImage(myimage.getPacman("up"), hero.getCoordX(), hero.getCoordY(), this);
+					break;
+				case DOWN:
+					g.drawImage(myimage.getPacman("down"), hero.getCoordX(), hero.getCoordY(), this);
+					break;
+				case LEFT:
+					g.drawImage(myimage.getPacman("left"), hero.getCoordX(), hero.getCoordY(), this);
+					break;
+				case RIGHT:
+					g.drawImage(myimage.getPacman("right"), hero.getCoordX(), hero.getCoordY(), this);
+					break;
+				default:
+				}
+				if (timer_anim_pacman == 9)
+					form_pacman = false;
+			} else {
+				g.drawImage(myimage.getPacman("close"), hero.getCoordX(), hero.getCoordY(), this);
 			}
-			if (timer_anim_pacman == 9)
-				form_pacman = false;
-		} else {
-			g.drawImage(myimage.getPacman("close"), hero.getCoordX(), hero.getCoordY(), this);
-		}
-		timer_anim_pacman++;
-		// réinitialisation du timer
-		if (timer_anim_pacman == 20) {
-			timer_anim_pacman = 0;
-			form_pacman = true;
+			timer_anim_pacman++;
+			// réinitialisation du timer
+			if (timer_anim_pacman == 20) {
+				timer_anim_pacman = 0;
+				form_pacman = true;
+			}
+		}else{
+			if (timer_dead>=0 && timer_dead<2)
+				g.drawImage(myimage.getPacman("close"), hero.getCoordX(), hero.getCoordY(), this);
+			if (timer_dead>=2 && timer_dead<4)
+				g.drawImage(myimage.getPacman("up"), hero.getCoordX(), hero.getCoordY(), this);
+			if (timer_dead>=4 && timer_dead<6)
+				g.drawImage(myimage.getPacman("mort1"), hero.getCoordX(), hero.getCoordY(), this);
+			if (timer_dead>=6 && timer_dead<8)
+				g.drawImage(myimage.getPacman("mort2"), hero.getCoordX(), hero.getCoordY(), this);
+			if (timer_dead>=8 && timer_dead<10)
+				g.drawImage(myimage.getPacman("mort3"), hero.getCoordX(), hero.getCoordY(), this);
+			timer_dead++;
+			if (timer_dead>=10){
+				timer_dead=0;
+			}
 		}
 	}
 

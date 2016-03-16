@@ -394,7 +394,18 @@ public class Modele {
 			// placerbonus
 		}
 	}
-
+	
+	private static void deadPacman(Controller controle,Pacman hero) {
+		hero.setState(false);
+		for (int i=0;i<10;i++){
+			controle.refresh(0);
+			try{
+				Thread.sleep(100);
+			}catch (Exception e){
+				
+			}
+		}	
+	}
 	/**
 	 * Lance la page About et fait défiler les crédits via le controleur
 	 * 
@@ -951,6 +962,7 @@ public class Modele {
 				}
 			} else {
 				hero.looseLife();
+				deadPacman(controle,hero);
 			}
 			if (hero.getLife() <= 0) {
 				controle.endPage();
@@ -977,6 +989,7 @@ public class Modele {
 			}
 		}
 	}
+
 
 	/**
 	 * Lance run

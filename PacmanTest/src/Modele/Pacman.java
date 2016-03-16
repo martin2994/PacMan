@@ -46,6 +46,8 @@ public class Pacman {
 	 */
 	private int length_box;
 	
+	
+	private boolean state;
 	/**
 	 *  Timer de super Pacman
 	 */
@@ -83,6 +85,7 @@ public class Pacman {
 		this.toGo = _toGo;
 		this.deplacement = _deplacement;
 		this.length_box = _length_box;
+		this.state=true;
 	}
 
 	/**
@@ -332,4 +335,13 @@ public class Pacman {
 	public void reset_Timer_superPacman() {
 		timer_superPacman = 0;
 	}
+
+	public boolean isState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
+	}
+	
 }
