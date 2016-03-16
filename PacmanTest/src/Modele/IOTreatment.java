@@ -22,9 +22,7 @@ public class IOTreatment {
 	 *             si le fichier spécifié est introuvable
 	 */
 	public static void readMatrix(String file_name) throws IOException {
-		/*File f = new File(file_name);
-		FileInputStream ips = new FileInputStream(f);*/
-		InputStream ips=Modele.class.getResourceAsStream(file_name);
+		InputStream ips=Modele.class.getResourceAsStream("Stage/"+file_name);
 		InputStreamReader ipsr = new InputStreamReader(ips);
 		BufferedReader br = new BufferedReader(ipsr);
 		String currentLine;
