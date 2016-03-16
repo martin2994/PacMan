@@ -211,6 +211,7 @@ public class Vue extends JFrame {
 	 * 
 	 */
 	public void setPanelAbout(MouseClic _controle) {
+		this.panA=new PanelAbout(this.getHeight());
 		controle_c = _controle;
 		panA.setLayout(null);
 		this.setContentPane(panA);
