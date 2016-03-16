@@ -231,10 +231,10 @@ public class PanelInGame extends JPanel {
 		 * affichage de pacman en fonction de sa direction et du timer pour
 		 * faire l'animation
 		 */
-		hero.setForm();
-		hero.setTimer_anim();
-		if (hero.isState()){
-			if (hero.isForm()  && !this.pause) {
+		hero.refreshForm();
+		hero.refreshTimer_anim();
+		if (hero.isAlive()){
+			if (hero.isOpen()  && !this.pause) {
 				switch (hero.getGo()) {
 				case UP:
 					g.drawImage(myimage.getPacman("up"), hero.getCoordX(), hero.getCoordY(), this);

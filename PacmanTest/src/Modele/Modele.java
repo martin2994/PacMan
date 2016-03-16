@@ -394,12 +394,18 @@ public class Modele {
 			// placerbonus
 		}
 	}
-	
+	/**
+	 * Lance l'animation de mort du Pacman
+	 * @param controle
+	 * 		Le controleur référent
+	 * @param hero
+	 * 		Pacman actuel
+	 */		
 	private static void deadPacman(Controller controle,Pacman hero) {
-		hero.setState(false);
+		hero.isDead();
 		hero.resetTimerAnim();
 		for (int i=0;i<10;i++){
-			hero.setTimer_anim();
+			hero.refreshTimer_anim();
 			controle.refresh(0);
 			try{
 				Thread.sleep(100);
@@ -839,7 +845,7 @@ public class Modele {
 					normalPacman(pinky);
 					normalPacman(inky);
 				}
-				hero.setTimer_anim();
+				hero.refreshTimer_anim();
 				// Deplacement des fantomes en fonction de leur état
 				if (blinky.getState() == 2) {
 					blinky.returnToTheBase();

@@ -338,34 +338,58 @@ public class Pacman {
 	public void reset_Timer_superPacman() {
 		timer_superPacman = 0;
 	}
-
-	public boolean isState() {
+	/**
+	 * Renvoie si le pacman est vivant ou non
+	 * @return l'état actuel du pacman
+	 */
+	public boolean isAlive() {
 		return state;
 	}
-
-	public void setState(boolean state) {
-		this.state = state;
+	/**
+	 * Met l'état de pacman à faux (mort)
+	 * 		
+	 */
+	public void isDead() {
+		this.state = false;
 	}
 
+	/**
+	 * 	Renvoie le timer qui gère la forme du pacman
+	 * @return le timer actuel du pacman
+	 */
 	public int getTimer_anim() {
 		return timer_anim;
 	}
 
-	public void setTimer_anim() {
+	/**
+	 * Actualise le timer qui gère la forme du pacman
+	 */
+	public void refreshTimer_anim() {
 		if(timer_anim<20)
 			this.timer_anim++;
 		else
 			resetTimerAnim();
 	}
+	
+	/**
+	 * Réinitialise le timer qui gère la forme du pacman
+	 */
 	public void resetTimerAnim(){
 		timer_anim=0;
 	}
 
-	public boolean isForm() {
+	/**
+	 * Renvoie vrai si le pacman est ouvert et faux s'il est fermé
+	 * @return la forme acutel du pacman
+	 */
+	public boolean isOpen() {
 		return form;
 	}
 
-	public void setForm() {
+	/**
+	 * Actualise la forme du pacman en fonction du timer
+	 */
+	public void refreshForm() {
 		switch (timer_anim){
 			case 20:
 				form=false;
