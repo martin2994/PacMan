@@ -127,7 +127,7 @@ public class Modele {
 			}
 			controle.showPause();
 			controle.tellMeTheWayToGoPlease();
-			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat, false);
+			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat);
 			if (hero.getToGo().equals(Controller.Direction.SPACE)) {
 				controle.hidePause();
 				loop = false;
@@ -157,8 +157,8 @@ public class Modele {
 	 *            d'une partie)
 	 */
 	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
-			boolean[] bonus, boolean reset) {
-		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus, reset);
+			boolean[] bonus) {
+		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus);
 	}
 
 	/**
@@ -759,15 +759,16 @@ public class Modele {
 			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box, difficulty);
 			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty);
 
-			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat, true);
+			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat);
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
-				controle.refresh();
+				controle.refresh(3);
 				Thread.sleep(1000);
-				controle.refresh();
+				controle.refresh(2);
 				Thread.sleep(1000);
-				controle.refresh();
+				controle.refresh(1);
 				Thread.sleep(1000);
+				controle.refresh(0);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -859,7 +860,7 @@ public class Modele {
 						clyde.anotherLap();
 					}
 				}
-				controle.refresh();
+				controle.refresh(0);
 
 				/*
 				 * Si les fantomes sont en mode "mangeables", on incrémente le

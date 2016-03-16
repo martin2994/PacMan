@@ -83,7 +83,7 @@ public class PanelInGame extends JPanel {
 	 */
 	public PanelInGame() {
 		pause = false;
-		counter = 4;
+		counter = 0;
 		myimage = new MyImage();
 	}
 
@@ -102,12 +102,11 @@ public class PanelInGame extends JPanel {
 		if (pause) {
 			drawPause(g);
 		}
-		if (counter > 0) {
+		if (counter != 0) {
 			Font font = new Font("Courier", Font.BOLD, 150);
 			g.setFont(font);
 			g.setColor(Color.YELLOW);
 			g.drawString(Integer.toString(counter), this.getWidth() / 2 - 100, this.getHeight() / 2 + 32);
-			counter--;
 		}
 	}
 
@@ -579,15 +578,6 @@ public class PanelInGame extends JPanel {
 	 */
 	public void setBonus(boolean[] bonus) {
 		this.bonus = bonus;
-	}
-
-	/**
-	 * Réinitialisation du compteur
-	 * 
-	 */
-	public void resetCounter() {
-		this.counter = 4;
-		timer_anim_pacman = 0;
 	}
 
 	/**

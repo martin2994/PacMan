@@ -326,7 +326,8 @@ public class Vue extends JFrame {
 	 * Actualise le panneau PanelInGame
 	 * 
 	 */
-	public void refresh() {
+	public void refresh(int counter) {
+		panIG.setCounter(counter);
 		panIG.repaint();
 	}
 
@@ -384,16 +385,13 @@ public class Vue extends JFrame {
 	 * 
 	 */
 	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
-			boolean[] bonus, boolean reset) {
+			boolean[] bonus) {
 		panIG.setHero(hero);
 		panIG.setBlinky(blinky);
 		panIG.setPinky(pinky);
 		panIG.setInky(inky);
 		panIG.setClyde(clyde);
 		panIG.setBonus(bonus);
-		if (reset) {
-			panIG.resetCounter();
-		}
 		this.setContentPane(panIG);
 	}
 

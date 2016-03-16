@@ -132,8 +132,8 @@ public class Controller {
 	 *            en jeu
 	 */
 	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
-			boolean[] bonus, boolean reset) {
-		vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus, reset);
+			boolean[] bonus) {
+		vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus);
 	}
 
 	/**
@@ -170,8 +170,8 @@ public class Controller {
 	/**
 	 * Demande à la vue de rafraichir son affichage en jeu
 	 */
-	public void refresh() {
-		vue.refresh();
+	public void refresh(int counter) {
+		vue.refresh(counter);
 	}
 
 	/**
