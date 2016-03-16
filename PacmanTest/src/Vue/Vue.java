@@ -123,6 +123,7 @@ public class Vue extends JFrame {
 	}
 
 	public void setPanelLeaderBoard(MouseClic _controle_c, String[][] tab) {
+		panLB = new PanelLeaderBoard();
 		controle_c = _controle_c;
 		panLB.setLayout(null);
 		this.setContentPane(panLB);
