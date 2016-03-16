@@ -24,7 +24,7 @@ public class IOTreatment {
 	public static void readMatrix(String file_name) throws IOException {
 		/*File f = new File(file_name);
 		FileInputStream ips = new FileInputStream(f);*/
-		InputStream ips=ClassLoader.getSystemClassLoader().getResourceAsStream(file_name);
+		InputStream ips=Modele.class.getResourceAsStream(file_name);
 		InputStreamReader ipsr = new InputStreamReader(ips);
 		BufferedReader br = new BufferedReader(ipsr);
 		String currentLine;

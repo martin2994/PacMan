@@ -96,10 +96,10 @@ public class MyImage {
 			myghost[15] = ImageIO.read(Vue.class.getResource("image/Pinky_right.png"));
 			myghost[20] = ImageIO.read(Vue.class.getResource("image/Blue_Ghost.png"));
 			myghost[21] = ImageIO.read(Vue.class.getResource("image/White_Ghost.png"));
-			myghost[19] = ImageIO.read(Vue.class.getResource("image/eyes_right.png"));
-			myghost[17] = ImageIO.read(Vue.class.getResource("image/eyes_up.png"));
-			myghost[18] = ImageIO.read(Vue.class.getResource("image/eyes_down.png"));
-			myghost[16] = ImageIO.read(Vue.class.getResource("image/eyes_left.png"));
+			myghost[19] = ImageIO.read(Vue.class.getResource("image/Eyes_right.png"));
+			myghost[17] = ImageIO.read(Vue.class.getResource("image/Eyes_up.png"));
+			myghost[18] = ImageIO.read(Vue.class.getResource("image/Eyes_down.png"));
+			myghost[16] = ImageIO.read(Vue.class.getResource("image/Eyes_left.png"));
 			mybonus[0] = ImageIO.read(Vue.class.getResource("image/Fraise.png"));
 			mybonus[1] = ImageIO.read(Vue.class.getResource("image/Orange.png"));
 			mybonus[2] = ImageIO.read(Vue.class.getResource("image/Cerise.png"));
