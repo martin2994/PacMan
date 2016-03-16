@@ -119,6 +119,36 @@ public class PanelAbout extends JPanel {
 	private int[] baseMusic;
 
 	/**
+	 * Pixel actuel de Tester
+	 */
+	private int pixelTester;
+	
+	/**
+	 * Pixel actuel de Lucie
+	 */
+	private int pixelLucie;
+	
+	/**
+	 * Pixel actuel de Thomas
+	 */
+	private int pixelThomas;
+	
+	/**
+	 * Pixel où doit commencer Tester
+	 */
+	private int baseTester;
+	
+	/**
+	 * Pixel où doit commencer Thomas
+	 */
+	private int baseThomas;
+	
+	/**
+	 * Pixel où doit commencer Lucie
+	 */
+	private int baseLucie;
+
+	/**
 	 * Constructeur
 	 * 
 	 * @param height
@@ -134,7 +164,10 @@ public class PanelAbout extends JPanel {
 		this.baseStarring = height + 260;
 		this.basePacman = height + 300;
 		this.baseGhost = height + 330;
-		this.baseMusician = height + 370;
+		this.baseTester = height + 370;
+		this.baseLucie = height + 410;
+		this.baseThomas = height + 440;
+		this.baseMusician = height + 480;
 		this.pixelProducer = baseProducer;
 		this.pixelMaxime = baseMaxime;
 		this.pixelDirector = baseDirector;
@@ -145,9 +178,12 @@ public class PanelAbout extends JPanel {
 		this.pixelPacman = basePacman;
 		this.pixelGhost = baseGhost;
 		this.pixelMusician = baseMusician;
+		this.pixelTester = baseTester;
+		this.pixelLucie = baseLucie;
+		this.pixelThomas = baseThomas;
 		this.baseMusic = new int[7];
 		this.pixelMusic = new int[7];
-		this.baseMusic[0] = this.pixelMusic[0] = height + 410;
+		this.baseMusic[0] = this.pixelMusic[0] = height + 520;
 		for (int i = 1; i < baseMusic.length; i++) {
 			this.baseMusic[i] = this.pixelMusic[i] = this.pixelMusic[i - 1] + 30;
 		}
@@ -171,6 +207,9 @@ public class PanelAbout extends JPanel {
 			this.pixelStarring = baseStarring;
 			this.pixelPacman = basePacman;
 			this.pixelGhost = baseGhost;
+			this.pixelTester = baseTester;
+			this.pixelLucie = baseLucie;
+			this.pixelThomas = baseThomas;
 			this.pixelMusician = baseMusician;
 			for (int i = 0; i < baseMusic.length; i++) {
 				this.pixelMusic[i] = this.baseMusic[i];
@@ -186,6 +225,9 @@ public class PanelAbout extends JPanel {
 		this.pixelProducer--;
 		this.pixelDirector--;
 		this.pixelScreenwriter--;
+		this.pixelTester--;
+		this.pixelLucie--;
+		this.pixelThomas--;
 		this.pixelMusician--;
 		for (int i = 0; i < baseMusic.length; i++) {
 			this.pixelMusic[i]--;
@@ -202,6 +244,7 @@ public class PanelAbout extends JPanel {
 		g.drawString("Screenwriter", this.getWidth() / 3, pixelScreenwriter);
 		g.drawString("Starring", this.getWidth() / 3, pixelStarring);
 		g.drawString("Music by", this.getWidth() / 3, pixelMusician);
+		g.drawString("Special Thanks to", this.getWidth() / 3, pixelTester);
 
 		Font font2 = new Font("Courier", Font.BOLD, 20);
 		g.setFont(font2);
@@ -211,6 +254,8 @@ public class PanelAbout extends JPanel {
 		g.drawString("Rety Martin", this.getWidth() / 3 + 30, pixelMartin);
 		g.drawString("Pacman", this.getWidth() / 3 + 30, pixelPacman);
 		g.drawString("and the Ghosts", this.getWidth() / 3 + 30, pixelGhost);
+		g.drawString("Gremy Lucie", this.getWidth() / 3 + 30, pixelLucie);
+		g.drawString("Jorand Thomas", this.getWidth() / 3 + 30, pixelThomas);
 		g.drawString("Even Deeper - Fight", this.getWidth() / 3 + 30, pixelMusic[0]);
 		g.drawString("Eyeln - Final Battle", this.getWidth() / 3 + 30, pixelMusic[1]);
 		g.drawString("Floating Isle - Booster Ignite", this.getWidth() / 3 + 30, pixelMusic[2]);

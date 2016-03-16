@@ -1,5 +1,6 @@
 package Vue;
 
+import java.io.File;
 import java.net.URL;
 
 import javax.sound.sampled.AudioInputStream;
@@ -56,8 +57,7 @@ public class Music {
 	 */
 	public void setMusic(String music) {
 		try {
-			current_music = Vue.class.getResource(music);
-			AudioInputStream audioIn = AudioSystem.getAudioInputStream(current_music);
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(music));
 			current_clip = AudioSystem.getClip();
 			current_clip.open(audioIn);
 			current_clip.start();
