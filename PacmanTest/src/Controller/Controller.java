@@ -251,22 +251,8 @@ public class Controller {
 	 * @param difficulty
 	 *            la difficulté courante (medium par défaut)
 	 */
-	public void refreshOption(int difficulty) {
-		String difficultyString;
-		switch (difficulty) {
-		case 0:
-			difficultyString = "Hard";
-			break;
-		case 50:
-			difficultyString = "Medium";
-			break;
-		case 100:
-			difficultyString = "Easy";
-			break;
-		default:
-			difficultyString = "Unknow";
-		}
-		vue.refreshOption(difficultyString);
+	public void refreshOption() {
+		vue.refreshOption();
 	}
 
 	/**
@@ -297,6 +283,10 @@ public class Controller {
 	 */
 	public String getUserName() {
 		return mc.getName();
+	}
+
+	public String whichDifficulty() {
+		return mc.getDifficulty();
 	}
 
 	/**

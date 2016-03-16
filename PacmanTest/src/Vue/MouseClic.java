@@ -33,6 +33,11 @@ public class MouseClic implements ActionListener {
 	private String delete;
 
 	/**
+	 * Enregistre le niveau de difficulté des fantomes
+	 */
+	private String difficulty;
+
+	/**
 	 * Constructeur
 	 */
 	public MouseClic() {
@@ -40,6 +45,7 @@ public class MouseClic implements ActionListener {
 		this.name = "";
 		this.level = "All";
 		this.delete = "All";
+		this.difficulty = "Medium";
 	}
 
 	/**
@@ -142,6 +148,25 @@ public class MouseClic implements ActionListener {
 	 */
 	public String getDelete() {
 		return this.delete;
+	}
+
+	/**
+	 * Modifie le niveau des fantomes
+	 * 
+	 * @param _difficulty
+	 *            le nouveau niveau
+	 */
+	public void setDifficulty(String _difficulty) {
+		this.difficulty = _difficulty;
+	}
+
+	/**
+	 * Renvoie le niveau des fantomes
+	 * 
+	 * @return le niveau
+	 */
+	public String getDifficulty() {
+		return this.difficulty;
 	}
 
 }

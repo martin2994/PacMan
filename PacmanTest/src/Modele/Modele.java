@@ -451,26 +451,14 @@ public class Modele {
 		String action;
 		controle.optionPage();
 		while (!userAction) {
-			controle.refreshOption(difficulty);
+			controle.refreshOption();
 			action = controle.majStartPage();
 			switch (action) {
 			case "ReturnAbout":
 				userAction = true;
 				break;
 
-			// Difficulté des fantomes
-
-			case "Easy":
-				difficulty = 100;
-				break;
-			case "Medium":
-				difficulty = 50;
-				break;
-			case "Hard":
-				difficulty = 0;
-				break;
-
-			// Suppression des highscore
+			// Suppression des highscores
 
 			case "Delete":
 				action = controle.whichDelete();
@@ -516,6 +504,22 @@ public class Modele {
 				break;
 			case "All":
 				stagePlaying = 0;
+				break;
+			}
+			
+
+			// Difficulté des fantomes
+
+			action = controle.whichDifficulty();
+			switch (action) {
+			case "Easy":
+				difficulty = 100;
+				break;
+			case "Medium":
+				difficulty = 50;
+				break;
+			case "Hard":
+				difficulty = 0;
 				break;
 			}
 		}

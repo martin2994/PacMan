@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.JCheckBox;
 
 import Modele.Ghost;
 import Modele.Pacman;
@@ -82,6 +83,11 @@ public class Vue extends JFrame {
 	JComboBox<String> comboDelete;
 
 	/**
+	 * choix de la difficulté des fantomes
+	 */
+	JComboBox<String> comboDifficulty;
+
+	/**
 	 * Constructeur de la Vue création de la fenêtre et des panneaux
 	 * 
 	 * @param maxX
@@ -118,6 +124,8 @@ public class Vue extends JFrame {
 		String[] choices_level = { "All", "1", "2", "3", "4", "5", "6" };
 		String[] choices_delete = { "None", "General", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5",
 				"Level 6" };
+		String[] choices_difficulty = { "Easy", "Medium", "Hard" };
+		comboDifficulty = new JComboBox<String>(choices_difficulty);
 		comboLevel = new JComboBox<String>(choices_level);
 		comboDelete = new JComboBox<String>(choices_delete);
 	}
@@ -211,7 +219,7 @@ public class Vue extends JFrame {
 	 * 
 	 */
 	public void setPanelAbout(MouseClic _controle) {
-		this.panA=new PanelAbout(this.getHeight());
+		this.panA = new PanelAbout(this.getHeight());
 		controle_c = _controle;
 		panA.setLayout(null);
 		this.setContentPane(panA);
@@ -236,35 +244,33 @@ public class Vue extends JFrame {
 		panO.setLayout(null);
 		this.setContentPane(panO);
 		this.revalidate();
+
 		panO.add(returnAbout);
 		returnAbout.setBounds(516, 570, 135, 50);
 		returnAbout.addActionListener(controle_c);
-		JButton easy = new JButton("Easy");
-		panO.add(easy);
-		easy.setBounds(107, 60, 135, 50);
-		easy.addActionListener(controle_c);
-		JButton medium = new JButton("Medium");
-		panO.add(medium);
-		medium.setBounds(257, 60, 135, 50);
-		medium.addActionListener(controle_c);
-		JButton hard = new JButton("Hard");
-		panO.add(hard);
-		hard.setBounds(407, 60, 135, 50);
-		hard.addActionListener(controle_c);
+
 		JToggleButton music = new JToggleButton("On/Off", !stopstartmusic);
 		panO.add(music);
-		music.setBounds(this.getWidth() / 2 - 58, this.getHeight() / 2, 100, 50);
+		music.setBounds(350, 165, 80, 25);
 		music.addActionListener(controle_c);
-		comboLevel.addActionListener(controle_c);
-		comboLevel.setBounds(412, 200, 50, 25);
-		panO.add(comboLevel);
-		comboDelete.addActionListener(controle_c);
-		comboDelete.setBounds(200, 490, 80, 25);
-		panO.add(comboDelete);
+
 		JButton delete = new JButton("Delete");
 		panO.add(delete);
-		delete.setBounds(330, 475, 135, 50);
+		delete.setBounds(490, 115, 80, 25);
 		delete.addActionListener(controle_c);
+
+		comboDifficulty.addActionListener(controle_c);
+		comboDifficulty.setSelectedIndex(1);
+		comboDifficulty.setBounds(350, 15, 80, 25);
+		panO.add(comboDifficulty);
+
+		comboLevel.addActionListener(controle_c);
+		comboLevel.setBounds(350, 65, 80, 25);
+		panO.add(comboLevel);
+
+		comboDelete.addActionListener(controle_c);
+		comboDelete.setBounds(350, 115, 80, 25);
+		panO.add(comboDelete);
 	}
 
 	/**
@@ -346,10 +352,10 @@ public class Vue extends JFrame {
 	 * @param difficulty
 	 *            choix de la difficulté
 	 */
-	public void refreshOption(String difficulty) {
+	public void refreshOption() {
 		controle_c.setLevel((String) this.comboLevel.getSelectedItem());
 		controle_c.setDelete((String) this.comboDelete.getSelectedItem());
-		panO.setDifficulty(difficulty);
+		controle_c.setDifficulty((String) this.comboDifficulty.getSelectedItem());
 		panO.repaint();
 	}
 
