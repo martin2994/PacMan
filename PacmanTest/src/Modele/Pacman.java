@@ -53,6 +53,9 @@ public class Pacman {
 	 */
 	private int timer_superPacman = 0;
 
+	private int timer_anim=0;
+	
+	private boolean form;
 	/**
 	 * Constructeur
 	 */
@@ -342,6 +345,35 @@ public class Pacman {
 
 	public void setState(boolean state) {
 		this.state = state;
+	}
+
+	public int getTimer_anim() {
+		return timer_anim;
+	}
+
+	public void setTimer_anim() {
+		if(timer_anim<20)
+			this.timer_anim++;
+		else
+			resetTimerAnim();
+	}
+	public void resetTimerAnim(){
+		timer_anim=0;
+	}
+
+	public boolean isForm() {
+		return form;
+	}
+
+	public void setForm() {
+		switch (timer_anim){
+			case 20:
+				form=false;
+				break;
+			case 0:
+				form=true;
+				break;
+		}
 	}
 	
 }

@@ -66,17 +66,7 @@ public class PanelInGame extends JPanel {
 	 */
 	private MyImage myimage;
 
-	/**
-	 * boolean pour gerer la forme du pacman
-	 */
-	private boolean form_pacman = false;
 
-	/**
-	 * timer pour gerer la forme du pacman
-	 */
-	private int timer_anim_pacman = 0;
-
-	private int timer_dead=0;
 	/**
 	 * Contructeur de PanelInGame, initialisation des images et des attributs du
 	 * panneau
@@ -97,12 +87,12 @@ public class PanelInGame extends JPanel {
 	 */
 	public void paintComponent(Graphics g) {
 		drawLabyrinth(g);
-		drawPacman(g);
 		drawOptions(g);
 		drawGhost(g);
 		if (pause) {
 			drawPause(g);
 		}
+		drawPacman(g);
 		if (counter != 0) {
 			Font font = new Font("Courier", Font.BOLD, 150);
 			g.setFont(font);
@@ -241,8 +231,10 @@ public class PanelInGame extends JPanel {
 		 * affichage de pacman en fonction de sa direction et du timer pour
 		 * faire l'animation
 		 */
+		hero.setForm();
+		hero.setTimer_anim();
 		if (hero.isState()){
-			if ((form_pacman || timer_anim_pacman < 10) && !this.pause) {
+			if (hero.isForm()  && !this.pause) {
 				switch (hero.getGo()) {
 				case UP:
 					g.drawImage(myimage.getPacman("up"), hero.getCoordX(), hero.getCoordY(), this);
@@ -258,32 +250,20 @@ public class PanelInGame extends JPanel {
 					break;
 				default:
 				}
-				if (timer_anim_pacman == 9)
-					form_pacman = false;
 			} else {
 				g.drawImage(myimage.getPacman("close"), hero.getCoordX(), hero.getCoordY(), this);
 			}
-			timer_anim_pacman++;
-			// réinitialisation du timer
-			if (timer_anim_pacman == 20) {
-				timer_anim_pacman = 0;
-				form_pacman = true;
-			}
 		}else{
-			if (timer_dead>=0 && timer_dead<2)
+			if (hero.getTimer_anim()>=0 && hero.getTimer_anim()<4)
 				g.drawImage(myimage.getPacman("close"), hero.getCoordX(), hero.getCoordY(), this);
-			if (timer_dead>=2 && timer_dead<4)
+			if (hero.getTimer_anim()>=4 && hero.getTimer_anim()<8)
 				g.drawImage(myimage.getPacman("up"), hero.getCoordX(), hero.getCoordY(), this);
-			if (timer_dead>=4 && timer_dead<6)
+			if (hero.getTimer_anim()>=8 && hero.getTimer_anim()<12)
 				g.drawImage(myimage.getPacman("mort1"), hero.getCoordX(), hero.getCoordY(), this);
-			if (timer_dead>=6 && timer_dead<8)
+			if (hero.getTimer_anim()>=12 && hero.getTimer_anim()<16)
 				g.drawImage(myimage.getPacman("mort2"), hero.getCoordX(), hero.getCoordY(), this);
-			if (timer_dead>=8 && timer_dead<10)
+			if (hero.getTimer_anim()>=16 && hero.getTimer_anim()<20)
 				g.drawImage(myimage.getPacman("mort3"), hero.getCoordX(), hero.getCoordY(), this);
-			timer_dead++;
-			if (timer_dead>=10){
-				timer_dead=0;
-			}
 		}
 	}
 
@@ -530,43 +510,6 @@ public class PanelInGame extends JPanel {
 		this.clyde = clyde;
 	}
 
-	/**
-	 * Getter de la forme du pacman
-	 * 
-	 * @return la forme
-	 */
-	public boolean getForm_pacman() {
-		return this.form_pacman;
-	}
-
-	/**
-	 * Setter de la forme du pacman
-	 * 
-	 * @param new_form
-	 *            nouvelle forme
-	 */
-	public void setForm_pacman(boolean new_form) {
-		this.form_pacman = new_form;
-	}
-
-	/**
-	 * Getter du timer de la l'animation du pacman
-	 * 
-	 * @return le timer
-	 */
-	public int getTimer_anim_pacman() {
-		return timer_anim_pacman;
-	}
-
-	/**
-	 * Setter du timer de la forme du pacman
-	 * 
-	 * @param timer_anim_pacman
-	 *            nouveau timer
-	 */
-	public void setTimer_anim_pacman(int timer_anim_pacman) {
-		this.timer_anim_pacman = timer_anim_pacman;
-	}
 
 	/**
 	 * Setter du pacman

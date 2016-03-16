@@ -397,7 +397,9 @@ public class Modele {
 	
 	private static void deadPacman(Controller controle,Pacman hero) {
 		hero.setState(false);
+		hero.resetTimerAnim();
 		for (int i=0;i<10;i++){
+			hero.setTimer_anim();
 			controle.refresh(0);
 			try{
 				Thread.sleep(100);
@@ -815,7 +817,7 @@ public class Modele {
 				if (hero.canIGoHere(hero.getGo())) {
 					hero.actualize_XY();
 				}
-
+				
 				// Test si on mange une gomme
 				if (canIEatTheGum(hero)) {
 					hero.reset_Timer_superPacman();
@@ -837,7 +839,7 @@ public class Modele {
 					normalPacman(pinky);
 					normalPacman(inky);
 				}
-
+				hero.setTimer_anim();
 				// Deplacement des fantomes en fonction de leur état
 				if (blinky.getState() == 2) {
 					blinky.returnToTheBase();
