@@ -7,7 +7,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-import javax.swing.JCheckBox;
 
 import Modele.Ghost;
 import Modele.Pacman;
