@@ -1,7 +1,9 @@
 package Vue;
 
+import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -287,26 +289,31 @@ public class Vue extends JFrame {
 		this.setContentPane(panS);
 		this.revalidate();
 		JButton start = new JButton("Start");
+		onlyText(start,25);
 		panS.add(start);
-		start.setBounds(260, 86, 110, 50);
+		start.setBounds(260, 36, 110, 50);
 		start.addActionListener(controle_c);
 		JButton options = new JButton("Options");
+		onlyText(options,25);
 		panS.add(options);
-		options.setBounds(260, 186, 110, 50);
+		options.setBounds(260, 106, 110, 50);
 		options.addActionListener(controle_c);
 
 		JButton scoreboard = new JButton("Scoreboard");
+		onlyText(scoreboard,25);
 		panS.add(scoreboard);
-		scoreboard.setBounds(260, 286, 110, 50);
+		scoreboard.setBounds(230, 176, 170, 50);
 		scoreboard.addActionListener(controle_c);
 
 		JButton about = new JButton("About");
+		onlyText(about,25);
 		panS.add(about);
-		about.setBounds(260, 386, 110, 50);
+		about.setBounds(260, 246, 110, 50);
 		about.addActionListener(controle_c);
 		JButton quit = new JButton("Quit");
+		onlyText(quit,25);
 		panS.add(quit);
-		quit.setBounds(260, 486, 110, 50);
+		quit.setBounds(260, 316, 110, 50);
 		quit.addActionListener(controle_c);
 
 	}
@@ -436,5 +443,14 @@ public class Vue extends JFrame {
 		panLB.setTab(extract);
 		panLB.setLevel(level);
 		panLB.repaint();
+	}
+	
+	public void onlyText(JButton jb,int taille){
+		jb.setFocusPainted(false); 
+		jb.setMargin(null);         
+		jb.setBorder(BorderFactory.createEmptyBorder()); 
+		jb.setContentAreaFilled(false); 
+		jb.setFont(new Font("Courier", Font.BOLD,taille ));
+		jb.setForeground(Color.YELLOW);
 	}
 }
