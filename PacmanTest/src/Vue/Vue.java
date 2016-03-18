@@ -66,7 +66,7 @@ public class Vue extends JFrame {
 	/**
 	 * bouton pour retourner au menu
 	 */
-	JButton returnAbout;
+	Bouton returnAbout;
 
 	/**
 	 * champs de texte
@@ -119,7 +119,7 @@ public class Vue extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setVisible(true);
-		returnAbout = new JButton("Return to menu");
+		returnAbout = new Bouton("Return to menu");
 		name = new JTextField(3);
 		name.setText("");
 		String[] choices_level = { "All", "1", "2", "3", "4", "5", "6" };
@@ -138,10 +138,10 @@ public class Vue extends JFrame {
 		this.setContentPane(panLB);
 		this.revalidate();
 		panLB.setTab(tab);
-		returnAbout.setBounds(5, 570, 135, 50);
+		returnAbout.setBounds(5, 570, 220, 50);
 		returnAbout.addActionListener(controle_c);
 		panLB.add(returnAbout);
-		JButton quit = new JButton("Quit");
+		Bouton quit = new Bouton("Quit");
 		quit.setBounds(516, 570, 135, 50);
 		quit.addActionListener(controle_c);
 		panLB.add(quit);
@@ -154,10 +154,10 @@ public class Vue extends JFrame {
 		this.revalidate();
 		panLB.setTab(tab);
 		panLB.setLevel(level);
-		returnAbout.setBounds(516, 570, 135, 50);
+		returnAbout.setBounds(430, 570, 220, 50);
 		returnAbout.addActionListener(controle_c);
 		panLB.add(returnAbout);
-		JButton next = new JButton("Next");
+		Bouton next = new Bouton("Next");
 		next.setBounds(3, 570, 135, 50);
 		next.addActionListener(controle_c);
 		panLB.add(next);
@@ -177,7 +177,7 @@ public class Vue extends JFrame {
 		panEG.setLayout(null);
 		this.setContentPane(panEG);
 		this.revalidate();
-		JButton save = new JButton("Save");
+		Bouton save = new Bouton("Save");
 		save.setBounds(516, 570, 135, 50);
 		save.addActionListener(controle_c);
 		panEG.add(save);
@@ -226,7 +226,7 @@ public class Vue extends JFrame {
 		this.setContentPane(panA);
 		this.revalidate();
 		panA.add(returnAbout);
-		returnAbout.setBounds(516, 570, 135, 50);
+		returnAbout.setBounds(430, 570, 220, 50);
 		returnAbout.addActionListener(controle_c);
 	}
 
@@ -247,7 +247,7 @@ public class Vue extends JFrame {
 		this.revalidate();
 
 		panO.add(returnAbout);
-		returnAbout.setBounds(516, 570, 135, 50);
+		returnAbout.setBounds(430, 570, 220, 50);
 		returnAbout.addActionListener(controle_c);
 
 		JToggleButton music = new JToggleButton("On/Off", !stopstartmusic);
@@ -288,30 +288,26 @@ public class Vue extends JFrame {
 		panS.setLayout(null);
 		this.setContentPane(panS);
 		this.revalidate();
-		JButton start = new JButton("Start");
-		onlyText(start,25);
+		Bouton start = new Bouton("Start");
 		panS.add(start);
 		start.setBounds(260, 36, 110, 50);
 		start.addActionListener(controle_c);
-		JButton options = new JButton("Options");
-		onlyText(options,25);
+		Bouton options = new Bouton("Options");
 		panS.add(options);
 		options.setBounds(260, 106, 110, 50);
 		options.addActionListener(controle_c);
 
-		JButton scoreboard = new JButton("Scoreboard");
-		onlyText(scoreboard,25);
+		Bouton scoreboard = new Bouton("Scoreboard");
 		panS.add(scoreboard);
 		scoreboard.setBounds(230, 176, 170, 50);
 		scoreboard.addActionListener(controle_c);
 
-		JButton about = new JButton("About");
-		onlyText(about,25);
+		Bouton about = new Bouton("About");
 		panS.add(about);
 		about.setBounds(260, 246, 110, 50);
 		about.addActionListener(controle_c);
-		JButton quit = new JButton("Quit");
-		onlyText(quit,25);
+		Bouton quit = new Bouton("Quit");
+		
 		panS.add(quit);
 		quit.setBounds(260, 316, 110, 50);
 		quit.addActionListener(controle_c);
@@ -445,12 +441,12 @@ public class Vue extends JFrame {
 		panLB.repaint();
 	}
 	
-	public void onlyText(JButton jb,int taille){
+/*	public void onlyText(JButton jb,int taille){
 		jb.setFocusPainted(false); 
 		jb.setMargin(null);         
 		jb.setBorder(BorderFactory.createEmptyBorder()); 
 		jb.setContentAreaFilled(false); 
 		jb.setFont(new Font("Courier", Font.BOLD,taille ));
 		jb.setForeground(Color.YELLOW);
-	}
+	}*/
 }
