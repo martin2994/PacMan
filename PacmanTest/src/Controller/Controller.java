@@ -127,9 +127,6 @@ public class Controller {
 	 *            le fantome clyde
 	 * @param bonus
 	 *            Les bonus mangés
-	 * @param reset
-	 *            true si il faut réinitialiser la vue, false si on est toujours
-	 *            en jeu
 	 */
 	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
 			boolean[] bonus) {
@@ -169,6 +166,9 @@ public class Controller {
 
 	/**
 	 * Demande à la vue de rafraichir son affichage en jeu
+	 * 
+	 * @param counter
+	 *            Entier à afficher, 0 si rien à afficher
 	 */
 	public void refresh(int counter) {
 		vue.refresh(counter);
@@ -247,9 +247,6 @@ public class Controller {
 
 	/**
 	 * Actualise la page options
-	 * 
-	 * @param difficulty
-	 *            la difficulté courante (medium par défaut)
 	 */
 	public void refreshOption() {
 		vue.refreshOption();

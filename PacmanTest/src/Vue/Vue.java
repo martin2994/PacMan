@@ -332,6 +332,8 @@ public class Vue extends JFrame {
 	/**
 	 * Actualise le panneau PanelInGame
 	 * 
+	 * @param counter
+	 *            Entier à afficher, 0 si rien à afficher
 	 */
 	public void refresh(int counter) {
 		panIG.setCounter(counter);
@@ -348,9 +350,6 @@ public class Vue extends JFrame {
 
 	/**
 	 * Actualise le panneau PanelOption et la difficulté du pacman
-	 * 
-	 * @param difficulty
-	 *            choix de la difficulté
 	 */
 	public void refreshOption() {
 		controle_c.setLevel((String) this.comboLevel.getSelectedItem());
@@ -387,8 +386,6 @@ public class Vue extends JFrame {
 	 *            Fantome Clyde
 	 * @param bonus
 	 *            tableau des bonus mangés
-	 * @param reset
-	 *            boolean de reset de partie
 	 * 
 	 */
 	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,

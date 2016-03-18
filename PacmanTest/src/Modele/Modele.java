@@ -152,9 +152,6 @@ public class Modele {
 	 *            Fantome Clyde
 	 * @param bonus
 	 *            Tableau de bonus mangés
-	 * @param reset
-	 *            Vrai si on doit reset le compteur (à la mort ou au chargement
-	 *            d'une partie)
 	 */
 	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
 			boolean[] bonus) {
@@ -339,21 +336,19 @@ public class Modele {
 				&& (hero.getCoordX() + hero.getLength_box() / 2) <= (actual.getCoordX() + actual.getLength_box())
 				&& (hero.getCoordY() + hero.getLength_box() / 2) >= actual.getCoordY()
 				&& (hero.getCoordY() + hero.getLength_box() / 2) <= (actual.getCoordY() + actual.getLength_box()) ||
-				// Haut-droit
+		// Haut-droit
 				(hero.getCoordX() + hero.getLength_box() / 2) >= actual.getCoordX()
 						&& (hero.getCoordX() + hero.getLength_box() / 2) <= (actual.getCoordX()
 								+ actual.getLength_box())
-						&& (hero.getCoordY() + hero.getLength_box() / 2) >= actual.getCoordY()
-						&& (hero.getCoordY() + hero.getLength_box() / 2) <= (actual.getCoordY()
-								+ actual.getLength_box())
+						&& (hero.getCoordY() + hero.getLength_box() / 2) >= actual.getCoordY() && (hero.getCoordY()
+								+ hero.getLength_box() / 2) <= (actual.getCoordY() + actual.getLength_box())
 				||
 				// bas-gauche
 				(hero.getCoordX() + hero.getLength_box() / 2) >= actual.getCoordX()
 						&& (hero.getCoordX() + hero.getLength_box() / 2) <= (actual.getCoordX()
 								+ actual.getLength_box())
-						&& (hero.getCoordY() + hero.getLength_box() / 2) >= actual.getCoordY()
-						&& (hero.getCoordY() + hero.getLength_box() / 2) <= (actual.getCoordY()
-								+ actual.getLength_box())
+						&& (hero.getCoordY() + hero.getLength_box() / 2) >= actual.getCoordY() && (hero.getCoordY()
+								+ hero.getLength_box() / 2) <= (actual.getCoordY() + actual.getLength_box())
 				||
 				// bas-droite
 				(hero.getCoordX() + hero.getLength_box() / 2) >= actual.getCoordX()
@@ -394,26 +389,29 @@ public class Modele {
 			// placerbonus
 		}
 	}
+
 	/**
 	 * Lance l'animation de mort du Pacman
+	 * 
 	 * @param controle
-	 * 		Le controleur référent
+	 *            Le controleur référent
 	 * @param hero
-	 * 		Pacman actuel
-	 */		
-	private static void deadPacman(Controller controle,Pacman hero) {
+	 *            Pacman actuel
+	 */
+	private static void deadPacman(Controller controle, Pacman hero) {
 		hero.isDead();
 		hero.resetTimerAnim();
-		for (int i=0;i<10;i++){
+		for (int i = 0; i < 10; i++) {
 			hero.refreshTimer_anim();
 			controle.refresh(0);
-			try{
+			try {
 				Thread.sleep(100);
-			}catch (Exception e){
-				
+			} catch (Exception e) {
+
 			}
-		}	
+		}
 	}
+
 	/**
 	 * Lance la page About et fait défiler les crédits via le controleur
 	 * 
@@ -514,7 +512,6 @@ public class Modele {
 				stagePlaying = 0;
 				break;
 			}
-			
 
 			// Difficulté des fantomes
 
@@ -823,7 +820,7 @@ public class Modele {
 				if (hero.canIGoHere(hero.getGo())) {
 					hero.actualize_XY();
 				}
-				
+
 				// Test si on mange une gomme
 				if (canIEatTheGum(hero)) {
 					hero.reset_Timer_superPacman();
@@ -974,7 +971,7 @@ public class Modele {
 				}
 			} else {
 				hero.looseLife();
-				deadPacman(controle,hero);
+				deadPacman(controle, hero);
 			}
 			if (hero.getLife() <= 0) {
 				controle.endPage();
@@ -1001,7 +998,6 @@ public class Modele {
 			}
 		}
 	}
-
 
 	/**
 	 * Lance run
