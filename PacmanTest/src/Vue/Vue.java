@@ -139,7 +139,7 @@ public class Vue extends JFrame {
 		this.setContentPane(panLB);
 		this.revalidate();
 		panLB.setTab(tab);
-		returnAbout.setBounds(560, 570, 80, 50);
+		returnAbout.setBounds(3, 570, 80, 50);
 		returnAbout.addActionListener(controle_c);
 		panLB.add(returnAbout);
 		Bouton quit = new Bouton("Quit");
