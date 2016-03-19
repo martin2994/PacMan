@@ -60,6 +60,11 @@ public class Ghost {
 	 * Pourcentage de random dans les deplacements des fantomes
 	 */
 	private int difficulty;
+	
+	/**
+	 * Temps d'attente avant de bouger
+	 */
+	private int wait;
 
 	/**
 	 * Constructeur
@@ -80,7 +85,7 @@ public class Ghost {
 	 *            Difficulté du fantome en pourcentage de déplacement aléatoire
 	 */
 	public Ghost(int _coordX, int _coordY, int _state, String _name, int _deplacement, int _length_box,
-			int _difficulty) {
+			int _difficulty, int _wait) {
 		this.coordX = _coordX;
 		this.coordY = _coordY;
 		this.state = _state;
@@ -91,6 +96,7 @@ public class Ghost {
 		this.goToTheOtherSide = theOtherSide(go);
 		this.game_lap = 0;
 		this.difficulty = _difficulty;
+		this.wait=_wait;
 	}
 
 	/**
@@ -110,7 +116,7 @@ public class Ghost {
 			deplaceBlinky(coordXPacman, coordYPacman, false);
 			break;
 		case "Pinky":
-			if (game_lap > 1000) {
+			if (game_lap > wait) {
 				deplacePinky(coordXPacman, coordYPacman, goPacman);
 			}
 			break;
@@ -118,7 +124,7 @@ public class Ghost {
 			deplaceInky(coordXPacman, coordYPacman);
 			break;
 		case "Clyde":
-			if (game_lap > 500) {
+			if (game_lap > wait) {
 				deplaceClyde();
 			}
 			break;

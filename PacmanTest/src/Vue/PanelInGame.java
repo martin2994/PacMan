@@ -34,22 +34,7 @@ public class PanelInGame extends JPanel {
 	/**
 	 * attribut qui gère le fantôme Blinky
 	 */
-	private Ghost blinky;
-
-	/**
-	 * attribut qui gère le fantôme Pnky
-	 */
-	private Ghost pinky;
-
-	/**
-	 * attribut qui gère le fantôme Iky
-	 */
-	private Ghost inky;
-
-	/**
-	 * attribut qui gère le fantôme Clyde
-	 */
-	private Ghost clyde;
+	private Ghost[] ghost;
 
 	/**
 	 * attribut qui gère le Pacman
@@ -65,7 +50,6 @@ public class PanelInGame extends JPanel {
 	 * attribut contenant toutes les images
 	 */
 	private MyImage myimage;
-
 
 	/**
 	 * Contructeur de PanelInGame, initialisation des images et des attributs du
@@ -233,8 +217,8 @@ public class PanelInGame extends JPanel {
 		 */
 		hero.refreshForm();
 		hero.refreshTimer_anim();
-		if (hero.isAlive()){
-			if (hero.isOpen()  && !this.pause) {
+		if (hero.isAlive()) {
+			if (hero.isOpen() && !this.pause) {
 				switch (hero.getGo()) {
 				case UP:
 					g.drawImage(myimage.getPacman("up"), hero.getCoordX(), hero.getCoordY(), this);
@@ -253,16 +237,16 @@ public class PanelInGame extends JPanel {
 			} else {
 				g.drawImage(myimage.getPacman("close"), hero.getCoordX(), hero.getCoordY(), this);
 			}
-		}else{
-			if (hero.getTimer_anim()>=0 && hero.getTimer_anim()<4)
+		} else {
+			if (hero.getTimer_anim() >= 0 && hero.getTimer_anim() < 4)
 				g.drawImage(myimage.getPacman("close"), hero.getCoordX(), hero.getCoordY(), this);
-			if (hero.getTimer_anim()>=4 && hero.getTimer_anim()<8)
+			if (hero.getTimer_anim() >= 4 && hero.getTimer_anim() < 8)
 				g.drawImage(myimage.getPacman("up"), hero.getCoordX(), hero.getCoordY(), this);
-			if (hero.getTimer_anim()>=8 && hero.getTimer_anim()<12)
+			if (hero.getTimer_anim() >= 8 && hero.getTimer_anim() < 12)
 				g.drawImage(myimage.getPacman("mort1"), hero.getCoordX(), hero.getCoordY(), this);
-			if (hero.getTimer_anim()>=12 && hero.getTimer_anim()<16)
+			if (hero.getTimer_anim() >= 12 && hero.getTimer_anim() < 16)
 				g.drawImage(myimage.getPacman("mort2"), hero.getCoordX(), hero.getCoordY(), this);
-			if (hero.getTimer_anim()>=16 && hero.getTimer_anim()<20)
+			if (hero.getTimer_anim() >= 16 && hero.getTimer_anim() < 20)
 				g.drawImage(myimage.getPacman("mort3"), hero.getCoordX(), hero.getCoordY(), this);
 		}
 	}
@@ -376,140 +360,74 @@ public class PanelInGame extends JPanel {
 	 */
 	public void drawGhost(Graphics g) {
 		/*
-		 * affichage des 4 fantomes en fonction de: - leur etat
+		 * affichage des fantomes en fonction de: - leur etat
 		 * (0->normal,1->bleu,2->yeux) - leur direction
 		 */
-		switch (blinky.getState()) {
-		case 0:
-			drawDirectionGhost(g, blinky, myimage.getGhost("Blinky", "up"), myimage.getGhost("Blinky", "down"),
-					myimage.getGhost("Blinky", "left"), myimage.getGhost("Blinky", "right"));
-			break;
-		case 1:
-			drawEatableGhost(g, blinky);
-			break;
-		case 2:
-			drawDirectionGhost(g, blinky, myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
-					myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
-			break;
+
+		for (int i = 0; i < ghost.length; i++) {
+			if (i % 4 == 0) {
+				switch (ghost[i].getState()) {
+				case 0:
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Blinky", "up"),
+							myimage.getGhost("Blinky", "down"), myimage.getGhost("Blinky", "left"),
+							myimage.getGhost("Blinky", "right"));
+					break;
+				case 1:
+					drawEatableGhost(g, ghost[i]);
+					break;
+				case 2:
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
+							myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
+					break;
+				}
+			}
+			if (i % 4 == 1) {
+				switch (ghost[i].getState()) {
+				case 0:
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Inky", "up"), myimage.getGhost("Inky", "down"),
+							myimage.getGhost("Inky", "left"), myimage.getGhost("Inky", "right"));
+					break;
+				case 1:
+					drawEatableGhost(g, ghost[i]);
+					break;
+				case 2:
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
+							myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
+					break;
+				}
+			}
+			if(i%4==2){
+				switch (ghost[i].getState()) {
+				case 0:
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Pinky", "up"), myimage.getGhost("Pinky", "down"),
+							myimage.getGhost("Pinky", "left"), myimage.getGhost("Pinky", "right"));
+					break;
+				case 1:
+					drawEatableGhost(g, ghost[i]);
+					break;
+				case 2:
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
+							myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
+					break;
+				}		
+			}
+			if(i%4==3){
+				switch (ghost[i].getState()) {
+				case 0:
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Clyde", "up"), myimage.getGhost("Clyde", "down"),
+							myimage.getGhost("Clyde", "left"), myimage.getGhost("Clyde", "right"));
+					break;
+				case 1:
+					drawEatableGhost(g, ghost[i]);
+					break;
+				case 2:
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
+							myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
+					break;
+				}		
+			}
 		}
-		switch (inky.getState()) {
-		case 0:
-			drawDirectionGhost(g, inky, myimage.getGhost("Inky", "up"), myimage.getGhost("Inky", "down"),
-					myimage.getGhost("Inky", "left"), myimage.getGhost("Inky", "right"));
-			break;
-		case 1:
-			drawEatableGhost(g, inky);
-			break;
-		case 2:
-			drawDirectionGhost(g, inky, myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
-					myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
-			break;
-		}
-		switch (pinky.getState()) {
-		case 0:
-			drawDirectionGhost(g, pinky, myimage.getGhost("Pinky", "up"), myimage.getGhost("Pinky", "down"),
-					myimage.getGhost("Pinky", "left"), myimage.getGhost("Pinky", "right"));
-			break;
-		case 1:
-			drawEatableGhost(g, pinky);
-			break;
-		case 2:
-			drawDirectionGhost(g, pinky, myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
-					myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
-			break;
-		}
-		switch (clyde.getState()) {
-		case 0:
-			drawDirectionGhost(g, clyde, myimage.getGhost("Clyde", "up"), myimage.getGhost("Clyde", "down"),
-					myimage.getGhost("Clyde", "left"), myimage.getGhost("Clyde", "right"));
-			break;
-		case 1:
-			drawEatableGhost(g, clyde);
-			break;
-		case 2:
-			drawDirectionGhost(g, clyde, myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
-					myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
-			break;
-		}
-
 	}
-
-	/**
-	 * Getter du fantôme Blinky
-	 * 
-	 * @return Blinky
-	 */
-	public Ghost getBlinky() {
-		return blinky;
-	}
-
-	/**
-	 * Setter du fantôme Blinky
-	 * 
-	 * @param blinky
-	 *            nouvelle état du fantôme
-	 */
-	public void setBlinky(Ghost blinky) {
-		this.blinky = blinky;
-	}
-
-	/**
-	 * Getter du fantôme Pinky
-	 * 
-	 * @return Pinky
-	 */
-	public Ghost getPinky() {
-		return pinky;
-	}
-
-	/**
-	 * Setter du fantôme Pinky
-	 * 
-	 * @param pinky
-	 *            nouvelle état du fantôme
-	 */
-	public void setPinky(Ghost pinky) {
-		this.pinky = pinky;
-	}
-
-	/**
-	 * Getter du fantôme Inky
-	 * 
-	 * @return Inky
-	 */
-	public Ghost getInky() {
-		return inky;
-	}
-
-	/**
-	 * Setter du fantôme Inky
-	 * 
-	 * @param inky
-	 *            nouvelle état du fantôme
-	 */
-	public void setInky(Ghost inky) {
-		this.inky = inky;
-	}
-
-	/**
-	 * Getter du fantôme Clyde
-	 * 
-	 * @return Clyde
-	 */
-	public Ghost getClyde() {
-		return clyde;
-	}
-
-	/**
-	 * Setter du fantôme Clyde
-	 * 
-	 * @param clyde
-	 *            nouvelle état du fantôme
-	 */
-	public void setClyde(Ghost clyde) {
-		this.clyde = clyde;
-	}
-
 
 	/**
 	 * Setter du pacman
@@ -549,6 +467,10 @@ public class PanelInGame extends JPanel {
 	 */
 	public void setCounter(int i) {
 		this.counter = i;
+	}
+
+	public void setGhost(Ghost[] _ghost) {
+		this.ghost=_ghost;
 	}
 
 }

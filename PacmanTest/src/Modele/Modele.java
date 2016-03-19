@@ -89,6 +89,11 @@ public class Modele {
 	public static int stagePlaying;
 
 	/**
+	 * Nombre de fantomes
+	 */
+	public static int ghostSquad = 8;
+
+	/**
 	 * Remplit la matrice en fonction des labyrinthes préchargés dans des
 	 * fichiers texte
 	 */
@@ -117,8 +122,7 @@ public class Modele {
 	 * @param clyde
 	 *            Fantome Clyde
 	 */
-	public static void pause(Controller controle, Pacman hero, boolean loop, Ghost blinky, Ghost pinky, Ghost inky,
-			Ghost clyde) {
+	public static void pause(Controller controle, Pacman hero, boolean loop, Ghost[] ghost) {
 		while (loop) {
 			try {
 				Thread.sleep(10);
@@ -127,7 +131,7 @@ public class Modele {
 			}
 			controle.showPause();
 			controle.tellMeTheWayToGoPlease();
-			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat);
+			updateVue(controle, hero, ghost, bonus_eat);
 			if (hero.getToGo().equals(Controller.Direction.SPACE)) {
 				controle.hidePause();
 				loop = false;
@@ -153,9 +157,8 @@ public class Modele {
 	 * @param bonus
 	 *            Tableau de bonus mangés
 	 */
-	public static void updateVue(Controller controle, Pacman hero, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
-			boolean[] bonus) {
-		controle.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus);
+	public static void updateVue(Controller controle, Pacman hero, Ghost[] ghost, boolean[] bonus) {
+		controle.majVue(hero, maxX, maxY, ghost, bonus);
 	}
 
 	/**
@@ -727,10 +730,7 @@ public class Modele {
 		}
 
 		// Déclaration des fantomes
-		Ghost blinky;
-		Ghost pinky;
-		Ghost inky;
-		Ghost clyde;
+		Ghost[] ghost;
 
 		// Déclaration du bonus de combo
 		int combo = 1;
@@ -774,12 +774,29 @@ public class Modele {
 			hero.reset(252, 448, Controller.Direction.UP, Controller.Direction.UP, deplacement, length_box);
 
 			// Init fantomes
-			blinky = new Ghost(252, 224, 0, "Blinky", deplacement, length_box, difficulty);
-			pinky = new Ghost(280, 280, 0, "Pinky", deplacement, length_box, difficulty);
-			inky = new Ghost(252, 280, 0, "Inky", deplacement, length_box, difficulty);
-			clyde = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty);
+			ghost = new Ghost[ghostSquad];
+			ghost[0] = new Ghost(252, 224, 0, "Blinky", deplacement, length_box, difficulty,0);
+			ghost[1] = new Ghost(280, 280, 0, "Pinky", deplacement, length_box, difficulty,1000);
+			if (ghostSquad > 2) {
+				ghost[2] = new Ghost(252, 280, 0, "Inky", deplacement, length_box, difficulty,0);
+			}
+			if (ghostSquad > 3) {
+				ghost[3] = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty,500);
+			}
+			if (ghostSquad > 4) {
+				ghost[4] = new Ghost(280, 224, 0, "Blinky", deplacement, length_box, difficulty,0);
+			}
+			if (ghostSquad > 5) {
+				ghost[5] = new Ghost(224, 224, 0, "Pinky", deplacement, length_box, difficulty,0);
+			}
+			if (ghostSquad > 6) {
+				ghost[6] = new Ghost(196, 224, 0, "Inky", deplacement, length_box, difficulty,0);
+			}
+			if (ghostSquad > 7) {
+				ghost[7] = new Ghost(168, 224, 0, "Clyde", deplacement, length_box, difficulty,0);
+			}
 
-			updateVue(controle, hero, blinky, pinky, inky, clyde, bonus_eat);
+			updateVue(controle, hero, ghost, bonus_eat);
 			// Attente de 3 secondes avant le début de chaque partie
 			try {
 				controle.refresh(3);
@@ -808,7 +825,7 @@ public class Modele {
 				controle.tellMeTheWayToGoPlease();
 				if (hero.getToGo() == Controller.Direction.SPACE) {
 					hero.setToGo(hero.getGo());
-					pause(controle, hero, true, blinky, pinky, inky, clyde);
+					pause(controle, hero, true, ghost);
 				}
 
 				// Deplacement de Pacman
@@ -824,10 +841,9 @@ public class Modele {
 				// Test si on mange une gomme
 				if (canIEatTheGum(hero)) {
 					hero.reset_Timer_superPacman();
-					superPacman(blinky);
-					superPacman(inky);
-					superPacman(clyde);
-					superPacman(pinky);
+					for (int i = 0; i < ghostSquad; i++) {
+						superPacman(ghost[i]);
+					}
 				}
 
 				/*
@@ -837,100 +853,57 @@ public class Modele {
 				if (hero.getTimer_superPacman() == 875) {
 					hero.reset_Timer_superPacman();
 					combo = 1;
-					normalPacman(blinky);
-					normalPacman(clyde);
-					normalPacman(pinky);
-					normalPacman(inky);
+					for (int i = 0; i < ghostSquad; i++) {
+						normalPacman(ghost[i]);
+					}
 				}
 				hero.refreshTimer_anim();
+				
 				// Deplacement des fantomes en fonction de leur état
-				if (blinky.getState() == 2) {
-					blinky.returnToTheBase();
-				} else {
-					if ((blinky.getState() == 1 && (blinky.getGame_lap() % 2) == 0) || blinky.getState() == 0) {
-						blinky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+				
+
+				for (int i = 0; i < ghostSquad; i++) {
+					if (ghost[i].getState() == 2) {
+						ghost[i].returnToTheBase();
 					} else {
-						blinky.anotherLap();
+						if ((ghost[i].getState() == 1 && (ghost[i].getGame_lap() % 2) == 0) || ghost[i].getState() == 0) {
+							ghost[i].deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
+						} else {
+							ghost[i].anotherLap();
+						}
 					}
 				}
-				if (pinky.getState() == 2) {
-					pinky.returnToTheBase();
-				} else {
-					if ((pinky.getState() == 1 && pinky.getGame_lap() % 2 == 0) || pinky.getState() == 0) {
-						pinky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
-					} else {
-						pinky.anotherLap();
-					}
-				}
-				if (inky.getState() == 2) {
-					inky.returnToTheBase();
-				} else {
-					if ((inky.getState() == 1 && inky.getGame_lap() % 2 == 0) || inky.getState() == 0) {
-						inky.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
-					} else {
-						inky.anotherLap();
-					}
-				}
-				if (clyde.getState() == 2) {
-					clyde.returnToTheBase();
-				} else {
-					if ((clyde.getState() == 1 && clyde.getGame_lap() % 2 == 0) || clyde.getState() == 0) {
-						clyde.deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
-					} else {
-						clyde.anotherLap();
-					}
-				}
+				
 				controle.refresh(0);
 
 				/*
 				 * Si les fantomes sont en mode "mangeables", on incrémente le
 				 * compteur
 				 */
-				if (blinky.getState() == 1 || clyde.getState() == 1 || pinky.getState() == 1 || inky.getState() == 1)
+				boolean eatable=false;
+				for(int i=0;i<ghostSquad;i++){
+					if(ghost[i].getState() == 1){
+						eatable=true;
+					}
+				}
+				if (eatable)
 					hero.increment_Timer_superPacman();
 
 				/*
 				 * On gère les interaction entre pacman et un fantome s'il y en
 				 * a un, et en fonction de l'état du fantome
 				 */
-				if (meetTheFantom(blinky, hero)) {
-					if (blinky.getState() == 1) {
-						score += combo * 200;
-						combo *= 2;
-						blinky.setState(2);
-					} else {
-						if (blinky.getState() == 0)
-							catchMeIfYouCan = true;
-					}
-				}
-				if (meetTheFantom(inky, hero)) {
-					if (inky.getState() == 1) {
-						score += combo * 200;
-						combo *= 2;
-						inky.setState(2);
-					} else {
-						if (inky.getState() == 0)
-							catchMeIfYouCan = true;
-					}
-				}
-				if (meetTheFantom(pinky, hero)) {
-					if (pinky.getState() == 1) {
-						score += combo * 200;
-						combo *= 2;
-						pinky.setState(2);
-					} else {
-						if (pinky.getState() == 0)
-							catchMeIfYouCan = true;
-					}
-				}
-				if (meetTheFantom(clyde, hero)) {
-					if (clyde.getState() == 1) {
-						score += combo * 200;
-						combo *= 2;
-						clyde.setState(2);
-					} else {
-						if (clyde.getState() == 0)
-							catchMeIfYouCan = true;
+				
+				for(int i=0 ; i<ghostSquad ; i++){
+					if (meetTheFantom(ghost[i], hero)) {
+						if (ghost[i].getState() == 1) {
+							score += combo * 200;
+							combo *= 2;
+							ghost[i].setState(2);
+						} else {
+							if (ghost[i].getState() == 0)
+								catchMeIfYouCan = true;
+						}
 					}
 				}
 				try {

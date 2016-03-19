@@ -390,13 +390,9 @@ public class Vue extends JFrame {
 	 *            tableau des bonus mangés
 	 * 
 	 */
-	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
-			boolean[] bonus) {
+	public void majVue(Pacman hero, int maxX, int maxY, Ghost [] ghost, boolean[] bonus) {
 		panIG.setHero(hero);
-		panIG.setBlinky(blinky);
-		panIG.setPinky(pinky);
-		panIG.setInky(inky);
-		panIG.setClyde(clyde);
+		panIG.setGhost(ghost);
 		panIG.setBonus(bonus);
 		this.setContentPane(panIG);
 	}

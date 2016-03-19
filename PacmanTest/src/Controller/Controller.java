@@ -128,9 +128,8 @@ public class Controller {
 	 * @param bonus
 	 *            Les bonus mangés
 	 */
-	public void majVue(Pacman hero, int maxX, int maxY, Ghost blinky, Ghost pinky, Ghost inky, Ghost clyde,
-			boolean[] bonus) {
-		vue.majVue(hero, maxX, maxY, blinky, pinky, inky, clyde, bonus);
+	public void majVue(Pacman hero, int maxX, int maxY, Ghost [] ghost, boolean[] bonus) {
+		vue.majVue(hero, maxX, maxY, ghost, bonus);
 	}
 
 	/**
