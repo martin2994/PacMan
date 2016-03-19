@@ -122,8 +122,10 @@ public class Modele {
 	 * @param clyde
 	 *            Fantome Clyde
 	 */
-	public static boolean pause(Controller controle, Pacman hero, boolean loop, Ghost[] ghost) {
+	public static boolean pause(Controller controle, Pacman hero, Ghost[] ghost) {
 		boolean echap=false;
+		boolean loop=true;
+		String action="";
 		while (loop) {
 			try {
 				Thread.sleep(10);
@@ -133,7 +135,7 @@ public class Modele {
 			controle.showPause();
 			controle.tellMeTheWayToGoPlease();
 			updateVue(controle, hero, ghost, bonus_eat);
-			String action = controle.majStartPage();
+			action = controle.majStartPage();
 			switch (action){
 			case "ReturnAbout":
 				echap=true;
@@ -855,9 +857,10 @@ public class Modele {
 				controle.tellMeTheWayToGoPlease();
 				if (hero.getToGo() == Controller.Direction.SPACE) {
 					hero.setToGo(hero.getGo());
-					loop=!pause(controle, hero, true, ghost);
+					loop=!pause(controle, hero, ghost);
 					if(!loop){
 						catchMeIfYouCan=true;
+						hero.refreshTimer_anim();
 					}
 				}
 				// Deplacement de Pacman
