@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
@@ -119,7 +120,7 @@ public class Vue extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setVisible(true);
-		returnAbout = new Bouton("Return to menu");
+		returnAbout = new Bouton("Menu");
 		name = new JTextField(3);
 		name.setText("");
 		String[] choices_level = { "All", "1", "2", "3", "4", "5", "6" };
@@ -272,6 +273,16 @@ public class Vue extends JFrame {
 		comboDelete.addActionListener(controle_c);
 		comboDelete.setBounds(350, 115, 80, 25);
 		panO.add(comboDelete);
+		
+		JButton plus = new Bouton("+");
+		panO.add(plus);
+		plus.setBounds(410, 215, 25, 25);
+		plus.addActionListener(controle_c);
+
+		JButton minus = new Bouton("-");
+		panO.add(minus);
+		minus.setBounds(350, 215, 25, 25);
+		minus.addActionListener(controle_c);
 	}
 
 	/**
@@ -353,10 +364,11 @@ public class Vue extends JFrame {
 	/**
 	 * Actualise le panneau PanelOption et la difficulté du pacman
 	 */
-	public void refreshOption() {
+	public void refreshOption(String ghostNumber) {
 		controle_c.setLevel((String) this.comboLevel.getSelectedItem());
 		controle_c.setDelete((String) this.comboDelete.getSelectedItem());
 		controle_c.setDifficulty((String) this.comboDifficulty.getSelectedItem());
+		panO.setGhostNumber(ghostNumber);
 		panO.repaint();
 	}
 

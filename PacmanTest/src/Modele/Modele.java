@@ -91,7 +91,7 @@ public class Modele {
 	/**
 	 * Nombre de fantomes
 	 */
-	public static int ghostSquad = 8;
+	public static int ghostSquad = 4;
 
 	/**
 	 * Remplit la matrice en fonction des labyrinthes préchargés dans des
@@ -460,15 +460,28 @@ public class Modele {
 		String action;
 		controle.optionPage();
 		while (!userAction) {
-			controle.refreshOption();
+			controle.refreshOption(Integer.toString(ghostSquad));
 			action = controle.majStartPage();
 			switch (action) {
 			case "ReturnAbout":
 				userAction = true;
 				break;
 
+			// Nombre de fantomes
+			case "-":
+				if(ghostSquad>2){
+					ghostSquad--;
+					controle.resetAction();
+				}
+				break;
+			case "+":
+				if(ghostSquad<8){
+					ghostSquad++;
+					controle.resetAction();
+				}
+				break;
+				
 			// Suppression des highscores
-
 			case "Delete":
 				action = controle.whichDelete();
 				switch (action) {
@@ -517,7 +530,6 @@ public class Modele {
 			}
 
 			// Difficulté des fantomes
-
 			action = controle.whichDifficulty();
 			switch (action) {
 			case "Easy":
@@ -775,25 +787,25 @@ public class Modele {
 
 			// Init fantomes
 			ghost = new Ghost[ghostSquad];
-			ghost[0] = new Ghost(252, 224, 0, "Blinky", deplacement, length_box, difficulty,0);
-			ghost[1] = new Ghost(280, 280, 0, "Pinky", deplacement, length_box, difficulty,1000);
+			ghost[0] = new Ghost(252, 224, 0, "Blinky", deplacement, length_box, difficulty, 0);
+			ghost[1] = new Ghost(280, 280, 0, "Pinky", deplacement, length_box, difficulty, 1000);
 			if (ghostSquad > 2) {
-				ghost[2] = new Ghost(252, 280, 0, "Inky", deplacement, length_box, difficulty,0);
+				ghost[2] = new Ghost(252, 280, 0, "Inky", deplacement, length_box, difficulty, 0);
 			}
 			if (ghostSquad > 3) {
-				ghost[3] = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty,500);
+				ghost[3] = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty, 500);
 			}
 			if (ghostSquad > 4) {
-				ghost[4] = new Ghost(280, 224, 0, "Blinky", deplacement, length_box, difficulty,0);
+				ghost[4] = new Ghost(280, 224, 0, "Blinky", deplacement, length_box, difficulty, 0);
 			}
 			if (ghostSquad > 5) {
-				ghost[5] = new Ghost(224, 224, 0, "Pinky", deplacement, length_box, difficulty,0);
+				ghost[5] = new Ghost(224, 224, 0, "Pinky", deplacement, length_box, difficulty, 0);
 			}
 			if (ghostSquad > 6) {
-				ghost[6] = new Ghost(196, 224, 0, "Inky", deplacement, length_box, difficulty,0);
+				ghost[6] = new Ghost(196, 224, 0, "Inky", deplacement, length_box, difficulty, 0);
 			}
 			if (ghostSquad > 7) {
-				ghost[7] = new Ghost(168, 224, 0, "Clyde", deplacement, length_box, difficulty,0);
+				ghost[7] = new Ghost(168, 224, 0, "Clyde", deplacement, length_box, difficulty, 0);
 			}
 
 			updateVue(controle, hero, ghost, bonus_eat);
@@ -858,32 +870,32 @@ public class Modele {
 					}
 				}
 				hero.refreshTimer_anim();
-				
+
 				// Deplacement des fantomes en fonction de leur état
-				
 
 				for (int i = 0; i < ghostSquad; i++) {
 					if (ghost[i].getState() == 2) {
 						ghost[i].returnToTheBase();
 					} else {
-						if ((ghost[i].getState() == 1 && (ghost[i].getGame_lap() % 2) == 0) || ghost[i].getState() == 0) {
+						if ((ghost[i].getState() == 1 && (ghost[i].getGame_lap() % 2) == 0)
+								|| ghost[i].getState() == 0) {
 							ghost[i].deplaceTheGhost(hero.getCoordX(), hero.getCoordY(), hero.getGo());
 						} else {
 							ghost[i].anotherLap();
 						}
 					}
 				}
-				
+
 				controle.refresh(0);
 
 				/*
 				 * Si les fantomes sont en mode "mangeables", on incrémente le
 				 * compteur
 				 */
-				boolean eatable=false;
-				for(int i=0;i<ghostSquad;i++){
-					if(ghost[i].getState() == 1){
-						eatable=true;
+				boolean eatable = false;
+				for (int i = 0; i < ghostSquad; i++) {
+					if (ghost[i].getState() == 1) {
+						eatable = true;
 					}
 				}
 				if (eatable)
@@ -893,8 +905,8 @@ public class Modele {
 				 * On gère les interaction entre pacman et un fantome s'il y en
 				 * a un, et en fonction de l'état du fantome
 				 */
-				
-				for(int i=0 ; i<ghostSquad ; i++){
+
+				for (int i = 0; i < ghostSquad; i++) {
 					if (meetTheFantom(ghost[i], hero)) {
 						if (ghost[i].getState() == 1) {
 							score += combo * 200;

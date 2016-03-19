@@ -247,8 +247,8 @@ public class Controller {
 	/**
 	 * Actualise la page options
 	 */
-	public void refreshOption() {
-		vue.refreshOption();
+	public void refreshOption(String ghostNumber) {
+		vue.refreshOption(ghostNumber);
 	}
 
 	/**
