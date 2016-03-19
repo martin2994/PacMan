@@ -790,7 +790,6 @@ public class Modele {
 
 		// Vrai si pacman se fait attraper
 		boolean catchMeIfYouCan = false;
-		boolean echap=false;
 		
 		boolean loop = true;
 
@@ -856,10 +855,10 @@ public class Modele {
 				controle.tellMeTheWayToGoPlease();
 				if (hero.getToGo() == Controller.Direction.SPACE) {
 					hero.setToGo(hero.getGo());
-					echap=pause(controle, hero, true, ghost);
-					if(echap){
-						controle.changeMusic("music/startpage.wav");
-						return;
+					loop=!pause(controle, hero, true, ghost);
+					if(!loop){
+						gumGum=0;
+						//controle.changeMusic("music/startpage.wav");
 					}
 				}
 				// Deplacement de Pacman
