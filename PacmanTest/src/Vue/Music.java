@@ -31,7 +31,6 @@ public class Music {
 	 * 
 	 */
 	public Music() {
-		setMusic("music/startpage.wav");
 	}
 
 	/**
@@ -42,8 +41,10 @@ public class Music {
 	 *            nouvelle musique
 	 */
 	public void changeMusic(String music) {
-		if (current_clip.isRunning()) {
-			current_clip.close();
+		if (current_clip!=null){
+			if (current_clip.isRunning()) {
+				current_clip.close();
+			}
 		}
 		setMusic(music);
 	}

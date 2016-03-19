@@ -603,7 +603,6 @@ public class Modele {
 			}
 			if (action.equals("ReturnAbout")) {
 				userAction = true;
-				controle.changeMusic("music/startpage.wav");
 			}
 		}
 	}
@@ -616,6 +615,7 @@ public class Modele {
 	public static void runStartPage(Controller controle) {
 		boolean userAction = false;
 		String action;
+		controle.changeMusic("music/startpage.wav");
 		while (!userAction) {
 			controle.refreshStart();
 			action = controle.majStartPage();
@@ -858,7 +858,6 @@ public class Modele {
 					loop=!pause(controle, hero, true, ghost);
 					if(!loop){
 						gumGum=0;
-						//controle.changeMusic("music/startpage.wav");
 					}
 				}
 				// Deplacement de Pacman
