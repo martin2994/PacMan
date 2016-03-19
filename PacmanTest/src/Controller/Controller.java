@@ -222,7 +222,7 @@ public class Controller {
 	 * Demande à la vue de créer l'affichage de début de jeu
 	 */
 	public void startGame() {
-		vue.setPanelIngame(kammi);
+		vue.setPanelIngame(kammi,mc);
 	}
 
 	/**

@@ -68,7 +68,7 @@ public class Vue extends JFrame {
 	 * bouton pour retourner au menu
 	 */
 	Bouton returnAbout;
-
+	Bouton quit;
 	/**
 	 * champs de texte
 	 */
@@ -121,6 +121,7 @@ public class Vue extends JFrame {
 		this.setResizable(false);
 		this.setVisible(true);
 		returnAbout = new Bouton("Menu");
+		quit=new Bouton("Quit");
 		name = new JTextField(3);
 		name.setText("");
 		String[] choices_level = { "All", "1", "2", "3", "4", "5", "6" };
@@ -142,9 +143,10 @@ public class Vue extends JFrame {
 		returnAbout.setBounds(3, 570, 80, 50);
 		returnAbout.addActionListener(controle_c);
 		panLB.add(returnAbout);
-		Bouton quit = new Bouton("Quit");
+		returnAbout.setVisible(true);
 		quit.setBounds(560, 570, 80, 50);
 		quit.addActionListener(controle_c);
+		quit.setVisible(true);
 		panLB.add(quit);
 	}
 
@@ -201,11 +203,20 @@ public class Vue extends JFrame {
 	 *            controleur des mouvements du pacman
 	 * 
 	 */
-	public void setPanelIngame(KeyboardAndMouseMovementsInputs _controle) {
+	public void setPanelIngame(KeyboardAndMouseMovementsInputs _controle,MouseClic mc) {
+		controle_c=mc;
 		controle_kammi = _controle;
 		panIG.setLayout(null);
 		this.setContentPane(panIG);
 		this.revalidate();
+		panIG.add(returnAbout);
+		returnAbout.setBounds(220, 366, 110, 50);	
+		returnAbout.setVisible(false);			
+		panIG.add(quit);
+		quit.setBounds(220, 466, 110, 50);
+		quit.setVisible(false);	
+		returnAbout.addActionListener(controle_c);
+		quit.addActionListener(controle_c);
 		addMouseListener(controle_kammi);
 		addKeyListener(controle_kammi);
 		requestFocus();
@@ -317,7 +328,6 @@ public class Vue extends JFrame {
 		panS.add(about);
 		about.setBounds(260, 246, 110, 50);
 		about.addActionListener(controle_c);
-		Bouton quit = new Bouton("Quit");
 		
 		panS.add(quit);
 		quit.setBounds(260, 316, 110, 50);
@@ -415,6 +425,8 @@ public class Vue extends JFrame {
 	 */
 	public void showPause() {
 		panIG.setPause(true);
+		quit.setVisible(true);
+		returnAbout.setVisible(true);
 	}
 
 	/**
@@ -423,6 +435,8 @@ public class Vue extends JFrame {
 	 */
 	public void hidePause() {
 		panIG.setPause(false);
+		returnAbout.setVisible(false);
+		quit.setVisible(false);
 	}
 
 	/**
@@ -449,12 +463,4 @@ public class Vue extends JFrame {
 		panLB.repaint();
 	}
 	
-/*	public void onlyText(JButton jb,int taille){
-		jb.setFocusPainted(false); 
-		jb.setMargin(null);         
-		jb.setBorder(BorderFactory.createEmptyBorder()); 
-		jb.setContentAreaFilled(false); 
-		jb.setFont(new Font("Courier", Font.BOLD,taille ));
-		jb.setForeground(Color.YELLOW);
-	}*/
 }

@@ -40,13 +40,12 @@ public class Bouton extends JButton implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if((e.getY() > 0 && e.getY() < this.getHeight()) && (e.getX() > 0 && e.getX() < this.getWidth()))
 			this.setForeground(Color.YELLOW);
 
 	}

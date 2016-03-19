@@ -73,10 +73,10 @@ public class PanelInGame extends JPanel {
 		drawLabyrinth(g);
 		drawOptions(g);
 		drawGhost(g);
+		drawPacman(g);
 		if (pause) {
 			drawPause(g);
 		}
-		drawPacman(g);
 		if (counter != 0) {
 			Font font = new Font("Courier", Font.BOLD, 150);
 			g.setFont(font);
@@ -262,6 +262,10 @@ public class PanelInGame extends JPanel {
 		g.setFont(font);
 		g.setColor(Color.YELLOW);
 		g.drawString("PAUSE", this.getWidth() / 5 - 14, this.getHeight() / 2);
+		g.setColor(Color.GRAY);
+		g.fillRect((this.getWidth()/4)-18 , (this.getHeight()/2)+28, 250, 250);
+		g.setColor(Color.YELLOW);
+		g.drawRect((this.getWidth()/4)-18 , (this.getHeight()/2)+28, 250, 250);
 	}
 
 	/**
