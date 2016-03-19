@@ -857,7 +857,7 @@ public class Modele {
 					hero.setToGo(hero.getGo());
 					loop=!pause(controle, hero, true, ghost);
 					if(!loop){
-						gumGum=0;
+						catchMeIfYouCan=true;
 					}
 				}
 				// Deplacement de Pacman
