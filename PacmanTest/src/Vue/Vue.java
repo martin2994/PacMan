@@ -139,11 +139,11 @@ public class Vue extends JFrame {
 		this.setContentPane(panLB);
 		this.revalidate();
 		panLB.setTab(tab);
-		returnAbout.setBounds(5, 570, 220, 50);
+		returnAbout.setBounds(560, 570, 80, 50);
 		returnAbout.addActionListener(controle_c);
 		panLB.add(returnAbout);
 		Bouton quit = new Bouton("Quit");
-		quit.setBounds(516, 570, 135, 50);
+		quit.setBounds(560, 570, 80, 50);
 		quit.addActionListener(controle_c);
 		panLB.add(quit);
 	}
@@ -155,7 +155,7 @@ public class Vue extends JFrame {
 		this.revalidate();
 		panLB.setTab(tab);
 		panLB.setLevel(level);
-		returnAbout.setBounds(430, 570, 220, 50);
+		returnAbout.setBounds(560, 570, 80, 50);
 		returnAbout.addActionListener(controle_c);
 		panLB.add(returnAbout);
 		Bouton next = new Bouton("Next");
@@ -227,7 +227,7 @@ public class Vue extends JFrame {
 		this.setContentPane(panA);
 		this.revalidate();
 		panA.add(returnAbout);
-		returnAbout.setBounds(430, 570, 220, 50);
+		returnAbout.setBounds(560, 570, 80, 50);
 		returnAbout.addActionListener(controle_c);
 	}
 
@@ -248,7 +248,7 @@ public class Vue extends JFrame {
 		this.revalidate();
 
 		panO.add(returnAbout);
-		returnAbout.setBounds(430, 570, 220, 50);
+		returnAbout.setBounds(560, 570, 80, 50);
 		returnAbout.addActionListener(controle_c);
 
 		JToggleButton music = new JToggleButton("On/Off", !stopstartmusic);
