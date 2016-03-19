@@ -720,6 +720,31 @@ public class Modele {
 			IOTreatment.put(current_score, count, score, username, current_file);
 		}
 	}
+	
+	public static Ghost[] createGhost(){
+		Ghost[] ghost = new Ghost[ghostSquad];
+		ghost[0] = new Ghost(252, 224, 0, "Blinky", deplacement, length_box, difficulty, 0);
+		ghost[1] = new Ghost(280, 280, 0, "Pinky", deplacement, length_box, difficulty, 1000);
+		if (ghostSquad > 2) {
+			ghost[2] = new Ghost(252, 280, 0, "Inky", deplacement, length_box, difficulty, 0);
+		}
+		if (ghostSquad > 3) {
+			ghost[3] = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty, 500);
+		}
+		if (ghostSquad > 4) {
+			ghost[4] = new Ghost(280, 224, 0, "Blinky", deplacement, length_box, difficulty, 0);
+		}
+		if (ghostSquad > 5) {
+			ghost[5] = new Ghost(224, 224, 0, "Pinky", deplacement, length_box, difficulty, 0);
+		}
+		if (ghostSquad > 6) {
+			ghost[6] = new Ghost(196, 224, 0, "Inky", deplacement, length_box, difficulty, 0);
+		}
+		if (ghostSquad > 7) {
+			ghost[7] = new Ghost(308, 224, 0, "Clyde", deplacement, length_box, difficulty, 0);
+		}
+		return ghost;
+	}
 
 	/**
 	 * Toute l'algorithmique qui tourne pour chaque jour de jeu, avec
@@ -786,27 +811,7 @@ public class Modele {
 			hero.reset(252, 448, Controller.Direction.UP, Controller.Direction.UP, deplacement, length_box);
 
 			// Init fantomes
-			ghost = new Ghost[ghostSquad];
-			ghost[0] = new Ghost(252, 224, 0, "Blinky", deplacement, length_box, difficulty, 0);
-			ghost[1] = new Ghost(280, 280, 0, "Pinky", deplacement, length_box, difficulty, 1000);
-			if (ghostSquad > 2) {
-				ghost[2] = new Ghost(252, 280, 0, "Inky", deplacement, length_box, difficulty, 0);
-			}
-			if (ghostSquad > 3) {
-				ghost[3] = new Ghost(224, 280, 0, "Clyde", deplacement, length_box, difficulty, 500);
-			}
-			if (ghostSquad > 4) {
-				ghost[4] = new Ghost(280, 224, 0, "Blinky", deplacement, length_box, difficulty, 0);
-			}
-			if (ghostSquad > 5) {
-				ghost[5] = new Ghost(224, 224, 0, "Pinky", deplacement, length_box, difficulty, 0);
-			}
-			if (ghostSquad > 6) {
-				ghost[6] = new Ghost(196, 224, 0, "Inky", deplacement, length_box, difficulty, 0);
-			}
-			if (ghostSquad > 7) {
-				ghost[7] = new Ghost(168, 224, 0, "Clyde", deplacement, length_box, difficulty, 0);
-			}
+			ghost = createGhost();
 
 			updateVue(controle, hero, ghost, bonus_eat);
 			// Attente de 3 secondes avant le début de chaque partie
