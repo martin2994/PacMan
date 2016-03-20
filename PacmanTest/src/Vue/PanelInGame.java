@@ -238,7 +238,7 @@ public class PanelInGame extends JPanel {
 				g.drawImage(myimage.getPacman("close"), hero.getCoordX(), hero.getCoordY(), this);
 			}
 		} else {
-			if (hero.getTimer_anim() >= 0 && hero.getTimer_anim() < 4)
+			if (hero.getTimer_anim() > 0 && hero.getTimer_anim() < 4)
 				g.drawImage(myimage.getPacman("close"), hero.getCoordX(), hero.getCoordY(), this);
 			if (hero.getTimer_anim() >= 4 && hero.getTimer_anim() < 8)
 				g.drawImage(myimage.getPacman("up"), hero.getCoordX(), hero.getCoordY(), this);
@@ -258,14 +258,13 @@ public class PanelInGame extends JPanel {
 	 *            Fenêtre actuelle
 	 */
 	public void drawPause(Graphics g) {
-		Font font = new Font("Courier", Font.BOLD, 100);
+		g.setColor(Color.BLACK);
+		g.fillRect((this.getWidth()-124)/2-150 , (this.getHeight()/2)-200, 300, 400);
+		g.setColor(Color.YELLOW);
+		g.drawRect((this.getWidth()-124)/2-150 , (this.getHeight()/2)-200, 300, 400);
+		Font font = new Font("Courier", Font.BOLD, 80);
 		g.setFont(font);
-		g.setColor(Color.YELLOW);
-		g.drawString("PAUSE", this.getWidth() / 5 - 14, this.getHeight() / 2);
-		g.setColor(Color.GRAY);
-		g.fillRect((this.getWidth()/4)-18 , (this.getHeight()/2)+28, 250, 250);
-		g.setColor(Color.YELLOW);
-		g.drawRect((this.getWidth()/4)-18 , (this.getHeight()/2)+28, 250, 250);
+		g.drawString("PAUSE", this.getWidth() / 5+17, this.getHeight() / 2-120);
 	}
 
 	/**

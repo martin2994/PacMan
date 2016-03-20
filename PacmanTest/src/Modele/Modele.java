@@ -123,9 +123,10 @@ public class Modele {
 	 *            Fantome Clyde
 	 */
 	public static boolean pause(Controller controle, Pacman hero, Ghost[] ghost) {
-		boolean echap=false;
-		boolean loop=true;
-		String action="";
+		boolean echap = false;
+		boolean loop = true;
+		String action = "";
+		
 		while (loop) {
 			try {
 				Thread.sleep(10);
@@ -136,19 +137,26 @@ public class Modele {
 			controle.tellMeTheWayToGoPlease();
 			updateVue(controle, hero, ghost, bonus_eat);
 			action = controle.majStartPage();
-			switch (action){
+			
+			switch (action) {
 			case "ReturnAbout":
-				echap=true;
-				loop=false;
+				echap = true;
+				loop = false;
 				break;
 			case "Quit":
-					System.exit(0);
-					break;
+				System.exit(0);
+				break;
+			case "Back":
+				System.out.println(1);
+				hero.setToGo(Controller.Direction.SPACE);
+				break;
 			}
+			
 			if (hero.getToGo().equals(Controller.Direction.SPACE)) {
+				System.out.println(2);
 				controle.hidePause();
-				echap=false;
-				loop=false;
+				echap = false;
+				loop = false;
 			}
 		}
 		return echap;
@@ -484,18 +492,18 @@ public class Modele {
 
 			// Nombre de fantomes
 			case "-":
-				if(ghostSquad>2){
+				if (ghostSquad > 2) {
 					ghostSquad--;
 					controle.resetAction();
 				}
 				break;
 			case "+":
-				if(ghostSquad<8){
+				if (ghostSquad < 8) {
 					ghostSquad++;
 					controle.resetAction();
 				}
 				break;
-				
+
 			// Suppression des highscores
 			case "Delete":
 				action = controle.whichDelete();
@@ -735,8 +743,8 @@ public class Modele {
 			IOTreatment.put(current_score, count, score, username, current_file);
 		}
 	}
-	
-	public static Ghost[] createGhost(){
+
+	public static Ghost[] createGhost() {
 		Ghost[] ghost = new Ghost[ghostSquad];
 		ghost[0] = new Ghost(252, 224, 0, "Blinky", deplacement, length_box, difficulty, 0);
 		ghost[1] = new Ghost(280, 280, 0, "Pinky", deplacement, length_box, difficulty, 1000);
@@ -792,7 +800,7 @@ public class Modele {
 
 		// Vrai si pacman se fait attraper
 		boolean catchMeIfYouCan = false;
-		
+
 		boolean loop = true;
 
 		// Vrai si la partie est gagnée
@@ -857,9 +865,9 @@ public class Modele {
 				controle.tellMeTheWayToGoPlease();
 				if (hero.getToGo() == Controller.Direction.SPACE) {
 					hero.setToGo(hero.getGo());
-					loop=!pause(controle, hero, ghost);
-					if(!loop){
-						catchMeIfYouCan=true;
+					loop = !pause(controle, hero, ghost);
+					if (!loop) {
+						catchMeIfYouCan = true;
 						hero.refreshTimer_anim();
 					}
 				}
@@ -952,7 +960,7 @@ public class Modele {
 			 * gumGum est à 0 lorsque toutes les gommes du niveau ont été
 			 * mangées et que celui-ci a donc été gagné
 			 */
-			if (gumGum == 0 ) {
+			if (gumGum == 0) {
 				win = true;
 				/* Si on ne jouait qu'un stage, on lance la EndPage */
 				if (stagePlaying != 0) {
@@ -981,7 +989,7 @@ public class Modele {
 				hero.looseLife();
 				deadPacman(controle, hero);
 			}
-			if (hero.getLife() <= 0 ) {
+			if (hero.getLife() <= 0) {
 				controle.endPage();
 				runEndPage(controle);
 				try {
@@ -1005,7 +1013,7 @@ public class Modele {
 				}
 			}
 		}
-		
+
 	}
 
 	/**

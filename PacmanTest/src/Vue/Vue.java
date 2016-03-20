@@ -1,13 +1,10 @@
 package Vue;
 
-import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
@@ -69,6 +66,7 @@ public class Vue extends JFrame {
 	 */
 	Bouton returnAbout;
 	Bouton quit;
+	Bouton back;
 	/**
 	 * champs de texte
 	 */
@@ -121,7 +119,8 @@ public class Vue extends JFrame {
 		this.setResizable(false);
 		this.setVisible(true);
 		returnAbout = new Bouton("Menu");
-		quit=new Bouton("Quit");
+		quit = new Bouton("Quit");
+		back = new Bouton("Back");
 		name = new JTextField(3);
 		name.setText("");
 		String[] choices_level = { "All", "1", "2", "3", "4", "5", "6" };
@@ -203,20 +202,28 @@ public class Vue extends JFrame {
 	 *            controleur des mouvements du pacman
 	 * 
 	 */
-	public void setPanelIngame(KeyboardAndMouseMovementsInputs _controle,MouseClic mc) {
-		controle_c=mc;
+	public void setPanelIngame(KeyboardAndMouseMovementsInputs _controle, MouseClic mc) {
+		controle_c = mc;
 		controle_kammi = _controle;
 		panIG.setLayout(null);
 		this.setContentPane(panIG);
 		this.revalidate();
+
 		panIG.add(returnAbout);
-		returnAbout.setBounds(220, 366, 110, 50);	
-		returnAbout.setVisible(false);			
+		returnAbout.setBounds(220, 366, 110, 50);
+		returnAbout.setVisible(false);
+		returnAbout.addActionListener(controle_c);
+
 		panIG.add(quit);
 		quit.setBounds(220, 466, 110, 50);
-		quit.setVisible(false);	
-		returnAbout.addActionListener(controle_c);
+		quit.setVisible(false);
 		quit.addActionListener(controle_c);
+
+		panIG.add(back);
+		back.setBounds(220, 266, 110, 50);
+		back.setVisible(false);
+		back.addActionListener(controle_c);
+
 		addMouseListener(controle_kammi);
 		addKeyListener(controle_kammi);
 		requestFocus();
@@ -284,7 +291,7 @@ public class Vue extends JFrame {
 		comboDelete.addActionListener(controle_c);
 		comboDelete.setBounds(350, 115, 80, 25);
 		panO.add(comboDelete);
-		
+
 		JButton plus = new Bouton("+");
 		panO.add(plus);
 		plus.setBounds(410, 215, 25, 25);
@@ -328,7 +335,7 @@ public class Vue extends JFrame {
 		panS.add(about);
 		about.setBounds(260, 246, 110, 50);
 		about.addActionListener(controle_c);
-		
+
 		panS.add(quit);
 		quit.setBounds(260, 316, 110, 50);
 		quit.addActionListener(controle_c);
@@ -412,7 +419,7 @@ public class Vue extends JFrame {
 	 *            tableau des bonus mangés
 	 * 
 	 */
-	public void majVue(Pacman hero, int maxX, int maxY, Ghost [] ghost, boolean[] bonus) {
+	public void majVue(Pacman hero, int maxX, int maxY, Ghost[] ghost, boolean[] bonus) {
 		panIG.setHero(hero);
 		panIG.setGhost(ghost);
 		panIG.setBonus(bonus);
@@ -426,6 +433,7 @@ public class Vue extends JFrame {
 	public void showPause() {
 		panIG.setPause(true);
 		quit.setVisible(true);
+		back.setVisible(true);
 		returnAbout.setVisible(true);
 	}
 
@@ -437,6 +445,7 @@ public class Vue extends JFrame {
 		panIG.setPause(false);
 		returnAbout.setVisible(false);
 		quit.setVisible(false);
+		back.setVisible(false);
 	}
 
 	/**
@@ -462,5 +471,5 @@ public class Vue extends JFrame {
 		panLB.setLevel(level);
 		panLB.repaint();
 	}
-	
+
 }

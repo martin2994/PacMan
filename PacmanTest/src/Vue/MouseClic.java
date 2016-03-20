@@ -67,6 +67,7 @@ public class MouseClic implements ActionListener {
 		case "On/Off":
 		case "-":
 		case "+":
+		case "Back":
 			this.action = e.getActionCommand();
 			break;
 		case "Menu":
