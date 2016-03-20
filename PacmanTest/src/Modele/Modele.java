@@ -147,14 +147,14 @@ public class Modele {
 				System.exit(0);
 				break;
 			case "Back":
-				System.out.println(1);
 				hero.setToGo(Controller.Direction.SPACE);
+				controle.resetAction();
 				break;
 			}
 			
 			if (hero.getToGo().equals(Controller.Direction.SPACE)) {
-				System.out.println(2);
 				controle.hidePause();
+				hero.setToGo(hero.getGo());
 				echap = false;
 				loop = false;
 			}

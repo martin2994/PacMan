@@ -210,17 +210,17 @@ public class Vue extends JFrame {
 		this.revalidate();
 
 		panIG.add(returnAbout);
-		returnAbout.setBounds(220, 366, 110, 50);
+		returnAbout.setBounds(213, 330, 110, 50);
 		returnAbout.setVisible(false);
 		returnAbout.addActionListener(controle_c);
 
 		panIG.add(quit);
-		quit.setBounds(220, 466, 110, 50);
+		quit.setBounds(213, 400, 110, 50);
 		quit.setVisible(false);
 		quit.addActionListener(controle_c);
 
 		panIG.add(back);
-		back.setBounds(220, 266, 110, 50);
+		back.setBounds(213, 260, 110, 50);
 		back.setVisible(false);
 		back.addActionListener(controle_c);
 
@@ -446,6 +446,7 @@ public class Vue extends JFrame {
 		returnAbout.setVisible(false);
 		quit.setVisible(false);
 		back.setVisible(false);
+		requestFocus();
 	}
 
 	/**

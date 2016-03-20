@@ -75,6 +75,7 @@ public class KeyboardAndMouseMovementsInputs implements KeyListener, MouseListen
 			go = Controller.Direction.RIGHT;
 			break;
 		case 32:
+		case 27:
 			go = Controller.Direction.SPACE;
 			break;
 		}
