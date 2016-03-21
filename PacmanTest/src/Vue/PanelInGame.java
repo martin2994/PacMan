@@ -19,7 +19,6 @@ import Modele.Pacman;
  * @author Duchene Herrmann Rety
  *
  */
-@SuppressWarnings("serial")
 public class PanelInGame extends JPanel {
 
 	/**
@@ -104,7 +103,7 @@ public class PanelInGame extends JPanel {
 			for (int j = 0; j < 22; j++) {
 				switch (mat[i][j]) {
 				case -5:
-					g.drawImage(myimage.getCase(26), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case-5"), i * 28, j * 28, this);
 					break;
 				case -4:
 					g.drawImage(myimage.getBonus("Fraise"), i * 28, j * 28, this);
@@ -119,82 +118,82 @@ public class PanelInGame extends JPanel {
 					g.drawImage(myimage.getBonus("Pomme"), i * 28, j * 28, this);
 					break;
 				case 0:
-					g.drawImage(myimage.getCase(0), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case0"), i * 28, j * 28, this);
 					break;
 				case 1:
-					g.drawImage(myimage.getCase(1), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case1"), i * 28, j * 28, this);
 					break;
 				case 2:
-					g.drawImage(myimage.getCase(2), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case2"), i * 28, j * 28, this);
 					break;
 				case 3:
-					g.drawImage(myimage.getCase(3), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case3"), i * 28, j * 28, this);
 					break;
 				case 4:
-					g.drawImage(myimage.getCase(4), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case4"), i * 28, j * 28, this);
 					break;
 				case 5:
-					g.drawImage(myimage.getCase(5), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case5"), i * 28, j * 28, this);
 					break;
 				case 6:
-					g.drawImage(myimage.getCase(6), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case6"), i * 28, j * 28, this);
 					break;
 				case 7:
-					g.drawImage(myimage.getCase(7), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case7"), i * 28, j * 28, this);
 					break;
 				case 8:
-					g.drawImage(myimage.getCase(8), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case8"), i * 28, j * 28, this);
 					break;
 				case 9:
-					g.drawImage(myimage.getCase(9), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case9"), i * 28, j * 28, this);
 					break;
 				case 10:
-					g.drawImage(myimage.getCase(10), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case10"), i * 28, j * 28, this);
 					break;
 				case 11:
-					g.drawImage(myimage.getCase(11), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case11"), i * 28, j * 28, this);
 					break;
 				case 12:
-					g.drawImage(myimage.getCase(12), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case12"), i * 28, j * 28, this);
 					break;
 				case 13:
-					g.drawImage(myimage.getCase(13), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case13"), i * 28, j * 28, this);
 					break;
 				case 14:
-					g.drawImage(myimage.getCase(14), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case14"), i * 28, j * 28, this);
 					break;
 				case 15:
-					g.drawImage(myimage.getCase(15), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case15"), i * 28, j * 28, this);
 					break;
 				case 16:
-					g.drawImage(myimage.getCase(16), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case16"), i * 28, j * 28, this);
 					break;
 				case 17:
-					g.drawImage(myimage.getCase(17), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case17"), i * 28, j * 28, this);
 					break;
 				case 18:
-					g.drawImage(myimage.getCase(18), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case18"), i * 28, j * 28, this);
 					break;
 				case 19:
-					g.drawImage(myimage.getCase(19), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case19"), i * 28, j * 28, this);
 					break;
 				case 20:
-					g.drawImage(myimage.getCase(20), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case20"), i * 28, j * 28, this);
 					break;
 				case 21:
-					g.drawImage(myimage.getCase(21), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case21"), i * 28, j * 28, this);
 					break;
 				case 22:
-					g.drawImage(myimage.getCase(22), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case22"), i * 28, j * 28, this);
 					break;
 				case 23:
-					g.drawImage(myimage.getCase(23), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case23"), i * 28, j * 28, this);
 					break;
 				case 24:
-					g.drawImage(myimage.getCase(24), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case24"), i * 28, j * 28, this);
 					break;
 				case 25:
-					g.drawImage(myimage.getCase(25), i * 28, j * 28, this);
+					g.drawImage(myimage.getCase("case25"), i * 28, j * 28, this);
 					break;
 				}
 			}
@@ -222,33 +221,33 @@ public class PanelInGame extends JPanel {
 			if (hero.isOpen() && !this.pause) {
 				switch (hero.getGo()) {
 				case UP:
-					g.drawImage(myimage.getPacman("up"), hero.getCoordX(), hero.getCoordY(), this);
+					g.drawImage(myimage.getPacman("Pacman_up"), hero.getCoordX(), hero.getCoordY(), this);
 					break;
 				case DOWN:
-					g.drawImage(myimage.getPacman("down"), hero.getCoordX(), hero.getCoordY(), this);
+					g.drawImage(myimage.getPacman("Pacman_down"), hero.getCoordX(), hero.getCoordY(), this);
 					break;
 				case LEFT:
-					g.drawImage(myimage.getPacman("left"), hero.getCoordX(), hero.getCoordY(), this);
+					g.drawImage(myimage.getPacman("Pacman_left"), hero.getCoordX(), hero.getCoordY(), this);
 					break;
 				case RIGHT:
-					g.drawImage(myimage.getPacman("right"), hero.getCoordX(), hero.getCoordY(), this);
+					g.drawImage(myimage.getPacman("Pacman_right"), hero.getCoordX(), hero.getCoordY(), this);
 					break;
 				default:
 				}
 			} else {
-				g.drawImage(myimage.getPacman("close"), hero.getCoordX(), hero.getCoordY(), this);
+				g.drawImage(myimage.getPacman("Pacman_close"), hero.getCoordX(), hero.getCoordY(), this);
 			}
 		} else {
 			if (hero.getTimer_anim() > 0 && hero.getTimer_anim() < 4)
-				g.drawImage(myimage.getPacman("close"), hero.getCoordX(), hero.getCoordY(), this);
+				g.drawImage(myimage.getPacman("Pacman_close"), hero.getCoordX(), hero.getCoordY(), this);
 			if (hero.getTimer_anim() >= 4 && hero.getTimer_anim() < 8)
-				g.drawImage(myimage.getPacman("up"), hero.getCoordX(), hero.getCoordY(), this);
+				g.drawImage(myimage.getPacman("Pacman_up"), hero.getCoordX(), hero.getCoordY(), this);
 			if (hero.getTimer_anim() >= 8 && hero.getTimer_anim() < 12)
-				g.drawImage(myimage.getPacman("mort1"), hero.getCoordX(), hero.getCoordY(), this);
+				g.drawImage(myimage.getPacman("Pacman_mort1"), hero.getCoordX(), hero.getCoordY(), this);
 			if (hero.getTimer_anim() >= 12 && hero.getTimer_anim() < 16)
-				g.drawImage(myimage.getPacman("mort2"), hero.getCoordX(), hero.getCoordY(), this);
+				g.drawImage(myimage.getPacman("Pacman_mort2"), hero.getCoordX(), hero.getCoordY(), this);
 			if (hero.getTimer_anim() >= 16 && hero.getTimer_anim() < 20)
-				g.drawImage(myimage.getPacman("mort3"), hero.getCoordX(), hero.getCoordY(), this);
+				g.drawImage(myimage.getPacman("Pacman_mort3"), hero.getCoordX(), hero.getCoordY(), this);
 		}
 	}
 
@@ -260,12 +259,12 @@ public class PanelInGame extends JPanel {
 	 */
 	public void drawPause(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect((this.getWidth() - 124) / 2 - 150, (this.getHeight() / 2) - 200, 300, 400);
+		g.fillRect((this.getWidth()-124)/2-150 , (this.getHeight()/2)-200, 300, 400);
 		g.setColor(Color.YELLOW);
-		g.drawRect((this.getWidth() - 124) / 2 - 150, (this.getHeight() / 2) - 200, 300, 400);
+		g.drawRect((this.getWidth()-124)/2-150 , (this.getHeight()/2)-200, 300, 400);
 		Font font = new Font("Courier", Font.BOLD, 80);
 		g.setFont(font);
-		g.drawString("PAUSE", this.getWidth() / 5 + 17, this.getHeight() / 2 - 120);
+		g.drawString("PAUSE", this.getWidth() / 5+17, this.getHeight() / 2-120);
 	}
 
 	/**
@@ -283,12 +282,12 @@ public class PanelInGame extends JPanel {
 		g.setColor(Color.white);
 		g.drawString("Life:", this.getWidth() - 105, (this.getHeight() / 3) - 28);
 		for (int i = 0; i < hero.getLife(); i++) {
-			g.drawImage(myimage.getPacman("right"), (this.getWidth() - 105) + i * 28, (this.getHeight() / 3) - 14,
+			g.drawImage(myimage.getPacman("Pacman_right"), (this.getWidth() - 105) + i * 28, (this.getHeight() / 3) - 14,
 					this);
 		}
 		g.drawString("Bonus:", this.getWidth() - 105, 2 * (this.getHeight() / 3) - 28);
 		if (bonus[0])
-			g.drawImage(myimage.getBonus("pomme"), this.getWidth() - 50, 2 * (this.getHeight() / 3) + 32, this);
+			g.drawImage(myimage.getBonus("Pomme"), this.getWidth() - 50, 2 * (this.getHeight() / 3) + 32, this);
 		if (bonus[1])
 			g.drawImage(myimage.getBonus("Orange"), this.getWidth() - 105, 2 * (this.getHeight() / 3) + 32, this);
 		if (bonus[2])
@@ -346,12 +345,12 @@ public class PanelInGame extends JPanel {
 	public void drawEatableGhost(Graphics g, Ghost actual) {
 		if (hero.getTimer_superPacman() >= 625) {
 			if (hero.getTimer_superPacman() % 25 < 13) {
-				g.drawImage(myimage.getGhost("White", ""), actual.getCoordX(), actual.getCoordY(), this);
+				g.drawImage(myimage.getGhost("White_Ghost"), actual.getCoordX(), actual.getCoordY(), this);
 			} else {
-				g.drawImage(myimage.getGhost("Blue", ""), actual.getCoordX(), actual.getCoordY(), this);
+				g.drawImage(myimage.getGhost("Blue_Ghost"), actual.getCoordX(), actual.getCoordY(), this);
 			}
 		} else {
-			g.drawImage(myimage.getGhost("Blue", ""), actual.getCoordX(), actual.getCoordY(), this);
+			g.drawImage(myimage.getGhost("Blue_Ghost"), actual.getCoordX(), actual.getCoordY(), this);
 		}
 	}
 
@@ -372,63 +371,63 @@ public class PanelInGame extends JPanel {
 			if (i % 4 == 0) {
 				switch (ghost[i].getState()) {
 				case 0:
-					drawDirectionGhost(g, ghost[i], myimage.getGhost("Blinky", "up"),
-							myimage.getGhost("Blinky", "down"), myimage.getGhost("Blinky", "left"),
-							myimage.getGhost("Blinky", "right"));
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Blinky_up"),
+							myimage.getGhost("Blinky_down"), myimage.getGhost("Blinky_left"),
+							myimage.getGhost("Blinky_right"));
 					break;
 				case 1:
 					drawEatableGhost(g, ghost[i]);
 					break;
 				case 2:
-					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
-							myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eyes_up"), myimage.getGhost("Eyes_down"),
+							myimage.getGhost("Eyes_left"), myimage.getGhost("Eyes_right"));
 					break;
 				}
 			}
 			if (i % 4 == 1) {
 				switch (ghost[i].getState()) {
 				case 0:
-					drawDirectionGhost(g, ghost[i], myimage.getGhost("Inky", "up"), myimage.getGhost("Inky", "down"),
-							myimage.getGhost("Inky", "left"), myimage.getGhost("Inky", "right"));
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Inky_up"), myimage.getGhost("Inky_down"),
+							myimage.getGhost("Inky_left"), myimage.getGhost("Inky_right"));
 					break;
 				case 1:
 					drawEatableGhost(g, ghost[i]);
 					break;
 				case 2:
-					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
-							myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eyes_up"), myimage.getGhost("Eyes_down"),
+							myimage.getGhost("Eyes_left"), myimage.getGhost("Eyes_right"));
 					break;
 				}
 			}
-			if (i % 4 == 2) {
+			if(i%4==2){
 				switch (ghost[i].getState()) {
 				case 0:
-					drawDirectionGhost(g, ghost[i], myimage.getGhost("Pinky", "up"), myimage.getGhost("Pinky", "down"),
-							myimage.getGhost("Pinky", "left"), myimage.getGhost("Pinky", "right"));
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Pinky_up"), myimage.getGhost("Pinky_down"),
+							myimage.getGhost("Pinky_left"), myimage.getGhost("Pinky_right"));
 					break;
 				case 1:
 					drawEatableGhost(g, ghost[i]);
 					break;
 				case 2:
-					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
-							myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eyes_up"), myimage.getGhost("Eyes_down"),
+							myimage.getGhost("Eyes_left"), myimage.getGhost("Eyes_right"));
 					break;
-				}
+				}		
 			}
-			if (i % 4 == 3) {
+			if(i%4==3){
 				switch (ghost[i].getState()) {
 				case 0:
-					drawDirectionGhost(g, ghost[i], myimage.getGhost("Clyde", "up"), myimage.getGhost("Clyde", "down"),
-							myimage.getGhost("Clyde", "left"), myimage.getGhost("Clyde", "right"));
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Clyde_up"), myimage.getGhost("Clyde_down"),
+							myimage.getGhost("Clyde_left"), myimage.getGhost("Clyde_right"));
 					break;
 				case 1:
 					drawEatableGhost(g, ghost[i]);
 					break;
 				case 2:
-					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
-							myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eyes_up"), myimage.getGhost("Eyes_down"),
+							myimage.getGhost("Eyes_left"), myimage.getGhost("Eyes_right"));
 					break;
-				}
+				}		
 			}
 		}
 	}
@@ -473,14 +472,7 @@ public class PanelInGame extends JPanel {
 		this.counter = i;
 	}
 
-	/**
-	 * Met à jour le tableau de fantomes
-	 * 
-	 * @param _ghost
-	 *            Le nouveau tableau de fantomes
-	 */
 	public void setGhost(Ghost[] _ghost) {
-		this.ghost = _ghost;
+		this.ghost=_ghost;
 	}
-
 }
