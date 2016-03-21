@@ -19,6 +19,7 @@ import Modele.Pacman;
  * @author Duchene Herrmann Rety
  *
  */
+@SuppressWarnings("serial")
 public class PanelInGame extends JPanel {
 
 	/**
