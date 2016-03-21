@@ -980,8 +980,10 @@ public class Modele {
 					}
 				}
 			} else {
-				hero.looseLife();
-				deadPacman(controle, hero);
+				if (loop){
+					hero.looseLife();
+					deadPacman(controle, hero);
+				}
 			}
 			if (hero.getLife() <= 0) {
 				controle.endPage();

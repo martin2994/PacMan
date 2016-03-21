@@ -201,7 +201,7 @@ public class Vue extends JFrame {
 		this.setContentPane(panEG);
 		this.revalidate();
 		Bouton save = new Bouton("Save");
-		save.setBounds(516, 570, 135, 50);
+		save.setBounds(560, 570, 80, 50);
 		save.addActionListener(controle_c);
 		panEG.add(save);
 		name = new JTextField(8);
