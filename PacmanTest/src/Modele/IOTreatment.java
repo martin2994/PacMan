@@ -117,6 +117,6 @@ public class IOTreatment {
 	 * @return Le nom de fichier
 	 */
 	public static String findFile(String file_name) {
-		return file_name.substring(0, 6) + "HS.txt";
+		return "hs/"+file_name.substring(0, 6) + "HS.txt";
 	}
 }

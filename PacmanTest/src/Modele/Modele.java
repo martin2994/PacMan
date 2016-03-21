@@ -649,7 +649,7 @@ public class Modele {
 	 *            Le controleur référent
 	 */
 	public static void runScoreboardFromStartPage(Controller controle) {
-		String file_name_view = "HighScore.txt";
+		String file_name_view = "hs/HighScore.txt";
 		boolean userAction = false;
 		String action = "";
 		// On affiche le scoreboard général par défaut
@@ -668,23 +668,24 @@ public class Modele {
 
 			if (action.equals("Next")) {
 				controle.resetAction();
-				if (file_name_view.equals("HighScore.txt")) {
-					file_name_view = "Stage1HS.txt";
+				if (file_name_view.equals("hs/HighScore.txt")) {
+					file_name_view = "hs/Stage1HS.txt";
 				} else {
-					if (file_name_view.equals("Stage6HS.txt")) {
-						file_name_view = "HighScore.txt";
+					if (file_name_view.equals("hs/Stage6HS.txt")) {
+						file_name_view = "hs/HighScore.txt";
 					} else {
-						char i = file_name_view.charAt(5);
+						char i = file_name_view.charAt(8);
 						i++;
-						file_name_view = file_name_view.substring(0, 5) + i + "HS.txt";
+						file_name_view = file_name_view.substring(0, 8) + i + "HS.txt";
+						System.out.println(file_name_view);
 					}
 				}
 				try {
-					if (file_name_view.equals("HighScore.txt")) {
+					if (file_name_view.equals("hs/HighScore.txt")) {
 						controle.setTabLeaderBoard(IOTreatment.extract(new File(file_name_view)), "General");
 					} else {
 						controle.setTabLeaderBoard(IOTreatment.extract(new File(file_name_view)),
-								file_name_view.substring(0, 5) + " " + file_name_view.charAt(5));
+								file_name_view.substring(3, 8) + " " + file_name_view.charAt(8));
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -721,7 +722,7 @@ public class Modele {
 		if (stagePlaying != 0) {
 			current_file = new File(IOTreatment.findFile(file_name));
 		} else {
-			current_file = new File("HighScore.txt");
+			current_file = new File("hs/HighScore.txt");
 		}
 		current_score = IOTreatment.extract(current_file);
 		if (Integer.parseInt(current_score[current_score.length - 1][current_score[0].length - 1]) < score) {
@@ -969,7 +970,7 @@ public class Modele {
 					if (stagePlaying != 0) {
 						file = new File(IOTreatment.findFile(file_name));
 					} else {
-						file = new File("HighScore.txt");
+						file = new File("hs/HighScore.txt");
 					}
 					try {
 						controle.leaderBoard(IOTreatment.extract(file));
@@ -998,7 +999,7 @@ public class Modele {
 				if (stagePlaying != 0) {
 					file = new File(IOTreatment.findFile(file_name));
 				} else {
-					file = new File("HighScore.txt");
+					file = new File("hs/HighScore.txt");
 				}
 				try {
 					controle.leaderBoard(IOTreatment.extract(file));
