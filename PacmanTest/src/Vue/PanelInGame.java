@@ -259,12 +259,12 @@ public class PanelInGame extends JPanel {
 	 */
 	public void drawPause(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect((this.getWidth()-124)/2-150 , (this.getHeight()/2)-200, 300, 400);
+		g.fillRect((this.getWidth() - 124) / 2 - 150, (this.getHeight() / 2) - 200, 300, 400);
 		g.setColor(Color.YELLOW);
-		g.drawRect((this.getWidth()-124)/2-150 , (this.getHeight()/2)-200, 300, 400);
+		g.drawRect((this.getWidth() - 124) / 2 - 150, (this.getHeight() / 2) - 200, 300, 400);
 		Font font = new Font("Courier", Font.BOLD, 80);
 		g.setFont(font);
-		g.drawString("PAUSE", this.getWidth() / 5+17, this.getHeight() / 2-120);
+		g.drawString("PAUSE", this.getWidth() / 5 + 17, this.getHeight() / 2 - 120);
 	}
 
 	/**
@@ -282,8 +282,8 @@ public class PanelInGame extends JPanel {
 		g.setColor(Color.white);
 		g.drawString("Life:", this.getWidth() - 105, (this.getHeight() / 3) - 28);
 		for (int i = 0; i < hero.getLife(); i++) {
-			g.drawImage(myimage.getPacman("Pacman_right"), (this.getWidth() - 105) + i * 28, (this.getHeight() / 3) - 14,
-					this);
+			g.drawImage(myimage.getPacman("Pacman_right"), (this.getWidth() - 105) + i * 28,
+					(this.getHeight() / 3) - 14, this);
 		}
 		g.drawString("Bonus:", this.getWidth() - 105, 2 * (this.getHeight() / 3) - 28);
 		if (bonus[0])
@@ -371,9 +371,8 @@ public class PanelInGame extends JPanel {
 			if (i % 4 == 0) {
 				switch (ghost[i].getState()) {
 				case 0:
-					drawDirectionGhost(g, ghost[i], myimage.getGhost("Blinky_up"),
-							myimage.getGhost("Blinky_down"), myimage.getGhost("Blinky_left"),
-							myimage.getGhost("Blinky_right"));
+					drawDirectionGhost(g, ghost[i], myimage.getGhost("Blinky_up"), myimage.getGhost("Blinky_down"),
+							myimage.getGhost("Blinky_left"), myimage.getGhost("Blinky_right"));
 					break;
 				case 1:
 					drawEatableGhost(g, ghost[i]);
@@ -399,7 +398,7 @@ public class PanelInGame extends JPanel {
 					break;
 				}
 			}
-			if(i%4==2){
+			if (i % 4 == 2) {
 				switch (ghost[i].getState()) {
 				case 0:
 					drawDirectionGhost(g, ghost[i], myimage.getGhost("Pinky_up"), myimage.getGhost("Pinky_down"),
@@ -412,9 +411,9 @@ public class PanelInGame extends JPanel {
 					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eyes_up"), myimage.getGhost("Eyes_down"),
 							myimage.getGhost("Eyes_left"), myimage.getGhost("Eyes_right"));
 					break;
-				}		
+				}
 			}
-			if(i%4==3){
+			if (i % 4 == 3) {
 				switch (ghost[i].getState()) {
 				case 0:
 					drawDirectionGhost(g, ghost[i], myimage.getGhost("Clyde_up"), myimage.getGhost("Clyde_down"),
@@ -427,7 +426,7 @@ public class PanelInGame extends JPanel {
 					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eyes_up"), myimage.getGhost("Eyes_down"),
 							myimage.getGhost("Eyes_left"), myimage.getGhost("Eyes_right"));
 					break;
-				}		
+				}
 			}
 		}
 	}
@@ -472,7 +471,13 @@ public class PanelInGame extends JPanel {
 		this.counter = i;
 	}
 
+	/**
+	 * Change le tableau de fantomes
+	 * 
+	 * @param _ghost
+	 *            le nouveau tableau de fantomes
+	 */
 	public void setGhost(Ghost[] _ghost) {
-		this.ghost=_ghost;
+		this.ghost = _ghost;
 	}
 }
