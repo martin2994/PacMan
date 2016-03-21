@@ -181,7 +181,7 @@ public class Vue extends JFrame {
 		returnAbout.addActionListener(controle_c);
 		panLB.add(returnAbout);
 		Bouton next = new Bouton("Next");
-		next.setBounds(3, 570, 135, 50);
+		next.setBounds(10, 570, 80, 50);
 		next.addActionListener(controle_c);
 		panLB.add(next);
 
