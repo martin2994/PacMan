@@ -19,6 +19,7 @@ import Modele.Pacman;
  * @author Duchene Herrmann Rety
  *
  */
+@SuppressWarnings("serial")
 public class PanelInGame extends JPanel {
 
 	/**
@@ -259,12 +260,12 @@ public class PanelInGame extends JPanel {
 	 */
 	public void drawPause(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect((this.getWidth()-124)/2-150 , (this.getHeight()/2)-200, 300, 400);
+		g.fillRect((this.getWidth() - 124) / 2 - 150, (this.getHeight() / 2) - 200, 300, 400);
 		g.setColor(Color.YELLOW);
-		g.drawRect((this.getWidth()-124)/2-150 , (this.getHeight()/2)-200, 300, 400);
+		g.drawRect((this.getWidth() - 124) / 2 - 150, (this.getHeight() / 2) - 200, 300, 400);
 		Font font = new Font("Courier", Font.BOLD, 80);
 		g.setFont(font);
-		g.drawString("PAUSE", this.getWidth() / 5+17, this.getHeight() / 2-120);
+		g.drawString("PAUSE", this.getWidth() / 5 + 17, this.getHeight() / 2 - 120);
 	}
 
 	/**
@@ -399,7 +400,7 @@ public class PanelInGame extends JPanel {
 					break;
 				}
 			}
-			if(i%4==2){
+			if (i % 4 == 2) {
 				switch (ghost[i].getState()) {
 				case 0:
 					drawDirectionGhost(g, ghost[i], myimage.getGhost("Pinky", "up"), myimage.getGhost("Pinky", "down"),
@@ -412,9 +413,9 @@ public class PanelInGame extends JPanel {
 					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
 							myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
 					break;
-				}		
+				}
 			}
-			if(i%4==3){
+			if (i % 4 == 3) {
 				switch (ghost[i].getState()) {
 				case 0:
 					drawDirectionGhost(g, ghost[i], myimage.getGhost("Clyde", "up"), myimage.getGhost("Clyde", "down"),
@@ -427,7 +428,7 @@ public class PanelInGame extends JPanel {
 					drawDirectionGhost(g, ghost[i], myimage.getGhost("Eye", "up"), myimage.getGhost("Eye", "down"),
 							myimage.getGhost("Eye", "left"), myimage.getGhost("Eye", "right"));
 					break;
-				}		
+				}
 			}
 		}
 	}
@@ -472,8 +473,14 @@ public class PanelInGame extends JPanel {
 		this.counter = i;
 	}
 
+	/**
+	 * Met à jour le tableau de fantomes
+	 * 
+	 * @param _ghost
+	 *            Le nouveau tableau de fantomes
+	 */
 	public void setGhost(Ghost[] _ghost) {
-		this.ghost=_ghost;
+		this.ghost = _ghost;
 	}
 
 }

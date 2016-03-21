@@ -14,6 +14,7 @@ import javax.swing.JPanel;
  * @author Duchene Herrmann Rety
  *
  */
+@SuppressWarnings("serial")
 public class PanelStart extends JPanel {
 
 	/**
@@ -126,7 +127,7 @@ public class PanelStart extends JPanel {
 	 */
 	public PanelStart() {
 		try {
-			startpage=ImageIO.read(Vue.class.getResource("image/Startpage.png"));
+			startpage = ImageIO.read(Vue.class.getResource("image/Startpage.png"));
 			blinky_down = ImageIO.read(Vue.class.getResource("image/Blinky_down.png"));
 			clyde_down = ImageIO.read(Vue.class.getResource("image/Clyde_down.png"));
 			inky_down = ImageIO.read(Vue.class.getResource("image/Inky_down.png"));

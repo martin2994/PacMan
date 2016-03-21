@@ -30,32 +30,43 @@ public class Pacman {
 	 * que Pacman pourra
 	 */
 	private Controller.Direction toGo;
-	
+
 	/**
-	 *  Nombre de vies de Pacman
+	 * Nombre de vies de Pacman
 	 */
 	private int life;
-	
+
 	/**
-	 *  Nombre de pixels parcourus par Pacman à chaque tour de boucle
+	 * Nombre de pixels parcourus par Pacman à chaque tour de boucle
 	 */
 	private int deplacement;
-	
+
 	/**
-	 *  Taille de la hitbox de Pacman
+	 * Taille de la hitbox de Pacman
 	 */
 	private int length_box;
-	
-	
-	private boolean state;
+
 	/**
-	 *  Timer de super Pacman
+	 * Etat de Pacman, true = vivant, false = mort
+	 */
+	private boolean state;
+
+	/**
+	 * Timer de super Pacman
 	 */
 	private int timer_superPacman = 0;
 
-	private int timer_anim=0;
-	
+	/**
+	 * Timer serant à gérer l'animation de bouche ouverte/fermée et l'animation
+	 * de mort
+	 */
+	private int timer_anim = 0;
+
+	/**
+	 * Forme de Pacman, true = bouche ouverte, false = bouche fermée
+	 */
 	private boolean form;
+
 	/**
 	 * Constructeur
 	 */
@@ -88,7 +99,7 @@ public class Pacman {
 		this.toGo = _toGo;
 		this.deplacement = _deplacement;
 		this.length_box = _length_box;
-		this.state=true;
+		this.state = true;
 	}
 
 	/**
@@ -338,23 +349,26 @@ public class Pacman {
 	public void reset_Timer_superPacman() {
 		timer_superPacman = 0;
 	}
+
 	/**
 	 * Renvoie si le pacman est vivant ou non
+	 * 
 	 * @return l'état actuel du pacman
 	 */
 	public boolean isAlive() {
 		return state;
 	}
+
 	/**
 	 * Met l'état de pacman à faux (mort)
-	 * 		
 	 */
 	public void isDead() {
 		this.state = false;
 	}
 
 	/**
-	 * 	Renvoie le timer qui gère la forme du pacman
+	 * Renvoie le timer qui gère la forme du pacman
+	 * 
 	 * @return le timer actuel du pacman
 	 */
 	public int getTimer_anim() {
@@ -365,21 +379,22 @@ public class Pacman {
 	 * Actualise le timer qui gère la forme du pacman
 	 */
 	public void refreshTimer_anim() {
-		if(timer_anim<20)
+		if (timer_anim < 20)
 			this.timer_anim++;
 		else
 			resetTimerAnim();
 	}
-	
+
 	/**
 	 * Réinitialise le timer qui gère la forme du pacman
 	 */
-	public void resetTimerAnim(){
-		timer_anim=0;
+	public void resetTimerAnim() {
+		timer_anim = 0;
 	}
 
 	/**
-	 * Renvoie vrai si le pacman est ouvert et faux s'il est fermé
+	 * Renvoie true si le pacman est ouvert et false s'il est fermé
+	 * 
 	 * @return la forme acutel du pacman
 	 */
 	public boolean isOpen() {
@@ -390,14 +405,14 @@ public class Pacman {
 	 * Actualise la forme du pacman en fonction du timer
 	 */
 	public void refreshForm() {
-		switch (timer_anim){
-			case 20:
-				form=false;
-				break;
-			case 0:
-				form=true;
-				break;
+		switch (timer_anim) {
+		case 20:
+			form = false;
+			break;
+		case 0:
+			form = true;
+			break;
 		}
 	}
-	
+
 }

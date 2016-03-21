@@ -117,18 +117,12 @@ public class Controller {
 	 *            La largeur de la fenêtre
 	 * @param maxY
 	 *            La hauteur de la fenêtre
-	 * @param blinky
-	 *            Le fantome blinky
-	 * @param pinky
-	 *            Le fantom pinky
-	 * @param inky
-	 *            Le fantome inky
-	 * @param clyde
-	 *            le fantome clyde
+	 * @param ghost
+	 *            Le tableau de fantomes
 	 * @param bonus
 	 *            Les bonus mangés
 	 */
-	public void majVue(Pacman hero, int maxX, int maxY, Ghost [] ghost, boolean[] bonus) {
+	public void majVue(Pacman hero, int maxX, int maxY, Ghost[] ghost, boolean[] bonus) {
 		vue.majVue(hero, maxX, maxY, ghost, bonus);
 	}
 
@@ -222,7 +216,7 @@ public class Controller {
 	 * Demande à la vue de créer l'affichage de début de jeu
 	 */
 	public void startGame() {
-		vue.setPanelIngame(kammi,mc);
+		vue.setPanelIngame(kammi, mc);
 	}
 
 	/**
@@ -246,6 +240,9 @@ public class Controller {
 
 	/**
 	 * Actualise la page options
+	 * 
+	 * @param ghostNumber
+	 *            Le nombre de fantomes
 	 */
 	public void refreshOption(String ghostNumber) {
 		vue.refreshOption(ghostNumber);
@@ -281,6 +278,11 @@ public class Controller {
 		return mc.getName();
 	}
 
+	/**
+	 * Demande au listener la difficulté choisie par l'utilisateur
+	 * 
+	 * @return la difficulté
+	 */
 	public String whichDifficulty() {
 		return mc.getDifficulty();
 	}

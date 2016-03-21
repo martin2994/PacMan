@@ -111,22 +111,16 @@ public class Modele {
 	 *            Le controleur référent
 	 * @param hero
 	 *            Le Pacman courant
-	 * @param loop
-	 *            Pour arrêter la pause
-	 * @param blinky
-	 *            Fantome Blinky
-	 * @param pinky
-	 *            Fantome Clyde
-	 * @param inky
-	 *            Fantome Inky
-	 * @param clyde
-	 *            Fantome Clyde
+	 * @param ghost
+	 *            Le tableau de fantomes
+	 * @return false si l'utilisateur veut retourner au menu, true s'il veut
+	 *         continuer le jeu
 	 */
 	public static boolean pause(Controller controle, Pacman hero, Ghost[] ghost) {
 		boolean echap = false;
 		boolean loop = true;
 		String action = "";
-		
+
 		while (loop) {
 			try {
 				Thread.sleep(10);
@@ -137,7 +131,7 @@ public class Modele {
 			controle.tellMeTheWayToGoPlease();
 			updateVue(controle, hero, ghost, bonus_eat);
 			action = controle.majStartPage();
-			
+
 			switch (action) {
 			case "ReturnAbout":
 				echap = true;
@@ -151,7 +145,7 @@ public class Modele {
 				controle.resetAction();
 				break;
 			}
-			
+
 			if (hero.getToGo().equals(Controller.Direction.SPACE)) {
 				controle.hidePause();
 				hero.setToGo(hero.getGo());
@@ -169,14 +163,8 @@ public class Modele {
 	 *            Le controleur référent
 	 * @param hero
 	 *            Le Pacman courant
-	 * @param blinky
-	 *            Fantome Blinky
-	 * @param pinky
-	 *            Fantome Pinky
-	 * @param inky
-	 *            Fantome Inky
-	 * @param clyde
-	 *            Fantome Clyde
+	 * @param ghost
+	 *            Le tableau de fantomes
 	 * @param bonus
 	 *            Tableau de bonus mangés
 	 */
@@ -618,6 +606,7 @@ public class Modele {
 	}
 
 	/**
+	 * Lance la page d'accueil
 	 * 
 	 * @param controle
 	 *            Le controleur référent
@@ -744,6 +733,11 @@ public class Modele {
 		}
 	}
 
+	/**
+	 * Crée un tableau de fantome de la taille demandée par l'utilisateur
+	 * 
+	 * @return Le tableau de fantome
+	 */
 	public static Ghost[] createGhost() {
 		Ghost[] ghost = new Ghost[ghostSquad];
 		ghost[0] = new Ghost(252, 224, 0, "Blinky", deplacement, length_box, difficulty, 0);

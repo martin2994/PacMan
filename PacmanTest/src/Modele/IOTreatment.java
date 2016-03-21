@@ -22,7 +22,7 @@ public class IOTreatment {
 	 *             si le fichier spécifié est introuvable
 	 */
 	public static void readMatrix(String file_name) throws IOException {
-		InputStream ips=Modele.class.getResourceAsStream("Stage/"+file_name);
+		InputStream ips = Modele.class.getResourceAsStream("Stage/" + file_name);
 		InputStreamReader ipsr = new InputStreamReader(ips);
 		BufferedReader br = new BufferedReader(ipsr);
 		String currentLine;
@@ -108,6 +108,14 @@ public class IOTreatment {
 		return current_score;
 	}
 
+	/**
+	 * Trouve le fichier correspondant à une chaine de caractère donnée pour
+	 * l'enregistrement des highscores par niveau
+	 * 
+	 * @param file_name
+	 *            le nom à transformer en nom de fichier
+	 * @return Le nom de fichier
+	 */
 	public static String findFile(String file_name) {
 		return file_name.substring(0, 6) + "HS.txt";
 	}

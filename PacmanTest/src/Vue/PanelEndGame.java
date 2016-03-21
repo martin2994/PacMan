@@ -14,6 +14,7 @@ import Controller.Controller;
  * @author Duchene Herrmann Rety
  *
  */
+@SuppressWarnings("serial")
 public class PanelEndGame extends JPanel {
 
 	/**

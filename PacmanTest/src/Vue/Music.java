@@ -18,12 +18,11 @@ public class Music {
 	/**
 	 * url de la musique actuellement jouée
 	 */
-
 	URL current_music;
+
 	/**
 	 * clip de la musique actuellement jouée
 	 */
-
 	Clip current_clip;
 
 	/**
@@ -34,14 +33,14 @@ public class Music {
 	}
 
 	/**
-	 * Permet de changer de musique, test si une musique est déjà en train d'être
-	 * joué
+	 * Permet de changer de musique, test si une musique est déjà en train
+	 * d'être joué
 	 * 
 	 * @param music
 	 *            nouvelle musique
 	 */
 	public void changeMusic(String music) {
-		if (current_clip!=null){
+		if (current_clip != null) {
 			if (current_clip.isRunning()) {
 				current_clip.close();
 			}
@@ -70,7 +69,6 @@ public class Music {
 
 	/**
 	 * Permet d'arrêter ou de relancer la musique actuelle
-	 * 
 	 */
 	public void stopMusic() {
 		if (current_clip.isRunning()) {

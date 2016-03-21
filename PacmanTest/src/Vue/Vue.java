@@ -19,6 +19,7 @@ import Modele.Pacman;
  *
  */
 
+@SuppressWarnings("serial")
 public class Vue extends JFrame {
 
 	/**
@@ -132,6 +133,15 @@ public class Vue extends JFrame {
 		comboDelete = new JComboBox<String>(choices_delete);
 	}
 
+	/**
+	 * Met à jour la vue pour afficher le panel Leaderboard, qui affiche les
+	 * highscores du niveau courant à la fin d'une run
+	 * 
+	 * @param _controle_c
+	 *            Le listener correspondant
+	 * @param tab
+	 *            Le tableau de highscore à afficher
+	 */
 	public void setPanelLeaderBoard(MouseClic _controle_c, String[][] tab) {
 		panLB = new PanelLeaderBoard();
 		controle_c = _controle_c;
@@ -149,6 +159,17 @@ public class Vue extends JFrame {
 		panLB.add(quit);
 	}
 
+	/**
+	 * Met à jour la vue en affichant le leaderboard à partir de la startpage,
+	 * et donc en proposant de naviguer entre les highscore de tous les niveaux
+	 * 
+	 * @param _controle_c
+	 *            le listener correspondant
+	 * @param tab
+	 *            Le tableau de highscore courant à afficher
+	 * @param level
+	 *            Le nom du niveau courant
+	 */
 	public void setPanelLeaderBoardFromStartPage(MouseClic _controle_c, String[][] tab, String level) {
 		controle_c = _controle_c;
 		panLB.setLayout(null);
@@ -200,6 +221,8 @@ public class Vue extends JFrame {
 	 * 
 	 * @param _controle
 	 *            controleur des mouvements du pacman
+	 * @param mc
+	 *            Le listener correspondant
 	 * 
 	 */
 	public void setPanelIngame(KeyboardAndMouseMovementsInputs _controle, MouseClic mc) {
@@ -380,6 +403,9 @@ public class Vue extends JFrame {
 
 	/**
 	 * Actualise le panneau PanelOption et la difficulté du pacman
+	 * 
+	 * @param ghostNumber
+	 *            Le nombre de fantomes
 	 */
 	public void refreshOption(String ghostNumber) {
 		controle_c.setLevel((String) this.comboLevel.getSelectedItem());
@@ -407,16 +433,10 @@ public class Vue extends JFrame {
 	 *            Largeur de la fenêtre
 	 * @param maxY
 	 *            Hauteur de la fenêtre
-	 * @param blinky
-	 *            Fantome Blinky
-	 * @param pinky
-	 *            Fantome Pinky
-	 * @param inky
-	 *            Fantome Inky
-	 * @param clyde
-	 *            Fantome Clyde
+	 * @param ghost
+	 *            Tableau des fantomes
 	 * @param bonus
-	 *            tableau des bonus mangés
+	 *            Tableau des bonus mangés
 	 * 
 	 */
 	public void majVue(Pacman hero, int maxX, int maxY, Ghost[] ghost, boolean[] bonus) {

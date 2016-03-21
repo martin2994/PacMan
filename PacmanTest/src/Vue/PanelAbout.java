@@ -6,6 +6,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class PanelAbout extends JPanel {
 
 	/**
@@ -122,27 +123,27 @@ public class PanelAbout extends JPanel {
 	 * Pixel actuel de Tester
 	 */
 	private int pixelTester;
-	
+
 	/**
 	 * Pixel actuel de Lucie
 	 */
 	private int pixelLucie;
-	
+
 	/**
 	 * Pixel actuel de Thomas
 	 */
 	private int pixelThomas;
-	
+
 	/**
 	 * Pixel où doit commencer Tester
 	 */
 	private int baseTester;
-	
+
 	/**
 	 * Pixel où doit commencer Thomas
 	 */
 	private int baseThomas;
-	
+
 	/**
 	 * Pixel où doit commencer Lucie
 	 */

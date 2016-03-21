@@ -117,7 +117,7 @@ public class MyImage {
 	 * 
 	 * @param i
 	 *            ième case du tableau
-	 * @return l'image correspondante 
+	 * @return l'image correspondante
 	 */
 	public Image getCase(int i) {
 		return mylab[i];
@@ -130,7 +130,7 @@ public class MyImage {
 	 *            nom du fantôme
 	 * @param direction
 	 *            direction du fantôme
-	 * @return l'image correspondante            
+	 * @return l'image correspondante
 	 */
 	public Image getGhost(String name, String direction) {
 		int i;
@@ -209,7 +209,7 @@ public class MyImage {
 	 * 
 	 * @param name
 	 *            nom du bonus
-	 * @return l'image correspondante            
+	 * @return l'image correspondante
 	 */
 	public Image getBonus(String name) {
 		switch (name) {
@@ -231,7 +231,7 @@ public class MyImage {
 	 * 
 	 * @param name
 	 *            nom de la direction du pacman
-	 * @return l'image correspondante           
+	 * @return l'image correspondante
 	 */
 	public Image getPacman(String name) {
 		switch (name) {
@@ -250,7 +250,7 @@ public class MyImage {
 		case "mort2":
 			return mypacman[6];
 		case "mort3":
-			return mypacman[7];	
+			return mypacman[7];
 		default:
 			return null;
 		}

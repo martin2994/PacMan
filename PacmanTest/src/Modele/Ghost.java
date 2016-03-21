@@ -60,7 +60,7 @@ public class Ghost {
 	 * Pourcentage de random dans les deplacements des fantomes
 	 */
 	private int difficulty;
-	
+
 	/**
 	 * Temps d'attente avant de bouger
 	 */
@@ -83,9 +83,11 @@ public class Ghost {
 	 *            Taille de la hitbox
 	 * @param _difficulty
 	 *            Difficulté du fantome en pourcentage de déplacement aléatoire
+	 * @param _wait
+	 *            Temps d'attente avant de faire partir le fantome
 	 */
-	public Ghost(int _coordX, int _coordY, int _state, String _name, int _deplacement, int _length_box,
-			int _difficulty, int _wait) {
+	public Ghost(int _coordX, int _coordY, int _state, String _name, int _deplacement, int _length_box, int _difficulty,
+			int _wait) {
 		this.coordX = _coordX;
 		this.coordY = _coordY;
 		this.state = _state;
@@ -96,7 +98,7 @@ public class Ghost {
 		this.goToTheOtherSide = theOtherSide(go);
 		this.game_lap = 0;
 		this.difficulty = _difficulty;
-		this.wait=_wait;
+		this.wait = _wait;
 	}
 
 	/**

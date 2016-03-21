@@ -12,6 +12,7 @@ import javax.swing.JPanel;
  * @author Duchene Herrmann Rety
  *
  */
+@SuppressWarnings("serial")
 public class PanelLeaderBoard extends JPanel {
 
 	/**
