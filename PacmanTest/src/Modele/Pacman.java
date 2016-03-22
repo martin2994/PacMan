@@ -270,8 +270,8 @@ public class Pacman {
 	 */
 	public Controller.Direction setToGo(int mouseX, int mouseY) {
 		mouseY = mouseY - 25;
-		int x = this.coordX - mouseX;
-		int y = this.coordY - mouseY;
+		int x = this.coordX+(length_box/2) - mouseX;
+		int y = this.coordY+(length_box/2) - mouseY;
 		if (Math.abs(x) > Math.abs(y)) {
 			if (x > 0) {
 				this.toGo = Controller.Direction.LEFT;
