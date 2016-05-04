@@ -502,10 +502,10 @@ public class Modele {
 				case "Level 4":
 				case "Level 5":
 				case "Level 6":
-					new File("Stage" + action.charAt(6) + "HS.txt").delete();
+					new File("hs/Stage" + action.charAt(6) + "HS.txt").delete();
 					break;
 				case "General":
-					new File("HighScore.txt").delete();
+					new File("hs/HighScore.txt").delete();
 					break;
 				}
 				break;
